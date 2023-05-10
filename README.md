@@ -1,6 +1,6 @@
-# The Carpentries Workbench Template R Markdown Lesson
+# Course in microbial evolution
 
-This lesson is a template lesson that uses [The Carpentries Workbench][workbench].
+This lesson was created with [The Carpentries Workbench][workbench].
 
 To get started using this template, make sure you're logged into Github and visit https://github.com/carpentries/workbench-template-rmd/generate
 and follow the instructions.

@@ -1,19 +1,20 @@
 ---
-title: 'introduction'
-teaching: 10
-exercises: 2
+title: 'Introduction'
+teaching: 20
+exercises: 10
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How do you write a lesson using R Markdown and `{sandpaper}`?
+- How does evolution work (in microbes)?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Explain how to use markdown with the new lesson template
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+- Test your prior knowledge about evolutionary biology.
+- Discuss a few "difficult" questions about evolution, with a specific focus on 
+how microbes evolve.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
