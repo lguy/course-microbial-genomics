@@ -2,8 +2,10 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
+These pages contain instruction for the demonstration part of the lectures on 
+microbial evolution, phylogenetics and molecular epidemiology. The demos
+are to be performed inside the virtual machine already installed in your 
+computer. 
 
 ## Data Sets
 
@@ -16,39 +18,5 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 
 ## Software Setup
 
-::::::::::::::::::::::::::::::::::::::: discussion
-
-### Details
-
-Setup for different systems can be presented in dropdown menus via a `solution`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
-
-:::::::::::::::::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::: solution
-
-### Windows
-
-Use PuTTY
-
-:::::::::::::::::::::::::
-
-:::::::::::::::: solution
-
-### MacOS
-
-Use Terminal.app
-
-:::::::::::::::::::::::::
-
-
-:::::::::::::::: solution
-
-### Linux
-
-Use Terminal
-
-:::::::::::::::::::::::::
+See the [manual][https://docs.google.com/document/d/1lk3OSmKhc76L-nNON0_MctSCBhLBESwe78ryNfMKB3A/edit] for reference.
 
