@@ -14,7 +14,7 @@ carpentry: 'dc'
 title: 'Microbial Genomics: evolution, phylogenetics, and molecular epidemiology'
 
 # Date the lesson was created (YYYY-MM-DD, this is empty by default)
-created: 2023-05-08
+created: '2023-05-08'
 
 # Comma-separated list of keywords for the lesson
 keywords: 'evolution, phylogenetics, molecular epidemiology'
@@ -58,19 +58,20 @@ contact: 'lionel.guy@imbim.uu.se'
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes:
+episodes: 
 - introduction.Rmd
 - genetic-drift.md
+- phylogenetics.Rmd
 
 # Information for Learners
-learners:
+learners: 
 - setup.md
 
 # Information for Instructors
-instructors:
+instructors: 
 
 # Learner Profiles
-profiles:
+profiles: 
 
 # Customisation ---------------------------------------------
 #
