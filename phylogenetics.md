@@ -1,0 +1,226 @@
+---
+title: 'Phylogenetics'
+teaching: 10
+exercises: 20
+---
+
+:::::::::::::::::::::::::::::::::::::: questions 
+
+- How do you build a phylogenetic tree?
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::: objectives
+
+- Learn the basic of phylogenetics tree building, taking the simplest of
+the examples with a UPGMA tree.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Setup
+
+For this exercise, we'll use the R package 
+[`ape`](https://emmanuelparadis.github.io/) , which you should
+install if it's not present on your setup:
+
+```r
+install.packages('ape')
+```
+
+And to load it:
+
+
+```r
+library(ape)
+```
+
+## UPGMA-based tree
+
+Load the tree in fasta format, reading from a `temp` file
+
+```r
+FASTAfile <- tempfile("aln", fileext = ".fasta")
+cat(">A", "----ATCCGCTGATCGGCTG----",
+    ">B", "GCTGATCCGTTGATCGG-------",
+    ">C", "----ATCTGCTCATCGGCT-----",
+    ">D", "----ATTCGCTGAACTGCTGGCTG",
+    file = FASTAfile, sep = "\n")
+aln <- read.dna(FASTAfile, format = "fasta")
+```
+Now look at the alignment. Notice there are gaps, which we don't want in 
+this example. We also remove the non-informative (identical) columns. 
+
+
+```r
+alview(aln)
+```
+
+```{.output}
+  000000000111111111122222
+  123456789012345678901234
+A ----ATCCGCTGATCGGCTG----
+B GCTG.....T.......---....
+C .......T...C.......-....
+D ......T......A.T....GCTG
+```
+
+```r
+aln_nogap <- del.colgapsonly(aln, threshold=0.1)
+aln_filtered <- aln[,c(7,8,10,12,14,16)]
+alview(aln_filtered)
+```
+
+```{.output}
+  123456
+A CCCGTG
+B ..T...
+C .T.C..
+D T...AT
+```
+Now we have a simple alignment as in the lecture. Dots (`.`) mean that the
+sequence is identical to the top row, which makes it easier to calculate 
+distances.
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+## Calculating distance "by hand"
+
+Let's use a matrix to calculate distances between sequences. We'll just count
+the number of differences between the sequences. We'll then group the two 
+closest sequences. Which are they?
+
+Table: Distances between the sequences.
+
+|   | A  | B  | C  | D  |
+| - | -: | -: | -: | -: |
+| A |    |    |    |    |
+| B |    |    |    |    |
+| C |    |    |    |    |
+| D |    |    |    |    |
+
+:::::::::::::::::::::::: solution 
+
+Here is the solution:
+
+Table: Distances between the sequences.
+
+|   | A  | B  | C  | D  |
+| - | -: | -: | -: | -: |
+| A |    |    |    |    |
+| B |  1 |    |    |    |
+| C |  2 | 3  |    |    |
+| D |  3 | 4  | 5  |    |
+
+The two closest sequences are A and B.
+
+:::::::::::::::::::::::::::::::::
+
+Let's now cluster together A and B, and calculate the average distance from
+AB to the other sequences. 
+
+Table: Recalculated distances.
+
+|    | AB  | C  | D  |
+| -  | -:  | -: | -: |
+| AB |     |    |    |
+| C  |     |    |    |
+| D  |     |    |    |
+
+:::::::::::::::::::::::: solution 
+
+The average distance for AB to C is calculated as follow:
+
+$d(AB,C) = \dfrac{d(A,C) + d(B,C)}{2} = \dfrac{2 + 3}{2} = 2.5$
+
+And so on for the other distances:
+
+Table: Recalculated distances.
+
+|    | AB  | C  | D  |
+| -  | -:  | -: | -: |
+| AB |     |    |    |
+| C  | 2.5 |    |    |
+| D  | 3.5 |  5 |    |
+
+:::::::::::::::::::::::::::::::::
+
+Now the shortest distance is AB to C. Let's recalculate the distance to D again.
+
+Table: Recalculated distances.
+
+|    | ABC | D  |
+| -  | -:  | -: |
+| ABC|     |    |
+| D  |     |    |
+
+:::::::::::::::::::::::: solution 
+
+$d(ABC,D) = \dfrac{d(AB,D) + d(C,D)}{2} = \dfrac{3.5 + 5}{2} = 4.25$
+
+Table: Recalculated distances.
+
+|    | ABC   | D  |
+| -  | -:    | -: |
+| ABC|       |    |
+| D  | 4.25  |    |
+
+:::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+The tree is reconstructed by dividing the distances equally between the two
+leaves. 
+- A-B: each 0.5.
+- AB-C: each side gets 2.5/2 = 1.25. The branch to AB is 1.25 - 0.75 = 0.75
+- ABC-D: each side gets 4.25/2 = 2.125. The branch to ABC is 2.125 - 0.75 - 0.5 = 0.825
+
+![UPGMA tree](fig/upgma_manual.png){alt='Manually built UPGMA tree'}
+
+
+Let's know do the same
+
+::::::::::::::::::::::::::::::::::::: challenge 
+
+
+
+
+```r
+dist_matrix <- dist.dna(aln_filtered, model="raw") * 6
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Figures
+
+You can include figures generated from R Markdown:
+
+
+```r
+pie(
+  c(Sky = 78, "Sunny side of pyramid" = 17, "Shady side of pyramid" = 5), 
+  init.angle = 315, 
+  col = c("deepskyblue", "yellow", "yellow3"), 
+  border = FALSE
+)
+```
+
+<div class="figure" style="text-align: center">
+<img src="fig/phylogenetics-rendered-pyramid-1.png" alt="pie chart illusion of a pyramid"  />
+<p class="caption">Sun arise each and every morning</p>
+</div>
+
+One of our episodes contains $\LaTeX$ equations when describing how to create
+dynamic reports with {knitr}, so we now use mathjax to describe this:
+
+`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
+
+Cool, right?
+
+::::::::::::::::::::::::::::::::::::: keypoints 
+
+- The simplest of the trees are distance-based.
+- UPGMA works by clustering the two closest leaves and recalculating the 
+distance matrix.
+
+::::::::::::::::::::::::::::::::::::::::::::::::
+
