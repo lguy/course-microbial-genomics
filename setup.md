@@ -18,5 +18,5 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 
 ## Software Setup
 
-See the [manual][https://docs.google.com/document/d/1lk3OSmKhc76L-nNON0_MctSCBhLBESwe78ryNfMKB3A/edit] for reference.
+See the [manual](https://docs.google.com/document/d/1lk3OSmKhc76L-nNON0_MctSCBhLBESwe78ryNfMKB3A/edit) for reference.
 
