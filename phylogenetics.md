@@ -65,7 +65,6 @@ D ......T......A.T....GCTG
 ```
 
 ```r
-aln_nogap <- del.colgapsonly(aln, threshold=0.1)
 aln_filtered <- aln[,c(7,8,10,12,14,16)]
 alview(aln_filtered)
 ```
@@ -115,8 +114,8 @@ The two closest sequences are A and B.
 
 :::::::::::::::::::::::::::::::::
 
-Let's now cluster together A and B, and calculate the average distance from
-AB to the other sequences. 
+Let's now cluster together A and B, and calculate the average distance 
+from AB to the other sequences, weighted by the size of the clusters. 
 
 Table: Recalculated distances.
 
@@ -155,14 +154,14 @@ Table: Recalculated distances.
 
 :::::::::::::::::::::::: solution 
 
-$d(ABC,D) = \dfrac{d(AB,D) + d(C,D)}{2} = \dfrac{3.5 + 5}{2} = 4.25$
+$d(ABC,D) = \dfrac{d(AB,D) * 2 + d(C,D) * 1}{2 + 1} = \dfrac{3.5 * 2 + 5 * 1}{3} = 4$
 
 Table: Recalculated distances.
 
-|    | ABC   | D  |
-| -  | -:    | -: |
-| ABC|       |    |
-| D  | 4.25  |    |
+|    | ABC | D  |
+| -  | -:  | -: |
+| ABC|     |    |
+| D  | 4   |    |
 
 :::::::::::::::::::::::::::::::::
 
@@ -172,49 +171,49 @@ The tree is reconstructed by dividing the distances equally between the two
 leaves. 
 - A-B: each 0.5.
 - AB-C: each side gets 2.5/2 = 1.25. The branch to AB is 1.25 - 0.75 = 0.75
-- ABC-D: each side gets 4.25/2 = 2.125. The branch to ABC is 2.125 - 0.75 - 0.5 = 0.825
+- ABC-D: each side gets 4/2 = 2. The branch to ABC is 2 - 0.75 - 0.5 = 0.75
 
 ![UPGMA tree](fig/upgma_manual.png){alt='Manually built UPGMA tree'}
 
 
-Let's know do the same
+Let's know do the same using bioinformatics tools. 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
+We'll use `dist.dna` to 
+calculate the distances. We'll use a "N" model, that just counts the differences
+and doesn't correct or normalizes. We'll use the function `hclust` to perform
+the UPGMA method calculation. The tree is then plotted, and the branch 
+lengths plotted with `edgelabels`:
+
+:::::::::::::::::::::::: solution 
 
 
 
 ```r
-dist_matrix <- dist.dna(aln_filtered, model="raw") * 6
+dist_matrix <- dist.dna(aln_filtered, model="N")
+dist_matrix
 ```
+
+```{.output}
+  A B C
+B 1    
+C 2 3  
+D 3 4 5
+```
+
+```r
+tree <- as.phylo(hclust(dist_matrix, "average"))
+plot(tree)
+edgelabels(tree$edge.length)
+```
+
+<img src="fig/phylogenetics-rendered-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+
+:::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Figures
-
-You can include figures generated from R Markdown:
-
-
-```r
-pie(
-  c(Sky = 78, "Sunny side of pyramid" = 17, "Shady side of pyramid" = 5), 
-  init.angle = 315, 
-  col = c("deepskyblue", "yellow", "yellow3"), 
-  border = FALSE
-)
-```
-
-<div class="figure" style="text-align: center">
-<img src="fig/phylogenetics-rendered-pyramid-1.png" alt="pie chart illusion of a pyramid"  />
-<p class="caption">Sun arise each and every morning</p>
-</div>
-
-One of our episodes contains $\LaTeX$ equations when describing how to create
-dynamic reports with {knitr}, so we now use mathjax to describe this:
-
-`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
-
-Cool, right?
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
