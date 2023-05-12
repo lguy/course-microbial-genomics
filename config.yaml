@@ -60,9 +60,11 @@ contact: 'lionel.guy@imbim.uu.se'
 # Order of episodes in your lesson
 episodes:
 - introduction.Rmd
+- genetic-drift.md
 
 # Information for Learners
 learners:
+- setup.md
 
 # Information for Instructors
 instructors:
