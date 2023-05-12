@@ -7,6 +7,9 @@ site/*
 .Rhistory
 .Rapp.history
 
+# Mac temp files
+.DS_Store
+
 # Session Data files
 .RData
 
