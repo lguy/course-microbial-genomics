@@ -19,7 +19,8 @@ the examples with a UPGMA tree.
 
 ## Setup
 
-For this exercise, we'll use the R package 
+The exercise is done for a large part with pen and paper, and then a 
+demonstration in R. We'll also use the R package 
 [`ape`](https://emmanuelparadis.github.io/) , which you should
 install if it's not present on your setup:
 
