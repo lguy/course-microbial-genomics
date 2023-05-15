@@ -66,10 +66,10 @@ always returns you to home.
 ## Exercise
 
 Use the `mkdir` command to make the following directories:  
-dc\_workshop  
-dc\_workshop/docs  
-dc\_workshop/data  
-dc\_workshop/results
+molepi
+molepi/docs  
+molepi/data  
+molepi/results
 
 :::::::::::::::  solution
 
@@ -302,7 +302,7 @@ When you check your history later, it will help your remember what you did!
 
 To ensure that we complete this tutorial in time, we will not perform all operations on all genomes, only on one or two. The principles are - however - the same for two or seven (or, to some extent, 189) genomes. 
 
-Let's download data for two *M. tuberculosis* genomes with a for loop
+Let's download data for two *M. tuberculosis* genomes with a `for` loop. Here is an example, but you may choose two other samples (see below).
 
 ```bash
 $ cd molepi/data
@@ -312,7 +312,7 @@ wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
 done
 ```
 
-This will run over night. We will therefore detach the session to work further.
+This will run for a while (maybe 5 minutes).
 
 The command for downloading all data (*Don't do this.*) would be:
 
