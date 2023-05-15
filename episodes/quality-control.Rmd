@@ -154,6 +154,7 @@ For each position in this sample, the quality values do not drop much lower than
 
 Now let's take a look at a quality plot on the other end of the spectrum.
 
+![](fig/bad_quality1.8.png){alt='A FastQC output showing reads with bad quality'}
 
 Here, we see positions within the read in which the boxes span a much wider range. Also, quality scores drop quite low into the "bad" range, particularly on the tail end of the reads. The FastQC tool produces several other diagnostic plots to assess sample quality, in addition to the one plotted above.
 
