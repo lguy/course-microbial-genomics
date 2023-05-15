@@ -64,6 +64,7 @@ episodes:
 - phylogenetics.Rmd
 - molecular-epidemiology.Rmd
 - downloading-data.Rmd
+- quality-control.Rmd
 
 # Information for Learners
 learners: 

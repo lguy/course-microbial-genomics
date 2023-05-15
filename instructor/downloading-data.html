@@ -85,11 +85,11 @@
   Microbial Genomics: evolution, phylogenetics, and molecular epidemiology
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 58%" class="percentage">
-    58%
+<aside class="col-md-12 lesson-progress"><div style="width: 43%" class="percentage">
+    43%
   </div>
   <div class="progress data">
-    <div class="progress-bar data" role="progressbar" style="width: 58%" aria-valuenow="58" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar data" role="progressbar" style="width: 43%" aria-valuenow="43" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -201,6 +201,15 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="quality-control.html">6. Assessing Read Quality and Trimming</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -243,12 +252,12 @@
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/molecular-epidemiology.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/quality-control.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/molecular-epidemiology.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Molecular</a>
-        <a class="chapter-link float-end" href="../instructor/index.html" rel="next">Next... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/quality-control.html" rel="next">Next: Assessing Read... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Downloading data</h1>
@@ -357,10 +366,9 @@ home.</p>
 <div class="callout-content">
 <p>Use the <code>mkdir</code> command to make the following
 directories:<br>
-dc_workshop<br>
-dc_workshop/docs<br>
-dc_workshop/data<br>
-dc_workshop/results</p>
+molepi molepi/docs<br>
+molepi/data<br>
+molepi/results</p>
 </div>
 </div>
 </div>
@@ -631,7 +639,8 @@ all operations on all genomes, only on one or two. The principles are -
 however - the same for two or seven (or, to some extent, 189)
 genomes.</p>
 <p>Let’s download data for two <em>M. tuberculosis</em> genomes with a
-for loop</p>
+<code>for</code> loop. Here is an example, but you may choose two other
+samples (see below).</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -641,8 +650,7 @@ for loop</p>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"</span><span class="va">${files}</span><span class="st">"/*fastq.gz"</span></span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
-<p>This will run over night. We will therefore detach the session to
-work further.</p>
+<p>This will run for a while (maybe 5 minutes).</p>
 <p>The command for downloading all data (<em>Don’t do this.</em>) would
 be:</p>
 <div class="codewrapper sourceCode" id="cb19">
@@ -680,12 +688,12 @@ any links that you are not going to use.
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/molecular-epidemiology.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/quality-control.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/molecular-epidemiology.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Molecular</a>
-        <a class="chapter-link float-end" href="../instructor/index.html" rel="next">Next... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/quality-control.html" rel="next">Next: Assessing Read... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div> <!-- / div.primary-content.col-xs-12 -->
 <!-- END:   inst/pkgdown/templates/content-instructor.html-->
