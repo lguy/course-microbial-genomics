@@ -62,6 +62,8 @@ episodes:
 - introduction.Rmd
 - genetic-drift.md
 - phylogenetics.Rmd
+- molecular-epidemiology.Rmd
+- downloading-data.Rmd
 
 # Information for Learners
 learners: 
