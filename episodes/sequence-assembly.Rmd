@@ -40,12 +40,12 @@ To run SKESA we will use the skesa command with a number of option that we will 
 
 ```bash
 $ for sample in ERR029206 ERR029207
->  do
->  skesa \
+do
+skesa \
 --cores 2 \
 --memory 8 \
---fastq "${sample}"_1.fastq.gz_trim.fastq "${sample}"_2.fastq.gz_trim.fastq 1> ~/molepi/results/assembly/"${sample}".fasta
->  done
+--fastq "${sample}"_1.fastq.gz_trim.fastq "${sample}"_2.fastq.gz_trim.fastq 1> ../../results/assembly/"${sample}".fasta
+done
 ```
 
 A non-quoted backslash, `\` is used as an escape character in Bash. It preserves the literal value of the next character that follows, with the exception of newline. This means that the back slash starts a new line without starting a new command - we only add it for better readability.
@@ -95,27 +95,25 @@ General options:
 
 Find out how many contigs there are in the *M. tuberculosis* isolates. 
 
-```
-$ assembly-stats
-```
-
-prints information about an assembly.
-
 :::::::::::::::  solution
 
 ## Solution
 
 ```bash
 assembly-stats ERR026473.fasta
-wc -l infoalign err026743.fasta
-...
-ERR026473.fasta:390
-ERR026474.fasta:367
-ERR026478.fasta:296
-ERR026481.fasta:336
-ERR026482.fasta:345
-ERR029206.fasta:451
-ERR029207.fasta:458
+```
+
+```output
+stats for ERR029206.fasta
+sum = 4233864, n = 451, ave = 9387.73, largest = 70968
+N50 = 20633, n = 68
+N60 = 16723, n = 91
+N70 = 13473, n = 120
+N80 = 9592, n = 157
+N90 = 5883, n = 213
+N100 = 200, n = 451
+N_count = 0
+Gaps = 0
 ```
 
 :::::::::::::::::::::::::
