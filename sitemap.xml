@@ -76,6 +76,9 @@
     <loc>https://carpentries.github.io/workbench-template-rmd/instructor/sequence-assembly.html</loc>
   </url>
   <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/snps-phylogeny.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/instructor-notes.html</loc>
   </url>
   <url>
@@ -101,5 +104,8 @@
   </url>
   <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/sequence-assembly.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/snps-phylogeny.html</loc>
   </url>
 </urlset>
