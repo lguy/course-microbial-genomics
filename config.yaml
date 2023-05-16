@@ -66,6 +66,7 @@ episodes:
 - downloading-data.Rmd
 - quality-control.Rmd
 - sequence-assembly.Rmd
+- snps-phylogeny.Rmd
 
 # Information for Learners
 learners: 

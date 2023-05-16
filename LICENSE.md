@@ -4,11 +4,17 @@ title: "Licenses"
 
 ## Instructional Material
 
-All Carpentries (Software Carpentry, Data Carpentry, and Library Carpentry)
-instructional material is made available under the [Creative Commons
+This lecture is made available under the [Creative Commons
 Attribution license][cc-by-human]. The following is a human-readable summary of
 (and not a substitute for) the [full legal text of the CC BY 4.0
 license][cc-by-legal].
+
+## Sources 
+
+This lecture is based on a template by [The Carpentries](https://carpentries.org/), under [CC BY 4.0 license][cc-by-legal]. 
+
+The content for the [molecular epidemiology](episodes/molecular-epidemiology.Rmd) part is in large part reused from [another tutorial](https://github.com/aschuerch/MolecularEpidemiology_AnalysisWGS) designed by [Anita Schürch](https://aschuerch.github.io/), also under [CC BY 4.0 license][cc-by-legal].
+
 
 You are free:
 
