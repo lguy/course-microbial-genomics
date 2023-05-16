@@ -85,11 +85,11 @@
   Microbial Genomics: evolution, phylogenetics, and molecular epidemiology
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 74%" class="percentage">
-    74%
+<aside class="col-md-12 lesson-progress"><div style="width: 62%" class="percentage">
+    62%
   </div>
   <div class="progress data">
-    <div class="progress-bar data" role="progressbar" style="width: 74%" aria-valuenow="74" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar data" role="progressbar" style="width: 62%" aria-valuenow="62" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -208,6 +208,15 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="sequence-assembly.html">7. Sequence assembly</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -250,16 +259,16 @@
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/downloading-data.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/sequence-assembly.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/downloading-data.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Downloading data</a>
-        <a class="chapter-link float-end" href="../instructor/index.html" rel="next">Next... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/sequence-assembly.html" rel="next">Next: Sequence assembly... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Assessing Read Quality and Trimming</h1>
-        <p> Last updated on 2023-05-15 | 
+        <p> Last updated on 2023-05-16 | 
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -353,7 +362,9 @@ in a specific format.</p>
 <hr class="half-width"><p>The first step in the variant calling workflow is to take the FASTQ
 files received from the sequencing facility and assess the quality of
 the sequence reads.</p>
-<figure><img src="../fig/var_calling_workflow_qc.png" alt="Quality control workflow" class="figure mx-auto d-block"></figure><div class="section level3">
+<figure><img src="../fig/var_calling_workflow_qc.png" alt="Quality control workflow" class="figure mx-auto d-block"></figure><p>You’ve already seen that part, but repetition doesn’t hurt. If you
+feel that it’s anyway unnecessary, move on to the next part.</p>
+<div class="section level3">
 <h3 id="details-on-the-fastq-format">Details on the FASTQ format<a class="anchor" aria-label="anchor" href="#details-on-the-fastq-format"></a></h3>
 <p>Although it looks complicated (and it is), it’s easy to understand
 the <a href="https://en.wikipedia.org/wiki/FASTQ_format" class="external-link">fastq</a>
@@ -520,7 +531,7 @@ start with the same name? Discuss with your neighbour.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>There are 4 FASTQ files. Each sample has <a href="https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/" class="external-link">paired-end
 reads</a>.</p>
@@ -636,7 +647,7 @@ worst?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>All samples are of reasonable quality.</p>
 </div>
@@ -755,7 +766,7 @@ neighbor.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -874,7 +885,7 @@ same size as our reference genome (4411532 bases).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -929,12 +940,12 @@ any links that you are not going to use.
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/downloading-data.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="../instructor/index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/sequence-assembly.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/downloading-data.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Downloading data</a>
-        <a class="chapter-link float-end" href="../instructor/index.html" rel="next">Next... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/sequence-assembly.html" rel="next">Next: Sequence assembly... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div> <!-- / div.primary-content.col-xs-12 -->
 <!-- END:   inst/pkgdown/templates/content-instructor.html-->
@@ -979,7 +990,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/quality-control.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/quality-control.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-05-15",
+  "dateModified": "2023-05-16",
   "datePublished": "2023-05-16"
 }
 

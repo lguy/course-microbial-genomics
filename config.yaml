@@ -65,6 +65,7 @@ episodes:
 - molecular-epidemiology.Rmd
 - downloading-data.Rmd
 - quality-control.Rmd
+- sequence-assembly.Rmd
 
 # Information for Learners
 learners: 

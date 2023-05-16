@@ -73,6 +73,9 @@
     <loc>https://carpentries.github.io/workbench-template-rmd/instructor/reference.html</loc>
   </url>
   <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/sequence-assembly.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/instructor-notes.html</loc>
   </url>
   <url>
@@ -95,5 +98,8 @@
   </url>
   <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/sequence-assembly.html</loc>
   </url>
 </urlset>
