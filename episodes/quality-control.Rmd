@@ -68,6 +68,8 @@ and assess the quality of the sequence reads.
 
 ![](fig/var_calling_workflow_qc.png){alt='Quality control workflow'}
 
+You've already seen that part, but repetition doesn't hurt. If you feel that it's anyway unnecessary, move on to the next part.
+
 ### Details on the FASTQ format
 
 Although it looks complicated (and it is), it's easy to understand the
