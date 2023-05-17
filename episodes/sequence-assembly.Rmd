@@ -52,6 +52,23 @@ A non-quoted backslash, `\` is used as an escape character in Bash. It preserves
 
 The assembly should take about 2-3 minutes per genome, using 2 cores and 8 GB of memory. 
 
+## Downloading the missing assemblies
+
+If you haven't assembled all samples, download the finished contigs to your computer and decompress them. They will decompress in a folder called `assembly`, so one solution is to rename the assembly folder you already have to something else:
+
+```bash
+cd ~/molepi/results
+mv assembly partial_assembly
+wget https://github.com/lguy/course-microbial-genomics/raw/main/episodes/files/assemblies.tar.gz .
+tar xvzf assemblies.tar.gz
+ls assembly
+```
+
+```output
+ERR026473.fasta ERR026478.fasta ERR026482.fasta ERR029207.fasta
+ERR026474.fasta ERR026481.fasta ERR029206.fasta
+```
+
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Challenge: What do the command line parameters of SKESA mean??
