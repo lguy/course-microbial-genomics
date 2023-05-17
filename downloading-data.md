@@ -302,28 +302,18 @@ When you check your history later, it will help your remember what you did!
 
 To ensure that we complete this tutorial in time, we will not perform all operations on all genomes, only on one or two. The principles are - however - the same for two or seven (or, to some extent, 189) genomes. 
 
-Let's download data for two *M. tuberculosis* genomes with a `for` loop. Here is an example, but you may choose two other samples (see below).
+Let's download data for the *M. tuberculosis* genomes with a `for` loop. 
 
 ```bash
 $ cd molepi/data
-$ for files in ERR029/ERR029207 ERR029/ERR029206
+$ for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482
 do 
 wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
 done
 ```
 
-This will run for a while (maybe 5 minutes).
+This will run for a while (maybe 15 minutes).
 
-The command for downloading all data (*Don't do this.*) would be:
-
-```bash
-$ for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482
-do 
-# wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
-done
-```
-
-The main command (`wget`) is commented out (prefixed with `#`) to prevent unintentional use.
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 

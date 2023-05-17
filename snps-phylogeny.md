@@ -24,28 +24,37 @@ In this episode we will try to pinpoint single nucleotide variants or single nuc
 
 The identified SNPs will be used to compare the isolates to each other and to establish a phylogenetic tree.
 
-## Downloading the missing assemblies
+## Getting missing data
 
-If you haven't assembled all samples, download the finished contigs to your computer and decompress them. They will decompress in a folder called `assembly`, so one solution is to rename the assembly folder you already have to something else:
+If you don't have all the trimmed reads, you can download them (will take a while, *dont't do it if you have the reads*):
 
 ```bash
-cd ~/molepi/results
-mv assembly partial_assembly
-
+cd ~/molepi/data
+mv trimmed_fastq trimmed_fastq_partial
+wget https://uppsala.box.com/s/s1zpt0w84iq4o42qhgho5vrz9qnpxouk trimmed_fastq.tar.gz
+tar xvzf trimmed_fastq.tar.gz
+ls trimmed_fastq
 ```
 
 ## SNP calling
 
-[SNIPPY](https://github.com/tseemann/snippy) is a pipeline that contains different tools to determine SNPs in sequencing reads against a reference genome. It takes forward and reverse reads of paired-end sequences and aligns them against a reference.
+[snippy](https://github.com/tseemann/snippy) is a pipeline that contains different tools to determine SNPs in sequencing reads against a reference genome. It takes forward and reverse reads of paired-end sequences and aligns them against a reference.
 
-It is very fast but a single run of SNIPPY still takes about 10 to 12 minutes. We will therefore tell SNIPPY to run all the samples after each other. However this time we can not use a wildcard to do so. We will instead run all the samples in a loop.
+First we'll create a folder to hold the results from snippy:
 
 ```bash
-$ cd ~/molepi/data/trimmed_fastq/
+$ cd ~/molepi/results
+$ mkdir snps
+```
+
+It is very fast but a single run of snippy still takes about 10 to 12 minutes. We will therefore tell snippy to run all the samples after each other. However this time we can not use a wildcard to do so. We will instead run all the samples in a loop.
+
+```bash
+$ cd ../data/trimmed_fastq/
 $ for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
->  do
->  snippy  --outdir ~/molepi/results/snps/"${sample}" --ref ~/molepi/data/GCF_000195955.2_ASM19595v2_genomic.fna --R1 "${sample}"_1.fastq.gz_trim.fastq --R2 "${sample}"_2.fastq.gz_trim.fastq
->  done
+do
+snippy  --outdir ../../results/snps/"${sample}" --ref ../GCF_000195955.2_ASM19595v2_genomic.fna --R1 "${sample}"_1.fastq.gz_trim.fastq --R2 "${sample}"_2.fastq.gz_trim.fastq
+done
 ```
 
 
@@ -66,7 +75,7 @@ NC_000962.3	11879	snp	A	G	G:107 A:0
 NC_000962.3	14785	snp	T	C	C:180 T:0	
 ```
 
-This list gives us information on every SNP that was found by SNIPPY when compared to the reference genome. The first SNP is found at the position 1849 of the reference genome, and is a C in the H37Rv and an A in isolate ERR029207. There is a high confidence associated with this SNP: an A has been found 225 times in the sequencing reads and never a C at this position.
+This list gives us information on every SNP that was found by snippy when compared to the reference genome. The first SNP is found at the position 1849 of the reference genome, and is a C in the H37Rv and an A in isolate ERR029207. There is a high confidence associated with this SNP: an A has been found 225 times in the sequencing reads and never a C at this position.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
@@ -75,7 +84,7 @@ This list gives us information on every SNP that was found by SNIPPY when compar
 Find out how many SNPs were identified in the *M. tuberculosis* isolates when compared to H37Rv. Enter your solution in the
 [table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Number of SNPs'.
 
-Hint: The .txt file in the SNIPPY output contains summary information
+Hint: The .txt file in the snippy output contains summary information
 
 :::::::::::::::  solution
 
@@ -108,9 +117,9 @@ Repeat this for the other isolates.
 
 In order to compare the identified SNPs with each other we need to know if a certain position exists in all isolates.
 A core site can have the same nucleotide in every sample (monomorphic) or some samples can be different (polymorphic).
-SNIPPY will concatenate the core SNPs, i.e. ignoring sites that are monomorphic in all isolates and in the reference. Concatenation of the SNP sites reduces the size of the alignment considerably.
+snippy will concatenate the core SNPs, i.e. ignoring sites that are monomorphic in all isolates and in the reference. Concatenation of the SNP sites reduces the size of the alignment considerably.
 
-The '--noref' argument tells SNIPPY to exclude the reference from the alignment.  
+The '--noref' argument tells snippy to exclude the reference from the alignment.  
 The '--aformat' argument determines the alignment output format. We need a phylip format as input for our next tool.
 
 ```bash
@@ -146,7 +155,7 @@ Our output in phylip format was written to 'core.aln'. But let's have a look at 
 
 ::::::::::::::::::::::::::::::::::::::  discussion
 
-## Discussion: What's in the output of SNIPPY??
+## Discussion: What's in the output of snippy??
 
 Have a look at the content of these three files with 'cat' or 'head'.
 
@@ -164,12 +173,7 @@ What is in core.aln?
 
 ## Phylogenetic tree
 
-Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree
-from the file 'core.aln' with PhyML. PhyML is a phylogeny software based on the maximum-likelihood
-principle. Since the original [publication](https://www.ncbi.nlm.nih.gov/pubmed/14530136), PhyML has been widely used
-and cited. There is a range of parameters that need to be chosen, such as  nucleotide or amino-acid substitution model
-(see the [web-version of PhyML](https://www.atgc-montpellier.fr/phyml/usersguide.php?type=command) but for simplicity we
-will run PhyML with standard parameters.
+Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree from the file 'core.aln' with [IQ-TREE](http://www.iqtree.org/). IQ-TREE is a phylogeny software based on the maximum-likelihood principle. IQ-TREE has been widely used and cited. There is a range of parameters that need to be chosen, such as  nucleotide or amino-acid substitution models.
 
 ```bash
 $ phyml -i core.aln

@@ -26,9 +26,10 @@ $ ls
 ```
 
 ```output
-ERR029206_1.fastq.gz                   ERR029207_2.fastq.gz
-ERR029206_2.fastq.gz                   GCF_000195955.2_ASM19595v2_genomic.fna
-ERR029207_1.fastq.gz
+ERR026473_1.fastq.gz ERR026478_1.fastq.gz ERR026482_1.fastq.gz ERR029207_1.fastq.gz
+ERR026473_2.fastq.gz ERR026478_2.fastq.gz ERR026482_2.fastq.gz ERR029207_2.fastq.gz
+ERR026474_1.fastq.gz ERR026481_1.fastq.gz ERR029206_1.fastq.gz ERR026474_2.fastq.gz
+ERR026481_2.fastq.gz ERR029206_2.fastq.gz 
 ```
 
 All new files start with ERR and have a `fastq.gz` extension. It means they are in fastq format and compressed. Let's make a copy of one file and uncompress this file to inspect it further
@@ -172,13 +173,13 @@ $ cd ~/molepi/data/
 
 ### Exercise
 
-Yesterday we downloaded 2 samples. How many FASTQ files are in this dataset? Why is this? What is the difference between the two files that start with the same name? Discuss with your neighbour.
+We downloaded the samples. How many FASTQ files are in this dataset? Why is this? What is the difference between the two files that start with the same name? Discuss with your neighbour.
 
 :::::::::::::::  solution
 
 ### Solution
 
-There are 4 FASTQ files. Each sample has [paired-end reads](https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/).
+There are 14 FASTQ files. Each sample has [paired-end reads](https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/).
 
 :::::::::::::::::::::::::
 
@@ -203,7 +204,7 @@ Approx 25% complete for ERR029206_1.fastq.gz
 Approx 30% complete for ERR029206_1.fastq.gz
 ```
 
-In total, it should take about five minutes for FastQC to run on all
+In total, it should take about 15-20 minutes for FastQC to run on all
 four of our FASTQ files. When the analysis completes, your prompt
 will return. So your screen will look something like this:
 
@@ -223,6 +224,7 @@ $ ls
 ```
 
 ```output
+...
 ERR029206_1.copy.fastq                 ERR029207_1.fastq.gz
 ERR029206_1.fastq.gz                   ERR029207_1_fastqc.html
 ERR029206_1_fastqc.html                ERR029207_1_fastqc.zip
@@ -420,6 +422,7 @@ $ ls
 ```
 
 ```output
+...
 ERR029206_1.copy.fastq                 ERR029207_1.fastq.gz
 ERR029206_1.fastq.gz                   ERR029207_1.fastq.gz_trim.fastq
 ERR029206_1.fastq.gz_trim.fastq        ERR029207_2.fastq.gz
@@ -438,6 +441,7 @@ $ ls
 ```
 
 ```output
+...
 ERR029206_1.fastq.gz_trim.fastq ERR029207_1.fastq.gz_trim.fastq
 ERR029206_2.fastq.gz_trim.fastq ERR029207_2.fastq.gz_trim.fastq
 ```
