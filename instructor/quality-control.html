@@ -277,7 +277,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Assessing Read Quality and Trimming</h1>
-        <p> Last updated on 2023-05-16 | 
+        <p> Last updated on 2023-05-17 | 
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -324,9 +324,10 @@ files.</li>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>ERR029206_1.fastq.gz                   ERR029207_2.fastq.gz
-ERR029206_2.fastq.gz                   GCF_000195955.2_ASM19595v2_genomic.fna
-ERR029207_1.fastq.gz</code></pre>
+<pre class="output" tabindex="0"><code>ERR026473_1.fastq.gz ERR026478_1.fastq.gz ERR026482_1.fastq.gz ERR029207_1.fastq.gz
+ERR026473_2.fastq.gz ERR026478_2.fastq.gz ERR026482_2.fastq.gz ERR029207_2.fastq.gz
+ERR026474_1.fastq.gz ERR026481_1.fastq.gz ERR029206_1.fastq.gz ERR026474_2.fastq.gz
+ERR026481_2.fastq.gz ERR029206_2.fastq.gz </code></pre>
 </div>
 <p>All new files start with ERR and have a <code>fastq.gz</code>
 extension. It means they are in fastq format and compressed. Let’s make
@@ -527,9 +528,9 @@ the one plotted above.</p>
 <h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge1"></a>
 </h3>
 <div class="callout-content">
-<p>Yesterday we downloaded 2 samples. How many FASTQ files are in this
-dataset? Why is this? What is the difference between the two files that
-start with the same name? Discuss with your neighbour.</p>
+<p>We downloaded the samples. How many FASTQ files are in this dataset?
+Why is this? What is the difference between the two files that start
+with the same name? Discuss with your neighbour.</p>
 </div>
 </div>
 </div>
@@ -542,7 +543,7 @@ start with the same name? Discuss with your neighbour.</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>There are 4 FASTQ files. Each sample has <a href="https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/" class="external-link">paired-end
+<p>There are 14 FASTQ files. Each sample has <a href="https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/" class="external-link">paired-end
 reads</a>.</p>
 </div>
 </div>
@@ -570,7 +571,7 @@ Approx 20% complete for ERR029206_1.fastq.gz
 Approx 25% complete for ERR029206_1.fastq.gz
 Approx 30% complete for ERR029206_1.fastq.gz</code></pre>
 </div>
-<p>In total, it should take about five minutes for FastQC to run on all
+<p>In total, it should take about 15-20 minutes for FastQC to run on all
 four of our FASTQ files. When the analysis completes, your prompt will
 return. So your screen will look something like this:</p>
 <div class="codewrapper">
@@ -592,7 +593,8 @@ data $</code></pre>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>ERR029206_1.copy.fastq                 ERR029207_1.fastq.gz
+<pre class="output" tabindex="0"><code>...
+ERR029206_1.copy.fastq                 ERR029207_1.fastq.gz
 ERR029206_1.fastq.gz                   ERR029207_1_fastqc.html
 ERR029206_1_fastqc.html                ERR029207_1_fastqc.zip
 ERR029206_1_fastqc.zip                 ERR029207_2.fastq.gz
@@ -846,7 +848,8 @@ take a look at your directory contents.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>ERR029206_1.copy.fastq                 ERR029207_1.fastq.gz
+<pre class="output" tabindex="0"><code>...
+ERR029206_1.copy.fastq                 ERR029207_1.fastq.gz
 ERR029206_1.fastq.gz                   ERR029207_1.fastq.gz_trim.fastq
 ERR029206_1.fastq.gz_trim.fastq        ERR029207_2.fastq.gz
 ERR029206_1_trim.fastq                 ERR029207_2.fastq.gz_trim.fastq
@@ -867,7 +870,8 @@ to a new subdirectory within our <code>data/</code> directory.</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>ERR029206_1.fastq.gz_trim.fastq ERR029207_1.fastq.gz_trim.fastq
+<pre class="output" tabindex="0"><code>...
+ERR029206_1.fastq.gz_trim.fastq ERR029207_1.fastq.gz_trim.fastq
 ERR029206_2.fastq.gz_trim.fastq ERR029207_2.fastq.gz_trim.fastq</code></pre>
 </div>
 <div id="challenge4" class="callout challenge">
@@ -976,7 +980,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.17" class="external-link">sandpaper (0.11.17)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
 			</div>
@@ -999,8 +1003,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/quality-control.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/quality-control.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-05-16",
-  "datePublished": "2023-05-16"
+  "dateModified": "2023-05-17",
+  "datePublished": "2023-05-17"
 }
 
   </script><script>

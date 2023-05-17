@@ -217,7 +217,7 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#downloading-the-missing-assemblies">Downloading the missing assemblies</a></li>
+        <ul><li><a href="#getting-missing-data">Getting missing data</a></li>
 <li><a href="#snp-calling">SNP calling</a></li>
 <li><a href="#core-snps">Core SNPs</a></li>
 <li><a href="#phylogenetic-tree">Phylogenetic tree</a></li>
@@ -278,7 +278,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>SNP phylogeny</h1>
-        <p> Last updated on 2023-05-16 | 
+        <p> Last updated on 2023-05-17 | 
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/snps-phylogeny.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -319,41 +319,49 @@ which they are aligned to the reference sequence.</p>
 </div>
 <figure><img src="fig/snps_reads_02.png" alt="Mapping of SNP reads" class="figure mx-auto d-block"></figure><p>The identified SNPs will be used to compare the isolates to each
 other and to establish a phylogenetic tree.</p>
-<section id="downloading-the-missing-assemblies"><h2 class="section-heading">Downloading the missing assemblies<a class="anchor" aria-label="anchor" href="#downloading-the-missing-assemblies"></a>
+<section id="getting-missing-data"><h2 class="section-heading">Getting missing data<a class="anchor" aria-label="anchor" href="#getting-missing-data"></a>
 </h2>
-<hr class="half-width"><p>If you haven’t assembled all samples, download the finished contigs
-to your computer and decompress them. They will decompress in a folder
-called <code>assembly</code>, so one solution is to rename the assembly
-folder you already have to something else:</p>
+<hr class="half-width"><p>If you don’t have all the trimmed reads, you can download them (will
+take a while, <em>dont’t do it if you have the reads</em>):</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/molepi/results</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> assembly partial_assembly</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/molepi/data</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> trimmed_fastq trimmed_fastq_partial</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://uppsala.box.com/s/s1zpt0w84iq4o42qhgho5vrz9qnpxouk trimmed_fastq.tar.gz</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xvzf trimmed_fastq.tar.gz</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> trimmed_fastq</span></code></pre>
 </div>
 </section><section id="snp-calling"><h2 class="section-heading">SNP calling<a class="anchor" aria-label="anchor" href="#snp-calling"></a>
 </h2>
-<hr class="half-width"><p><a href="https://github.com/tseemann/snippy" class="external-link">SNIPPY</a> is a pipeline
+<hr class="half-width"><p><a href="https://github.com/tseemann/snippy" class="external-link">snippy</a> is a pipeline
 that contains different tools to determine SNPs in sequencing reads
 against a reference genome. It takes forward and reverse reads of
 paired-end sequences and aligns them against a reference.</p>
-<p>It is very fast but a single run of SNIPPY still takes about 10 to 12
-minutes. We will therefore tell SNIPPY to run all the samples after each
-other. However this time we can not use a wildcard to do so. We will
-instead run all the samples in a loop.</p>
+<p>First we’ll create a folder to hold the results from snippy:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/data/trimmed_fastq/</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>  do</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>  snippy  <span class="ex">--outdir</span> ~/molepi/results/snps/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span> <span class="at">--ref</span> ~/molepi/data/GCF_000195955.2_ASM19595v2_genomic.fna <span class="at">--R1</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="at">--R2</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>  done</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir snps</span></code></pre>
 </div>
+<p>It is very fast but a single run of snippy still takes about 10 to 12
+minutes. We will therefore tell snippy to run all the samples after each
+other. However this time we can not use a wildcard to do so. We will
+instead run all the samples in a loop.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n10</span> ~/molepi/results/snps/ERR029207/snps.tab </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ../data/trimmed_fastq/</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy</span>  <span class="at">--outdir</span> ../../results/snps/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span> <span class="at">--ref</span> ../GCF_000195955.2_ASM19595v2_genomic.fna <span class="at">--R1</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="at">--R2</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n10</span> ~/molepi/results/snps/ERR029207/snps.tab </span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -369,7 +377,7 @@ NC_000962.3	11820	snp	C	G	G:165 C:0
 NC_000962.3	11879	snp	A	G	G:107 A:0								
 NC_000962.3	14785	snp	T	C	C:180 T:0	</code></pre>
 </div>
-<p>This list gives us information on every SNP that was found by SNIPPY
+<p>This list gives us information on every SNP that was found by snippy
 when compared to the reference genome. The first SNP is found at the
 position 1849 of the reference genome, and is a C in the H37Rv and an A
 in isolate ERR029207. There is a high confidence associated with this
@@ -388,7 +396,7 @@ each sample??<a class="anchor" aria-label="anchor" href="#challenge1"></a>
 tuberculosis</em> isolates when compared to H37Rv. Enter your solution
 in the <a href="https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing" class="external-link">table</a>
 under the head ‘Number of SNPs’.</p>
-<p>Hint: The .txt file in the SNIPPY output contains summary
+<p>Hint: The .txt file in the snippy output contains summary
 information</p>
 </div>
 </div>
@@ -431,19 +439,19 @@ Repeat this for the other isolates.</code></pre>
 <hr class="half-width"><p>In order to compare the identified SNPs with each other we need to
 know if a certain position exists in all isolates. A core site can have
 the same nucleotide in every sample (monomorphic) or some samples can be
-different (polymorphic). SNIPPY will concatenate the core SNPs,
+different (polymorphic). snippy will concatenate the core SNPs,
 i.e. ignoring sites that are monomorphic in all isolates and in the
 reference. Concatenation of the SNP sites reduces the size of the
 alignment considerably.</p>
-<p>The ‘–noref’ argument tells SNIPPY to exclude the reference from the
+<p>The ‘–noref’ argument tells snippy to exclude the reference from the
 alignment.<br>
 The ‘–aformat’ argument determines the alignment output format. We need
 a phylip format as input for our next tool.</p>
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> snippy-core <span class="at">--noref</span> <span class="at">--aformat</span><span class="op">=</span>phylip ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> snippy-core <span class="at">--noref</span> <span class="at">--aformat</span><span class="op">=</span>phylip ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
 </div>
 <p>The last few lines look like this:</p>
 <div class="codewrapper">
@@ -477,7 +485,7 @@ a look at the results.</p>
 </div>
 <div id="discussion-whats-in-the-output-of-snippy" class="callout-inner">
 <h3 class="callout-title">Discussion: What’s in the output of
-SNIPPY??<a class="anchor" aria-label="anchor" href="#discussion1"></a>
+snippy??<a class="anchor" aria-label="anchor" href="#discussion1"></a>
 </h3>
 <div class="callout-content">
 <p>Have a look at the content of these three files with ‘cat’ or
@@ -493,18 +501,14 @@ What is in core.aln?</p>
 </section><section id="phylogenetic-tree"><h2 class="section-heading">Phylogenetic tree<a class="anchor" aria-label="anchor" href="#phylogenetic-tree"></a>
 </h2>
 <hr class="half-width"><p>Phylogenetic trees have been discussed during the lectures. We will
-here establish a phylogenetic tree from the file ‘core.aln’ with PhyML.
-PhyML is a phylogeny software based on the maximum-likelihood principle.
-Since the original <a href="https://www.ncbi.nlm.nih.gov/pubmed/14530136" class="external-link">publication</a>,
-PhyML has been widely used and cited. There is a range of parameters
-that need to be chosen, such as nucleotide or amino-acid substitution
-model (see the <a href="https://www.atgc-montpellier.fr/phyml/usersguide.php?type=command" class="external-link">web-version
-of PhyML</a> but for simplicity we will run PhyML with standard
-parameters.</p>
-<div class="codewrapper sourceCode" id="cb8">
+here establish a phylogenetic tree from the file ‘core.aln’ with <a href="http://www.iqtree.org/" class="external-link">IQ-TREE</a>. IQ-TREE is a phylogeny
+software based on the maximum-likelihood principle. IQ-TREE has been
+widely used and cited. There is a range of parameters that need to be
+chosen, such as nucleotide or amino-acid substitution models.</p>
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> phyml <span class="at">-i</span> core.aln</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> phyml <span class="at">-i</span> core.aln</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -523,21 +527,21 @@ oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
 <p>With this small data set, PhyML finishes very quickly. Let’s put the
 resulting files into a separate folder and let’s rename our resulting
 tree.</p>
-<div class="codewrapper sourceCode" id="cb10">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir tree</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv core.aln_phyml_stats tree/</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv core.aln_phyml_tree tree/core_snps.newick</span></code></pre>
-</div>
-<p>Let’s inspect our tree.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd tree</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n10</span> core_snps.newick</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir tree</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv core.aln_phyml_stats tree/</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv core.aln_phyml_tree tree/core_snps.newick</span></code></pre>
+</div>
+<p>Let’s inspect our tree.</p>
+<div class="codewrapper sourceCode" id="cb12">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd tree</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n10</span> core_snps.newick</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -600,7 +604,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.16" class="external-link">sandpaper (0.11.16)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.17" class="external-link">sandpaper (0.11.17)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
 			</div>
@@ -623,8 +627,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/snps-phylogeny.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/snps-phylogeny.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-05-16",
-  "datePublished": "2023-05-16"
+  "dateModified": "2023-05-17",
+  "datePublished": "2023-05-17"
 }
 
   </script><script>
