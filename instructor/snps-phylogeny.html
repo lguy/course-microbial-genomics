@@ -278,7 +278,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>SNP phylogeny</h1>
-        <p> Last updated on 2023-05-17 | 
+        <p> Last updated on 2023-05-18 | 
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/snps-phylogeny.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -347,10 +347,10 @@ paired-end sequences and aligns them against a reference.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir snps</span></code></pre>
 </div>
-<p>It is very fast but a single run of snippy still takes about 10 to 12
-minutes. We will therefore tell snippy to run all the samples after each
-other. However this time we can not use a wildcard to do so. We will
-instead run all the samples in a loop.</p>
+<p>Snippy is fast but a single run still takes about 2-3 minutes. We
+will therefore tell snippy to run all the samples after each other.
+However this time we can not use a wildcard to do so. We will instead
+run all the samples in a loop.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -369,22 +369,22 @@ instead run all the samples in a loop.</p>
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>CHROM	POS	TYPE	REF	ALT	EVIDENCE	FTYPE	STRAND	NT_POS	AA_POS	EFFECT	LOCUS_TAG	GENE	PRODUCT
-NC_000962.3	1849	snp	C	A	A:225 C:0								
-NC_000962.3	1977	snp	A	G	G:130 A:0								
-NC_000962.3	4013	snp	T	C	C:136 T:0								
-NC_000962.3	7362	snp	G	C	C:141 G:0								
-NC_000962.3	7585	snp	G	C	C:136 G:0								
-NC_000962.3	9304	snp	G	A	A:128 G:0								
-NC_000962.3	11820	snp	C	G	G:165 C:0								
-NC_000962.3	11879	snp	A	G	G:107 A:0								
-NC_000962.3	14785	snp	T	C	C:180 T:0	</code></pre>
+NC_000962.3	1849	snp	C	A	A:215 C:0
+NC_000962.3	1977	snp	A	G	G:113 A:0
+NC_000962.3	4013	snp	T	C	C:128 T:0
+NC_000962.3	7362	snp	G	C	C:131 G:0
+NC_000962.3	7585	snp	G	C	C:129 G:0
+NC_000962.3	9304	snp	G	A	A:123 G:0
+NC_000962.3	11820	snp	C	G	G:157 C:0
+NC_000962.3	11879	snp	A	G	G:90 A:0
+NC_000962.3	14785	snp	T	C	C:174 T:0</code></pre>
 </div>
 <p>This list gives us information on every SNP that was found by snippy
 when compared to the reference genome. The first SNP is found at the
-position 1849 of the reference genome, and is a C in the H37Rv and an A
-in isolate ERR029207. There is a high confidence associated with this
-SNP: an A has been found 225 times in the sequencing reads and never a C
-at this position.</p>
+position 1849 of the reference genome, and is a C in the H37Rv
+(reference strain) and an A in isolate ERR029207. There is a high
+confidence associated with this SNP: an A has been found 225 times in
+the sequencing reads and never a C at this position.</p>
 <div id="challenge1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -395,11 +395,8 @@ each sample??<a class="anchor" aria-label="anchor" href="#challenge1"></a>
 </h3>
 <div class="callout-content">
 <p>Find out how many SNPs were identified in the <em>M.
-tuberculosis</em> isolates when compared to H37Rv. Enter your solution
-in the <a href="https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing" class="external-link">table</a>
-under the head ‘Number of SNPs’.</p>
-<p>Hint: The .txt file in the snippy output contains summary
-information</p>
+tuberculosis</em> isolates when compared to H37Rv. Hint: The .txt file
+in the snippy output contains summary information</p>
 </div>
 </div>
 </div>
@@ -412,26 +409,30 @@ information</p>
 </button>
 <div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat ~/molepi/results/snps/ERR029207/snps.txt</span></code></pre>
+</div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>$ head .-n10 ~/molepi/results/snps/ERR029207/snps.txt
- 
-DateTime	2018-01-09T13:34:32
-ReadFiles	/home/dcuser/molepi/data/ERR029207_1.fastq.gz /home/dcuser/molepi/data/ERR029207_2.fastq.gz
-Reference	/home/dcuser/molepi/data/GCF_000195955.2_ASM19595v2_genomic.fna
-ReferenceSize	4485121
-Software	snippy 3.2-dev
-Variant-COMPLEX	29
-Variant-DEL	54
-Variant-INS	37
-Variant-MNP	7
-Variant-SNP	1292
-
-This *M. tuberculosis* isolate contains 1292 SNPs compared to H37Rv.
-
-Repeat this for the other isolates.</code></pre>
+<pre class="output" tabindex="0"><code>DateTime        2023-05-17T13:51:57
+ReadFiles       [...]/data/trimmed_fastq/ERR029207_1.fastq.gz_trim.fastq [...]/data/trimmed_fastq/ERR029207_2.fastq.gz_trim.fastq
+Reference       [...]/data/GCF_000195955.2_ASM19595v2_genomic.fna
+ReferenceSize   4411532
+Software        snippy 4.6.0
+Variant-COMPLEX 32
+Variant-DEL     57
+Variant-INS     52
+Variant-MNP     2
+Variant-SNP     1290
+VariantTotal    1433</code></pre>
 </div>
+<p>This <em>M. tuberculosis</em> isolate contains 1290 SNPs compared to
+H37Rv.</p>
+<p>Repeat this for the other isolates. How about using a
+<code>for</code> loop?</p>
 </div>
 </div>
 </div>
@@ -441,46 +442,45 @@ Repeat this for the other isolates.</code></pre>
 <hr class="half-width"><p>In order to compare the identified SNPs with each other we need to
 know if a certain position exists in all isolates. A core site can have
 the same nucleotide in every sample (monomorphic) or some samples can be
-different (polymorphic). snippy will concatenate the core SNPs,
-i.e. ignoring sites that are monomorphic in all isolates and in the
-reference. Concatenation of the SNP sites reduces the size of the
-alignment considerably.</p>
-<p>The ‘–noref’ argument tells snippy to exclude the reference from the
-alignment.<br>
-The ‘–aformat’ argument determines the alignment output format. We need
-a phylip format as input for our next tool.</p>
-<div class="codewrapper sourceCode" id="cb7">
+different (polymorphic).</p>
+<p>In this second part, after identifying them, snippy will concatenate
+the core SNPs, i.e. ignoring sites that are monomorphic in all isolates
+and in the reference. Concatenation of the SNP sites considerably
+reduces the size of the alignment.</p>
+<p>The <code>--ref</code> argument provides the reference genome. Each
+folder containing the result of the previous step of <code>snippy</code>
+is then added to the command line.</p>
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> snippy-core <span class="at">--noref</span> <span class="at">--aformat</span><span class="op">=</span>phylip ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> snippy-core <span class="at">--ref</span><span class="op">=</span>../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
 </div>
 <p>The last few lines look like this:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>...
-[08:20:35] Will write alignment statistics to core.txt
-[08:20:35] Loading pre-masked/aligned sequences...
-[08:20:35] 1/7	ERR026473 coverage 4243097/4411532 = 96.18%
-[08:20:35] 2/7	ERR026474 coverage 4247216/4411532 = 96.28%
-[08:20:35] 3/7	ERR026478 coverage 4262038/4411532 = 96.61%
-[08:20:35] 4/7	ERR026481 coverage 4245636/4411532 = 96.24%
-[08:20:35] 5/7	ERR026482 coverage 4240999/4411532 = 96.13%
-[08:20:35] 6/7	ERR029206 coverage 4245210/4411532 = 96.23%
-[08:20:35] 7/7	ERR029207 coverage 4256440/4411532 = 96.48%
-[08:20:35] Patching variant sites into whole genome alignment...
-[08:20:35] Constructing alignment object for core.full.aln
-[08:20:36] Writing 'phylip' alignment to core.full.aln
-[08:20:41] Writing core SNP table
-[08:20:41] Found 395 core SNPs from 1733 variant sites.
-[08:20:41] Saved SNP table: core.tab
-[08:20:41] Constructing alignment object for core.aln
-[08:20:41] Writing 'phylip' alignment to core.aln
-[08:20:41] Done.</code></pre>
+Loaded 1 sequences totalling 4411532 bp.
+Will mask 0 regions totalling 0 bp ~ 0.00%
+0	ERR026473	snp=1378	del=174	ins=165	het=747	unaligned=125683
+1	ERR026474	snp=1369	del=180	ins=143	het=811	unaligned=123020
+2	ERR026478	snp=1381	del=221	ins=143	het=638	unaligned=112145
+3	ERR026481	snp=1349	del=215	ins=138	het=754	unaligned=126217
+4	ERR026482	snp=1348	del=215	ins=145	het=911	unaligned=127554
+5	ERR029206	snp=1352	del=152	ins=98	het=1839	unaligned=122677
+6	ERR029207	snp=1355	del=152	ins=97	het=1900	unaligned=118570
+Opening: core.tab
+Opening: core.vcf
+Processing contig: NC_000962.3
+Generating core.full.aln
+Creating TSV file: core.txt
+Running: snp-sites -c -o core.aln core.full.aln
+This analysis is totally hard-core!
+Done.</code></pre>
 </div>
-<p>Our output in phylip format was written to ‘core.aln’. But let’s have
-a look at the results.</p>
+<p>Our output was written to ‘core.aln’. But let’s have a look at the
+results.</p>
 <div id="discussion1" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -490,13 +490,14 @@ a look at the results.</p>
 snippy??<a class="anchor" aria-label="anchor" href="#discussion1"></a>
 </h3>
 <div class="callout-content">
-<p>Have a look at the content of these three files with ‘cat’ or
-‘head’.</p>
-<p>‘core.aln’</p>
-<p>‘core.full.aln’</p>
-<p>‘core.nway.tab’</p>
-<p>What is the difference between these files? Why is core.aln smaller?
-What is in core.aln?</p>
+<p>Have a look at the content of these three files with <code>cat</code>
+or <code>head</code>.</p>
+<p><code>core.aln</code></p>
+<p><code>core.full.aln</code></p>
+<p><code>core.tab</code></p>
+<p><code>core.txt</code></p>
+<p>What is the difference between these files? Why is core.aln smaller
+than ? What is in core.aln?</p>
 </div>
 </div>
 </div>
@@ -505,55 +506,103 @@ What is in core.aln?</p>
 <hr class="half-width"><p>Phylogenetic trees have been discussed during the lectures. We will
 here establish a phylogenetic tree from the file ‘core.aln’ with <a href="http://www.iqtree.org/" class="external-link">IQ-TREE</a>. IQ-TREE is a phylogeny
 software based on the maximum-likelihood principle. IQ-TREE has been
-widely used and cited. There is a range of parameters that need to be
-chosen, such as nucleotide or amino-acid substitution models.</p>
-<div class="codewrapper sourceCode" id="cb9">
+widely used and cited. There is a very wide range of parameters that
+need to be chosen, such as nucleotide or amino-acid substitution
+models.</p>
+<p>In our case, we want IQ-TREE to automatically select the best
+substitution model. IQ-TREE does that by testing many (among a very
+large collection) substitution models. We also have SNP data, which by
+definition do not contain constant (invariable) sites. We thus input the
+alignment with the <code>-s</code> option and the model with
+<code>-m MFP+ASC</code>. <code>MFP</code> will tell IQ-TREE to test a
+range of models, and <code>ASC</code> will correct for the fact that
+there is no constant sites.</p>
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> phyml <span class="at">-i</span> core.aln</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> iqtree <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>...
-. Log likelihood of the current tree: -1807.238286.
+Total wall-clock time used: 0.312 sec (0h:0m:0s)
 
-. Compute fast branch supports on the most likely tree...
+Analysis results written to:
+  IQ-TREE report:                core.aln.iqtree
+  Maximum-likelihood tree:       core.aln.treefile
+  Likelihood distances:          core.aln.mldist
+  Screen log file:               core.aln.log
 
-. Printing the most likely tree in file 'core.aln_phyml_tree.txt'...
-
-. Time used 0h0m1s
-
-oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo</code></pre>
+Date and Time: Thu May 18 09:00:37 2023</code></pre>
 </div>
-<p>With this small data set, PhyML finishes very quickly. Let’s put the
-resulting files into a separate folder and let’s rename our resulting
-tree.</p>
-<div class="codewrapper sourceCode" id="cb11">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir tree</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv core.aln_phyml_stats tree/</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv core.aln_phyml_tree tree/core_snps.newick</span></code></pre>
-</div>
-<p>Let’s inspect our tree.</p>
+<p>With this small data set, IQ-TREE finishes very quickly. Let’s put
+the resulting files into a separate folder and let’s rename our
+resulting tree.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd tree</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n10</span> core_snps.newick</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir tree</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv snps/core.aln.<span class="pp">*</span> tree</span></code></pre>
+</div>
+<p>Let’s inspect our tree.</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd tree</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat core.aln.treefile</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>(ERR026481:0.00000001,ERR026482:0.00767108,((ERR026473:0.31329695,ERR026474:0.26681667)0.921000:0.15635534,(ERR026478:0.00000012,(ERR029207:0.00000001,ERR029206:0.00504197)0.000000:0.00000001)1.000000:0.58688282)1.000000:0.41758464);</code></pre>
+<pre class="output" tabindex="0"><code>(ERR026473:0.0004854701,ERR026474:0.0004356437,((((ERR026478:0.0000010000,ERR029207:0.0000010000):0.0000010000,ERR029206:0.0000131789):0.0006712219,Reference:0.0075887710):0.0000152316,(ERR026481:0.0000066238,ERR026482:0.0000131899):0.0005602421):0.0002373720);</code></pre>
 </div>
 <p>This does not look much like a tree yet. The tree is written in a
 bracket annotation, the <a href="https://en.wikipedia.org/wiki/Newick_format" class="external-link">Newick format</a>. In
-order to make sense of it we can better view this in a tree viewer. For
-this, we need to copy the core_snps.newick file to our own computer.</p>
+order to make sense of it we can better view this in a tree viewer.</p>
+<div id="challenge2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-can-you-identify-what-substitution-model-iq-tree-used" class="callout-inner">
+<h3 class="callout-title">Challenge: Can you identify what substitution
+model IQ-TREE used?<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+</h3>
+<div class="callout-content">
+<p>Hint: The log file of IQ-TREE contains a lot of information.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat core.aln.treefile</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>...
+Best-fit model according to BIC: TVMe+ASC
+...</code></pre>
+</div>
+<p>IQ-TREE chose the TVMe+ASC model. We’ve discussed the ASC above, read
+more about the TVMe in the <a href="http://www.iqtree.org/doc/Substitution-Models" class="external-link">IQ-TREE
+manual</a>.</p>
+</div>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -629,8 +678,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/snps-phylogeny.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/snps-phylogeny.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-05-17",
-  "datePublished": "2023-05-17"
+  "dateModified": "2023-05-18",
+  "datePublished": "2023-05-18"
 }
 
   </script><script>
