@@ -47,7 +47,7 @@ $ cd ~/molepi/results
 $ mkdir snps
 ```
 
-It is very fast but a single run of snippy still takes about 10 to 12 minutes. We will therefore tell snippy to run all the samples after each other. However this time we can not use a wildcard to do so. We will instead run all the samples in a loop.
+Snippy is fast but a single run still takes about 2-3 minutes. We will therefore tell snippy to run all the samples after each other. However this time we can not use a wildcard to do so. We will instead run all the samples in a loop.
 
 ```bash
 $ cd ../data/trimmed_fastq/
@@ -64,50 +64,51 @@ $ head -n10 ~/molepi/results/snps/ERR029207/snps.tab
 
 ```output
 CHROM	POS	TYPE	REF	ALT	EVIDENCE	FTYPE	STRAND	NT_POS	AA_POS	EFFECT	LOCUS_TAG	GENE	PRODUCT
-NC_000962.3	1849	snp	C	A	A:225 C:0								
-NC_000962.3	1977	snp	A	G	G:130 A:0								
-NC_000962.3	4013	snp	T	C	C:136 T:0								
-NC_000962.3	7362	snp	G	C	C:141 G:0								
-NC_000962.3	7585	snp	G	C	C:136 G:0								
-NC_000962.3	9304	snp	G	A	A:128 G:0								
-NC_000962.3	11820	snp	C	G	G:165 C:0								
-NC_000962.3	11879	snp	A	G	G:107 A:0								
-NC_000962.3	14785	snp	T	C	C:180 T:0	
+NC_000962.3	1849	snp	C	A	A:215 C:0
+NC_000962.3	1977	snp	A	G	G:113 A:0
+NC_000962.3	4013	snp	T	C	C:128 T:0
+NC_000962.3	7362	snp	G	C	C:131 G:0
+NC_000962.3	7585	snp	G	C	C:129 G:0
+NC_000962.3	9304	snp	G	A	A:123 G:0
+NC_000962.3	11820	snp	C	G	G:157 C:0
+NC_000962.3	11879	snp	A	G	G:90 A:0
+NC_000962.3	14785	snp	T	C	C:174 T:0
 ```
 
-This list gives us information on every SNP that was found by snippy when compared to the reference genome. The first SNP is found at the position 1849 of the reference genome, and is a C in the H37Rv and an A in isolate ERR029207. There is a high confidence associated with this SNP: an A has been found 225 times in the sequencing reads and never a C at this position.
+This list gives us information on every SNP that was found by snippy when compared to the reference genome. The first SNP is found at the position 1849 of the reference genome, and is a C in the H37Rv (reference strain) and an A in isolate ERR029207. There is a high confidence associated with this SNP: an A has been found 225 times in the sequencing reads and never a C at this position.
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Challenge: How many SNPs were identified in each sample??
 
-Find out how many SNPs were identified in the *M. tuberculosis* isolates when compared to H37Rv. Enter your solution in the
-[table](https://docs.google.com/spreadsheets/d/1xjiliy_USyMwiyzEgWhpn8_109F7Z3jPM_f7Jp-lOb8/edit?usp=sharing) under the head 'Number of SNPs'.
-
+Find out how many SNPs were identified in the *M. tuberculosis* isolates when compared to H37Rv. 
 Hint: The .txt file in the snippy output contains summary information
 
 :::::::::::::::  solution
 
 ## Solution
 
-```output
-$ head .-n10 ~/molepi/results/snps/ERR029207/snps.txt
- 
-DateTime	2018-01-09T13:34:32
-ReadFiles	/home/dcuser/molepi/data/ERR029207_1.fastq.gz /home/dcuser/molepi/data/ERR029207_2.fastq.gz
-Reference	/home/dcuser/molepi/data/GCF_000195955.2_ASM19595v2_genomic.fna
-ReferenceSize	4485121
-Software	snippy 3.2-dev
-Variant-COMPLEX	29
-Variant-DEL	54
-Variant-INS	37
-Variant-MNP	7
-Variant-SNP	1292
-
-This *M. tuberculosis* isolate contains 1292 SNPs compared to H37Rv.
-
-Repeat this for the other isolates.
+```bash
+$ cat ~/molepi/results/snps/ERR029207/snps.txt
 ```
+
+```output
+DateTime        2023-05-17T13:51:57
+ReadFiles       [...]/data/trimmed_fastq/ERR029207_1.fastq.gz_trim.fastq [...]/data/trimmed_fastq/ERR029207_2.fastq.gz_trim.fastq
+Reference       [...]/data/GCF_000195955.2_ASM19595v2_genomic.fna
+ReferenceSize   4411532
+Software        snippy 4.6.0
+Variant-COMPLEX 32
+Variant-DEL     57
+Variant-INS     52
+Variant-MNP     2
+Variant-SNP     1290
+VariantTotal    1433
+```
+
+This *M. tuberculosis* isolate contains 1290 SNPs compared to H37Rv.
+
+Repeat this for the other isolates. How about using a `for` loop?
 
 :::::::::::::::::::::::::
 
@@ -115,57 +116,57 @@ Repeat this for the other isolates.
 
 ## Core SNPs
 
-In order to compare the identified SNPs with each other we need to know if a certain position exists in all isolates.
-A core site can have the same nucleotide in every sample (monomorphic) or some samples can be different (polymorphic).
-snippy will concatenate the core SNPs, i.e. ignoring sites that are monomorphic in all isolates and in the reference. Concatenation of the SNP sites reduces the size of the alignment considerably.
+In order to compare the identified SNPs with each other we need to know if a certain position exists in all isolates. A core site can have the same nucleotide in every sample (monomorphic) or some samples can be different (polymorphic). 
 
-The '--noref' argument tells snippy to exclude the reference from the alignment.  
-The '--aformat' argument determines the alignment output format. We need a phylip format as input for our next tool.
+In this second part, after identifying them, snippy will concatenate the core SNPs, i.e. ignoring sites that are monomorphic in all isolates and in the reference. Concatenation of the SNP sites considerably reduces the size of the alignment.
+
+The `--ref` argument provides the reference genome. Each folder containing the result of the previous step of `snippy` is then added to the command line.
 
 ```bash
 $ cd ~/molepi/results/snps/
-$ snippy-core --noref --aformat=phylip ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+$ snippy-core --ref=../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 ```
 
 The last few lines look like this:
 
 ```output
 ...
-[08:20:35] Will write alignment statistics to core.txt
-[08:20:35] Loading pre-masked/aligned sequences...
-[08:20:35] 1/7	ERR026473 coverage 4243097/4411532 = 96.18%
-[08:20:35] 2/7	ERR026474 coverage 4247216/4411532 = 96.28%
-[08:20:35] 3/7	ERR026478 coverage 4262038/4411532 = 96.61%
-[08:20:35] 4/7	ERR026481 coverage 4245636/4411532 = 96.24%
-[08:20:35] 5/7	ERR026482 coverage 4240999/4411532 = 96.13%
-[08:20:35] 6/7	ERR029206 coverage 4245210/4411532 = 96.23%
-[08:20:35] 7/7	ERR029207 coverage 4256440/4411532 = 96.48%
-[08:20:35] Patching variant sites into whole genome alignment...
-[08:20:35] Constructing alignment object for core.full.aln
-[08:20:36] Writing 'phylip' alignment to core.full.aln
-[08:20:41] Writing core SNP table
-[08:20:41] Found 395 core SNPs from 1733 variant sites.
-[08:20:41] Saved SNP table: core.tab
-[08:20:41] Constructing alignment object for core.aln
-[08:20:41] Writing 'phylip' alignment to core.aln
-[08:20:41] Done.
+Loaded 1 sequences totalling 4411532 bp.
+Will mask 0 regions totalling 0 bp ~ 0.00%
+0	ERR026473	snp=1378	del=174	ins=165	het=747	unaligned=125683
+1	ERR026474	snp=1369	del=180	ins=143	het=811	unaligned=123020
+2	ERR026478	snp=1381	del=221	ins=143	het=638	unaligned=112145
+3	ERR026481	snp=1349	del=215	ins=138	het=754	unaligned=126217
+4	ERR026482	snp=1348	del=215	ins=145	het=911	unaligned=127554
+5	ERR029206	snp=1352	del=152	ins=98	het=1839	unaligned=122677
+6	ERR029207	snp=1355	del=152	ins=97	het=1900	unaligned=118570
+Opening: core.tab
+Opening: core.vcf
+Processing contig: NC_000962.3
+Generating core.full.aln
+Creating TSV file: core.txt
+Running: snp-sites -c -o core.aln core.full.aln
+This analysis is totally hard-core!
+Done.
 ```
 
-Our output in phylip format was written to 'core.aln'. But let's have a look at the results.
+Our output was written to 'core.aln'. But let's have a look at the results.
 
 ::::::::::::::::::::::::::::::::::::::  discussion
 
 ## Discussion: What's in the output of snippy??
 
-Have a look at the content of these three files with 'cat' or 'head'.
+Have a look at the content of these three files with `cat` or `head`.
 
-'core.aln'
+`core.aln`
 
-'core.full.aln'
+`core.full.aln`
 
-'core.nway.tab'
+`core.tab`
 
-What is the difference between these files? Why is core.aln smaller?
+`core.txt`
+
+What is the difference between these files? Why is core.aln smaller than ?
 What is in core.aln?
 
 
@@ -173,48 +174,79 @@ What is in core.aln?
 
 ## Phylogenetic tree
 
-Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree from the file 'core.aln' with [IQ-TREE](http://www.iqtree.org/). IQ-TREE is a phylogeny software based on the maximum-likelihood principle. IQ-TREE has been widely used and cited. There is a range of parameters that need to be chosen, such as  nucleotide or amino-acid substitution models.
+Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree from the file 'core.aln' with [IQ-TREE](http://www.iqtree.org/). IQ-TREE is a phylogeny software based on the maximum-likelihood principle. IQ-TREE has been widely used and cited. There is a very wide range of parameters that need to be chosen, such as nucleotide or amino-acid substitution models.
+
+In our case, we want IQ-TREE to automatically select the best substitution model. IQ-TREE does that by testing many (among a very large collection) substitution models. We also have SNP data, which by definition do not contain constant (invariable) sites. We thus input the alignment with the `-s` option and the model with `-m MFP+ASC`. `MFP` will tell IQ-TREE to test a range of models, and `ASC` will correct for the fact that there is no constant sites. 
 
 ```bash
-$ phyml -i core.aln
+$ iqtree -s core.aln -m MFP+ASC
 ```
 
 ```output
 ...
-. Log likelihood of the current tree: -1807.238286.
+Total wall-clock time used: 0.312 sec (0h:0m:0s)
 
-. Compute fast branch supports on the most likely tree...
+Analysis results written to:
+  IQ-TREE report:                core.aln.iqtree
+  Maximum-likelihood tree:       core.aln.treefile
+  Likelihood distances:          core.aln.mldist
+  Screen log file:               core.aln.log
 
-. Printing the most likely tree in file 'core.aln_phyml_tree.txt'...
-
-. Time used 0h0m1s
-
-oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+Date and Time: Thu May 18 09:00:37 2023
 ```
 
-With this small data set, PhyML finishes very quickly. Let's put the resulting files into a separate folder
+With this small data set, IQ-TREE finishes very quickly. Let's put the resulting files into a separate folder
 and let's rename our resulting tree.
 
 ```bash
-
+$ cd ~/molepi/results
 $ mkdir tree
-$ mv core.aln_phyml_stats tree/
-$ mv core.aln_phyml_tree tree/core_snps.newick
+$ mv snps/core.aln.* tree
 ```
 
 Let's inspect our tree.
 
 ```bash
-$ cd ~/molepi/results/snps/
+$ cd ~/molepi/results/
 $ cd tree
-$ head -n10 core_snps.newick
+$ cat core.aln.treefile
 ```
 
 ```output
-(ERR026481:0.00000001,ERR026482:0.00767108,((ERR026473:0.31329695,ERR026474:0.26681667)0.921000:0.15635534,(ERR026478:0.00000012,(ERR029207:0.00000001,ERR029206:0.00504197)0.000000:0.00000001)1.000000:0.58688282)1.000000:0.41758464);
+(ERR026473:0.0004854701,ERR026474:0.0004356437,((((ERR026478:0.0000010000,ERR029207:0.0000010000):0.0000010000,ERR029206:0.0000131789):0.0006712219,Reference:0.0075887710):0.0000152316,(ERR026481:0.0000066238,ERR026482:0.0000131899):0.0005602421):0.0002373720);
 ```
 
-This does not look much like a tree yet. The tree is written in a bracket annotation, the [Newick format](https://en.wikipedia.org/wiki/Newick_format). In order to make sense of it we can better view this in a tree viewer. For this, we need to copy the core\_snps.newick file to our own computer.
+This does not look much like a tree yet. The tree is written in a bracket annotation, the [Newick format](https://en.wikipedia.org/wiki/Newick_format). In order to make sense of it we can better view this in a tree viewer. 
+
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+## Challenge: Can you identify what substitution model IQ-TREE used?
+
+Hint: The log file of IQ-TREE contains a lot of information. 
+
+:::::::::::::::  solution
+
+## Solution
+
+```bash
+$ cat core.aln.treefile
+```
+
+```output
+...
+Best-fit model according to BIC: TVMe+ASC
+...
+```
+
+IQ-TREE chose the TVMe+ASC model. We've discussed the ASC above, read more about the TVMe in the [IQ-TREE manual](http://www.iqtree.org/doc/Substitution-Models).
+
+:::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
