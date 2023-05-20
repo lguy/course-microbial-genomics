@@ -1,111 +1,58 @@
 ---
-title: 'data-visualization'
+title: 'Data Visualization'
 teaching: 10
-exercises: 2
+exercises: 60
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+## Comparison of clustering results
 
-- How do you write a lesson using R Markdown and `{sandpaper}`?
+::::::::::::::::::::::::::::::::::::::: objectives
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+- Explore the resulting trees in conjunction with the meta data.
+- Make an estimation on the likelihood of transmission events
 
-::::::::::::::::::::::::::::::::::::: objectives
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
-- Explain how to use markdown with the new lesson template
-- Demonstrate how to include pieces of code, figures, and nested challenge blocks
+:::::::::::::::::::::::::::::::::::::::: questions
 
-::::::::::::::::::::::::::::::::::::::::::::::::
+- How are phylogenetic trees viewed and compared?
+- How can I visualize several layers of data?
 
-## Introduction
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
-This is a lesson created via The Carpentries Workbench. It is written in
-[Pandoc-flavored Markdown][pandoc] for static files (with extension `.md`) and
-[R Markdown][r-markdown] for dynamic files that can render code into output
-(with extension `.Rmd`). Please refer to the [Introduction to The Carpentries
-Workbench][carpentries-workbench] for full documentation.
+We grouped (clustered) our isolates by the information that we extracted from the sequencing reads. We compared our isolates to a reference genome and clustered them on basis of the single nucleotide variations that they exhibit when compared to this reference.
 
-What you need to know is that there are three sections required for a valid
-Carpentries lesson template:
+![](fig/Workflow.png){alt='workflow'}
 
- 1. `questions` are displayed at the beginning of the episode to prime the
-    learner for the content.
- 2. `objectives` are the learning objectives for an episode displayed with
-    the questions.
- 3. `keypoints` are displayed at the end of the episode to reinforce the
-    objectives.
+Next, we will visualize this clustering in the context of the meta data. Make sure you have the SNP tree that you generated (or can be downloaded here [core.aln.newick](files/core.aln.newick)) on your own computer. Download also the [metadata file](files/Molepi_meta.csv).
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+## Visualization of genetic information and metadata
 
-Inline instructor notes can help inform instructors of timing challenges
-associated with the lessons. They appear in the "Instructor View"
+Visualization is frequently used to aid the interpretation of complex datasets. Within microbial genomics, visualizing the relationships between multiple genomes as a tree provides a framework onto which associated data (geographical, temporal, phenotypic and epidemiological) are added to generate hypotheses and to explore the dynamics of the system under investigation.
 
-::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+1. Open Chrome. Go to [microreact](https://microreact.org/). 
+2. Click on 'Upload'. Drag-and-drop the newick tree produced by snippy and IQ-TREE ([core.aln.newick](files/core.aln.newick)). 
+3. Click on "Add more files" and select the the [metadata file](files/Molepi_meta.csv), which is a table comprising metadata file. Choose 'Data (csv or tsv)' as file kind.
+4. Click on continue. 
 
-::::::::::::::::::::::::::::::::::::: challenge 
+First, the tree should be rooted with the reference strain (the one that has the longest branch). Hover over the middle of the long branch, until a circle appears. Right-click on it, and select "Set as root (re-root)". 
 
-## Challenge 1: Can you do it?
+Explore the location, time and further meta data. Play around with the different visualization options with the help of the [documentation of microreact](https://docs.microreact.org/).
 
-What is the output of this command?
+::::::::::::::::::::::::::::::::::::::  discussion
 
-```r
-paste("This", "new", "lesson", "looks", "good")
-```
+## Discussion
 
-:::::::::::::::::::::::: solution 
+1. Which transmission events are likely based on the metadata (location, RFLP, date) alone?
+2. Which transmission events are likely based on the SNP data?
+3. Draw a transmission tree if possible.
+  
 
-## Output
- 
-```output
-[1] "This new lesson looks good"
-```
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::::::::::
+:::::::::::::::::::::::::::::::::::::::: keypoints
 
+- Genetic information can confirm or contradict the meta data
 
-## Challenge 2: how do you nest solutions within challenge blocks?
-
-:::::::::::::::::::::::: solution 
-
-You can add a line with at least three colons and a `solution` tag.
-
-:::::::::::::::::::::::::::::::::
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-## Figures
-
-You can include figures generated from R Markdown:
-
-```{r pyramid, fig.alt = "pie chart illusion of a pyramid", fig.cap = "Sun arise each and every morning"}
-pie(
-  c(Sky = 78, "Sunny side of pyramid" = 17, "Shady side of pyramid" = 5), 
-  init.angle = 315, 
-  col = c("deepskyblue", "yellow", "yellow3"), 
-  border = FALSE
-)
-```
-Or you can use pandoc markdown for static figures with the following syntax:
-
-`![optional caption that appears below the figure](figure url){alt='alt text for
-accessibility purposes'}`
-
-![You belong in The Carpentries!](https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg){alt='Blue Carpentries hex person logo with no text.'}
-
-## Math
-
-One of our episodes contains $\LaTeX$ equations when describing how to create
-dynamic reports with {knitr}, so we now use mathjax to describe this:
-
-`$\alpha = \dfrac{1}{(1 - \beta)^2}$` becomes: $\alpha = \dfrac{1}{(1 - \beta)^2}$
-
-Cool, right?
-
-::::::::::::::::::::::::::::::::::::: keypoints 
-
-- Use `.md` files for episodes when you want static content
-- Use `.Rmd` files for episodes when you need to generate output
-- Run `sandpaper::check_lesson()` to identify any issues with your lesson
-- Run `sandpaper::build_lesson()` to preview your lesson locally
-
-::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::
 
