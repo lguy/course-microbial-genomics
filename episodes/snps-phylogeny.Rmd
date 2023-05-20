@@ -239,7 +239,7 @@ Best-fit model according to BIC: TVMe+ASC
 ...
 ```
 
-IQ-TREE chose the TVMe+ASC model. We've discussed the ASC above, read more about the TVMe in the [IQ-TREE manual](http://www.iqtree.org/doc/Substitution-Models).
+IQ-TREE chose the TVMe+ASC model. We've discussed the ASC above, and you can read more about the TVMe in the [IQ-TREE manual](http://www.iqtree.org/doc/Substitution-Models). In short, it is a mdoel where base frequencies are deemed equal, and all rates estimated independently, except the rates of transversions (A <-> G and C <-> T) are equal. 
 
 :::::::::::::::::::::::::
 
