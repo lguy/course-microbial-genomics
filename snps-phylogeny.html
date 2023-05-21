@@ -85,11 +85,11 @@
   Microbial Genomics: evolution, phylogenetics, and molecular epidemiology
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 76%" class="percentage">
-    76%
+<aside class="col-md-12 lesson-progress"><div style="width: 58%" class="percentage">
+    58%
   </div>
   <div class="progress data">
-    <div class="progress-bar data" role="progressbar" style="width: 76%" aria-valuenow="76" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar data" role="progressbar" style="width: 58%" aria-valuenow="58" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -217,12 +217,29 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#getting-missing-data">Getting missing data</a></li>
-<li><a href="#snp-calling">SNP calling</a></li>
+        <ul><li><a href="#snp-calling">SNP calling</a></li>
 <li><a href="#core-snps">Core SNPs</a></li>
 <li><a href="#phylogenetic-tree">Phylogenetic tree</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush10">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading10">
+        <a href="data-visualization.html">9. Data Visualization</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush11">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading11">
+        <a href="conclusions.html">10. Transmission?</a>
+    </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -269,16 +286,16 @@
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="sequence-assembly.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="data-visualization.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="sequence-assembly.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Sequence assembly</a>
-        <a class="chapter-link float-end" href="index.html" rel="next">Next... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="data-visualization.html" rel="next">Next: Data Visualization... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>SNP phylogeny</h1>
-        <p> Last updated on 2023-05-18 | 
+        <p> Last updated on 2023-05-21 | 
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/snps-phylogeny.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -319,20 +336,8 @@ which they are aligned to the reference sequence.</p>
 </div>
 <figure><img src="fig/snps_reads_02.png" alt="Mapping of SNP reads" class="figure mx-auto d-block"></figure><p>The identified SNPs will be used to compare the isolates to each
 other and to establish a phylogenetic tree.</p>
-<section id="getting-missing-data"><h2 class="section-heading">Getting missing data<a class="anchor" aria-label="anchor" href="#getting-missing-data"></a>
-</h2>
-<hr class="half-width"><p>If you don’t have all the trimmed reads, you can download them (will
-take a while, <em>dont’t do it if you have the reads</em>):</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/molepi/data</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> trimmed_fastq trimmed_fastq_partial</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://uppsala.box.com/s/s1zpt0w84iq4o42qhgho5vrz9qnpxouk trimmed_fastq.tar.gz</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xvzf trimmed_fastq.tar.gz</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> trimmed_fastq</span></code></pre>
-</div>
-</section><section id="snp-calling"><h2 class="section-heading">SNP calling<a class="anchor" aria-label="anchor" href="#snp-calling"></a>
+
+<section id="snp-calling"><h2 class="section-heading">SNP calling<a class="anchor" aria-label="anchor" href="#snp-calling"></a>
 </h2>
 <hr class="half-width"><p><a href="https://github.com/tseemann/snippy" class="external-link">snippy</a> is a pipeline
 that contains different tools to determine SNPs in sequencing reads
@@ -345,56 +350,111 @@ paired-end sequences and aligns them against a reference.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir snps</span></code></pre>
 </div>
-<p>Snippy is fast but a single run still takes about 2-3 minutes. We
-will therefore tell snippy to run all the samples after each other.
-However this time we can not use a wildcard to do so. We will instead
-run all the samples in a loop.</p>
+<p>We need to activate a separate environment to run snippy:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ../data/trimmed_fastq/</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy</span>  <span class="at">--outdir</span> ../../results/snps/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span> <span class="at">--ref</span> ../GCF_000195955.2_ASM19595v2_genomic.fna <span class="at">--R1</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="at">--R2</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mamba activate snippy</span></code></pre>
 </div>
+<p>Snippy is fast but a single run still takes about 2-3 minutes. We
+would therefore tell snippy to run all the samples after each other.
+However this time we cannot use a wildcard to do so. We would instead
+run all the samples in a loop. The “real” loop is commented out, and we
+use one that runs only the sample we’ve analyzed so far.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n10</span> ~/molepi/results/snps/ERR029207/snps.tab </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ../data/trimmed_fastq/</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> <span class="co">#for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for sample in ERR029206</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">snippy</span> <span class="at">--ram</span> 1 <span class="at">--outdir</span> ../../results/snps/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span> <span class="at">--ref</span> ../GCF_000195955.2_ASM19595v2_genomic.fna <span class="at">--R1</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="at">--R2</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<p>Here, we provide snippy with an output folder
+(<code>--outdir</code>), the location of the reference genome
+(<code>--ref</code>), and the trimmed read files for each end of the
+pair (<code>--R1</code> and <code>--R2</code>). We also indicate that
+snippy should use 1 Gb of memory (<code>--ram 1</code>, very specific
+issue to this VM).</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n10</span> ~/molepi/results/snps/ERR029206/snps.tab </span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>CHROM	POS	TYPE	REF	ALT	EVIDENCE	FTYPE	STRAND	NT_POS	AA_POS	EFFECT	LOCUS_TAG	GENE	PRODUCT
-NC_000962.3	1849	snp	C	A	A:215 C:0
-NC_000962.3	1977	snp	A	G	G:113 A:0
-NC_000962.3	4013	snp	T	C	C:128 T:0
-NC_000962.3	7362	snp	G	C	C:131 G:0
-NC_000962.3	7585	snp	G	C	C:129 G:0
-NC_000962.3	9304	snp	G	A	A:123 G:0
-NC_000962.3	11820	snp	C	G	G:157 C:0
-NC_000962.3	11879	snp	A	G	G:90 A:0
-NC_000962.3	14785	snp	T	C	C:174 T:0</code></pre>
+NC_000962.3	1849	snp	C	A	A:217 C:0
+NC_000962.3	1977	snp	A	G	G:118 A:0
+NC_000962.3	4013	snp	T	C	C:176 T:0
+NC_000962.3	7362	snp	G	C	C:156 G:0
+NC_000962.3	7585	snp	G	C	C:143 G:0
+NC_000962.3	9304	snp	G	A	A:127 G:0
+NC_000962.3	11820	snp	C	G	G:164 C:0
+NC_000962.3	11879	snp	A	G	G:125 A:0
+NC_000962.3	14785	snp	T	C	C:163 T:1</code></pre>
 </div>
 <p>This list gives us information on every SNP that was found by snippy
 when compared to the reference genome. The first SNP is found at the
 position 1849 of the reference genome, and is a C in the H37Rv
-(reference strain) and an A in isolate ERR029207. There is a high
-confidence associated with this SNP: an A has been found 225 times in
+(reference strain) and an A in isolate ERR029206. There is a high
+confidence associated with this SNP: an A has been found 217 times in
 the sequencing reads and never a C at this position.</p>
-<div id="challenge1" class="callout challenge">
+<p>Now download a <a href="files/snps.tar.gz">reduced version of the
+result of snippy</a> on the other samples, save it in the
+<code>~/molepi/results/</code> folder. We will also rename the existing
+<code>snps</code> folder to save it.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/molepi/results/</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> snps snps_partial</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> snps</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> snps</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xvzf ../snps.tar.gz</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>ERR026473     ERR026482
+ERR026474     ERR029206
+ERR026478     ERR029207
+ERR026481</code></pre>
+</div>
+<p>The folders don’t contain everything that is output by
+<code>snippy</code>, to save space. But it is enough to run
+<code>snippy-core</code>.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ERR026473</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>ref.fa          snps.filt.vcf   snps.tab
+ref.fa.fai      snps.gff        snps.txt
+snps.aligned.fa snps.html       snps.vcf
+snps.bam.bai    snps.log        snps.vcf.gz
+snps.bed        snps.raw.vcf    snps.vcf.gz.csi
+snps.csv        snps.subs.vcf</code></pre>
+</div>
+<div id="challenge-how-many-snps-were-identified-in-each-sample" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-how-many-snps-were-identified-in-each-sample" class="callout-inner">
 <h3 class="callout-title">Challenge: How many SNPs were identified in
-each sample??<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+each sample??<a class="anchor" aria-label="anchor" href="#challenge-how-many-snps-were-identified-in-each-sample"></a>
 </h3>
 <div class="callout-content">
 <p>Find out how many SNPs were identified in the <em>M.
-tuberculosis</em> isolates when compared to H37Rv. Hint: The .txt file
-in the snippy output contains summary information</p>
+tuberculosis</em> isolates when compared to H37Rv. Hint: The
+<code>.txt</code> file in the snippy output contains summary
+information:</p>
 </div>
 </div>
 </div>
@@ -405,12 +465,12 @@ in the snippy output contains summary information</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb6">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat ~/molepi/results/snps/ERR029207/snps.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat ~/molepi/results/snps/ERR029207/snps.txt</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -448,11 +508,11 @@ reduces the size of the alignment.</p>
 <p>The <code>--ref</code> argument provides the reference genome. Each
 folder containing the result of the previous step of <code>snippy</code>
 is then added to the command line.</p>
-<div class="codewrapper sourceCode" id="cb8">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> snippy-core <span class="at">--ref</span><span class="op">=</span>../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/snps/</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> snippy-core <span class="at">--ref</span><span class="op">=</span>../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
 </div>
 <p>The last few lines look like this:</p>
 <div class="codewrapper">
@@ -479,13 +539,13 @@ Done.</code></pre>
 </div>
 <p>Our output was written to ‘core.aln’. But let’s have a look at the
 results.</p>
-<div id="discussion1" class="callout discussion">
+<div id="discussion-whats-in-the-output-of-snippy" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div id="discussion-whats-in-the-output-of-snippy" class="callout-inner">
 <h3 class="callout-title">Discussion: What’s in the output of
-snippy??<a class="anchor" aria-label="anchor" href="#discussion1"></a>
+snippy??<a class="anchor" aria-label="anchor" href="#discussion-whats-in-the-output-of-snippy"></a>
 </h3>
 <div class="callout-content">
 <p>Have a look at the content of these three files with <code>cat</code>
@@ -499,10 +559,17 @@ than ? What is in core.aln?</p>
 </div>
 </div>
 </div>
+<p>Let’s deactivate the specific snippy <code>env</code> before we move
+on:</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mamba deactivate snippy</span></code></pre>
+</div>
 </section><section id="phylogenetic-tree"><h2 class="section-heading">Phylogenetic tree<a class="anchor" aria-label="anchor" href="#phylogenetic-tree"></a>
 </h2>
 <hr class="half-width"><p>Phylogenetic trees have been discussed during the lectures. We will
-here establish a phylogenetic tree from the file ‘core.aln’ with <a href="http://www.iqtree.org/" class="external-link">IQ-TREE</a>. IQ-TREE is a phylogeny
+here establish a phylogenetic tree from the file ‘core.aln’ with <a href="https://www.iqtree.org/" class="external-link">IQ-TREE</a>. IQ-TREE is a phylogeny
 software based on the maximum-likelihood principle. IQ-TREE has been
 widely used and cited. There is a very wide range of parameters that
 need to be chosen, such as nucleotide or amino-acid substitution
@@ -515,10 +582,10 @@ alignment with the <code>-s</code> option and the model with
 <code>-m MFP+ASC</code>. <code>MFP</code> will tell IQ-TREE to test a
 range of models, and <code>ASC</code> will correct for the fact that
 there is no constant sites.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> iqtree <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> iqtree <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -537,20 +604,22 @@ Date and Time: Thu May 18 09:00:37 2023</code></pre>
 <p>With this small data set, IQ-TREE finishes very quickly. Let’s put
 the resulting files into a separate folder and let’s rename our
 resulting tree.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir tree</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv snps/core.aln.<span class="pp">*</span> tree</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir tree</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv snps/core.aln.<span class="pp">*</span> tree</span></code></pre>
 </div>
-<p>Let’s inspect our tree.</p>
-<div class="codewrapper sourceCode" id="cb13">
+<p>Let’s inspect our tree, and give it another extension to make it
+clear it is a newick file.</p>
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd tree</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat core.aln.treefile</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/results/</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd tree</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv core.aln.treefile core.aln.newick</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> core.aln.newick</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -560,13 +629,13 @@ resulting tree.</p>
 <p>This does not look much like a tree yet. The tree is written in a
 bracket annotation, the <a href="https://en.wikipedia.org/wiki/Newick_format" class="external-link">Newick format</a>. In
 order to make sense of it we can better view this in a tree viewer.</p>
-<div id="challenge2" class="callout challenge">
+<div id="challenge-can-you-identify-what-substitution-model-iq-tree-used" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-can-you-identify-what-substitution-model-iq-tree-used" class="callout-inner">
 <h3 class="callout-title">Challenge: Can you identify what substitution
-model IQ-TREE used?<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+model IQ-TREE used?<a class="anchor" aria-label="anchor" href="#challenge-can-you-identify-what-substitution-model-iq-tree-used"></a>
 </h3>
 <div class="callout-content">
 <p>Hint: The log file of IQ-TREE contains a lot of information.</p>
@@ -580,12 +649,12 @@ model IQ-TREE used?<a class="anchor" aria-label="anchor" href="#challenge2"></a>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat core.aln.treefile</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat core.aln.iqtree</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -594,9 +663,11 @@ model IQ-TREE used?<a class="anchor" aria-label="anchor" href="#challenge2"></a>
 Best-fit model according to BIC: TVMe+ASC
 ...</code></pre>
 </div>
-<p>IQ-TREE chose the TVMe+ASC model. We’ve discussed the ASC above, read
-more about the TVMe in the <a href="http://www.iqtree.org/doc/Substitution-Models" class="external-link">IQ-TREE
-manual</a>.</p>
+<p>IQ-TREE chose the TVMe+ASC model. We’ve discussed the ASC above, and
+you can read more about the TVMe in the <a href="https://www.iqtree.org/doc/Substitution-Models" class="external-link">IQ-TREE
+manual</a>. In short, it is a mdoel where base frequencies are deemed
+equal, and all rates estimated independently, except the rates of
+transversions (A &lt;-&gt; G and C &lt;-&gt; T) are equal.</p>
 </div>
 </div>
 </div>
@@ -626,12 +697,12 @@ any links that you are not going to use.
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="sequence-assembly.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="index.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="data-visualization.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="sequence-assembly.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Sequence assembly</a>
-        <a class="chapter-link float-end" href="index.html" rel="next">Next... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="data-visualization.html" rel="next">Next: Data Visualization... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div> <!-- / div.primary-content.col-xs-12 -->
 <!-- END:   inst/pkgdown/templates/content-instructor.html-->
@@ -653,7 +724,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.17" class="external-link">sandpaper (0.11.17)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.0" class="external-link">sandpaper (0.12.0)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
 			</div>
@@ -676,8 +747,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/snps-phylogeny.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/snps-phylogeny.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-05-18",
-  "datePublished": "2023-05-18"
+  "dateModified": "2023-05-21",
+  "datePublished": "2023-05-21"
 }
 
   </script><script>

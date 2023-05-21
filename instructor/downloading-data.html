@@ -85,11 +85,11 @@
   Microbial Genomics: evolution, phylogenetics, and molecular epidemiology
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 27%" class="percentage">
-    27%
+<aside class="col-md-12 lesson-progress"><div style="width: 21%" class="percentage">
+    21%
   </div>
   <div class="progress data">
-    <div class="progress-bar data" role="progressbar" style="width: 27%" aria-valuenow="27" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar data" role="progressbar" style="width: 21%" aria-valuenow="21" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -228,6 +228,24 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush10">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading10">
+        <a href="data-visualization.html">9. Data Visualization</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush11">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading11">
+        <a href="conclusions.html">10. Transmission?</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -279,7 +297,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Downloading data</h1>
-        <p> Last updated on 2023-05-17 | 
+        <p> Last updated on 2023-05-21 | 
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/downloading-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -360,12 +378,12 @@ you are in the correct directory using the <code>pwd</code> command.</p>
 </h3>
 <pre class="output" tabindex="0"><code>/home/chewbe</code></pre>
 </div>
-<div id="callout1" class="callout callout">
+<div id="tip" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="tip" class="callout-inner">
-<h3 class="callout-title">Tip<a class="anchor" aria-label="anchor" href="#callout1"></a>
+<h3 class="callout-title">Tip<a class="anchor" aria-label="anchor" href="#tip"></a>
 </h3>
 <div class="callout-content">
 <p>If you aren’t in your home directory, the easiest way to get there is
@@ -374,12 +392,12 @@ home.</p>
 </div>
 </div>
 </div>
-<div id="challenge1" class="callout challenge">
+<div id="exercise" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="exercise" class="callout-inner">
-<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise"></a>
 </h3>
 <div class="callout-content">
 <p>Use the <code>mkdir</code> command to make the following
@@ -397,7 +415,7 @@ molepi/results</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -466,13 +484,13 @@ and get.</p>
 </h3>
 <pre class="output" tabindex="0"><code><span><span class="va">GCF_000195955.2_ASM19595v2_genomic.fna</span></span></code></pre>
 </div>
-<div id="challenge2" class="callout challenge">
+<div id="challenge-what-is-the-size-of-the-genome" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="challenge-what-is-the-size-of-the-genome" class="callout-inner">
 <h3 class="callout-title">Challenge: What is the size of the
-genome?<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+genome?<a class="anchor" aria-label="anchor" href="#challenge-what-is-the-size-of-the-genome"></a>
 </h3>
 <div class="callout-content">
 <p>Find out how many basepairs the genome has. Hints:</p>
@@ -488,7 +506,7 @@ genome?<a class="anchor" aria-label="anchor" href="#challenge2"></a>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The genome has 4’411’532 bp.</p>
 <div class="codewrapper sourceCode" id="cb12">
@@ -567,12 +585,12 @@ as part of the variable name. In addition, quoting the shell variables
 is a good practice AND necessary if your variables have spaces in
 them.</p>
 <p>For more, check <a href="https://mywiki.wooledge.org/BashPitfalls" class="external-link">Bash Pitfalls</a></p>
-<div id="callout2" class="callout callout">
+<div id="follow-the-prompt" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="follow-the-prompt" class="callout-inner">
-<h3 class="callout-title">Follow the Prompt<a class="anchor" aria-label="anchor" href="#callout2"></a>
+<h3 class="callout-title">Follow the Prompt<a class="anchor" aria-label="anchor" href="#follow-the-prompt"></a>
 </h3>
 <div class="callout-content">
 <p>The shell prompt changes from <code>$</code> to <code>&gt;</code> and
@@ -583,12 +601,12 @@ to separate two commands written on a single line.</p>
 </div>
 </div>
 </div>
-<div id="callout3" class="callout callout">
+<div id="same-symbols-different-meanings" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="same-symbols-different-meanings" class="callout-inner">
-<h3 class="callout-title">Same Symbols, Different Meanings<a class="anchor" aria-label="anchor" href="#callout3"></a>
+<h3 class="callout-title">Same Symbols, Different Meanings<a class="anchor" aria-label="anchor" href="#same-symbols-different-meanings"></a>
 </h3>
 <div class="callout-content">
 <p>Here we see <code>&gt;</code> being used a shell prompt, whereas
@@ -628,12 +646,12 @@ are only useful if people can understand them, so meaningless names
 (like <code>x</code>) or misleading names (like
 <code>temperature</code>) increase the odds that the program won’t do
 what its readers think it does.</p>
-<div id="callout4" class="callout callout">
+<div id="multipart-commands" class="callout callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
 <div id="multipart-commands" class="callout-inner">
-<h3 class="callout-title">Multipart commands<a class="anchor" aria-label="anchor" href="#callout4"></a>
+<h3 class="callout-title">Multipart commands<a class="anchor" aria-label="anchor" href="#multipart-commands"></a>
 </h3>
 <div class="callout-content">
 <p>The <code>for</code> loop is interpreted as a multipart command. If
@@ -657,17 +675,30 @@ all operations on all genomes, only on one or two. The principles are -
 however - the same for two or seven (or, to some extent, 189)
 genomes.</p>
 <p>Let’s download data for the <em>M. tuberculosis</em> genomes with a
-<code>for</code> loop.</p>
+<code>for</code> loop. We would use the following loop to download all
+samples:</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd molepi/data</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"</span><span class="va">${files}</span><span class="st">"/*fastq.gz"</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
-<p>This will run for a while (maybe 15 minutes).</p>
+<p>Note the <code>#</code> that prevents the <code>wget</code> command
+from running: that would take too long, so we’re downloading only one
+(that’s a short loop!):</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd molepi/data</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for files in ERR029/ERR029206 </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"</span><span class="va">${files}</span><span class="st">"/*fastq.gz"</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<p>This will run for a little while (hopefully no more than 5-10
+minutes).</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -720,7 +751,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.11.17" class="external-link">sandpaper (0.11.17)</a>,
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.12.0" class="external-link">sandpaper (0.12.0)</a>,
         <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.2.16" class="external-link">varnish (0.2.16)</a>.</p>
 			</div>
@@ -743,8 +774,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/downloading-data.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/downloading-data.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-05-17",
-  "datePublished": "2023-05-18"
+  "dateModified": "2023-05-21",
+  "datePublished": "2023-05-21"
 }
 
   </script><script>

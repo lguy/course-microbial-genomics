@@ -13,6 +13,12 @@
     <loc>https://carpentries.github.io/workbench-template-rmd/aio.html</loc>
   </url>
   <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/conclusions.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/data-visualization.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/downloading-data.html</loc>
   </url>
   <url>
@@ -35,6 +41,12 @@
   </url>
   <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/instructor/aio.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/conclusions.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/data-visualization.html</loc>
   </url>
   <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/instructor/downloading-data.html</loc>
