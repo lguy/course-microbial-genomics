@@ -22,7 +22,7 @@ The low mutation rate of *M. tuberculosis* means that even at the highest resolu
 
 ## Discussion
 
-Compare the pangenome clustering with the clustering based on SNPs or gene presence/absence and with the data from
+Compare the pangenome clustering with the clustering based on SNPs and with the data from
 epidemiological contact tracing:
 
 Cluster A

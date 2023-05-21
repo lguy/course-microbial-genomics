@@ -26,10 +26,8 @@ $ ls
 ```
 
 ```output
-ERR026473_1.fastq.gz ERR026478_1.fastq.gz ERR026482_1.fastq.gz ERR029207_1.fastq.gz
-ERR026473_2.fastq.gz ERR026478_2.fastq.gz ERR026482_2.fastq.gz ERR029207_2.fastq.gz
-ERR026474_1.fastq.gz ERR026481_1.fastq.gz ERR029206_1.fastq.gz ERR026474_2.fastq.gz
-ERR026481_2.fastq.gz ERR029206_2.fastq.gz 
+ERR029206_1.fastq.gz
+ERR029206_2.fastq.gz 
 ```
 
 All new files start with ERR and have a `fastq.gz` extension. It means they are in fastq format and compressed. Let's make a copy of one file and uncompress this file to inspect it further
@@ -179,7 +177,7 @@ We downloaded the samples. How many FASTQ files are in this dataset? Why is this
 
 ### Solution
 
-There are 14 FASTQ files. Each sample has [paired-end reads](https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/).
+There are 2 FASTQ files. Each sample has [paired-end reads](https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/).
 
 :::::::::::::::::::::::::
 
@@ -209,10 +207,10 @@ four of our FASTQ files. When the analysis completes, your prompt
 will return. So your screen will look something like this:
 
 ```output
-Approx 85% complete for ERR029207_2.fastq.gz
-Approx 90% complete for ERR029207_2.fastq.gz
-Approx 95% complete for ERR029207_2.fastq.gz
-Analysis complete for ERR029207_2.fastq.gz
+Approx 85% complete for ERR029206_2.fastq.gz
+Approx 90% complete for ERR029206_2.fastq.gz
+Approx 95% complete for ERR029206_2.fastq.gz
+Analysis complete for ERR029206_2.fastq.gz
 data $
 ```
 
@@ -225,13 +223,13 @@ $ ls
 
 ```output
 ...
-ERR029206_1.copy.fastq                 ERR029207_1.fastq.gz
-ERR029206_1.fastq.gz                   ERR029207_1_fastqc.html
-ERR029206_1_fastqc.html                ERR029207_1_fastqc.zip
-ERR029206_1_fastqc.zip                 ERR029207_2.fastq.gz
-ERR029206_2.fastq.gz                   ERR029207_2_fastqc.html
-ERR029206_2_fastqc.html                ERR029207_2_fastqc.zip
-ERR029206_2_fastqc.zip                 GCF_000195955.2_ASM19595v2_genomic.fna
+ERR029206_1.copy.fastq
+ERR029206_1.fastq.gz
+ERR029206_1_fastqc.html
+ERR029206_1_fastqc.zip
+ERR029206_2.fastq.gz
+ERR029206_2_fastqc.html
+ERR029206_2_fastqc.zip
 ```
 
 For each input gzipped FASTQ file, FastQC has created a `.zip` file and a
@@ -262,7 +260,7 @@ $ cd ../results/fastqc_untrimmed_reads/
 If we are working on our local computers, we may display each of these HTML files as a webpage:
 
 ```bash
-$ firefox ERR026473_1_fastqc.html
+$ firefox ERR029206_1_fastqc.html
 ```
 
 You may need to replace the command `firefox` with the name of another web navigator if you have one.
@@ -272,17 +270,7 @@ You may need to replace the command `firefox` with the name of another web navig
 
 ### Exercise
 
-Discuss your results with a neighbor. Which sample(s) looks the best
-in terms of per base sequence quality? Which sample(s) look the
-worst?
-
-:::::::::::::::  solution
-
-### Solution
-
-All samples are of reasonable quality.
-
-:::::::::::::::::::::::::
+Discuss your results with a neighbor. Do the sample looks good in terms of per base sequence quality? 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -423,12 +411,13 @@ $ ls
 
 ```output
 ...
-ERR029206_1.copy.fastq                 ERR029207_1.fastq.gz
-ERR029206_1.fastq.gz                   ERR029207_1.fastq.gz_trim.fastq
-ERR029206_1.fastq.gz_trim.fastq        ERR029207_2.fastq.gz
-ERR029206_1_trim.fastq                 ERR029207_2.fastq.gz_trim.fastq
-ERR029206_2.fastq.gz                   GCF_000195955.2_ASM19595v2_genomic.fna
+ERR029206_1.copy.fastq 
+ERR029206_1.fastq.gz
+ERR029206_1.fastq.gz_trim.fastq 
+ERR029206_1_trim.fastq 
+ERR029206_2.fastq.gz
 ERR029206_2.fastq.gz_trim.fastq
+GCF_000195955.2_ASM19595v2_genomic.fna
 ```
 
 We've now completed the trimming and filtering steps of our quality control process! Before we move on, let's move our trimmed FASTQ files to a new subdirectory within our `data/` directory.
@@ -442,8 +431,8 @@ $ ls
 
 ```output
 ...
-ERR029206_1.fastq.gz_trim.fastq ERR029207_1.fastq.gz_trim.fastq
-ERR029206_2.fastq.gz_trim.fastq ERR029207_2.fastq.gz_trim.fastq
+ERR029206_1.fastq.gz_trim.fastq 
+ERR029206_2.fastq.gz_trim.fastq 
 ```
 
 :::::::::::::::::::::::::::::::::::::::  challenge
