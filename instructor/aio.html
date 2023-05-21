@@ -543,7 +543,7 @@ generations?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>In my simulations, no allele got fixed, the final allele frequencies
 range 20-80%</p>
@@ -572,7 +572,7 @@ the simulations. What’s the range of final frequencies now?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>In my simulations, no allele got fixed, and the final allele
 frequencies range 45-55%</p>
@@ -601,7 +601,7 @@ repeat these simulations. What’s the range of final frequencies now?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>In my simulations, one allele got fixed quickly, the latest one was
 at generation 100.</p>
@@ -629,7 +629,7 @@ at generation 100.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>It is clear that stochastic (random) variation in allele frequencies
 strongly affects the probability of fixation of alleles in small
@@ -672,7 +672,7 @@ the three population sizes?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>About the same time, but the trajectories are much smoother with
 larger populations. In the small population, it happens that the
@@ -714,7 +714,7 @@ individual getting a mutation:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>Most new alleles go extinct quickly. In my simulations, I usually get
 one of the slightly deleterious mutations fixed after 20
@@ -1274,16 +1274,27 @@ direct contact with each other, or if they visited the same localities.
 From all patients, a bacterial isolate was grown, DNA isolated, and
 whole-genome sequenced on an Illumina sequencer.</p>
 <p>The three clusters consist of:</p>
-<p>Cluster 1</p>
-<pre><code>- Patient A1 (2011) - sample ERR029207
-- Patient A2 (2011) - sample ERR029206
-- Patient A3 (2008) - sample ERR026478</code></pre>
-<p>Cluster 2</p>
-<pre><code>- Patient B1 (2001) - sample ERR026474
-- Patient B2 (2012) - sample ERR026473</code></pre>
-<p>Cluster 3</p>
-<pre><code>- Patient C1 (2011) - sample ERR026481
-- Patient C2 (2016) - sample ERR026482</code></pre>
+<ul>
+<li>Cluster 1
+<ul>
+<li>Patient A1 (2011) - sample ERR029207</li>
+<li>Patient A2 (2011) - sample ERR029206</li>
+<li>Patient A3 (2008) - sample ERR026478</li>
+</ul>
+</li>
+<li>Cluster 2
+<ul>
+<li>Patient B1 (2001) - sample ERR026474</li>
+<li>Patient B2 (2012) - sample ERR026473</li>
+</ul>
+</li>
+<li>Cluster 3
+<ul>
+<li>Patient C1 (2011) - sample ERR026481</li>
+<li>Patient C2 (2016) - sample ERR026482</li>
+</ul>
+</li>
+</ul>
 <p>The second goal of this lab is to affirm or dispute the inferred
 transmissions by comparing the bacterial genomes with each other. We
 will do that by identifying SNPs between the genomes.</p>
@@ -1414,10 +1425,11 @@ home.</p>
 </h3>
 <div class="callout-content">
 <p>Use the <code>mkdir</code> command to make the following
-directories:<br>
-molepi molepi/docs<br>
-molepi/data<br>
-molepi/results</p>
+directories:</p>
+<pre><code><span><span class="va">molepi</span></span>
+<span><span class="va">molepi</span><span class="op">/</span><span class="va">docs</span>  </span>
+<span><span class="va">molepi</span><span class="op">/</span><span class="va">data</span>  </span>
+<span><span class="va">molepi</span><span class="op">/</span><span class="va">results</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1428,15 +1440,15 @@ molepi/results</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir molepi</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir molepi/docs</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir molepi/data</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir molepi/results</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir molepi</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir molepi/docs</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir molepi/data</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir molepi/results</span></code></pre>
 </div>
 </div>
 </div>
@@ -1446,10 +1458,10 @@ molepi/results</p>
 directories. The <code>-R</code> option for <code>ls</code> stands for
 recursive. This option causes <code>ls</code> to return the contents of
 each subdirectory within the directory iteratively.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-R</span> molepi</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-R</span> molepi</span></code></pre>
 </div>
 <p>You should see the following output:</p>
 <div class="codewrapper">
@@ -1521,13 +1533,13 @@ genome?<a class="anchor" aria-label="anchor" href="#challenge-what-is-the-size-o
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>The genome has 4’411’532 bp.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> assembly-stats GCF_000195955.2_ASM19595v2_genomic.fna</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> assembly-stats GCF_000195955.2_ASM19595v2_genomic.fna</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1569,13 +1581,13 @@ one to two hours, this could keep us up all night. Instead of
 downloading one by one we can apply a loop. Let’s see what that looks
 like and then we’ll discuss what we’re doing with each line of our
 loop.</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in ERR01 ERR02 ERR03</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="ex">ftp://ftp.sra.ebi.ac.uk/</span><span class="st">"</span><span class="va">${filename}</span><span class="st">"</span><span class="ex">.fastq.gz</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in ERR01 ERR02 ERR03</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> do</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> echo <span class="ex">ftp://ftp.sra.ebi.ac.uk/</span><span class="st">"</span><span class="va">${filename}</span><span class="st">"</span><span class="ex">.fastq.gz</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> done</span></code></pre>
 </div>
 <p>When the shell sees the keyword <code>for</code>, it knows to repeat
 a command (or group of commands) once for each item in a list. Each time
@@ -1640,22 +1652,22 @@ value of a variable.</p>
 <p>We have called the variable in this loop <code>filename</code> in
 order to make its purpose clearer to human readers. The shell itself
 doesn’t care what the variable is called; if we wrote this loop as:</p>
-<div class="codewrapper sourceCode" id="cb15">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for x in ERR01 ERR02 ERR03</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> ftp://ftp.sra.ebi.ac.uk/<span class="st">"</span><span class="va">${x}</span><span class="st">"</span>.fastq.gz</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
-</div>
-<p>or:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for temperature in ERR01 ERR02 ERR03</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for x in ERR01 ERR02 ERR03</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> ftp://ftp.sra.ebi.ac.uk/<span class="st">"</span><span class="va">${temperature}</span><span class="st">"</span>.fastq.gz</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> ftp://ftp.sra.ebi.ac.uk/<span class="st">"</span><span class="va">${x}</span><span class="st">"</span>.fastq.gz</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<p>or:</p>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for temperature in ERR01 ERR02 ERR03</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> ftp://ftp.sra.ebi.ac.uk/<span class="st">"</span><span class="va">${temperature}</span><span class="st">"</span>.fastq.gz</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>it would work exactly the same way. <em>Don’t do this.</em> Programs
 are only useful if people can understand them, so meaningless names
@@ -1673,10 +1685,10 @@ what its readers think it does.</p>
 <p>The <code>for</code> loop is interpreted as a multipart command. If
 you press the up arrow on your keyboard to recall the command, it may be
 shown like so (depends on your bash version):</p>
-<div class="codewrapper sourceCode" id="cb17">
+<div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in ERR01 ERR02 ERR03<span class="kw">;</span> <span class="cf">do</span> <span class="bu">echo</span> ftp://ftp.sra.ebi.ac.uk/<span class="st">"</span><span class="va">${filename}</span><span class="st">"</span>.fastq.gz <span class="kw">;</span> <span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for filename in ERR01 ERR02 ERR03<span class="kw">;</span> <span class="cf">do</span> <span class="bu">echo</span> ftp://ftp.sra.ebi.ac.uk/<span class="st">"</span><span class="va">${filename}</span><span class="st">"</span>.fastq.gz <span class="kw">;</span> <span class="cf">done</span></span></code></pre>
 </div>
 <p>When you check your history later, it will help your remember what
 you did!</p>
@@ -1694,25 +1706,25 @@ genomes.</p>
 <p>Let’s download data for the <em>M. tuberculosis</em> genomes with a
 <code>for</code> loop. We would use the following loop to download all
 samples:</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>Note the <code>#</code> that prevents the <code>wget</code> command
 from running: that would take too long, so we’re downloading only one
 (that’s a short loop!):</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd molepi/data</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for files in ERR029/ERR029206 </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"</span><span class="va">${files}</span><span class="st">"/*fastq.gz"</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd molepi/data</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for files in ERR029/ERR029206 </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span> </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="st">"ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"</span><span class="va">${files}</span><span class="st">"/*fastq.gz"</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>This will run for a little while (hopefully no more than 5-10
 minutes).</p>
@@ -2736,7 +2748,7 @@ other and to establish a phylogenetic tree.</p>
   Getting missing data
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>If you don’t have all the trimmed reads, you can download them (will
 take a while, <em>dont’t do it if you have the reads</em>):</p>
@@ -2882,7 +2894,7 @@ information:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3068,7 +3080,7 @@ model IQ-TREE used?<a class="anchor" aria-label="anchor" href="#challenge-can-yo
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
