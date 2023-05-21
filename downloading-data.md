@@ -55,8 +55,7 @@ You should see the output:
 
 ## Tip
 
-If you aren't in your home directory, the easiest way to get there is to enter the command `cd`, which
-always returns you to home.  
+If you aren't in your home directory, the easiest way to get there is to enter the command `cd`, which always returns you to home.  
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -123,7 +122,7 @@ First, we switch to the data folder to store all our data
 $ cd molepi/data 
 ```
 
-The reference genome will be downloaded programmatically from NCBI with `wget`. `wget` is a computer program that retrieves content from web servers.  Its name derives from World Wide Web and get.
+The reference genome will be downloaded programmatically from NCBI with `wget`. `wget` is a computer program that retrieves content from web servers. Its name derives from World Wide Web and get.
 
 ```source
 $ wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
@@ -302,18 +301,25 @@ When you check your history later, it will help your remember what you did!
 
 To ensure that we complete this tutorial in time, we will not perform all operations on all genomes, only on one or two. The principles are - however - the same for two or seven (or, to some extent, 189) genomes. 
 
-Let's download data for the *M. tuberculosis* genomes with a `for` loop. 
+Let's download data for the *M. tuberculosis* genomes with a `for` loop. We would use the following loop to download all samples: 
 
 ```bash
-$ cd molepi/data
 $ for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482
+do 
+# wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
+done
+```
+
+Note the `#` that prevents the `wget` command from running: that would take too long, so we're downloading only one (that's a short loop!):
+```bash
+$ cd molepi/data
+$ for files in ERR029/ERR029206 
 do 
 wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
 done
 ```
 
-This will run for a while (maybe 15 minutes).
-
+This will run for a little while (hopefully no more than 5-10 minutes).
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 

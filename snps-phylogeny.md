@@ -24,6 +24,8 @@ In this episode we will try to pinpoint single nucleotide variants or single nuc
 
 The identified SNPs will be used to compare the isolates to each other and to establish a phylogenetic tree.
 
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
+
 ## Getting missing data
 
 If you don't have all the trimmed reads, you can download them (will take a while, *dont't do it if you have the reads*):
@@ -36,6 +38,8 @@ tar xvzf trimmed_fastq.tar.gz
 ls trimmed_fastq
 ```
 
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## SNP calling
 
 [snippy](https://github.com/tseemann/snippy) is a pipeline that contains different tools to determine SNPs in sequencing reads against a reference genome. It takes forward and reverse reads of paired-end sequences and aligns them against a reference.
@@ -47,42 +51,84 @@ $ cd ~/molepi/results
 $ mkdir snps
 ```
 
-Snippy is fast but a single run still takes about 2-3 minutes. We will therefore tell snippy to run all the samples after each other. However this time we can not use a wildcard to do so. We will instead run all the samples in a loop.
+We need to activate a separate environment to run snippy: 
+
+```bash
+$ mamba activate snippy
+```
+
+Snippy is fast but a single run still takes about 2-3 minutes. We would therefore tell snippy to run all the samples after each other. However this time we cannot use a wildcard to do so. We would instead run all the samples in a loop. The "real" loop is commented out, and we use one that runs only the sample we've analyzed so far.  
 
 ```bash
 $ cd ../data/trimmed_fastq/
-$ for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+$ #for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+$ for sample in ERR029206
 do
-snippy  --outdir ../../results/snps/"${sample}" --ref ../GCF_000195955.2_ASM19595v2_genomic.fna --R1 "${sample}"_1.fastq.gz_trim.fastq --R2 "${sample}"_2.fastq.gz_trim.fastq
+snippy --ram 1 --outdir ../../results/snps/"${sample}" --ref ../GCF_000195955.2_ASM19595v2_genomic.fna --R1 "${sample}"_1.fastq.gz_trim.fastq --R2 "${sample}"_2.fastq.gz_trim.fastq
 done
 ```
 
+Here, we provide snippy with an output folder (`--outdir`), the location of the reference genome (`--ref`), and the trimmed read files for each end of the pair (`--R1` and `--R2`). We also indicate that snippy should use 1 Gb of memory (`--ram 1`, very specific issue to this VM).
 
 ```bash
-$ head -n10 ~/molepi/results/snps/ERR029207/snps.tab 
+$ head -n10 ~/molepi/results/snps/ERR029206/snps.tab 
 ```
 
 ```output
 CHROM	POS	TYPE	REF	ALT	EVIDENCE	FTYPE	STRAND	NT_POS	AA_POS	EFFECT	LOCUS_TAG	GENE	PRODUCT
-NC_000962.3	1849	snp	C	A	A:215 C:0
-NC_000962.3	1977	snp	A	G	G:113 A:0
-NC_000962.3	4013	snp	T	C	C:128 T:0
-NC_000962.3	7362	snp	G	C	C:131 G:0
-NC_000962.3	7585	snp	G	C	C:129 G:0
-NC_000962.3	9304	snp	G	A	A:123 G:0
-NC_000962.3	11820	snp	C	G	G:157 C:0
-NC_000962.3	11879	snp	A	G	G:90 A:0
-NC_000962.3	14785	snp	T	C	C:174 T:0
+NC_000962.3	1849	snp	C	A	A:217 C:0
+NC_000962.3	1977	snp	A	G	G:118 A:0
+NC_000962.3	4013	snp	T	C	C:176 T:0
+NC_000962.3	7362	snp	G	C	C:156 G:0
+NC_000962.3	7585	snp	G	C	C:143 G:0
+NC_000962.3	9304	snp	G	A	A:127 G:0
+NC_000962.3	11820	snp	C	G	G:164 C:0
+NC_000962.3	11879	snp	A	G	G:125 A:0
+NC_000962.3	14785	snp	T	C	C:163 T:1
 ```
 
-This list gives us information on every SNP that was found by snippy when compared to the reference genome. The first SNP is found at the position 1849 of the reference genome, and is a C in the H37Rv (reference strain) and an A in isolate ERR029207. There is a high confidence associated with this SNP: an A has been found 225 times in the sequencing reads and never a C at this position.
+This list gives us information on every SNP that was found by snippy when compared to the reference genome. The first SNP is found at the position 1849 of the reference genome, and is a C in the H37Rv (reference strain) and an A in isolate ERR029206. There is a high confidence associated with this SNP: an A has been found 217 times in the sequencing reads and never a C at this position.
+
+Now download a [reduced version of the result of snippy](files/snps.tar.gz) on the other samples, save it in the `~/molepi/results/` folder. We will also rename the existing `snps` folder to save it.
+
+```bash
+cd ~/molepi/results/
+mv snps snps_partial
+mkdir snps
+cd snps
+tar xvzf ../snps.tar.gz
+ls
+```
+
+```output
+ERR026473     ERR026482
+ERR026474     ERR029206
+ERR026478     ERR029207
+ERR026481
+```
+
+The folders don't contain everything that is output by `snippy`, to save space. But it is enough to run `snippy-core`.
+
+```bash
+ls ERR026473
+```
+
+```output
+ref.fa          snps.filt.vcf   snps.tab
+ref.fa.fai      snps.gff        snps.txt
+snps.aligned.fa snps.html       snps.vcf
+snps.bam.bai    snps.log        snps.vcf.gz
+snps.bed        snps.raw.vcf    snps.vcf.gz.csi
+snps.csv        snps.subs.vcf
+```
+
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Challenge: How many SNPs were identified in each sample??
 
 Find out how many SNPs were identified in the *M. tuberculosis* isolates when compared to H37Rv. 
-Hint: The .txt file in the snippy output contains summary information
+Hint: The `.txt` file in the snippy output contains summary information:
 
 :::::::::::::::  solution
 
@@ -169,12 +215,18 @@ Have a look at the content of these three files with `cat` or `head`.
 What is the difference between these files? Why is core.aln smaller than ?
 What is in core.aln?
 
-
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+Let's deactivate the specific snippy `env` before we move on:
+
+```bash
+$ mamba deactivate snippy
+```
+
 
 ## Phylogenetic tree
 
-Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree from the file 'core.aln' with [IQ-TREE](http://www.iqtree.org/). IQ-TREE is a phylogeny software based on the maximum-likelihood principle. IQ-TREE has been widely used and cited. There is a very wide range of parameters that need to be chosen, such as nucleotide or amino-acid substitution models.
+Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree from the file 'core.aln' with [IQ-TREE](https://www.iqtree.org/). IQ-TREE is a phylogeny software based on the maximum-likelihood principle. IQ-TREE has been widely used and cited. There is a very wide range of parameters that need to be chosen, such as nucleotide or amino-acid substitution models.
 
 In our case, we want IQ-TREE to automatically select the best substitution model. IQ-TREE does that by testing many (among a very large collection) substitution models. We also have SNP data, which by definition do not contain constant (invariable) sites. We thus input the alignment with the `-s` option and the model with `-m MFP+ASC`. `MFP` will tell IQ-TREE to test a range of models, and `ASC` will correct for the fact that there is no constant sites. 
 
@@ -204,12 +256,13 @@ $ mkdir tree
 $ mv snps/core.aln.* tree
 ```
 
-Let's inspect our tree.
+Let's inspect our tree, and give it another extension to make it clear it is a newick file.
 
 ```bash
 $ cd ~/molepi/results/
 $ cd tree
-$ cat core.aln.treefile
+$ mv core.aln.treefile core.aln.newick
+$ core.aln.newick
 ```
 
 ```output
@@ -230,7 +283,7 @@ Hint: The log file of IQ-TREE contains a lot of information.
 ## Solution
 
 ```bash
-$ cat core.aln.treefile
+$ cat core.aln.iqtree
 ```
 
 ```output
@@ -239,7 +292,7 @@ Best-fit model according to BIC: TVMe+ASC
 ...
 ```
 
-IQ-TREE chose the TVMe+ASC model. We've discussed the ASC above, read more about the TVMe in the [IQ-TREE manual](http://www.iqtree.org/doc/Substitution-Models).
+IQ-TREE chose the TVMe+ASC model. We've discussed the ASC above, and you can read more about the TVMe in the [IQ-TREE manual](https://www.iqtree.org/doc/Substitution-Models). In short, it is a mdoel where base frequencies are deemed equal, and all rates estimated independently, except the rates of transversions (A <-> G and C <-> T) are equal. 
 
 :::::::::::::::::::::::::
 

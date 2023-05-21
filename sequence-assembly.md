@@ -36,10 +36,10 @@ $ mkdir ~/molepi/results/assembly
 $ cd ~/molepi/data/trimmed_fastq
 ```
 
-To run SKESA we will use the skesa command with a number of option that we will explore later on. We can start the loop with the assemblies with: 
+To run SKESA we will use the skesa command with a number of option that we will explore later on. We can start the loop (again, a short loop) with the assemblies with: 
 
 ```bash
-$ for sample in ERR029206 ERR029207
+$ for sample in ERR029206
 do
 skesa \
 --cores 2 \
@@ -51,6 +51,8 @@ done
 A non-quoted backslash, `\` is used as an escape character in Bash. It preserves the literal value of the next character that follows, with the exception of newline. This means that the back slash starts a new line without starting a new command - we only add it for better readability.
 
 The assembly should take about 2-3 minutes per genome, using 2 cores and 8 GB of memory. 
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: instructor
 
 ## Downloading the missing assemblies
 
@@ -68,6 +70,9 @@ ls assembly
 ERR026473.fasta ERR026478.fasta ERR026482.fasta ERR029207.fasta
 ERR026474.fasta ERR026481.fasta ERR029206.fasta
 ```
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 

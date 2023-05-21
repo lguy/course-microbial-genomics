@@ -18,7 +18,7 @@ exercises: 2
 
 ## Introduction
 
-This part of the course is largely inspired from[another tutorial](https://github.com/aschuerch/MolecularEpidemiology_AnalysisWGS) developed by [Anita Schürch](https://aschuerch.github.io/). We will redo (part of) the analysis done in the paper described. 
+This part of the course is largely inspired from [another tutorial](https://github.com/aschuerch/MolecularEpidemiology_AnalysisWGS) developed by [Anita Schürch](https://aschuerch.github.io/). We will use (part of) the data described in [Bryant et al., 2013](https://bmcinfectdis.biomedcentral.com/articles/10.1186/1471-2334-13-110). 
 
 
 ## Background of the data
@@ -53,7 +53,7 @@ Cluster 3
 - Patient C2 (2016) - sample ERR026482
 ```
 
-The second goal of this practicum is to affirm or dispute the inferred transmissions by comparing the bacterial genomes with each other. We will do that by identifying SNPs between the genomes. If time allows a different strategy can be employed as well: identifying variably present genes.
+The second goal of this lab is to affirm or dispute the inferred transmissions by comparing the bacterial genomes with each other. We will do that by identifying SNPs between the genomes.
 
 
 

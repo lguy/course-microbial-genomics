@@ -9,12 +9,7 @@ computer.
 
 ## Data Sets
 
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
--->
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+Data comes from [Bryant et al., 2013](https://bmcinfectdis.biomedcentral.com/articles/10.1186/1471-2334-13-110)
 
 ## Software Setup
 
