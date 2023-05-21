@@ -9,7 +9,7 @@ computer.
 
 ## Data Sets
 
-Data comes from [Bryant et al., 2013](https://bmcinfectdis.biomedcentral.com/articles/10.1186/1471-2334-13-110)
+Data for the molecular epidemiology part comes from [Bryant et al., 2013](https://bmcinfectdis.biomedcentral.com/articles/10.1186/1471-2334-13-110)
 
 ## Software Setup
 
