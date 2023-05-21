@@ -121,7 +121,7 @@ TCNAGTCAGCACACACATGCGAAAGAATCCACCGACTAGGGTCAGCGGGGTTTGCAGTTGGTCGCGGACGTAACCG
 <='=ABBBBCBBBBBBBBC>BBCBBBBBB@BBBBBB=BCBB@@B@@BB@@,@@@@@@@@@@@@@@@@@@@@@@@@@
 ```
 
-We can now see that the quality of an `N` (`'`) is 6, which corresponds to a over 25% error probability ($10^{-\frac{6}{10}} \cong 0.25 $)
+We can now see that the quality of an `N` (`'`) is 6, which corresponds to a over 25% error probability ($10^{-\frac{6}{10}} \cong 0.25 $).
 
 > ### Quality Encodings Vary
 > 
