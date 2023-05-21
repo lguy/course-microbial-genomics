@@ -65,10 +65,12 @@ If you aren't in your home directory, the easiest way to get there is to enter t
 ## Exercise
 
 Use the `mkdir` command to make the following directories:  
+```
 molepi
 molepi/docs  
 molepi/data  
 molepi/results
+```
 
 :::::::::::::::  solution
 

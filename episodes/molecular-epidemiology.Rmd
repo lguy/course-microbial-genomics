@@ -31,27 +31,17 @@ Here we have 7 tuberculosis patients with active TB, that form three separate cl
 
 The three clusters consist of:
 
-Cluster 1
+* Cluster 1
+  + Patient A1 (2011) - sample ERR029207
+  + Patient A2 (2011) - sample ERR029206
+  + Patient A3 (2008) - sample ERR026478
+* Cluster 2
+  + Patient B1 (2001) - sample ERR026474
+  + Patient B2 (2012) - sample ERR026473
+* Cluster 3
+  + Patient C1 (2011) - sample ERR026481
+  + Patient C2 (2016) - sample ERR026482
 
-```
-- Patient A1 (2011) - sample ERR029207
-- Patient A2 (2011) - sample ERR029206
-- Patient A3 (2008) - sample ERR026478
-```
-
-Cluster 2
-
-```
-- Patient B1 (2001) - sample ERR026474
-- Patient B2 (2012) - sample ERR026473
-```
-
-Cluster 3
-
-```
-- Patient C1 (2011) - sample ERR026481
-- Patient C2 (2016) - sample ERR026482
-```
 
 The second goal of this lab is to affirm or dispute the inferred transmissions by comparing the bacterial genomes with each other. We will do that by identifying SNPs between the genomes.
 
