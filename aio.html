@@ -201,7 +201,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="phylogenetics.html">3. Phylogenetics</a>
+        <a href="msa.html">3. Multiple sequence alignment</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -213,7 +213,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="molecular-epidemiology.html">4. Molecular Epidemiology</a>
+        <a href="phylogenetics.html">4. Phylogenetics</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -225,7 +225,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="downloading-data.html">5. Downloading data</a>
+        <a href="molecular-epidemiology.html">5. Molecular Epidemiology</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -237,7 +237,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="quality-control.html">6. Assessing Read Quality and Trimming</a>
+        <a href="downloading-data.html">6. Downloading data</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -249,7 +249,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="sequence-assembly.html">7. Sequence assembly</a>
+        <a href="quality-control.html">7. Assessing Read Quality and Trimming</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -261,7 +261,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="snps-phylogeny.html">8. SNP phylogeny</a>
+        <a href="sequence-assembly.html">8. Sequence assembly</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -273,7 +273,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="data-visualization.html">9. Data Visualization</a>
+        <a href="snps-phylogeny.html">9. SNP phylogeny</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -285,7 +285,19 @@
 <div class="accordion accordion-flush" id="accordionFlush11">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading11">
-        <a href="conclusions.html">10. Transmission?</a>
+        <a href="data-visualization.html">10. Data Visualization</a>
+    </div>
+<!--/div.accordion-header-->
+        
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="conclusions.html">11. Transmission?</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -349,7 +361,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p> Last updated on 2023-05-12 | 
+<p> Last updated on 2023-05-22 | 
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -410,8 +422,8 @@ focus on how microbes evolve.</li>
 <h3 class="callout-title">Quiz about evolution<a class="anchor" aria-label="anchor" href="#quiz-about-evolution"></a>
 </h3>
 <div class="callout-content">
-<p>Answer the quiz as you follow along, using this [link][<a href="https://pollev.com/lionelguy323/" class="external-link uri">https://pollev.com/lionelguy323/</a>] or by using the
-following QR code <img src="fig/qr_code_quiz.png" alt="QR code linking to the interactive quiz" class="figure"></p>
+<p>Answer the quiz as you follow along, <a href="https://pollev.com/lionelguy323/" class="external-link">using this link</a> or by using
+the following QR code <img src="fig/qr_code_quiz.png" alt="QR code linking to the interactive quiz" class="figure"></p>
 </div>
 </div>
 </div>
@@ -422,7 +434,7 @@ following QR code <img src="fig/qr_code_quiz.png" alt="QR code linking to the in
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>The answers will be discussed in the presentation later.</p>
 </div>
@@ -730,6 +742,256 @@ selective value is not too large.</li>
 </div>
 </div>
 <!-- References -->
+<!-- 
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use. 
+ -->
+</section></section><section id="aio-msa"><p>Content from <a href="msa.html">Multiple sequence alignment</a></p>
+<hr>
+<p> Last updated on 2023-05-22 | 
+        
+        <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/msa.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you align multiple sequences?</li>
+<li>Why is it important to properly align sequences?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Use <code>mafft</code> to align multiple sequences.</li>
+<li>Test different algorithms.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<hr class="half-width">
+<p>In this short episode, we are exploring multiple sequence alignment
+(MSA). We are going to use <a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html" class="external-link"><code>mafft</code></a>
+to align homologs of <a href="https://en.wikipedia.org/wiki/RpoB" class="external-link">RpoB</a>, the β subunit of the
+bacterial RNA polymerase. It is a long, multi-domain protein, suitable
+for showing issues related to MSA.</p>
+<p>First, go to your home folder and create a phylogenetics folder</p>
+<div id="exercise" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise" class="callout-inner">
+<h3 class="callout-title">Exercise<a class="anchor" aria-label="anchor" href="#exercise"></a>
+</h3>
+<div class="callout-content">
+<p>Go to your home, use the <code>mkdir</code> command to make a
+<code>phylogenetics</code> subfolder, and move into it:</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir phylogenetics</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a> </span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Second, download a <a href="files/rpoB.fasta">fasta file</a>
+containing 19 sequences of RpoB, gathered by aligning RpoB from <em>E.
+coli</em> to a very small database present at NCBI, the <a href="https://blast.ncbi.nlm.nih.gov/smartblast/smartBlast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs" class="external-link">landmark</a>
+database. Move that file to your newly created
+<code>~/phylogenetics/</code> folder.</p>
+</section><section id="renaming-sequences"><h2 class="section-heading">Renaming sequences<a class="anchor" aria-label="anchor" href="#renaming-sequences"></a>
+</h2>
+<hr class="half-width">
+<p>Look at the accession ids of the fasta sequences: they are not very
+informative:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">'&gt;'</span> rpoB.fasta <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>&gt;WP_000263098.1 MULTISPECIES: DNA-directed RNA polymerase subunit beta [Enterobacteriaceae]
+&gt;WP_011070610.1 DNA-directed RNA polymerase subunit beta [Shewanella oneidensis]
+&gt;WP_003114335.1 DNA-directed RNA polymerase subunit beta [Pseudomonas aeruginosa]
+&gt;WP_002228870.1 DNA-directed RNA polymerase subunit beta [Neisseria meningitidis]
+&gt;WP_003436174.1 MULTISPECIES: DNA-directed RNA polymerase subunit beta [Eubacteriales]</code></pre>
+</div>
+<p>Keep the taxonomic name following the accession id, separated by
+<code>_</code>, using a bit of <code>sed</code> magic. Save the
+resulting file for later use, and show the headers again.</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> sed <span class="st">"/^&gt;/ s/&gt;\([^ ]*\) \([^\[]*\)\[\(.*\)\]/&gt;</span><span class="dt">\\</span><span class="st">3_</span><span class="dt">\\</span><span class="st">1/"</span>  rpoB.fasta <span class="kw">|</span> <span class="fu">sed</span> <span class="st">"s/ /_/g"</span> <span class="op">&gt;</span> rpoB_renamed.fasta</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> grep <span class="st">'&gt;'</span> rpoB_renamed.fasta <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>&gt;Enterobacteriaceae_WP_000263098.1
+&gt;Shewanella_oneidensis_WP_011070610.1
+&gt;Pseudomonas_aeruginosa_WP_003114335.1
+&gt;Neisseria_meningitidis_WP_002228870.1
+&gt;Eubacteriales_WP_003436174.1</code></pre>
+</div>
+<p>It looks better.</p>
+</section><section id="alignment-with-progressive-algorithm"><h2 class="section-heading">Alignment with progressive algorithm<a class="anchor" aria-label="anchor" href="#alignment-with-progressive-algorithm"></a>
+</h2>
+<hr class="half-width">
+<p>Use <code>mafft</code> with a progressive algorithm to align the
+sequences.</p>
+<div id="challenge2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge2"></a>
+</h3>
+<div class="callout-content">
+<p>Use the FFT-NS-2 algorithm from mafft to align the renamed sequences.
+Also, record the time it takes for <code>mafft</code> to complete the
+task.</p>
+<p>Hint: type <code>mafft</code> and try tab-complete to see all
+versions of <code>mafft</code>.</p>
+<p>Hint: try the command <code>time</code></p>
+</div>
+</div>
+</div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> time mafft-fftns rpoB_renamed.fasta <span class="op">&gt;</span> rpoB.fftns.aln</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>...
+Strategy:
+ FFT-NS-2 (Fast but rough)
+ Progressive method (guide trees were built 2 times.)
+
+If unsure which option to use, try 'mafft --auto input &gt; output'.
+For more information, see 'mafft --help', 'mafft --man' and the mafft page.
+
+The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
+It tends to insert more gaps into gap-rich regions than previous versions.
+To disable this change, add the --leavegappyregion option.
+
+mafft-fftns rpoB_renamed.fasta &gt; rpoB.fftns.aln  1.02s user 0.52s system 104% cpu 1.471 total</code></pre>
+</div>
+<p>The last line is the output of the <code>time</code> command. It took
+1.47 seconds to complete this time.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="alignment-with-iterative-algorithm"><h2 class="section-heading">Alignment with iterative algorithm<a class="anchor" aria-label="anchor" href="#alignment-with-iterative-algorithm"></a>
+</h2>
+<hr class="half-width">
+<p>Now use one of the supposedly better iterative algorithm of
+<code>mafft</code> to align the same sequences. Choose the <a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html" class="external-link">E-INS-i
+algorithm</a> which is suited for proteins that have highly conserved
+motifs interspersed with less conserved ones.</p>
+<div id="challenge3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+</h3>
+<div class="callout-content">
+<p>Use the E-INS-i algorithm from mafft to align the renamed sequences.
+Also, record the time it takes for <code>mafft</code> to complete the
+task.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> time mafft-einsi rpoB_renamed.fasta <span class="op">&gt;</span> rpoB.einsi.aln</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>...
+Strategy:
+ E-INS-i (Suitable for sequences with long unalignable regions, very slow)
+ Iterative refinement method (&lt;16) with LOCAL pairwise alignment with generalized affine gap costs (Altschul 1998)
+
+If unsure which option to use, try 'mafft --auto input &gt; output'.
+For more information, see 'mafft --help', 'mafft --man' and the mafft page.
+
+The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
+It tends to insert more gaps into gap-rich regions than previous versions.
+To disable this change, add the --leavegappyregion option.
+
+Parameters for the E-INS-i option have been changed in version 7.243 (2015 Jun).
+To switch to the old parameters, use --oldgenafpair, instead of --genafpair.
+
+mafft-einsi rpoB_renamed.fasta &gt; rpoB.einsi.aln  6.84s user 0.65s system 99% cpu 7.542 total</code></pre>
+</div>
+<p>It now took 7.54 seconds to complete this time, i.e. about 5 times
+slower than with the progressive algorithm. It doesn’t make a big
+difference now, but with hundreds of sequences it will make one.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section id="alignment-visualization"><h2 class="section-heading">Alignment visualization<a class="anchor" aria-label="anchor" href="#alignment-visualization"></a>
+</h2>
+<hr class="half-width">
+<p>Compare the two</p>
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
@@ -1420,7 +1682,7 @@ directories:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1513,7 +1775,7 @@ genome?<a class="anchor" aria-label="anchor" href="#challenge-what-is-the-size-o
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>The genome has 4’411’532 bp.</p>
 <div class="codewrapper sourceCode" id="cb13">
@@ -2017,7 +2279,7 @@ with the same name? Discuss with your neighbour.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>There are 2 FASTQ files. Each sample has <a href="https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/" class="external-link">paired-end
 reads</a>.</p>
@@ -2272,7 +2534,7 @@ neighbor.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2394,7 +2656,7 @@ same size as our reference genome (4411532 bases).</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2556,7 +2818,7 @@ command line parameters mean.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2599,7 +2861,7 @@ isolates.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2814,7 +3076,7 @@ information:</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3000,7 +3262,7 @@ model IQ-TREE used?<a class="anchor" aria-label="anchor" href="#challenge-can-yo
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3292,8 +3554,8 @@ transmission</li>
   "url": "https://carpentries.github.io/workbench-template-rmd/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/aio.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-05-21",
-  "datePublished": "2023-05-21"
+  "dateModified": "2023-05-22",
+  "datePublished": "2023-05-22"
 }
 
   </script><script>

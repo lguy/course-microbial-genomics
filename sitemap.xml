@@ -73,6 +73,9 @@
     <loc>https://carpentries.github.io/workbench-template-rmd/instructor/molecular-epidemiology.html</loc>
   </url>
   <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/instructor/msa.html</loc>
+  </url>
+  <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/instructor/phylogenetics.html</loc>
   </url>
   <url>
@@ -101,6 +104,9 @@
   </url>
   <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/molecular-epidemiology.html</loc>
+  </url>
+  <url>
+    <loc>https://carpentries.github.io/workbench-template-rmd/msa.html</loc>
   </url>
   <url>
     <loc>https://carpentries.github.io/workbench-template-rmd/phylogenetics.html</loc>
