@@ -42,7 +42,7 @@ keywords on the board.
 
 ## Quiz about evolution
 
-Answer the quiz as you follow along, using this [link][https://pollev.com/lionelguy323/]
+Answer the quiz as you follow along, using this [link](https://pollev.com/lionelguy323/)
 or by using the following QR code 
 ![QR code](fig/qr_code_quiz.png){alt='QR code linking to the interactive quiz'}
 
