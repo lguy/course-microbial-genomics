@@ -44,12 +44,12 @@ jobs:
         uses: r-lib/actions/setup-pandoc@v2
 
       - name: "Setup Lesson Engine"
-        uses: lguy/carpentries-actions/setup-sandpaper@main
+        uses: carpentries/actions/setup-sandpaper@main
         with:
           cache-version: ${{ secrets.CACHE_VERSION }}
 
       - name: "Setup Package Cache"
-        uses: carpentries/actions/setup-lesson-deps@main
+        uses: lguy/carpentries-actions/setup-lesson-deps@main
         with:
           cache-version: ${{ secrets.CACHE_VERSION }}
 
