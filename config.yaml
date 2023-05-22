@@ -61,6 +61,7 @@ contact: 'lionel.guy@imbim.uu.se'
 episodes:
 - introduction.Rmd
 - genetic-drift.md
+- msa.Rmd
 - phylogenetics.Rmd
 - molecular-epidemiology.Rmd
 - downloading-data.Rmd
@@ -69,6 +70,7 @@ episodes:
 - snps-phylogeny.Rmd
 - data-visualization.Rmd
 - conclusions.Rmd
+
 
 # Information for Learners
 learners:
