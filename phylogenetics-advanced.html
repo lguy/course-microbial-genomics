@@ -256,6 +256,7 @@
         <ul><li><a href="#introduction">Introduction</a></li>
 <li><a href="#neighbor-joining">Neighbor-joining</a></li>
 <li><a href="#maximum-likelihood">Maximum likelihood</a></li>
+<li><a href="#bootstraps">Bootstraps</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -385,7 +386,7 @@ Seaview. First (re-)open the alignment we obtained from
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -432,7 +433,7 @@ with what you know of the tree of life? Any weird results?</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -447,11 +448,142 @@ with what you know of the tree of life? Any weird results?</p>
 out of it?</p>
 </section><section id="maximum-likelihood"><h2 class="section-heading">Maximum likelihood<a class="anchor" aria-label="anchor" href="#maximum-likelihood"></a>
 </h2>
-<hr class="half-width"><p>We will now use IQ-TREE to</p>
+<hr class="half-width"><p>We will now use IQ-TREE to infer a maximum-likelihood tree of the
+RpoB dataset we aligned with <code>mafft</code> previously.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> iqtree <span class="at">-s</span> rpoB.einsi.aln <span class="at">-m</span> TEST <span class="at">-B</span> 1000</span></code></pre>
+</div>
+<p>Here, we tell IQ-TREE to use the alignment
+<code>rpoB.einsi.aln</code>, and to test among the standard substitution
+models which one fits best (<code>-m TEST</code>). We also tell IQ-TREE
+to perform 1000 ultra-fast bootstraps (<code>-B 1000</code>). We’ll
+discuss these later.</p>
+<p>IQ-TREE is a very complete program that can do a large variety of
+phylogenetic analysis. To get a flavor of what it’s capable of, look at
+its <a href="http://www.iqtree.org/doc/" class="external-link">extensive
+documentation</a>.</p>
+<p>Have a look at the output files:</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> rpoB.einsi.aln.<span class="pp">*</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>rpoB.einsi.aln.bionj      rpoB.einsi.aln.iqtree     rpoB.einsi.aln.model.gz
+rpoB.einsi.aln.ckp.gz     rpoB.einsi.aln.log        rpoB.einsi.aln.splits.nex
+rpoB.einsi.aln.contree    rpoB.einsi.aln.mldist     rpoB.einsi.aln.treefile</code></pre>
+</div>
+<p>There are two important files:<br>
+* <code>*.iqtree</code> file provides a text summary of the analysis. *
+<code>*.treefile</code> is the resulting tree in <a href="https://en.wikipedia.org/wiki/Newick_format" class="external-link">Newick
+format</a>.</p>
+<p>Now display the resulting tree in FigTree.</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> figtree rpoB.einsi.aln.treefile <span class="kw">&amp;</span></span></code></pre>
+</div>
+<p>A window will pop-up and ask to provide a name for branch/node
+labels. Use e.g. ‘bootstraps’.</p>
+<p>The tree appears as unrooted. It is good practice to start by
+ordering the nodes and root it. Since we don’t really know otherwise
+where the root is, we’ll do a mid-point rooting to start with.</p>
+<p>In the left menu, develop the ‘Trees’ menu. Tick the ‘Root tree’ and
+select ‘Midpoint’ from the drop-down menu. Tick the ‘Order nodes’ box
+and keep the ‘increasing’ option selected.</p>
+<p>Scrutinize the tree. Is it different from the BioNJ tree generated in
+Seaview? How?</p>
+<div id="challenge3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge3"></a>
+</h3>
+<div class="callout-content">
+<p>Redo a ML tree from the other alignment (FFT-NS) we inferred with
+<code>mafft</code> and display the resulting tree in FigTree</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> iqtree <span class="at">-s</span> rpoB.fftns.aln <span class="at">-m</span> TEST <span class="at">-B</span> 1000</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> figtree rpoB.fftns.aln.treefile <span class="kw">&amp;</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="bootstraps"><h2 class="section-heading">Bootstraps<a class="anchor" aria-label="anchor" href="#bootstraps"></a>
+</h2>
+<hr class="half-width"><p>We have inferred four trees: * Two based on the alignment generated
+from the E-INS-i algorithm, two from the FFT-NS. * Two inferred with the
+BioNJ algorithm and two with the ML algorithm (IQ-Tree)</p>
+<p>Along the way, we’ve generated bootstraps for all our trees. Now show
+them on all four trees. * For the Seaview trees, tick the ‘Br support’
+box * For the trees shown in FigTree, develop the ‘Branch labels’ menu,
+tick the corresponding box and select ‘bootstraps’ from the ‘Display’
+drop-down menu.</p>
+<div id="challenge4" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge4"></a>
+</h3>
+<div class="callout-content">
+<p>Compare all four trees. Do you find any significant differences?</p>
+<p>Hint: what are <em>Glycine</em> and <em>Arabidopsis</em>? What about
+<em>Synechocystis</em> and <em>Microcystis</em>?</p>
+<p>Hint: search for the accession number of the <em>Glycine</em> RpoB
+sequence on <a href="https://www.ncbi.nlm.nih.gov/search/" class="external-link">NCBI</a>. Any
+hint there?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<p>The two plant RpoB sequences are from chloroplastic genomes, and thus
+branch together with the cyanobacterial sequences, in some of the
+phylogenies at least.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="discussion2" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<em> (continued)</em><a class="anchor" aria-label="anchor" href="#discussion2"></a>
+</h3>
+<div class="callout-content">
+<p>What about the support values for grouping these two groups? How high
+are they?</p>
+</div>
+</div>
 </div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
