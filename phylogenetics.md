@@ -1,5 +1,5 @@
 ---
-title: 'Phylogenetics'
+title: 'Phylogenetics - UPGMA'
 teaching: 10
 exercises: 20
 ---

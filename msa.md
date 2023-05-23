@@ -160,4 +160,27 @@ It now took 7.54 seconds to complete this time, i.e. about 5 times slower than w
 
 ## Alignment visualization 
 
-Compare the two 
+We want to compare the two alignments. Use `seaview`: 
+
+```bash
+$ seaview rpoB.fftns.aln &
+$ seaview rpoB.einsi.aln &
+```
+
+Arrange the two windows on top of each other. Change the fontsize (Props -> Fontsize) to 8 to see a larger portion of the alignment. 
+
+:::::::::::::::::::::::::::::::::::::::  challenge
+
+Can you spot differences? Which alignment is longer?
+
+Hint: try to scroll to position 800-900.
+
+:::::::::::::::  solution
+
+![](episodes/fig/seaview.png){alt='Alignments shown in seaview'}
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+If you have time over, spend it exploring the different options of Seaview.

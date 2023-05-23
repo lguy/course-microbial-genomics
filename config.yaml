@@ -58,7 +58,7 @@ contact: 'lionel.guy@imbim.uu.se'
 # - another-learner.md
 
 # Order of episodes in your lesson
-episodes:
+episodes: 
 - introduction.Rmd
 - genetic-drift.md
 - msa.Rmd
@@ -70,17 +70,17 @@ episodes:
 - snps-phylogeny.Rmd
 - data-visualization.Rmd
 - conclusions.Rmd
-
+- phylogenetics-advanced.Rmd
 
 # Information for Learners
-learners:
+learners: 
 - setup.md
 
 # Information for Instructors
-instructors:
+instructors: 
 
 # Learner Profiles
-profiles:
+profiles: 
 
 # Customisation ---------------------------------------------
 #

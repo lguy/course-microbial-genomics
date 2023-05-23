@@ -226,7 +226,7 @@ $ mamba deactivate snippy
 
 ## Phylogenetic tree
 
-Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree from the file 'core.aln' with [IQ-TREE](https://www.iqtree.org/). IQ-TREE is a phylogeny software based on the maximum-likelihood principle. IQ-TREE has been widely used and cited. There is a very wide range of parameters that need to be chosen, such as nucleotide or amino-acid substitution models.
+Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree from the file 'core.aln' with [IQ-TREE](http://www.iqtree.org/). IQ-TREE is a phylogeny software based on the maximum-likelihood principle. IQ-TREE has been widely used and cited. There is a very wide range of parameters that need to be chosen, such as nucleotide or amino-acid substitution models.
 
 In our case, we want IQ-TREE to automatically select the best substitution model. IQ-TREE does that by testing many (among a very large collection) substitution models. We also have SNP data, which by definition do not contain constant (invariable) sites. We thus input the alignment with the `-s` option and the model with `-m MFP+ASC`. `MFP` will tell IQ-TREE to test a range of models, and `ASC` will correct for the fact that there is no constant sites. 
 
