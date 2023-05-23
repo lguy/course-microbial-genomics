@@ -186,7 +186,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="phylogenetics.html">4. Phylogenetics</a>
+        <a href="phylogenetics.html">4. Phylogenetics - UPGMA</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -255,6 +255,15 @@
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
 
+<div class="accordion accordion-flush" id="accordionFlush13">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading13">
+        <a href="phylogenetics-advanced.html">12. Phylogenetics - Others</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
                 </div>
               </div>
             </div>
@@ -302,11 +311,11 @@
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/genetic-drift.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Genetic drift</a>
-        <a class="chapter-link float-end" href="../instructor/phylogenetics.html" rel="next">Next: Phylogenetics... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/phylogenetics.html" rel="next">Next: Phylogenetics -... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Multiple sequence alignment</h1>
-        <p> Last updated on 2023-05-22 | 
+        <p> Last updated on 2023-05-23 | 
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/msa.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -371,7 +380,7 @@ for showing issues related to MSA.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -455,7 +464,7 @@ versions of <code>mafft</code>.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -512,7 +521,7 @@ task.</p>
   Show me the solution
   </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -548,7 +557,44 @@ difference now, but with hundreds of sequences it will make one.</p>
 </div>
 </section><section id="alignment-visualization"><h2 class="section-heading">Alignment visualization<a class="anchor" aria-label="anchor" href="#alignment-visualization"></a>
 </h2>
-<hr class="half-width"><p>Compare the two</p>
+<hr class="half-width"><p>We want to compare the two alignments. Use <code>seaview</code>:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> seaview rpoB.fftns.aln <span class="kw">&amp;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> seaview rpoB.einsi.aln <span class="kw">&amp;</span></span></code></pre>
+</div>
+<p>Arrange the two windows on top of each other. Change the fontsize
+(Props -&gt; Fontsize) to 8 to see a larger portion of the
+alignment.</p>
+<div id="challenge4" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge4"></a>
+</h3>
+<div class="callout-content">
+<p>Can you spot differences? Which alignment is longer?</p>
+<p>Hint: try to scroll to position 800-900.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<figure><img src="../fig/seaview.png" alt="Alignments shown in seaview" class="figure mx-auto d-block"></figure></div>
+</div>
+</div>
+</div>
+<p>If you have time over, spend it exploring the different options of
+Seaview.</p>
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
@@ -561,7 +607,7 @@ any links that you are not going to use.
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
         <a class="chapter-link" href="../instructor/genetic-drift.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Genetic drift</a>
-        <a class="chapter-link float-end" href="../instructor/phylogenetics.html" rel="next">Next: Phylogenetics... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/phylogenetics.html" rel="next">Next: Phylogenetics -... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div> <!-- / div.primary-content.col-xs-12 -->
 <!-- END:   inst/pkgdown/templates/content-instructor.html-->
@@ -606,7 +652,7 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/msa.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/msa.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-05-22",
+  "dateModified": "2023-05-23",
   "datePublished": "2023-05-23"
 }
 
