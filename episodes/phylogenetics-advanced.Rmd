@@ -1,5 +1,5 @@
 ---
-title: 'Phylogenetics - Others'
+title: 'Phylogenetics - Neighbor-joining and Maximum likelihood'
 teaching: 10
 exercises: 2
 ---
