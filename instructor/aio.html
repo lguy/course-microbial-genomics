@@ -57,7 +57,7 @@
     </div>
   </div>
   <hr></header><nav class="navbar navbar-expand-xl navbar-light bg-white bottom-nav data" aria-label="Main Navigation"><div class="container-fluid nav-container">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
       <span class="navbar-toggler-icon"></span>
       <span class="menu-title">Menu</span>
     </button>
@@ -69,7 +69,7 @@
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
-      <i role="img" aria-label="search button" data-feather="search"></i>
+        <i role="img" aria-label="search button" data-feather="search"></i>
       -->
     </div>
     <div class="desktop-nav">
@@ -121,7 +121,7 @@
         <!-- START: inst/pkgdown/templates/navbar.html -->
 <div id="sidebar-col" class="col-lg-4">
   <div id="sidebar" class="sidebar">
-      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle">
+      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle" data-collapse="Collapse " data-episodes="Episodes ">
           <i class="search-icon" data-feather="x" role="img"></i>
         </button>
         <div class="sidebar-inner">
@@ -164,14 +164,15 @@
               <div id="flush-collapseEleven" class="accordion-collapse show collapse" aria-labelledby="flush-headingEleven" data-bs-parent="#accordionFlush11">
 
                 <div class="accordion-body">
-                  <?xml version="1.0" encoding="UTF-8"?><div class="accordion accordion-flush" id="accordionFlush1">
+                  <div class="accordion accordion-flush" id="accordionFlush1">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading1">
-      <a href="index.html">Summary and Schedule</a>
+        <a href="index.html">Summary and Schedule</a>
     </div>
-    <!--/div.accordion-header-->
+<!--/div.accordion-header-->
+        
   </div>
-  <!--/div.accordion-item-->
+<!--/div.accordion-item-->
 </div>
 <!--/div.accordion-flush-->
 
@@ -375,12 +376,12 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/introduction.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 30 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
@@ -488,12 +489,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-genetic-drift"><p>Content from <a href="genetic-drift.html">Genetic drift</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/genetic-drift.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
@@ -576,9 +577,7 @@ range 20-80%</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="genetic-drift-without-selection" class="callout-inner">
-<h3 class="callout-title">Genetic Drift without selection
-(continued)<em>
-(continued)</em><a class="anchor" aria-label="anchor" href="#genetic-drift-without-selection"></a>
+<h3 class="callout-title">Genetic Drift without selection<em>(continued)</em><a class="anchor" aria-label="anchor" href="#genetic-drift-without-selection"></a>
 </h3>
 <div class="callout-content">
 <p>Now increase the population to 100’000, clear the graph, and repeat
@@ -604,9 +603,7 @@ frequencies range 45-55%</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="genetic-drift-without-selection" class="callout-inner">
-<h3 class="callout-title">Genetic Drift without selection
-(continued)<em>
-(continued)</em><a class="anchor" aria-label="anchor" href="#genetic-drift-without-selection"></a>
+<h3 class="callout-title">Genetic Drift without selection<em>(continued)</em><a class="anchor" aria-label="anchor" href="#genetic-drift-without-selection"></a>
 </h3>
 <div class="callout-content">
 <p>Now decrease the population to 10 individuals, clear the graph and
@@ -632,9 +629,7 @@ at generation 100.</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="genetic-drift-without-selection" class="callout-inner">
-<h3 class="callout-title">Genetic Drift without selection
-(continued)<em>
-(continued)</em><a class="anchor" aria-label="anchor" href="#genetic-drift-without-selection"></a>
+<h3 class="callout-title">Genetic Drift without selection<em>(continued)</em><a class="anchor" aria-label="anchor" href="#genetic-drift-without-selection"></a>
 </h3>
 <div class="callout-content">
 <p>What do you conclude here?</p>
@@ -766,12 +761,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-msa"><p>Content from <a href="msa.html">Multiple sequence alignment</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/msa.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 40 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
@@ -827,7 +822,7 @@ for showing issues related to MSA.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -911,7 +906,7 @@ versions of <code>mafft</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -967,7 +962,7 @@ task.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1032,7 +1027,7 @@ alignment.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <figure><img src="../fig/seaview.png" alt="Alignments shown in seaview" class="figure mx-auto d-block"></figure>
 </div>
@@ -1047,12 +1042,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-phylogenetics"><p>Content from <a href="phylogenetics.html">Phylogenetics - UPGMA</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/phylogenetics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 30 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 30 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
@@ -1266,9 +1261,7 @@ group the two closest sequences. Which are they?</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="calculating-distance-by-hand" class="callout-inner">
-<h3 class="callout-title">Calculating distance “by hand”
-(continued)<em>
-(continued)</em><a class="anchor" aria-label="anchor" href="#calculating-distance-by-hand"></a>
+<h3 class="callout-title">Calculating distance “by hand”<em>(continued)</em><a class="anchor" aria-label="anchor" href="#calculating-distance-by-hand"></a>
 </h3>
 <div class="callout-content">
 <p>Let’s now cluster together A and B, and calculate the average
@@ -1355,9 +1348,7 @@ clusters.</p>
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <div id="calculating-distance-by-hand" class="callout-inner">
-<h3 class="callout-title">Calculating distance “by hand”
-(continued)<em>
-(continued)</em><a class="anchor" aria-label="anchor" href="#calculating-distance-by-hand"></a>
+<h3 class="callout-title">Calculating distance “by hand”<em>(continued)</em><a class="anchor" aria-label="anchor" href="#calculating-distance-by-hand"></a>
 </h3>
 <div class="callout-content">
 <p>Now the shortest distance is AB to C. Let’s recalculate the distance
@@ -1496,12 +1487,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-phylogenetics-advanced"><p>Content from <a href="phylogenetics-advanced.html">Phylogenetics - Neighbor-joining and Maximum likelihood</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/phylogenetics-advanced.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
@@ -1567,7 +1558,7 @@ Seaview. First (re-)open the alignment we obtained from
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1583,7 +1574,7 @@ Seaview. First (re-)open the alignment we obtained from
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge (continued)<em> (continued)</em><a class="anchor" aria-label="anchor" href="#discussion1"></a>
+<h3 class="callout-title">Challenge<em>(continued)</em><a class="anchor" aria-label="anchor" href="#discussion1"></a>
 </h3>
 <div class="callout-content">
 <p>In the Seaview window, select Trees -&gt; Distance methods. Keep the
@@ -1612,7 +1603,7 @@ with what you know of the tree of life? Any weird results?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1695,7 +1686,7 @@ Seaview? How?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1740,7 +1731,7 @@ hint there?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>The two plant RpoB sequences are from chloroplastic genomes, and thus
 branch together with the cyanobacterial sequences, in some of the
@@ -1754,7 +1745,7 @@ phylogenies at least.</p>
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
 <div class="callout-inner">
-<h3 class="callout-title">Challenge (continued)<em> (continued)</em><a class="anchor" aria-label="anchor" href="#discussion2"></a>
+<h3 class="callout-title">Challenge<em>(continued)</em><a class="anchor" aria-label="anchor" href="#discussion2"></a>
 </h3>
 <div class="callout-content">
 <p>What about the support values for grouping these two groups? How high
@@ -1784,12 +1775,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-molecular-epidemiology"><p>Content from <a href="molecular-epidemiology.html">Molecular Epidemiology</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/molecular-epidemiology.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 12 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 12 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
@@ -1897,12 +1888,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-downloading-data"><p>Content from <a href="downloading-data.html">Downloading data</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/downloading-data.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 60 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 60 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <p>This episode describes how to retrieve all necessary data from public
 repositories - the raw sequenced data of our isolates and a reference
@@ -2326,12 +2317,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-quality-control"><p>Content from <a href="quality-control.html">Assessing Read Quality and Trimming</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/quality-control.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 50 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 50 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <p>Let’s check if the downloads finished. Let’s have a look at the
 files.</p>
@@ -3037,12 +3028,12 @@ any links that you are not going to use.
 </div>
 </section></section><section id="aio-sequence-assembly"><p>Content from <a href="sequence-assembly.html">Sequence assembly</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/sequence-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 40 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 40 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <p>Sequence assembly means the alignment and merging of reads in order
 to reconstruct the original sequence. The assembly of a genome from
@@ -3125,7 +3116,7 @@ and 8 GB of memory.</p>
   <h3 class="accordion-header" id="headingInstructor1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>Downloading the missing assemblies</h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>If you haven’t assembled all samples, download the finished contigs
 to your computer and decompress them. They will decompress in a folder
@@ -3172,7 +3163,7 @@ command line parameters mean.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3213,7 +3204,7 @@ isolates.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3260,12 +3251,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-snps-phylogeny"><p>Content from <a href="snps-phylogeny.html">SNP phylogeny</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/snps-phylogeny.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 75 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 75 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <p>In this episode we will try to pinpoint single nucleotide variants or
 single nucleotide polymorphism (SNPs) between our samples and the
@@ -3306,7 +3297,7 @@ other and to establish a phylogenetic tree.</p>
   <h3 class="accordion-header" id="headingInstructor1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>Getting missing data</h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>If you don’t have all the trimmed reads, you can download them (will
 take a while, <em>dont’t do it if you have the reads</em>):</p>
@@ -3450,7 +3441,7 @@ information:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3634,7 +3625,7 @@ model IQ-TREE used?<a class="anchor" aria-label="anchor" href="#challenge-can-yo
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3683,12 +3674,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-data-visualization"><p>Content from <a href="data-visualization.html">Data Visualization</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/data-visualization.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 70 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 70 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <section id="comparison-of-clustering-results"><h2 class="section-heading">Comparison of clustering results<a class="anchor" aria-label="anchor" href="#comparison-of-clustering-results"></a>
 </h2>
@@ -3788,12 +3779,12 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-conclusions"><p>Content from <a href="conclusions.html">Transmission?</a></p>
 <hr>
-<p> Last updated on 2023-11-21 | 
+<p>Last updated on 2023-11-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/conclusions.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time <i aria-hidden="true" data-feather="clock"></i> 25 minutes </p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 25 minutes</p>
 <div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right"> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
 <p>The low mutation rate of <em>M. tuberculosis</em> means that even at
 the highest resolution provided by whole genome sequencing it is still
@@ -3889,30 +3880,28 @@ transmission</li>
 <!--/div.row-->
       		<footer class="row footer mx-md-3"><hr>
 <div class="col-md-6">
-				<p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
+        <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/README.md" class="external-link">Edit on GitHub</a>
         
 	
-        | <a href="https://github.com/carpentries/workbench-template-rmd/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a> 
+        | <a href="https://github.com/carpentries/workbench-template-rmd/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
         | <a href="https://github.com/carpentries/workbench-template-rmd/" class="external-link">Source</a></p>
 				<p><a href="https://github.com/carpentries/workbench-template-rmd/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:lionel.guy@imbim.uu.se">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 			</div>
 			<div class="col-md-6">
         
-        <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
+        <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
-        <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper" class="external-link">sandpaper (0.15.0.9000)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.7.3" class="external-link">pegboard (0.7.3)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.4.0" class="external-link">varnish (0.4.0)</a>.</p>
+        <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper" class="external-link">sandpaper (0.16.1.9000)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.3" class="external-link">pegboard (0.7.3)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
 	<div id="to-top">
 		<a href="#top">
-			<i class="search-icon" data-feather="arrow-up" role="img" aria-label="Back to top"></i><br><span class="d-none d-sm-none d-md-none d-lg-none d-xl-block">Back</span> To Top
+      <i class="search-icon" data-feather="arrow-up" role="img" aria-label="Back To Top"></i><br><!-- <span class="d-none d-sm-none d-md-none d-lg-none d-xl-block">Back</span> To Top --><span class="d-none d-sm-none d-md-none d-lg-none d-xl-block">Back</span> To Top
 		</a>
 	</div>
   <script type="application/ld+json">
@@ -3928,8 +3917,8 @@ transmission</li>
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/aio.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/aio.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2023-12-12",
-  "datePublished": "2023-12-12"
+  "dateModified": "2023-12-19",
+  "datePublished": "2023-12-19"
 }
 
   </script><script>
