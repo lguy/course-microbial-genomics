@@ -379,8 +379,8 @@ disconnect from the machine.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir ~/molepi/results/assembly</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/data/trimmed_fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> mkdir ~/molepi/results/assembly</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/data/trimmed_fastq</span></code></pre>
 </div>
 <p>To run SKESA we will use the skesa command with a number of option
 that we will explore later on. We can start the loop (again, a short
@@ -388,13 +388,13 @@ loop) with the assemblies with:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for sample in ERR029206</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">skesa</span> <span class="dt">\</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>--cores 2 <span class="dt">\</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>--memory 8 <span class="dt">\</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>--fastq <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq <span class="dv">1</span><span class="op">&gt;</span> ../../results/assembly/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>.fasta</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> for sample in ERR029206</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">skesa</span> <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>--cores 2 <span class="dt">\</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>--memory 8 <span class="dt">\</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>--fastq <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq <span class="dv">1</span><span class="op">&gt;</span> ../../results/assembly/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>.fasta</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>A non-quoted backslash, <code>\</code> is used as an escape character
 in Bash. It preserves the literal value of the next character that
@@ -409,7 +409,7 @@ and 8 GB of memory.</p>
   <h3 class="accordion-header" id="headingInstructor1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>Downloading the missing assemblies</h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>If you haven’t assembled all samples, download the finished contigs
 to your computer and decompress them. They will decompress in a folder
@@ -418,11 +418,11 @@ folder you already have to something else:</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/molepi/results</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> assembly partial_assembly</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://github.com/lguy/course-microbial-genomics/raw/main/episodes/files/assemblies.tar.gz .</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> xvzf assemblies.tar.gz</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> assembly</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> ~/molepi/results</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">mv</span> assembly partial_assembly</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">wget</span> https://github.com/lguy/course-microbial-genomics/raw/main/episodes/files/assemblies.tar.gz .</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">tar</span> xvzf assemblies.tar.gz</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="fu">ls</span> assembly</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -456,7 +456,7 @@ command line parameters mean.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -497,12 +497,12 @@ isolates.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">assembly-stats</span> ERR026473.fasta</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">assembly-stats</span> ERR026473.fasta</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -599,7 +599,7 @@ any links that you are not going to use.
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/sequence-assembly.html",
   "dateCreated": "2023-05-08",
   "dateModified": "2023-11-21",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-05"
 }
 
   </script><script>

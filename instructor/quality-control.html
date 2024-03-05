@@ -377,8 +377,8 @@ a copy of one file and uncompress this file to inspect it further</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ERR029206_1.fastq.gz ERR029206_1.copy.fastq.gz</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">gunzip</span> ERR029206_1.copy.fastq.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">cp</span> ERR029206_1.fastq.gz ERR029206_1.copy.fastq.gz</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">gunzip</span> ERR029206_1.copy.fastq.gz</span></code></pre>
 </div>
 <section id="bioinformatics-workflows"><h2 class="section-heading">Bioinformatics workflows<a class="anchor" aria-label="anchor" href="#bioinformatics-workflows"></a>
 </h2>
@@ -437,7 +437,7 @@ by using <code>head</code> to look at the first four lines.</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n4</span> ERR029206_1.copy.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">$</span> head <span class="at">-n4</span> ERR029206_1.copy.fastq</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -501,13 +501,12 @@ machines use different encoding systems. This means that, depending on
 which sequencer you use to generate your data, a <code>#</code> may not
 be an indicator of a poor quality base call.</p>
 </blockquote>
-<div id="callout1" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title">Callout</h3>
 <div class="callout-content">
 <p>This mainly relates to older Solexa/Illumina data, but it’s essential
 that you know which sequencing platform was used to generate your data,
@@ -560,7 +559,7 @@ the one plotted above.</p>
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/data/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/data/</span></code></pre>
 </div>
 <div id="exercise" class="callout challenge">
 <div class="callout-square">
@@ -596,7 +595,7 @@ FASTQ files in this directory.</p>
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> fastqc <span class="pp">*</span>.fastq.gz</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">$</span> fastqc <span class="pp">*</span>.fastq.gz</span></code></pre>
 </div>
 <p>You will see an automatically updating output message telling you the
 progress of the analysis. It will start like this:</p>
@@ -628,7 +627,7 @@ data $</code></pre>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">$</span> ls</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -654,16 +653,16 @@ will move these output files into a new directory within our
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir ../results/fastqc_untrimmed_reads</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv <span class="pp">*</span>.zip ../results/fastqc_untrimmed_reads/</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv <span class="pp">*</span>.html ../results/fastqc_untrimmed_reads/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">$</span> mkdir ../results/fastqc_untrimmed_reads</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">$</span> mv <span class="pp">*</span>.zip ../results/fastqc_untrimmed_reads/</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="ex">$</span> mv <span class="pp">*</span>.html ../results/fastqc_untrimmed_reads/</span></code></pre>
 </div>
 <p>Now we can navigate into this results directory and do some closer
 inspection of our output files.</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ../results/fastqc_untrimmed_reads/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">$</span> cd ../results/fastqc_untrimmed_reads/</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -673,7 +672,7 @@ these HTML files as a webpage:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> firefox ERR029206_1_fastqc.html</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">$</span> firefox ERR029206_1_fastqc.html</span></code></pre>
 </div>
 <p>You may need to replace the command <code>firefox</code> with the
 name of another web navigator if you have one.</p>
@@ -720,7 +719,7 @@ starts like this:</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> seqtk</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">$</span> seqtk</span></code></pre>
 </div>
 <p>That’s just the basic command, however. Seqtk has a variety of
 options and parameters. We will need to specify what options we want to
@@ -738,7 +737,7 @@ available:</p>
 <div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> seqtk trimfq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">$</span> seqtk trimfq</span></code></pre>
 </div>
 <table class="table"><colgroup><col width="8%"><col width="91%"></colgroup><thead><tr class="header"><th>step</th>
 <th>meaning</th>
@@ -757,7 +756,7 @@ this:</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> seqtk trimfq <span class="at">-q</span> 0.01 ERR01_1.fastq.gz <span class="op">&gt;</span> ERR01_1_trim.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="ex">$</span> seqtk trimfq <span class="at">-q</span> 0.01 ERR01_1.fastq.gz <span class="op">&gt;</span> ERR01_1_trim.fastq</span></code></pre>
 </div>
 </div>
 <div class="section level3">
@@ -767,7 +766,7 @@ this:</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/data/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/data/</span></code></pre>
 </div>
 <p>We are going to run seqtk on one sample giving it an error rate
 threshold of 0.01 which indicates the base call accuracy. We request
@@ -776,7 +775,7 @@ only 1 in 10000.</p>
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> seqtk trimfq <span class="at">-q</span> 0.01 ERR029206_1.fastq.gz <span class="op">&gt;</span> ERR029206_1_trim.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">$</span> seqtk trimfq <span class="at">-q</span> 0.01 ERR029206_1.fastq.gz <span class="op">&gt;</span> ERR029206_1_trim.fastq</span></code></pre>
 </div>
 <p>Notice that we needed to redirect the output to a file. If we don’t
 do that, the trimmed fastq data will be displayed in the console.</p>
@@ -805,7 +804,7 @@ neighbor.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> fqchk ERR029206_1.copy.fastq <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="ex">seqtk</span> fqchk ERR029206_1.copy.fastq <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -817,7 +816,7 @@ ALL	315791552	18.0	32.1	32.2	17.7	0.0	30.6	21.4	5.4	94.6</code></pre>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> fqchk ERR029206_1_trim.fastq <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">seqtk</span> fqchk ERR029206_1_trim.fastq <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -838,17 +837,17 @@ quickly!</p>
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> for infile in <span class="pp">*</span>.fastq.gz</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="va">outfile</span><span class="op">=</span><span class="st">"</span><span class="va">${infile}</span><span class="st">"</span>_trim.fastq</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> trimfq <span class="at">-q</span> 0.01 <span class="st">"</span><span class="va">${infile}</span><span class="st">"</span> <span class="op">&gt;</span>  <span class="st">"</span><span class="va">${outfile}</span><span class="st">"</span> </span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">$</span> for infile in <span class="pp">*</span>.fastq.gz</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="va">outfile</span><span class="op">=</span><span class="st">"</span><span class="va">${infile}</span><span class="st">"</span>_trim.fastq</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="ex">seqtk</span> trimfq <span class="at">-q</span> 0.01 <span class="st">"</span><span class="va">${infile}</span><span class="st">"</span> <span class="op">&gt;</span>  <span class="st">"</span><span class="va">${outfile}</span><span class="st">"</span> </span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>The new part in our <code>for</code> loop is the line:</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="va">outfile</span><span class="op">=</span><span class="st">"</span><span class="va">${infile}</span><span class="st">"</span>_trim.fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="va">outfile</span><span class="op">=</span><span class="st">"</span><span class="va">${infile}</span><span class="st">"</span>_trim.fastq</span></code></pre>
 </div>
 <p><code>infile</code> is the first variable in our loop and takes the
 value of each of the FASTQ files in our directory. <code>outfile</code>
@@ -866,7 +865,7 @@ take a look at your directory contents.</p>
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">$</span> ls</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -886,10 +885,10 @@ to a new subdirectory within our <code>data/</code> directory.</p>
 <div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir trimmed_fastq</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mv <span class="pp">*</span>fastq.gz_trim<span class="pp">*</span> trimmed_fastq</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd trimmed_fastq</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="ex">$</span> mkdir trimmed_fastq</span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="ex">$</span> mv <span class="pp">*</span>fastq.gz_trim<span class="pp">*</span> trimmed_fastq</span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a><span class="ex">$</span> cd trimmed_fastq</span>
+<span id="cb31-4"><a href="#cb31-4" tabindex="-1"></a><span class="ex">$</span> ls</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -925,7 +924,7 @@ same size as our reference genome (4411532 bases).</p>
 <div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> fqchk ERR029206_1.fastq.gz_trim.fastq <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="ex">seqtk</span> fqchk ERR029206_1.fastq.gz_trim.fastq <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -937,7 +936,7 @@ ALL	287211920	18.2	32.0	31.9	17.8	0.0	31.7	28.8	1.3	98.7</code></pre>
 <div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">seqtk</span> fqchk ERR029206_2.fastq.gz_trim.fastq <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="ex">seqtk</span> fqchk ERR029206_2.fastq.gz_trim.fastq <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1031,7 +1030,7 @@ any links that you are not going to use.
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/quality-control.html",
   "dateCreated": "2023-05-08",
   "dateModified": "2023-11-21",
-  "datePublished": "2024-02-27"
+  "datePublished": "2024-03-05"
 }
 
   </script><script>
