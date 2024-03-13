@@ -33,15 +33,8 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-6">
       <div class="large-logo">
-        <img alt="Data Carpentry" src="assets/images/data-logo.svg"><abbr class="badge badge-light" title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback." style="background-color: #FFC700; border-radius: 5px">
-          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#field-testing-alpha-stage" class="external-link alert-link" style="color: #383838">
-            <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
-            Alpha
-          </a>
-          <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
-        </abbr>
-        
-      </div>
+        <img alt="Data Carpentry" src="assets/images/data-logo.svg">
+</div>
     </div>
     <div class="selector-container">
       
@@ -179,7 +172,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Introduction</a>
+        <a href="ncbi.html">1. NCBI</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -191,7 +184,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="genetic-drift.html">2. Genetic drift</a>
+        <a href="blast.html">2. BLAST</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -215,7 +208,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="phylogenetics.html">4. Phylogenetics - UPGMA</a>
+        <a href="phylogenetics.html">4. Phylogenetics</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -227,7 +220,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="phylogenetics-advanced.html">5. Phylogenetics - Neighbor-joining and Maximum likelihood</a>
+        <a href="quality-control.html">5. Reads, QC and trimming</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -239,7 +232,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="molecular-epidemiology.html">6. Molecular Epidemiology</a>
+        <a href="sequence-assembly.html">6. Sequence assembly</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -251,7 +244,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="downloading-data.html">7. Downloading data</a>
+        <a href="annotation.html">7. Annotation</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -263,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="quality-control.html">8. Assessing Read Quality and Trimming</a>
+        <a href="snps-phylogeny.html">8. Mapping</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -275,43 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="sequence-assembly.html">9. Sequence assembly</a>
-    </div>
-<!--/div.accordion-header-->
-        
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush11">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading11">
-        <a href="snps-phylogeny.html">10. SNP phylogeny</a>
-    </div>
-<!--/div.accordion-header-->
-        
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush12">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading12">
-        <a href="data-visualization.html">11. Data Visualization</a>
-    </div>
-<!--/div.accordion-header-->
-        
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush13">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading13">
-        <a href="conclusions.html">12. Transmission?</a>
+        <a href="data-visualization.html">9. Molecular epidemiology</a>
     </div>
 <!--/div.accordion-header-->
         
@@ -374,13 +331,34 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="introduction"><h2 class="section-heading"><a href="introduction.html">Introduction</a></h2>
+<section id="ncbi"><h2 class="section-heading"><a href="ncbi.html">NCBI</a></h2>
 <hr class="half-width">
 <ul>
-<li>Learn the very basic principle of evolution.</li>
-<li>Evolution can be counter-intuitive.</li>
-</ul></section><section id="genetic-drift"><h2 class="section-heading"><a href="genetic-drift.html">Genetic drift</a></h2>
+<li>NCBI website is very, very comprehensive</li>
+<li>The Entrez cross-referencing system helps retrieving links bits of
+data of different type.</li>
+</ul></section><section id="blast"><h2 class="section-heading"><a href="blast.html">BLAST</a></h2>
 <hr class="half-width">
+<ul>
+<li>Use <code>.md</code> files for episodes when you want static
+content</li>
+<li>Use <code>.Rmd</code> files for episodes when you need to generate
+output</li>
+<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
+with your lesson</li>
+<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
+locally</li>
+</ul></section><section id="msa"><h2 class="section-heading"><a href="msa.html">Multiple sequence alignment</a></h2>
+<hr class="half-width"></section><section id="phylogenetics"><h2 class="section-heading"><a href="phylogenetics.html">Phylogenetics</a></h2>
+<hr class="half-width">
+<ul>
+<li>The simplest of the trees are distance-based.</li>
+<li>UPGMA works by clustering the two closest leaves and recalculating
+the distance matrix.</li>
+<li>Neighbor-joining is distance-based and fast, but not necessarily
+very accurate</li>
+<li>Maximum-likelihood is slower, but more accurate</li>
+</ul>
 <ul>
 <li>Random genetic drift has a large influence on the probability of
 fixation of alleles in small populations, even for non-neutral
@@ -390,27 +368,7 @@ fixation of alleles in large populations.</li>
 <li>Slightly deleterious mutations can get fixed into the population
 through random genetic drift, if the population is small enough and the
 selective value is not too large.</li>
-</ul></section><section id="msa"><h2 class="section-heading"><a href="msa.html">Multiple sequence alignment</a></h2>
-<hr class="half-width"></section><section id="phylogenetics"><h2 class="section-heading"><a href="phylogenetics.html">Phylogenetics - UPGMA</a></h2>
-<hr class="half-width">
-<ul>
-<li>The simplest of the trees are distance-based.</li>
-<li>UPGMA works by clustering the two closest leaves and recalculating
-the distance matrix.</li>
-</ul></section><section id="phylogenetics-advanced"><h2 class="section-heading"><a href="phylogenetics-advanced.html">Phylogenetics - Neighbor-joining and Maximum likelihood</a></h2>
-<hr class="half-width">
-<ul>
-<li>Neighbor-joining is distance-based and fast, but not necessarily
-very accurate</li>
-<li>Maximum-likelihood is slower, but more accurate</li>
-</ul></section><section id="molecular-epidemiology"><h2 class="section-heading"><a href="molecular-epidemiology.html">Molecular Epidemiology</a></h2>
-<hr class="half-width">
-<ul>
-<li>We will work towards confirming or disputing transmission in TB
-cases</li>
-<li>After this practical training you will have some familiarity with
-working on the command line</li>
-</ul></section><section id="downloading-data"><h2 class="section-heading"><a href="downloading-data.html">Downloading data</a></h2>
+</ul></section><section id="quality-control"><h2 class="section-heading"><a href="quality-control.html">Reads, QC and trimming</a></h2>
 <hr class="half-width">
 <ul>
 <li>
@@ -420,20 +378,32 @@ internet</li>
 <code>for</code> loops let you perform the same set of operations on
 multiple files with a single command</li>
 <li>Sequencing data is large</li>
-</ul></section><section id="quality-control"><h2 class="section-heading"><a href="quality-control.html">Assessing Read Quality and Trimming</a></h2>
-<hr class="half-width">
-<ul>
 <li>In bioinformatic workflows the output of one tool is the input of
 the other.</li>
 <li>FastQC is used to judge the quality of sequencing reads.</li>
 <li>Data cleaning is an essential step in a genomics pipeline.</li>
+<li>We will work towards confirming or disputing transmission in TB
+cases</li>
+<li>After this practical training you will have some familiarity with
+working on the command line</li>
 </ul></section><section id="sequence-assembly"><h2 class="section-heading"><a href="sequence-assembly.html">Sequence assembly</a></h2>
 <hr class="half-width">
 <ul>
 <li>Assembly is a process which aligns and merges fragments from a
 longer DNA sequence in order to reconstruct the original sequence.</li>
 <li>k-mers are short fragments of DNA of length k</li>
-</ul></section><section id="snps-phylogeny"><h2 class="section-heading"><a href="snps-phylogeny.html">SNP phylogeny</a></h2>
+</ul></section><section id="annotation"><h2 class="section-heading"><a href="annotation.html">Annotation</a></h2>
+<hr class="half-width">
+<ul>
+<li>Use <code>.md</code> files for episodes when you want static
+content</li>
+<li>Use <code>.Rmd</code> files for episodes when you need to generate
+output</li>
+<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
+with your lesson</li>
+<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
+locally</li>
+</ul></section><section id="snps-phylogeny"><h2 class="section-heading"><a href="snps-phylogeny.html">Mapping</a></h2>
 <hr class="half-width">
 <ul>
 <li>Single nucleotide polymorphisms can be identified by mapping reads
@@ -443,11 +413,7 @@ outcomes for this organism</li>
 <li>Concatenation of SNPs helps to reduce analysis volume</li>
 <li>Phylogenetic trees can be written with a bracket syntax in Newick
 format</li>
-</ul></section><section id="data-visualization"><h2 class="section-heading"><a href="data-visualization.html">Data Visualization</a></h2>
-<hr class="half-width">
-<ul>
-<li>Genetic information can confirm or contradict the meta data</li>
-</ul></section><section id="conclusions"><h2 class="section-heading"><a href="conclusions.html">Transmission?</a></h2>
+</ul></section><section id="data-visualization"><h2 class="section-heading"><a href="data-visualization.html">Molecular epidemiology</a></h2>
 <hr class="half-width">
 <ul>
 <li>SNP phylogeny and metadata can convey different messages</li>
@@ -481,7 +447,7 @@ transmission</li>
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.2" class="external-link">sandpaper (0.16.2)</a>, <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.7.4.9000)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.3" class="external-link">sandpaper (0.16.3)</a>, <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.7.4.9000)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
 			</div>
 		</footer>
 </div> <!-- / div.container -->
@@ -504,8 +470,8 @@ transmission</li>
   "url": "https://carpentries.github.io/workbench-template-rmd/key-points.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/key-points.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2024-03-12",
-  "datePublished": "2024-03-12"
+  "dateModified": "2024-03-13",
+  "datePublished": "2024-03-13"
 }
 
   </script><script>

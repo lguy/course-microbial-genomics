@@ -18,15 +18,7 @@
   <div class="container-fluid top-nav-container">
     <div class="col-md-6">
       <div class="large-logo">
-        <img alt="Data Carpentry" src="assets/images/data-logo.svg"><abbr class="badge badge-light" title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback." style="background-color: #FFC700; border-radius: 5px">
-          <a href="https://cdh.carpentries.org/the-lesson-life-cycle.html#field-testing-alpha-stage" class="external-link alert-link" style="color: #383838">
-            <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
-            Alpha
-          </a>
-          <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
-        </abbr>
-        
-      </div>
+        <img alt="Data Carpentry" src="assets/images/data-logo.svg"></div>
     </div>
     <div class="selector-container">
       
@@ -147,8 +139,9 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#data-sets">Data Sets</a></li>
+        <ul><li><a href="#summary">Summary</a></li>
 <li><a href="#software-setup">Software Setup</a></li>
+<li><a href="#data-sets">Data Sets</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -158,7 +151,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Introduction</a>
+        <a href="ncbi.html">1. NCBI</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -167,7 +160,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="genetic-drift.html">2. Genetic drift</a>
+        <a href="blast.html">2. BLAST</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -185,7 +178,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="phylogenetics.html">4. Phylogenetics - UPGMA</a>
+        <a href="phylogenetics.html">4. Phylogenetics</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -194,7 +187,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="phylogenetics-advanced.html">5. Phylogenetics - Neighbor-joining and Maximum likelihood</a>
+        <a href="quality-control.html">5. Reads, QC and trimming</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -203,7 +196,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="molecular-epidemiology.html">6. Molecular Epidemiology</a>
+        <a href="sequence-assembly.html">6. Sequence assembly</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -212,7 +205,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="downloading-data.html">7. Downloading data</a>
+        <a href="annotation.html">7. Annotation</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -221,7 +214,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="quality-control.html">8. Assessing Read Quality and Trimming</a>
+        <a href="snps-phylogeny.html">8. Mapping</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -230,34 +223,7 @@
 <div class="accordion accordion-flush" id="accordionFlush10">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading10">
-        <a href="sequence-assembly.html">9. Sequence assembly</a>
-    </div><!--/div.accordion-header-->
-        
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush11">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading11">
-        <a href="snps-phylogeny.html">10. SNP phylogeny</a>
-    </div><!--/div.accordion-header-->
-        
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush12">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading12">
-        <a href="data-visualization.html">11. Data Visualization</a>
-    </div><!--/div.accordion-header-->
-        
-  </div><!--/div.accordion-item-->
-</div><!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush13">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading13">
-        <a href="conclusions.html">12. Transmission?</a>
+        <a href="data-visualization.html">9. Molecular epidemiology</a>
     </div><!--/div.accordion-header-->
         
   </div><!--/div.accordion-item-->
@@ -305,11 +271,11 @@
         <!-- START: inst/pkgdown/templates/content-syllabus.html -->
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link float-end" href="introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="ncbi.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="introduction.html" rel="next">Next: Introduction... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="ncbi.html" rel="next">Next: NCBI... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Setup</h1>
       
@@ -322,28 +288,34 @@ any links that you are not going to use.
  -->
 
 
-      <section id="setup"><p>These pages contain instruction for the demonstration part of the
-lectures on microbial evolution, phylogenetics and molecular
-epidemiology. The demos are to be performed inside the virtual machine
-already installed in your computer.</p>
-<section id="data-sets"><h2 class="section-heading">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a>
+      <section id="setup"><section id="summary"><h2 class="section-heading">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h2>
+<hr class="half-width"><p>These pages contain instructions for computer lab part of the
+lectures on microbial evolution and epidemiology. The exercises are to
+be performed either on a web browser or on Uppmax.</p>
+<p>In the first 2 episodes, you’ll be mostly working on web-based
+exercises. In episodes 3-4, you’ll practice multiple sequence alignment
+and building phylogenies, based on single genes.</p>
+<p>Episodes 5-9 explore, with real data, an outbreak of tuberculosis,
+going from raw reads to inferring hypotheses about transmission.</p>
+</section><section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
+</h2>
+<hr class="half-width"><p>You will use the same setup as for the Linux tutorial. See the
+corresponding page on Studium.</p>
+</section><section id="data-sets"><h2 class="section-heading">Data Sets<a class="anchor" aria-label="anchor" href="#data-sets"></a>
 </h2>
 <hr class="half-width"><p>Data for the molecular epidemiology part comes from <a href="https://bmcinfectdis.biomedcentral.com/articles/10.1186/1471-2334-13-110" class="external-link">Bryant
 et al., 2013</a></p>
-</section><section id="software-setup"><h2 class="section-heading">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a>
-</h2>
-<hr class="half-width"><p>See the <a href="https://docs.google.com/document/d/1lk3OSmKhc76L-nNON0_MctSCBhLBESwe78ryNfMKB3A/edit" class="external-link">manual</a>
-for reference.</p>
 <!-- 
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
 </section></section></main><nav class="bottom-pagination mx-md-4" aria-label="Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
-        <a class="chapter-link float-end" href="introduction.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="ncbi.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link float-end" href="introduction.html" rel="next">Next: Introduction... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="ncbi.html" rel="next">Next: NCBI... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
     </nav></div>
 <!-- END  : inst/pkgdown/templates/content-syllabus.html -->
@@ -365,7 +337,7 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.2" class="external-link">sandpaper (0.16.2)</a>, <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.7.4.9000)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.3" class="external-link">sandpaper (0.16.3)</a>, <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.7.4.9000)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -387,8 +359,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/index.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/index.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2024-03-12",
-  "datePublished": "2024-03-12"
+  "dateModified": "2024-03-13",
+  "datePublished": "2024-03-13"
 }
 
   </script><script>
