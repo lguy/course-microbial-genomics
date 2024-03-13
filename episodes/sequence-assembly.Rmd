@@ -1,7 +1,7 @@
 ---
 title: 'Sequence assembly'
-teaching: 10
-exercises: 30
+teaching: 0
+exercises: 240
 ---
 
 Sequence assembly means the alignment and merging of reads in order to reconstruct the original sequence. The assembly of a genome from short sequencing reads can take a while. We will therefore run this process only for two genomes.

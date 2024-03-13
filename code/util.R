@@ -26,3 +26,27 @@ sandpaper::build_lesson(".", preview = TRUE, quiet = TRUE)
 #sandpaper::serve()
 
 #
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+```r
+paste("This", "new", "lesson", "looks", "good")
+```
+:::::::::::::::::::::::: solution
+
+## Output
+
+```output
+[1] "This new lesson looks good"
+```
+
+:::::::::::::::::::::::::::::::::
+
+## Challenge 2: how do you nest solutions within challenge blocks?
+
+:::::::::::::::::::::::: solution
+
+You can add a line with at least three colons and a `solution` tag.
+
+:::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::

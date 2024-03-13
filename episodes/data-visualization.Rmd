@@ -1,15 +1,17 @@
 ---
-title: 'Data Visualization'
-teaching: 10
-exercises: 60
+title: 'Molecular epidemiology'
+teaching: 0
+exercises: 240
 ---
 
-## Comparison of clustering results
+The low mutation rate of *M. tuberculosis* means that even at the highest resolution provided by whole genome sequencing it is still difficult to confidently affirm the inferences of transmission made by traditional epidemiological techniques. This means it is very difficult to determine transmission inclusively. However, whole genome sequencing does in some cases allow us to exclude direct transmission, by using the phylogenetic context provided by other strains. Not only does whole genome sequencing provide the inter-cluster differentiation provided by current typing methods, but it also achieves intra-cluster resolution which can be used to inform epidemiological investigation.
+
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
 - Explore the resulting trees in conjunction with the meta data.
 - Make an estimation on the likelihood of transmission events
+- Compare and interpret the different data sources.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -17,8 +19,11 @@ exercises: 60
 
 - How are phylogenetic trees viewed and compared?
 - How can I visualize several layers of data?
+- In which cases is transmission likely?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+## Comparison of clustering results
 
 We grouped (clustered) our isolates by the information that we extracted from the sequencing reads. We compared our isolates to a reference genome and clustered them on basis of the single nucleotide variations that they exhibit when compared to this reference.
 
@@ -50,9 +55,36 @@ Explore the location, time and further meta data. Play around with the different
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+## Discussion
+
+Compare the pangenome clustering with the clustering based on SNPs and with the data from
+epidemiological contact tracing:
+
+Cluster A
+
+- Patient A1 - sample ERR029207
+- Patient A2 - sample ERR029206
+- Patient A3 - sample ERR026478
+
+Cluster B
+
+- Patient B1 - sample ERR026474
+- Patient B2 - sample ERR026473
+
+Cluster C
+
+- Patient C1 - sample ERR026481
+- Patient C2 - sample ERR026482
+
+Which transmission events are affirmed by the genomic data? Which ones partially or not? Why?
+
+
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
-- Genetic information can confirm or contradict the meta data
+- SNP phylogeny and metadata can convey different messages
+- Human interpretation is often needed to weigh the different information sources.
+- The low mutation rate of *M. tuberculosis* does not allow to make confident inferences of transmission but does allow to exclude transmission
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
 

@@ -1,7 +1,7 @@
 ---
-title: 'SNP phylogeny'
-teaching: 15
-exercises: 60
+title: 'Mapping'
+teaching: 0
+exercises: 240
 ---
 
 In this episode we will try to pinpoint single nucleotide variants or single nucleotide polymorphism (SNPs) between our samples and the reference. The SNPs are determined by a process called read mapping in which they are aligned to the reference sequence.

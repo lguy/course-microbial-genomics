@@ -1,7 +1,7 @@
 ---
 title: 'Multiple sequence alignment'
-teaching: 10
-exercises: 30
+teaching: 0
+exercises: 240
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 

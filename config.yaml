@@ -21,7 +21,7 @@ keywords: 'evolution, phylogenetics, molecular epidemiology'
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'alpha'
+life_cycle: 'stable'
 
 # License of the lesson materials (recommended CC-BY 4.0)
 license: 'CC-BY 4.0'
@@ -59,19 +59,15 @@ contact: 'lionel.guy@imbim.uu.se'
 
 # Order of episodes in your lesson
 episodes:
-- introduction.Rmd
-- genetic-drift.md
+- ncbi.Rmd
+- blast.Rmd
 - msa.Rmd
 - phylogenetics.Rmd
-- phylogenetics-advanced.Rmd
-- molecular-epidemiology.Rmd
-- downloading-data.Rmd
 - quality-control.Rmd
 - sequence-assembly.Rmd
+- annotation.Rmd
 - snps-phylogeny.Rmd
 - data-visualization.Rmd
-- conclusions.Rmd
-
 
 # Information for Learners
 learners:
