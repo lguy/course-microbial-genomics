@@ -11,6 +11,6 @@ If you have any questions about the template, contact
 If you have questions about the course, contact 
 [Lionel Guy](mailto:lionel.guy@imbim.uu.se)
 
-The latest instance of the course runs on [GithubIO](https://github.com/lguy/course-microbial-genomics.git)
+The latest instance of the course runs on [GithubIO](https://lguy.github.io/course-microbial-genomics/)
 
 [workbench]: https://carpentries.github.io/sandpaper-docs/
