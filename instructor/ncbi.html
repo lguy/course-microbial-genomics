@@ -149,6 +149,7 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#exercise-1-global-cross-database-ncbi-search">Exercise 1: Global Cross-database NCBI Search</a></li>
+<li><a href="#exercise-2-sequence-alignments">Exercise 2: Sequence alignments</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -284,7 +285,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>NCBI</h1>
-        <p>Last updated on 2024-03-13 |
+        <p>Last updated on 2024-03-15 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/ncbi.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -297,6 +298,7 @@
         </div>
 
         
+
 <section id="exercise-1-global-cross-database-ncbi-search"><h2 class="section-heading">Exercise 1: Global Cross-database NCBI Search<a class="anchor" aria-label="anchor" href="#exercise-1-global-cross-database-ncbi-search"></a>
 </h2>
 <hr class="half-width"><div class="overview card">
@@ -306,22 +308,21 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How do you efficiently and reliably navigate NCBI’s website?</li>
-</ul></div>
+<p>Exercise 1 - How do you efficiently and reliably navigate NCBI’s
+website? Exercise 2 - How do you search sequences? - How do you use the
+right BLAST flavor?</p>
+</div>
 </div>
 </div>
 <div class="col-md-8">
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Familiarize yourself with the NCBI databases</li>
-<li>Browse and search the databases</li>
-<li>Understand sequences</li>
-<li>Retrieve sequence meta-information</li>
-<li>Cross-link sequences and publications</li>
-<li>Understand the differences between Gene/Protein/Nucleotide
-databases</li>
-</ul></div>
+<p>Exercise 1 - Familiarize yourself with the differences NCBI databases
+- Browse and search the databases, using cross-links Exercise 2 - Use
+and understand blast alignment tools - Characterize sequences -
+Understand genomic context and synteny</p>
+</div>
 </div>
 </div>
 </div>
@@ -336,10 +337,10 @@ Proteins.</p>
 <div class="section level3">
 <h3 id="task-1-1-find-publications-this-is-a-warm-up">Task 1.1: Find publications (this is a warm up!)<a class="anchor" aria-label="anchor" href="#task-1-1-find-publications-this-is-a-warm-up"></a></h3>
 <p>You want to find the following articles:</p>
-<ol style="list-style-type: decimal"><li>an article about Escherichia coli O104:H4 published by Matthew K
-Waldor in the New England Journal of Medicine; and</li>
-<li>a paper about E. coli whose last author is L. Wang, published in
-PLoS ONE in 2014.</li>
+<ol style="list-style-type: decimal"><li>an article about <em>Escherichia coli</em> O104:H4 published by
+Matthew K Waldor in the New England Journal of Medicine; and</li>
+<li>a paper about <em>E. coli</em> whose last author is L. Wang,
+published in PLoS ONE in 2014.</li>
 </ol><p>NOTE: you do not know the exact title, list of authors, PMID etc. Use
 your search skills (solution provided below). There may be more than one
 result.</p>
@@ -360,7 +361,7 @@ result.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1">Give me a hint</h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>Use the advanced search from PubMed, by clicking on “Advanced”
 (tutorial <a href="https://www.ncbi.nlm.nih.gov/books/NBK3827/#pubmedhelp.PubMed_Quick_Start" class="external-link uri">https://www.ncbi.nlm.nih.gov/books/NBK3827/#pubmedhelp.PubMed_Quick_Start</a>),
@@ -375,17 +376,17 @@ that returns only a single match.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<ol style="list-style-type: decimal"><li>Rasko DA, Webster DR, […], Waldor MK. Origins of the E. coli strain
-causing an outbreak of hemolytic-uremic syndrome in Germany. N Engl J
-Med. 2011 Aug 25;365(8):709-17. doi: 10.1056/NEJMoa1106920. Epub 2011
-Jul 27.</li>
+<ol style="list-style-type: decimal"><li>Rasko DA, Webster DR, […], Waldor MK. Origins of the <em>E.
+coli</em> strain causing an outbreak of hemolytic-uremic syndrome in
+Germany. N Engl J Med. 2011 Aug 25;365(8):709-17. doi:
+10.1056/NEJMoa1106920. Epub 2011 Jul 27.</li>
 <li>Zhang X, Li Y, Liu B, Wang J, Feng C, Gao M, Wang L. Prevalence of
-veterinary antibiotics and antibiotic-resistant Escherichia coli in the
-surface water of a livestock production region in northern China. PLoS
-One. 2014 Nov 5;9(11):e111026. doi: 10.1371/journal.pone.0111026.
-eCollection 2014.</li>
+veterinary antibiotics and antibiotic-resistant <em>Escherichia
+coli</em> in the surface water of a livestock production region in
+northern China. PLoS One. 2014 Nov 5;9(11):e111026. doi:
+10.1371/journal.pone.0111026. eCollection 2014.</li>
 </ol></div>
 </div>
 </div>
@@ -417,9 +418,9 @@ Settings.</li>
 </div>
 <div class="section level3">
 <h3 id="task-1-2-find-gene-records">Task 1.2: Find Gene records<a class="anchor" aria-label="anchor" href="#task-1-2-find-gene-records"></a></h3>
-<p>You want to find sequences for the subunit A of the Shiga toxin in E.
-coli O157:H7 Sakai. Try to search in the three following databases:
-Gene, Nucleotide and Protein.</p>
+<p>You want to find sequences for the subunit A of the Shiga toxin in
+<em>E. coli</em> O157:H7 Sakai. Try to search in the three following
+databases: Gene, Nucleotide and Protein.</p>
 <div id="challenge-1.2.1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -438,7 +439,7 @@ you get from them?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2">Give me a hint</h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
 <p>If you get too many hits, go to the field “Search details”, and
 refine your search, using the [Organism] field, for example. You don’t
@@ -524,7 +525,7 @@ section in the right column.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3">Give me a hint</h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
 <div class="accordion-body">
 <p>All the information in that section (“Related information”) is coming
 through the Entrez system. In the <code>FASTA</code> record, look for
@@ -558,7 +559,7 @@ protein? Can you identify a link to these?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4">Give me a hint</h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
 <div class="accordion-body">
 <p>You can change the format by clicking on the top left corner. Look
 for “Related information” in the right menu.</p>
@@ -574,10 +575,10 @@ for “Related information” in the right menu.</p>
 <h3 class="callout-title">Challenge 1.4.2<a class="anchor" aria-label="anchor" href="#challenge-1.4.2"></a>
 </h3>
 <div class="callout-content">
-<p>Can you find just the sequence information in FASTA format? How is
-the format organized? What is included in the header? Discuss the
-advantages of the two formats. Can you find a definition of both formats
-on the NCBI website or elsewhere?</p>
+<p>Can you find just the sequence information in <code>FASTA</code>
+format? How is the format organized? What is included in the header?
+Discuss the advantages of the two formats. Can you find a definition of
+both formats on the NCBI website or elsewhere?</p>
 </div>
 </div>
 </div>
@@ -586,7 +587,7 @@ on the NCBI website or elsewhere?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>If you are stuck, here is the link to</p>
 <ul><li>one Gene record: <a href="https://www.ncbi.nlm.nih.gov/gene/916678" class="external-link uri">https://www.ncbi.nlm.nih.gov/gene/916678</a>
@@ -619,6 +620,465 @@ on the NCBI website or elsewhere?</p>
 <div class="callout-content">
 <p>Can you display the genome record on which this gene is encoded?</p>
 </div>
+</div>
+</div>
+</div>
+</section><section id="exercise-2-sequence-alignments"><h2 class="section-heading">Exercise 2: Sequence alignments<a class="anchor" aria-label="anchor" href="#exercise-2-sequence-alignments"></a>
+</h2>
+<hr class="half-width"><p>In this exericse, you will use the sequence alignment tool BLAST to
+align and retrieve sequences.</p>
+<p>NOTE: the NCBI blast service can be under very heavy load (especially
+during daytime in the US), and don’t be surprised if a single blast
+takes &gt;10 minutes. As an alternative, you can use the BLAST service
+at the EBI website (<a href="http://www.ebi.ac.uk" class="external-link uri">http://www.ebi.ac.uk</a>). Note that the EBI doesn’t have
+the same level of tool integration as NCBI, and some parts of the
+questions might be more challenging to answer with the EBI tools. A good
+tip to accelerate your searches and to reduce the load on the NCBI
+server is to consider smaller databases than the standard nr/nt
+ones.</p>
+<div class="section level3">
+<h3 id="task-2-1-find-nucleotide-blast-hits">Task 2.1: Find nucleotide blast hits<a class="anchor" aria-label="anchor" href="#task-2-1-find-nucleotide-blast-hits"></a></h3>
+<p>Find the NCBI blast main page.</p>
+<div id="challenge-2.1.1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.1.1" class="callout-inner">
+<h3 class="callout-title">Challenge 2.1.1<a class="anchor" aria-label="anchor" href="#challenge-2.1.1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>What is BLAST?</li>
+<li>What different kinds of BLAST searches are there?</li>
+<li>What is blastn? blastx? blastp? tblastn?</li>
+</ul></div>
+</div>
+</div>
+<p>Find sequence hits for the following sequence, but first consider the
+options available on the BLAST page. One option that might come in very
+handy is the “open results in another window”, which will allow you to
+modify your query and rerun it quickly without losing the results:</p>
+<pre><code>&gt;a
+GATTACTTCAGCCAAAAGGAACACCTGTATATGAAGTGTATATTATTTAAATGGGTACTG
+TGCCTGTTACTGGGTTTTTCTTCGGTATCCTATTCCCGGGAGTTTACGATAGACTTTTCG
+ACCCAACAAAGTTATGTCTCTTCGTTAAATAGTATACGGACAGAGATATCGACCCCTCTT
+GAACATATATCTCAGGGGACCACATCGGTGTCTGTTATTAACCACACCCCACCGGGCAGT
+TATTTTGCTGTGGATATACGAGGGCTTGATGTCTATCAGGCGCGTTTTGACCATCTTCGT
+CTGATTATTGAGCAAAATAATTTATATGTGGCCGGGTTCGTTAATACGGCAACAAATACT
+TTCTACCGTTTTTCAGATTTTACACATATATCAGTGCCCGGTGTGACAACGGTTTCCATG
+ACAACGGACAGCAGTTATACCACTCTGCAACGTGTCGCAGCGCTGGAACGTTCCGGAATG
+CAAATCAGTCGTCACTCACTGGTTTCATCATATCTGGCGTTAATGGAGTTCAGTGGTAAT
+ACAATGACCAGAGATGCATCCAGAGCAGTTCTGCGTTTTGTCACTGTCACAGCAGAAGCC
+TTACGCTTCAGGCAGATACAGAGAGAATTTCGTCAGGCACTGTCTGAAACTGCTCCTGTG
+TATACGATGACGCCGGGAGACGTGGACCTCACTCTGAACTGGGGGCGAATCAGCAATGTG
+CTTCCGGAGTATCGGGGAGAGGATGGTGTCAGAGTGGGGAGAATATCCTTTAATAATATA
+TCAGCGATACTGGGGACTGTGGCCGTTATACTGAATTGCCATCATCAGGGGGCGCGTTCT
+GTTCGCGCCGTGAATGAAGAGAGTCAACCAGAATGTCAGATAACTGGCGACAGGCCCGTT
+ATAAAAATAAACAATACATTATGGGAAAGTAATACAGCTGCAGCGTTTCTGAACAGAAAG
+TCACAGTTTTTATATACAACGGGTAAATAAAGGAGTTAAGCATGAAGAAGATGTTTATGG</code></pre>
+<div id="challenge-2.1.2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2.1.2" class="callout-inner">
+<h3 class="callout-title">Challenge 2.1.2<a class="anchor" aria-label="anchor" href="#challenge-2.1.2"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Is it a gene?</li>
+<li>If yes, what does it encode?</li>
+<li>What is the closest organism? What can you infer about its taxonomic
+distribution?</li>
+</ul></div>
+</div>
+</div>
+<div id="accordionHint5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint5" aria-expanded="false" aria-controls="collapseHint5">
+  <h4 class="accordion-header" id="headingHint5">Give me a hint</h4>
+</button>
+<div id="collapseHint5" class="accordion-collapse collapse" data-bs-parent="#accordionHint5" aria-labelledby="headingHint5">
+<div class="accordion-body">
+<p>What does a protein-coding gene need to produce proteins?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Now go back to the blast main page.</p>
+<div id="challenge-2.1.3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2.1.3" class="callout-inner">
+<h3 class="callout-title">Challenge 2.1.3<a class="anchor" aria-label="anchor" href="#challenge-2.1.3"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Did you choose the right blast algorithm to answer the questions
+above?</li>
+<li>Can you do better?</li>
+</ul></div>
+</div>
+</div>
+<div id="accordionHint6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint6" aria-expanded="false" aria-controls="collapseHint6">
+  <h4 class="accordion-header" id="headingHint6">Give me a hint</h4>
+</button>
+<div id="collapseHint6" class="accordion-collapse collapse" data-bs-parent="#accordionHint6" aria-labelledby="headingHint6">
+<div class="accordion-body">
+<p>What if you try another flavor of the blast suite?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Repeat the procedure for this other sequence:</p>
+<pre><code>&gt;b
+GATTACTTCAGCCAAAAGGAACACCTGTATATGAAGTGTATATTATTTAAATGGGTACTG
+TGCCTGTTACTGGGTTTTTCTTCGGTATCCTATTCCCGGGAGTTTACGATAGACTTTTCG
+ACCCAACAAAGTTATGTCTCTTCGTTAAATAGTATACGGACAGAGATATCGACCCCTCTT
+GAACATATATCTCAGGGGACCACATCGGTGTCTGTTATTAACCACACCCCACCGGGCAGT
+TATTTTGCTGTGGATATACGAGGGCTTGATGTCTATCAGGCGCGTTTTGACCATCTTCGT
+CTGATTATTGAGCAAAATAATTTATATGTGGCCGGGTTCGTTAATACGGCAACAAATACT
+TTCTACCGTTTTTCAGATTTTACACATATATCAGTGCCCGGTGGACAACGGTTTCCATGA
+CAACGGACAGCAGTTATACCACTCTGCAACGTGTCGCAGCGCTGGAACGTTCCGGAATGC
+AAATCAGTCGTCACTCACTGGTTTCATCATATCTGGCGTTAATGGAGTTCAGTGGTAATA
+CAATGACCAGAGATGCATCCAGAGCAGTTCTGCGTTTTGACTGTCACTGTCACAGCAGAA
+GCCTTACGCTTCAGGCAGATACAGAGAGAATTTCGTCAGGCACTGTCTGAAACTGCTCCT
+GTGTATACGATGACGCCGGGAGACGTGGACCTCTTTTTTTACTCTGAACTGGGGGCGAAT
+CAGCAATGTGCTTCCGGAGTATCGGGGAGAGGATGGTGTCAGAGTGGGGAGAATATCCTT
+TAATAATATATCAGCGATACTGGGGACTGTGGCCGTTATACTGAATTGCCATCATCAGGG
+GGCGCGTTCTGTTCGCGCCGTGAATGAAGAGAGTCAACCAGAATGTCAGATAACTGGCGA
+CAGGCCCGTTATAAAAATAAACAATACATTATGGGAAAGTAATACAGCTGCAGCGTTTCT
+GAACAGAAAGTCACAGTTTTTATATACAACGGGTAAATAAAGGAGTTAAGCATGAAGAAG
+ATGTTTATGG</code></pre>
+<div id="challenge-2.1.4" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2.1.4" class="callout-inner">
+<h3 class="callout-title">Challenge 2.1.4<a class="anchor" aria-label="anchor" href="#challenge-2.1.4"></a>
+</h3>
+<div class="callout-content">
+<p>How does sequence <code>b</code> compare to the first sequence? Is it
+also a gene?</p>
+</div>
+</div>
+</div>
+<div id="accordionHint7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint7" aria-expanded="false" aria-controls="collapseHint7">
+  <h4 class="accordion-header" id="headingHint7">Give me a hint</h4>
+</button>
+<div id="collapseHint7" class="accordion-collapse collapse" data-bs-parent="#accordionHint7" aria-labelledby="headingHint7">
+<div class="accordion-body">
+<p>if you get stuck, try e.g. StarORF (<a href="http://star.mit.edu/orf/index.html" class="external-link uri">http://star.mit.edu/orf/index.html</a>).</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-2.1.5" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.1.5" class="callout-inner">
+<h3 class="callout-title">Challenge 2.1.5<a class="anchor" aria-label="anchor" href="#challenge-2.1.5"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Can you perform a pairwise alignment between both sequences?</li>
+<li>What are the differences?</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="task-2-2-find-protein-blast-hits">Task 2.2: Find protein blast hits<a class="anchor" aria-label="anchor" href="#task-2-2-find-protein-blast-hits"></a></h3>
+<p>Now find sequences with similarity to this protein</p>
+<pre><code>&gt;c
+MMNRSIYRQFVRYTIPTVAAMLVNGLYQVVDGIFIGHYVGAEGLAGINVAWPVIGTILGIGMLVGVGTGA 
+LASIKQGEGHPDSAKRILATGLMSLLLLAPIVAVILWFMADDFLRWQGAEGRVFELGLQYLQVLIVGCLF 
+TLGSIAMPFLLRNDHSPNLATLLMVIGALTNIALDYLFIAWLQWELTGAAIATTLAQVVVTLLGLAYFFS 
+ARANMRLTRRCLRLEWHSLPKIFAIGVSSFFMYAYGSTMVALHNTLMIEYGNAVMVGAYAVMGYIVTIYY 
+LTVEGIANGMQPLASYHFGARNYDHIRKLLRLAMGIAVLGGMAFVLVLNLFPEQAIAIFNSSDSELIAGA 
+QMGIKLHLFAMYLDGFLVVSAAYYQSTNRGGKAMFITVGNMSIMLPFLFILPQFFGLTGVWIALPISNIV 
+LSTVVGIMLWRDVNKMGKPTQVSYA</code></pre>
+<div id="challenge-2.2.1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.2.1" class="callout-inner">
+<h3 class="callout-title">Challenge 2.2.1<a class="anchor" aria-label="anchor" href="#challenge-2.2.1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>What is this gene coding for?</li>
+<li>Where did it likely come from?</li>
+</ul></div>
+</div>
+</div>
+<div id="challenge-2.2.2" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.2.2" class="callout-inner">
+<h3 class="callout-title">Challenge 2.2.2<a class="anchor" aria-label="anchor" href="#challenge-2.2.2"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Can you align nucleotide sequences (sequence <code>a</code>, Task
+2.1) against a protein database?</li>
+<li>If so, how?</li>
+</ul></div>
+</div>
+</div>
+<div id="challenge-2.2.3" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.2.3" class="callout-inner">
+<h3 class="callout-title">Challenge 2.2.3<a class="anchor" aria-label="anchor" href="#challenge-2.2.3"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Can you align proteins to a nucleotide database?</li>
+<li>If so, how? If not, why not?</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="task-2-3-find-gene-and-genome-hits">Task 2.3: Find gene and genome hits<a class="anchor" aria-label="anchor" href="#task-2-3-find-gene-and-genome-hits"></a></h3>
+<p>This task should be performed at the NCBI page (not at EBI).</p>
+<p>What is the following sequence?</p>
+<pre><code>&gt;d
+GTGTCTAAAGAAAAATTTGAACGTACAAAACCGCACGTTAACGTTGGTACTATCGGCCACGTTGACCACG
+GTAAAACTACTCTGACCGCTGCAATCACCACCGTACTGGCTAAAACCTACGGCGGTGCTGCTCGTGCATT
+CGACCAGATCGATAACGCGCCGGAAGAAAAAGCTCGTGGTATCACCATCAACACTTCTCACGTTGAATAT
+GACACCCCGACCCGTCACTACGCACACGTAGACTGCCCGGGGCACGCCGACTATGTTAAAAACATGATCA
+CCGGTGCTGCTCAGATGGACGGCGCGATCCTGGTAGTTGCTGCGACTGACGGCCCGATGCCGCAGACTCG
+TGAGCACATCCTGCTGGGTCGTCAGGTAGGCGTTCCGTACATCATCGTGTTCCTGAACAAATGCGACATG
+GTTGATGACGAAGAGCTGCTGGAACTGGTTGAAATGGAAGTTCGTGAACTTCTGTCTCAGTACGACTTCC
+CGGGCGACGACACTCCGATCGTTCGTGGTTCTGCTCTGAAAGCGCTGGAAGGCGACGCAGAGTGGGAAGC
+GAAAATCCTGGAACTGGCTGGCTTCCTGGATTCTTACATTCCGGAACCAGAGCGTGCGATTGACAAGCCG
+TTCCTGCTGCCGATCGAAGACGTGTTCTCCATCTCCGGTCGTGGTACCGTTGTTACCGGTCGTGTAGAAC
+GCGGTATCATCAAAGTTGGTGAAGAAGTTGAAATCGTTGGTATCAAAGAGACTCAGAAGTCTACCTGTAC
+TGGCGTTGAAATGTTCCGCAAACTGCTGGACGAAGGCCGTGCTGGTGAGAACGTAGGTGTTCTGCTGCGT
+GGTATCAAACGTGAAGAAATCGAACGTGGTCAGGTACTGGCTAAGCCGGGCACCATCAAACCGCACACCA
+AGTTCGAATCTGAAGTGTACATTCTGTCCAAAGATGAAGGCGGCCGTCATACTCCGTTCTTCAAAGGCTA
+CCGTCCGCAGTTCTACTTCCGTACTACTGACGTGACTGGTACCATCGAACTGCCGGAAGGCGTAGAGATG
+GTAATGCCGGGCGACAACATCAAAATGGTTGTTACCCTGATCCACCCGATCGCGATGGACGACGGTCTGC
+GTTTCGCAATCCGTGAAGGCGGCCGTACCGTTGGTGCGGGCGTTGTTGCTAAAGTTCTGGGCTAA</code></pre>
+<div id="challenge-2.3.1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2.3.1" class="callout-inner">
+<h3 class="callout-title">Challenge 2.3.1<a class="anchor" aria-label="anchor" href="#challenge-2.3.1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>What organism is it likely from?</li>
+<li>Is it a gene?</li>
+<li>If yes, which one?</li>
+<li>What does it code for?</li>
+</ul></div>
+</div>
+</div>
+<div id="accordionHint8" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint8" aria-expanded="false" aria-controls="collapseHint8">
+  <h4 class="accordion-header" id="headingHint8">Give me a hint</h4>
+</button>
+<div id="collapseHint8" class="accordion-collapse collapse" data-bs-parent="#accordionHint8" aria-labelledby="headingHint8">
+<div class="accordion-body">
+<p>Use rather blastn to identify the origin of the gene. Explore the
+alignments of the first hit, and try the “Graphics” button associated
+with the results.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-2.3.2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2.3.2" class="callout-inner">
+<h3 class="callout-title">Challenge 2.3.2<a class="anchor" aria-label="anchor" href="#challenge-2.3.2"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Where is it located on the genome (precision at ~10kb is good
+enough)?</li>
+<li>Are there several copies in the genome?</li>
+</ul></div>
+</div>
+</div>
+<div id="accordionHint9" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint9" aria-expanded="false" aria-controls="collapseHint9">
+  <h4 class="accordion-header" id="headingHint9">Give me a hint</h4>
+</button>
+<div id="collapseHint9" class="accordion-collapse collapse" data-bs-parent="#accordionHint9" aria-labelledby="headingHint9">
+<div class="accordion-body">
+<p>Mark down the name of the gene (generally three letters in lower case
+and one in uppercase). From the protein record, there is a link to the
+genome record, which has a “graphics” interface.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint10" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint10" aria-expanded="false" aria-controls="collapseHint10">
+  <h4 class="accordion-header" id="headingHint10">Give me a hint</h4>
+</button>
+<div id="collapseHint10" class="accordion-collapse collapse" data-bs-parent="#accordionHint10" aria-labelledby="headingHint10">
+<div class="accordion-body">
+<p>Not all genomes are equally well annotated and you might have to
+search for a genome that is well annotated. One good example is
+<em>Escherichia fergusonii</em> ATCC 35469</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-2.3.3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2.3.3" class="callout-inner">
+<h3 class="callout-title">Challenge 2.3.3<a class="anchor" aria-label="anchor" href="#challenge-2.3.3"></a>
+</h3>
+<div class="callout-content">
+<ul><li>How far is this gene (and possible copies) from the origin of
+replication?</li>
+<li>How is it oriented with respect to replication?</li>
+</ul></div>
+</div>
+</div>
+<div id="accordionHint11" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint11" aria-expanded="false" aria-controls="collapseHint11">
+  <h4 class="accordion-header" id="headingHint11">Give me a hint</h4>
+</button>
+<div id="collapseHint11" class="accordion-collapse collapse" data-bs-parent="#accordionHint11" aria-labelledby="headingHint11">
+<div class="accordion-body">
+<p>What genes are reliable markers for the origin of replication? Can
+you find a paper about that? Now can you find that gene in the genome
+above?</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint12" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint12" aria-expanded="false" aria-controls="collapseHint12">
+  <h4 class="accordion-header" id="headingHint12">Give me a hint</h4>
+</button>
+<div id="collapseHint12" class="accordion-collapse collapse" data-bs-parent="#accordionHint12" aria-labelledby="headingHint12">
+<div class="accordion-body">
+<p>What is the dnaA gene doing?</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="task-2-4-optional-explore-the-synteny-functions-of-the-string-database">Task 2.4 (optional): Explore the synteny functions of the STRING
+database<a class="anchor" aria-label="anchor" href="#task-2-4-optional-explore-the-synteny-functions-of-the-string-database"></a></h3>
+<p>We are interested in genes that are normally located next to each
+other, and their taxonomic breadth.</p>
+<p>Open the STRING database (<a href="https://string-db.org/" class="external-link uri">https://string-db.org/</a>). Search for the Shiga
+toxin-encoding genes in bacteria.</p>
+<div id="challenge-2.4.1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.4.1" class="callout-inner">
+<h3 class="callout-title">Challenge 2.4.1<a class="anchor" aria-label="anchor" href="#challenge-2.4.1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Can you find the Shiga toxin-coding genes in <em>Escherichia
+coli</em> K-12?</li>
+<li>Do you find the same strain as above?</li>
+</ul></div>
+</div>
+</div>
+<div id="challenge-2.4.2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-2.4.2" class="callout-inner">
+<h3 class="callout-title">Challenge 2.4.2<a class="anchor" aria-label="anchor" href="#challenge-2.4.2"></a>
+</h3>
+<div class="callout-content">
+<p>Can you tell on what chromosomal feature these genes are located?</p>
+</div>
+</div>
+</div>
+<div id="accordionHint13" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint13" aria-expanded="false" aria-controls="collapseHint13">
+  <h4 class="accordion-header" id="headingHint13">Give me a hint</h4>
+</button>
+<div id="collapseHint13" class="accordion-collapse collapse" data-bs-parent="#accordionHint13" aria-labelledby="headingHint13">
+<div class="accordion-body">
+<p>What genes are located next to these genes?</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint14" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint14" aria-expanded="false" aria-controls="collapseHint14">
+  <h4 class="accordion-header" id="headingHint14">Give me a hint</h4>
+</button>
+<div id="collapseHint14" class="accordion-collapse collapse" data-bs-parent="#accordionHint14" aria-labelledby="headingHint14">
+<div class="accordion-body">
+<p>What is a lysogenic phage?</p>
+</div>
+</div>
+</div>
+</div>
+<p>Feel free to explore the different functions of the database. What do
+the different links in the network mean? What happens if you remove the
+least reliable interaction sources (i.e. text mining and databases?</p>
+<p>Now modify the settings to keep only Neighborhood as edges. Go back
+to the Viewers tab. Search for the other gene discussed above,
+<em>tufA</em>, do the same as for <em>stx1</em>, and compare the
+results.</p>
+<div id="challenge-2.4.3" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.4.3" class="callout-inner">
+<h3 class="callout-title">Challenge 2.4.3<a class="anchor" aria-label="anchor" href="#challenge-2.4.3"></a>
+</h3>
+<div class="callout-content">
+<ul><li>How many genes are co-localized with <em>stx1</em>?</li>
+<li>What are the functions of these?</li>
+</ul></div>
+</div>
+</div>
+<div id="challenge-2.4.4" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.4.4" class="callout-inner">
+<h3 class="callout-title">Challenge 2.4.4<a class="anchor" aria-label="anchor" href="#challenge-2.4.4"></a>
+</h3>
+<div class="callout-content">
+<ul><li>How many genes are co-localized with <em>tufA</em>?</li>
+<li>What are the functions of the gene?</li>
+<li>Does the function correlate with the taxonomic breadth of the
+gene?</li>
+</ul></div>
+</div>
+</div>
+<p>For both genes, select the Neighborhood viewer.</p>
+<div id="challenge-2.4.5" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-2.4.5" class="callout-inner">
+<h3 class="callout-title">Challenge 2.4.5<a class="anchor" aria-label="anchor" href="#challenge-2.4.5"></a>
+</h3>
+<div class="callout-content">
+<ul><li>How taxonomically widespread are the <em>stx1</em>, respectively
+<em>tufA</em> genes?</li>
+<li>How conserved is the gene order for these two genes?</li>
+</ul></div>
 </div>
 </div>
 <div id="keypoints1" class="callout keypoints">
@@ -698,8 +1158,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/ncbi.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/ncbi.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2024-03-13",
-  "datePublished": "2024-03-13"
+  "dateModified": "2024-03-15",
+  "datePublished": "2024-03-15"
 }
 
   </script><script>
