@@ -20,7 +20,9 @@ exercises: 240
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Setup
+## Exercise 1: Paper-and-pen phylogenetic tree
+
+### Setup
 
 The exercise is done for a large part with pen and paper, and then a 
 demonstration in R. We'll also use the R package 
@@ -38,7 +40,7 @@ And to load it:
 library(ape)
 ```
 
-## UPGMA-based tree
+### UPGMA-based tree
 
 Load the tree in fasta format, reading from a `temp` file
 
@@ -86,7 +88,7 @@ distances.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-## Calculating distance "by hand"
+### Calculating distance "by hand"
 
 Let's use a matrix to calculate distances between sequences. We'll just count
 the number of differences between the sequences. We'll then group the two 
@@ -218,11 +220,13 @@ edgelabels(tree$edge.length)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## Exercise 2: maximum-likelihood tree
+
+### Introduction
 
 In the previous episode, we inferred a simple phylogenetic tree using UPGMA, without correcting the distance matrix for multiple substitutions. UPGMA has many shortcomings, and gets worse as distance increases. Here we'll test Neighbor-Joining, which is also a distance-based, and a maximum-likelihood based approach with [IQ-TREE](http://www.iqtree.org/).
 
-## Neighbor-joining
+### Neighbor-joining
 
 The principle of [Neighbor-joining method](https://en.wikipedia.org/wiki/Neighbor_joining) (NJ) is to start from a star-like tree, find the two branches that, if joined, minimize the total tree length, join then, and repeat with the joined branches and the rest of the branches.
 
@@ -260,7 +264,7 @@ seaview rpoB.fftns.aln &
 
 Do you see any differences between the two trees? What can you make out of it?
 
-## Maximum likelihood
+### Maximum likelihood
 
 We will now use IQ-TREE to infer a maximum-likelihood tree of the RpoB dataset we aligned with `mafft` previously. 
 
@@ -318,7 +322,7 @@ $ figtree rpoB.fftns.aln.treefile &
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Bootstraps
+### Bootstraps
 
 We have inferred four trees:
 * Two based on the alignment generated from the E-INS-i algorithm, two from the FFT-NS.
@@ -357,7 +361,7 @@ What about the support values for grouping these two groups? How high are they?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Genetic drift
+## Exercise 3: Genetic drift
 
 As a practical way to understand genetic drift, let's play with population size, selection coefficients, number of generations, etc.
 

@@ -29,7 +29,7 @@ You can add a line with at least three colons and a `solution` tag.
 
 ::: solution
 
-
+ 
 ::::::::::::
 
 ::: hint
