@@ -25,6 +25,3 @@ sandpaper::check_lesson()
 sandpaper::build_lesson(".", preview = TRUE, quiet = TRUE)
 #sandpaper::serve()
 
-#
-
-
