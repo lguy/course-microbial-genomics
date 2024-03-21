@@ -158,8 +158,10 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
-<li><a href="#figures">Figures</a></li>
-<li><a href="#math">Math</a></li>
+<li><a href="#exercise-0-login-to-uppmax">Exercise 0: Login to Uppmax</a></li>
+<li><a href="#exercise-1-finding-and-retrieving-homologs">Exercise 1: Finding and retrieving homologs</a></li>
+<li><a href="#exercise-2-using-psi-blast-to-retrieve-distant-homologs-of-proteins">Exercise 2: Using PSI-BLAST to retrieve distant homologs of
+proteins</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -287,7 +289,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>BLAST</h1>
-        <p>Last updated on 2024-03-15 |
+        <p>Last updated on 2024-03-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/blast.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -306,8 +308,7 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How do you write a lesson using R Markdown and
-<a href="https://carpentries.github.io/sandpaper/" class="external-link">sandpaper</a>?</li>
+<ul><li>How to use the command-line version of <code>BLAST</code>?</li>
 </ul></div>
 </div>
 </div>
@@ -315,77 +316,109 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Explain how to use markdown with the new lesson template</li>
-<li>Demonstrate how to include pieces of code, figures, and nested
-challenge blocks</li>
+<ul><li>Run different flavors of <code>BLAST</code>
+</li>
+<li>Use different databases</li>
+<li>Use profile-based <code>BLAST</code> to retrieve distant
+homologs</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
+
 <section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<hr class="half-width"><p>This is a lesson created via The Carpentries Workbench. It is written
-in <a href="https://pandoc.org/MANUAL.html" class="external-link">Pandoc-flavored Markdown</a>
-for static files (with extension <code>.md</code>) and <a href="https://rmarkdown.rstudio.com/" class="external-link">R Markdown</a> for dynamic files
-that can render code into output (with extension <code>.Rmd</code>).
-Please refer to the <a href="https://carpentries.github.io/sandpaper-docs/" class="external-link">Introduction to The
-Carpentries Workbench</a> for full documentation.</p>
-<p>What you need to know is that there are three sections required for a
-valid Carpentries lesson template:</p>
-<ol style="list-style-type: decimal"><li>
-<code>questions</code> are displayed at the beginning of the episode
-to prime the learner for the content.</li>
-<li>
-<code>objectives</code> are the learning objectives for an episode
-displayed with the questions.</li>
-<li>
-<code>keypoints</code> are displayed at the end of the episode to
-reinforce the objectives.</li>
-</ol><div id="challenge-1-can-you-do-it" class="callout challenge">
+<hr class="half-width"><p>The goal of this exercise is to practice with the command line-based
+version of <code>BLAST</code>. It is also the first step in building
+phylogenetic trees, namely by gathering homologous sequences that will
+then be aligned. The alignment is finally used to build a tree.</p>
+<p>The whole exercise is based on RpoB, the <a href="https://en.wikipedia.org/wiki/RpoB" class="external-link">Β-subunit of the bacterial RNA
+polymerase</a>. This protein is essential to the cell, and present in
+all bacteria and plastids. It is also very conserved, and thus suitable
+for deep-scale phylogenies.</p>
+<div class="section level3">
+<h3 id="blast">BLAST<a class="anchor" aria-label="anchor" href="#blast"></a></h3>
+<p><code>BLAST</code> (basic local alignment search tool, also referred
+to as the Google of biological research) is one of the most widely used
+tools in bioinformatics. The wide majority of its uses can be performed
+online, but for larger searches, batches or advanced uses, the command
+line version, performed locally on a computer or cluster, is
+indispensable.</p>
+</div>
+<div class="section level3">
+<h3 id="resources-at-uppmax">Resources at UPPMAX<a class="anchor" aria-label="anchor" href="#resources-at-uppmax"></a></h3>
+<p><code>BLAST</code> is available at UPPMAX. To load the
+<code>blast</code> module, you will need to load the
+<code>bioinfo-tools</code> module first. To use the standard databases
+that NCBI maintains, use the <code>blast_databases</code> module. All
+three can be loaded with the same command:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools blast blast_databases</span></code></pre>
+</div>
+<p>Databases available at UPPMAX are described here: <a href="https://www.uppmax.uu.se/resources/databases/blast-databases/" class="external-link uri">https://www.uppmax.uu.se/resources/databases/blast-databases/</a>.
+By using the <code>blast_databases</code> module, you don’t need to
+specify where the databases are located on the file system. In detail,
+it sets the <code>BLASTDB</code> variable to the right folder. You can
+see it by typing <code>echo $BLASTDB</code> in the terminal.</p>
+<p>Gene and protein records are usually associated with a
+<code>taxid</code>, to describe what organisms they come from. This can
+be very useful to limit the search to a certain taxon, or to exclude
+another taxon. E.g. if you want to investigate whether a certain gene
+has been transferred from bacteria to archaea: you would search for that
+specific by excluding all bacteria and eukaryotes.</p>
+<p>Taxonomy resources at UPPMAX are described here: <a href="https://www.uppmax.uu.se/resources/databases/ncbi-taxonomy-databases" class="external-link uri">https://www.uppmax.uu.se/resources/databases/ncbi-taxonomy-databases</a></p>
+</div>
+</section><section id="exercise-0-login-to-uppmax"><h2 class="section-heading">Exercise 0: Login to Uppmax<a class="anchor" aria-label="anchor" href="#exercise-0-login-to-uppmax"></a>
+</h2>
+<hr class="half-width"><p>This is just a reminder of the introduction to Linux and how to login
+to Uppmax.</p>
+<div id="challenge-0.1" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-1-can-you-do-it" class="callout-inner">
-<h3 class="callout-title">Challenge 1: Can you do it?<a class="anchor" aria-label="anchor" href="#challenge-1-can-you-do-it"></a>
+<div id="challenge-0.1" class="callout-inner">
+<h3 class="callout-title">Challenge 0.1<a class="anchor" aria-label="anchor" href="#challenge-0.1"></a>
 </h3>
 <div class="callout-content">
-<p>What is the output of this command?</p>
-<div class="codewrapper sourceCode" id="cb1">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">paste</span><span class="op">(</span><span class="st">"This"</span>, <span class="st">"new"</span>, <span class="st">"lesson"</span>, <span class="st">"looks"</span>, <span class="st">"good"</span><span class="op">)</span></span></code></pre>
-</div>
+<p>Login to Uppmax and navigate to the course folder, create a folder
+for a <code>blast</code> exercise.</p>
+<p>Remember the best practices you learned for file naming.</p>
+<p>All exercises should be performed inside
+<code>/proj/g2020004/nobackup/3MK013/&lt;username&gt;</code> where
+<code>&lt;username&gt;</code> is your own folder.</p>
 </div>
 </div>
 </div>
 <div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1">Output</h4>
+  <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>[1] "This new lesson looks good"</code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ssh</span> –Y username@rackham.uppmax.uu.se</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">mkdir</span> blast</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout challenge">
+<div id="challenge-0.2" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="challenge-2-how-do-you-nest-solutions-within-challenge-blocks" class="callout-inner">
-<h3 class="callout-title">Challenge 2: how do you nest solutions within
-challenge blocks?<a class="anchor" aria-label="anchor" href="#challenge-2-how-do-you-nest-solutions-within-challenge-blocks"></a>
+<div id="challenge-0.2" class="callout-inner">
+<h3 class="callout-title">Challenge 0.2<a class="anchor" aria-label="anchor" href="#challenge-0.2"></a>
 </h3>
 <div class="callout-content">
-
+<p>Access an interactive session that is booked for us.</p>
 </div>
 </div>
 </div>
@@ -394,42 +427,440 @@ challenge blocks?<a class="anchor" aria-label="anchor" href="#challenge-2-how-do
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
-<p>You can add a line with at least three colons and a
-<code>solution</code> tag.</p>
-</div>
-</div>
-</div>
-</div>
-</section><section id="figures"><h2 class="section-heading">Figures<a class="anchor" aria-label="anchor" href="#figures"></a>
-</h2>
-<hr class="half-width"><p>You can include figures generated from R Markdown:</p>
 <div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">pie</span><span class="op">(</span></span>
-<span>  <span class="fu">c</span><span class="op">(</span>Sky <span class="op">=</span> <span class="fl">78</span>, <span class="st">"Sunny side of pyramid"</span> <span class="op">=</span> <span class="fl">17</span>, <span class="st">"Shady side of pyramid"</span> <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, </span>
-<span>  init.angle <span class="op">=</span> <span class="fl">315</span>, </span>
-<span>  col <span class="op">=</span> <span class="fu">c</span><span class="op">(</span><span class="st">"deepskyblue"</span>, <span class="st">"yellow"</span>, <span class="st">"yellow3"</span><span class="op">)</span>, </span>
-<span>  border <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span><span class="op">)</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2024-2-10 <span class="at">-M</span> snowy <span class="at">-t</span> 4:00:00 <span class="at">--reservation</span><span class="op">=</span>uppmax2023-2-10_x</span></code></pre>
 </div>
-<figure style="text-align: center"><img src="fig/blast-rendered-pyramid-1.png" alt="pie chart illusion of a pyramid" class="figure mx-auto d-block"><figcaption>
-Sun arise each and every morning
-</figcaption></figure><p>Or you can use pandoc markdown for static figures with the following
-syntax:</p>
-<p><code>![optional caption that appears below the figure](figure url){alt='alt text for accessibility purposes'}</code></p>
-<figure><img src="https://raw.githubusercontent.com/carpentries/logo/master/Badge_Carpentries.svg" alt="Blue Carpentries hex person logo with no text." class="figure mx-auto d-block"><div class="figcaption">You belong in The Carpentries!</div>
-</figure></section><section id="math"><h2 class="section-heading">Math<a class="anchor" aria-label="anchor" href="#math"></a>
+</div>
+</div>
+</div>
+</div>
+</section><section id="exercise-1-finding-and-retrieving-homologs"><h2 class="section-heading">Exercise 1: Finding and retrieving homologs<a class="anchor" aria-label="anchor" href="#exercise-1-finding-and-retrieving-homologs"></a>
 </h2>
-<hr class="half-width"><p>One of our episodes contains <span class="math inline">\(\LaTeX\)</span> equations when describing how to
-create dynamic reports with {knitr}, so we now use mathjax to describe
-this:</p>
-<p><code>$\alpha = \dfrac{1}{(1 - \beta)^2}$</code> becomes: <span class="math inline">\(\alpha = \dfrac{1}{(1 - \beta)^2}\)</span></p>
-<p>Cool, right?</p>
-<div id="keypoints1" class="callout keypoints">
+<hr class="half-width"><p>Here, you will first find the protein query to start your search
+with. You will test different methods to create a file containing only
+RpoB from <em>E. coli</em>. Then, you will use that file as a query to
+find homologs of RpoB in different databases.</p>
+<div class="section level3">
+<h3 id="task-1-1-retrieve-the-rpob-sequence-for-e--coli">Task 1.1: Retrieve the RpoB sequence for <em>E. coli</em>
+<a class="anchor" aria-label="anchor" href="#task-1-1-retrieve-the-rpob-sequence-for-e--coli"></a></h3>
+<p>First, use your recently acquired <a href="https://en.wiktionary.org/wiki/-fu#English" class="external-link">NCBI-fu</a> to
+retrieve the sequence from <em>E. coli</em> K-12. There are many
+genomes, and thus many identical proteins, grouped into <a href="https://www.ncbi.nlm.nih.gov/ipg/" class="external-link">Identical Protein Groups</a>.
+NCBI’s databases are (almost) non-redundant (that’s where the name of
+the largest protein database, <code>nr</code> comes from), and thus only
+one representative per IPG is present. Thus search in IPG, and find the
+IPG’s accession number. Write down the accession number somewhere.</p>
+<div id="challenge-1.1.1-finding-e.-colis-rpob" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1.1.1-finding-e.-colis-rpob" class="callout-inner">
+<h3 class="callout-title">Challenge 1.1.1: Finding<em>E. coli</em>’s
+RpoB<a class="anchor" aria-label="anchor" href="#challenge-1.1.1-finding-e.-colis-rpob"></a>
+</h3>
+<div class="callout-content">
+<p>Find the accession number for the IPG containing the RpoB sequence of
+<em>E. coli</em> K-12, and download the sequence in <code>FASTA</code>
+format.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div class="accordion-body">
+<p>The IPG record can be found here: <a href="https://www.ncbi.nlm.nih.gov/ipg/1258700" class="external-link uri">https://www.ncbi.nlm.nih.gov/ipg/1258700</a></p>
+<p>The accession number is <code>WP_000263098.1</code>.</p>
+<p>The sequence in fasta format can be downloaded at <a href="https://www.ncbi.nlm.nih.gov/protein/WP_000263098.1?report=fasta" class="external-link uri">https://www.ncbi.nlm.nih.gov/protein/WP_000263098.1?report=fasta</a>
+by clicking on the “Send to” link and then choosing <code>FASTA</code>
+format. Save the file under <code>rpoB_ecoli.fasta</code>.</p>
+<p>The fasta file should look like:</p>
+<pre><code>&gt;WP_000263098.1 MULTISPECIES: DNA-directed RNA polymerase subunit beta [Enterobacteriaceae]
+MVYSYTEKKRIRKDFGKRPQVLDVPYLLSIQLDSFQKFIEQDPEGQYGLEAAFRSVFPIQSYSGNSELQY
+VSYRLGEPVFDVQECQIRGVTYSAPLRVKLRLVIYEREAPEGTVKDIKEQEVYMGEIPLMTDNGTFVING</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="task-1-2-push-the-sequence-to-uppmax">Task 1.2: Push the sequence to UPPMAX<a class="anchor" aria-label="anchor" href="#task-1-2-push-the-sequence-to-uppmax"></a></h3>
+<p>The sequence is located on your computer, and you need to transfer it
+to your computer. You will test several methods to push it to UPPMAX, to
+be able to use it as a query for <code>BLAST</code>.</p>
+<div id="challenge-1.2.1-use-scp" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1.2.1-use-scp" class="callout-inner">
+<h3 class="callout-title">Challenge 1.2.1: Use<code>scp</code><a class="anchor" aria-label="anchor" href="#challenge-1.2.1-use-scp"></a>
+</h3>
+<div class="callout-content">
+<p><code>scp</code>, secure file copy, is a tool to copy files via SSH,
+the same protocol you use to login to UPPMAX. You can use it with the
+following syntax:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>file to copy<span class="op">&gt;</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@<span class="op">&lt;</span>server<span class="op">&gt;</span>:<span class="op">&lt;</span>remote file location<span class="op">&gt;</span></span></code></pre>
+</div>
+<p>The remote file location can be a relative path from your home or an
+absolute path, starting with <code>/</code>.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4">Show me the solution</h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">scp</span> rpoB_ecoli.fasta <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1">Give me a hint</h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div class="accordion-body">
+<p>Use <code>man scp</code> to show the manual for scp.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-1.2.2-use-copypaste" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1.2.2-use-copypaste" class="callout-inner">
+<h3 class="callout-title">Challenge 1.2.2: Use copy/paste<a class="anchor" aria-label="anchor" href="#challenge-1.2.2-use-copypaste"></a>
+</h3>
+<div class="callout-content">
+<p>A quick and dirty method is to open a graphical text editor on the
+remote server and paste the information in it. One such tool is
+<code>gedit</code>. Paste the content of the file into
+<code>gedit</code> and save it in the appropriate folder, under
+<code>rpoB_ecoli.fasta</code>.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5">Show me the solution</h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div class="accordion-body">
+<p>On UPPMAX</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">gedit</span> rpoB_ecoli.fasta <span class="kw">&amp;</span></span></code></pre>
+</div>
+<p>The <code>&amp;</code> executes the program in the background,
+leaving you control of the command line.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-1.2.3-extract-sequence-from-database" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1.2.3-extract-sequence-from-database" class="callout-inner">
+<h3 class="callout-title">Challenge 1.2.3: Extract sequence from
+database<a class="anchor" aria-label="anchor" href="#challenge-1.2.3-extract-sequence-from-database"></a>
+</h3>
+<div class="callout-content">
+<p>Since you know the accession number of the sequence to be used as a
+query, you can use the <code>blast</code> tools to extract that specific
+sequence from one of the databases available at UPPMAX. The tool in
+question is <code>blastdbcmd</code>. That specific sequence is
+presumably present in multiple databases. In doubt, one could search
+<code>nr</code>. But since <em>E. coli</em> K-12 is present in the tiny
+<a href="https://blast.ncbi.nlm.nih.gov/smartblast/smartBlast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs#searchSets" class="external-link"><code>landmark</code>
+database</a>, you can use that one.</p>
+<p>Put the sequence, in <code>FASTA</code> format, into a file called
+<code>rpoB_ecoli.fasta</code></p>
+<p>The manual for <code>blastdbcmd</code> can be obtained with:</p>
+<div class="codewrapper sourceCode" id="cb8">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-help</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6">Show me the solution</h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-db</span> landmark <span class="at">-entry</span> WP_000263098 <span class="op">&gt;</span> rpoB_ecoli.fasta</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
+  <h4 class="accordion-header" id="headingHint2">Give me a hint</h4>
+</button>
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div class="accordion-body">
+<p>You should use the <code>-db</code> option and the
+<code>-entry</code> one.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-1.2.4-optional-size-of-databases" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1.2.4-optional-size-of-databases" class="callout-inner">
+<h3 class="callout-title">Challenge 1.2.4 (optional): Size of
+databases<a class="anchor" aria-label="anchor" href="#challenge-1.2.4-optional-size-of-databases"></a>
+</h3>
+<div class="callout-content">
+<p>Can you figure out a way to find the size of these two databases? How
+does it affect the time to retrieve information from them? Is it worth
+thinking about it?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7">Show me the solution</h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div class="accordion-body">
+<p>You can look at the size of the databases by using
+<code>blastdbcmd</code> and the flag <code>-info</code>. To see how much
+time it takes to retrieve that single sequence from either database, use
+the command <code>time</code> in front of the command:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-db</span> landmark <span class="at">-info</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-db</span> nr <span class="at">-info</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="bu">time</span> blastdbcmd <span class="at">-db</span> landmark <span class="at">-entry</span> WP_000263098 <span class="op">&gt;</span> /dev/null</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="bu">time</span> blastdbcmd <span class="at">-db</span> nr <span class="at">-entry</span> WP_000263098 <span class="op">&gt;</span> /dev/null</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Database: Landmark database for SmartBLAST
+	403,974 sequences; 229,101,880 total residues
+
+Date: Oct 17, 2023  5:37 PM	Longest sequence: 35,991 residues
+
+[...]
+
+Database: All non-redundant GenBank CDS translations+PDB+SwissProt+PIR+PRF excluding environmental samples from WGS projects
+	721,441,320 sequences; 277,730,601,621 total residues
+
+Date: Feb 25, 2024  2:57 AM	Longest sequence: 98,182 residues
+
+[...]
+real	0m1.369s     # for landmark
+[...]
+real	0m10.059s.   # for nr
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="task-1-3-finding-homologs-to-rpob-with-blast">Task 1.3: Finding homologs to RpoB with <code>BLAST</code>
+<a class="anchor" aria-label="anchor" href="#task-1-3-finding-homologs-to-rpob-with-blast"></a></h3>
+<p>Now we have a query to start our search. Check that the file is
+present (<code>ls</code>) and that it looks like a <code>FASTA</code>
+file (<code>less</code>).</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>&gt;WP_000263098.1 unnamed protein product [Escherichia coli] &gt;NP_312937.1 RNA polymerase beta subunit [Escherichia coli O157:H7 str. Sakai]
+MVYSYTEKKRIRKDFGKRPQVLDVPYLLSIQLDSFQKFIEQDPEGQYGLEAAFRSVFPIQSYSGNSELQYVSYRLGEPVF</code></pre>
+</div>
+<p>The file header might look slightly different, depending on how you
+obtained it. Now use <code>blastp</code> to find homologs of the RpoB
+protein. Use the help for <code>blastp</code> to explore the options you
+need to set.</p>
+<div id="challenge-1.3.1-use-blastp-to-find-homologs-in-the-landmark-database" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1.3.1-use-blastp-to-find-homologs-in-the-landmark-database" class="callout-inner">
+<h3 class="callout-title">Challenge 1.3.1: Use<code>blastp</code>to
+find homologs in the landmark database<a class="anchor" aria-label="anchor" href="#challenge-1.3.1-use-blastp-to-find-homologs-in-the-landmark-database"></a>
+</h3>
+<div class="callout-content">
+<p>The path to the databases is already set correctly by the
+<code>modules blast_databases</code> command. See
+<code>echo $BLASTDB</code> to display it. Put the results into a file
+called <code>rpoB_landmark.blast</code></p>
+</div>
+</div>
+</div>
+<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
+  <h4 class="accordion-header" id="headingSolution8">Show me the solution</h4>
+</button>
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div class="accordion-body">
+<p>blastp -db landmark -query rpoB_ecoli.fasta &gt;
+rpoB_landmark.blast</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
+  <h4 class="accordion-header" id="headingHint3">Give me a hint</h4>
+</button>
+<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
+<div class="accordion-body">
+<p>Use the following command to find options. Explore
+<code>-database</code></p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-help</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Explore the results of the <code>blastp</code> command by displaying
+the file in which you put the output of <code>blastp</code>. In
+particular look at the E-values: do all hits look like true homologs?
+How can you change that?</p>
+<div id="challenge-1.3.2-use-blastp-to-find-better-homologs" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1.3.2-use-blastp-to-find-better-homologs" class="callout-inner">
+<h3 class="callout-title">Challenge 1.3.2: Use<code>blastp</code>to
+find better homologs<a class="anchor" aria-label="anchor" href="#challenge-1.3.2-use-blastp-to-find-better-homologs"></a>
+</h3>
+<div class="callout-content">
+<p>Find the right option to change the E-value threshold to include
+hits. Try to rerun the <code>blastp</code> search with a more reasonable
+value than the default (10).</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
+  <h4 class="accordion-header" id="headingSolution9">Show me the solution</h4>
+</button>
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-db</span> landmark <span class="at">-query</span> rpoB_ecoli.fasta <span class="at">-evalue</span> 1e-6 <span class="op">&gt;</span> rpoB_landmark.blast</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionHint4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
+  <h4 class="accordion-header" id="headingHint4">Give me a hint</h4>
+</button>
+<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
+<div class="accordion-body">
+<p>As a rule of thumb, hits that have a E-value &lt; 1e-6 are <em>bona
+fide</em> homologs. Look at the <code>-evalue</code> option.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Explore the results again. Is it better?</p>
+<p>The default format of the <code>blast</code> output is
+“human-friendly”, something that resembles the output that is created on
+the NCBI website. To produce an output that is even closer to NCBI’s
+output, use the <code>-html</code> option.</p>
+<p>The default format is fine for visual inspection, but not very
+convenient for computers to read. For example, in some cases you might
+want to perform data analysis on the output, e.g. to sort the results
+further or to compare the output of different runs. In that case, a
+tabular-like output is to prefer. The main option is
+<code>-outfmt</code>, and setting it to <code>6</code> will produce such
+a tabular output. The columns can be further specified, see the
+manual.</p>
+<div id="challenge-1.3.3-explore-the-output-format-of-blast" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-1.3.3-explore-the-output-format-of-blast" class="callout-inner">
+<h3 class="callout-title">Challenge 1.3.3: Explore the output format of<code>BLAST</code><a class="anchor" aria-label="anchor" href="#challenge-1.3.3-explore-the-output-format-of-blast"></a>
+</h3>
+<div class="callout-content">
+<p>Play with the different options for outfmt, the different formats and
+how to customize the tabular formats (6, 7 and 10).</p>
+<p>Finally, produce a standard tabular output for the same run as above
+and put the result into a file called <code>rpoB_landmark</code>.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution10" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
+  <h4 class="accordion-header" id="headingSolution10">Show me the solution</h4>
+</button>
+<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-db</span> landmark <span class="at">-query</span> rpoB_ecoli.fasta <span class="at">-evalue</span> 1e-6 <span class="at">-outfmt</span> 6 <span class="op">&gt;</span> rpoB_landmark.tab</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="task-1-4-extract-the-sequences">Task 1.4: Extract the sequences<a class="anchor" aria-label="anchor" href="#task-1-4-extract-the-sequences"></a></h3>
+</div>
+</section><section id="exercise-2-using-psi-blast-to-retrieve-distant-homologs-of-proteins"><h2 class="section-heading">Exercise 2: Using PSI-BLAST to retrieve distant homologs of
+proteins<a class="anchor" aria-label="anchor" href="#exercise-2-using-psi-blast-to-retrieve-distant-homologs-of-proteins"></a>
+</h2>
+<hr class="half-width"><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -437,14 +868,7 @@ this:</p>
 <h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="#keypoints1"></a>
 </h3>
 <div class="callout-content">
-<ul><li>Use <code>.md</code> files for episodes when you want static
-content</li>
-<li>Use <code>.Rmd</code> files for episodes when you need to generate
-output</li>
-<li>Run <code>sandpaper::check_lesson()</code> to identify any issues
-with your lesson</li>
-<li>Run <code>sandpaper::build_lesson()</code> to preview your lesson
-locally</li>
+<ul><li>BLAST is a blast!</li>
 </ul></div>
 </div>
 </div>
@@ -510,8 +934,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/blast.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/blast.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2024-03-15",
-  "datePublished": "2024-03-19"
+  "dateModified": "2024-03-21",
+  "datePublished": "2024-03-21"
 }
 
   </script><script>

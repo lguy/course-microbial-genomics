@@ -175,13 +175,9 @@
         
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#setup">Setup</a></li>
-<li><a href="#upgma-based-tree">UPGMA-based tree</a></li>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#neighbor-joining">Neighbor-joining</a></li>
-<li><a href="#maximum-likelihood">Maximum likelihood</a></li>
-<li><a href="#bootstraps">Bootstraps</a></li>
-<li><a href="#genetic-drift">Genetic drift</a></li>
+        <ul><li><a href="#exercise-1-paper-and-pen-phylogenetic-tree">Exercise 1: Paper-and-pen phylogenetic tree</a></li>
+<li><a href="#exercise-2-maximum-likelihood-tree">Exercise 2: maximum-likelihood tree</a></li>
+<li><a href="#exercise-3-genetic-drift">Exercise 3: Genetic drift</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
         
@@ -290,7 +286,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Phylogenetics</h1>
-        <p>Last updated on 2024-03-15 |
+        <p>Last updated on 2024-03-21 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/phylogenetics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -333,9 +329,11 @@ maximum-likelihood.</li>
 </div>
 </div>
 </div>
-<section id="setup"><h2 class="section-heading">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+<section id="exercise-1-paper-and-pen-phylogenetic-tree"><h2 class="section-heading">Exercise 1: Paper-and-pen phylogenetic tree<a class="anchor" aria-label="anchor" href="#exercise-1-paper-and-pen-phylogenetic-tree"></a>
 </h2>
-<hr class="half-width"><p>The exercise is done for a large part with pen and paper, and then a
+<hr class="half-width"><div class="section level3">
+<h3 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a></h3>
+<p>The exercise is done for a large part with pen and paper, and then a
 demonstration in R. We’ll also use the R package <a href="https://emmanuelparadis.github.io/" class="external-link"><code>ape</code></a> , which
 you should install if it’s not present on your setup:</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -351,9 +349,10 @@ you should install if it’s not present on your setup:</p>
 <pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">library</span><span class="op">(</span><span class="va">ape</span><span class="op">)</span></span></code></pre>
 </div>
-</section><section id="upgma-based-tree"><h2 class="section-heading">UPGMA-based tree<a class="anchor" aria-label="anchor" href="#upgma-based-tree"></a>
-</h2>
-<hr class="half-width"><p>Load the tree in fasta format, reading from a <code>temp</code>
+</div>
+<div class="section level3">
+<h3 id="upgma-based-tree">UPGMA-based tree<a class="anchor" aria-label="anchor" href="#upgma-based-tree"></a></h3>
+<p>Load the tree in fasta format, reading from a <code>temp</code>
 file</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -649,16 +648,20 @@ D 3 4 5</code></pre>
 </div>
 </div>
 </div>
-</section><section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</div>
+</section><section id="exercise-2-maximum-likelihood-tree"><h2 class="section-heading">Exercise 2: maximum-likelihood tree<a class="anchor" aria-label="anchor" href="#exercise-2-maximum-likelihood-tree"></a>
 </h2>
-<hr class="half-width"><p>In the previous episode, we inferred a simple phylogenetic tree using
+<hr class="half-width"><div class="section level3">
+<h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h3>
+<p>In the previous episode, we inferred a simple phylogenetic tree using
 UPGMA, without correcting the distance matrix for multiple
 substitutions. UPGMA has many shortcomings, and gets worse as distance
 increases. Here we’ll test Neighbor-Joining, which is also a
 distance-based, and a maximum-likelihood based approach with <a href="http://www.iqtree.org/" class="external-link">IQ-TREE</a>.</p>
-</section><section id="neighbor-joining"><h2 class="section-heading">Neighbor-joining<a class="anchor" aria-label="anchor" href="#neighbor-joining"></a>
-</h2>
-<hr class="half-width"><p>The principle of <a href="https://en.wikipedia.org/wiki/Neighbor_joining" class="external-link">Neighbor-joining
+</div>
+<div class="section level3">
+<h3 id="neighbor-joining">Neighbor-joining<a class="anchor" aria-label="anchor" href="#neighbor-joining"></a></h3>
+<p>The principle of <a href="https://en.wikipedia.org/wiki/Neighbor_joining" class="external-link">Neighbor-joining
 method</a> (NJ) is to start from a star-like tree, find the two branches
 that, if joined, minimize the total tree length, join then, and repeat
 with the joined branches and the rest of the branches.</p>
@@ -739,9 +742,10 @@ with what you know of the tree of life? Any weird results?</p>
 </div>
 <p>Do you see any differences between the two trees? What can you make
 out of it?</p>
-</section><section id="maximum-likelihood"><h2 class="section-heading">Maximum likelihood<a class="anchor" aria-label="anchor" href="#maximum-likelihood"></a>
-</h2>
-<hr class="half-width"><p>We will now use IQ-TREE to infer a maximum-likelihood tree of the
+</div>
+<div class="section level3">
+<h3 id="maximum-likelihood">Maximum likelihood<a class="anchor" aria-label="anchor" href="#maximum-likelihood"></a></h3>
+<p>We will now use IQ-TREE to infer a maximum-likelihood tree of the
 RpoB dataset we aligned with <code>mafft</code> previously.</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -820,9 +824,10 @@ Seaview? How?</p>
 </div>
 </div>
 </div>
-</section><section id="bootstraps"><h2 class="section-heading">Bootstraps<a class="anchor" aria-label="anchor" href="#bootstraps"></a>
-</h2>
-<hr class="half-width"><p>We have inferred four trees: * Two based on the alignment generated
+</div>
+<div class="section level3">
+<h3 id="bootstraps">Bootstraps<a class="anchor" aria-label="anchor" href="#bootstraps"></a></h3>
+<p>We have inferred four trees: * Two based on the alignment generated
 from the E-INS-i algorithm, two from the FFT-NS. * Two inferred with the
 BioNJ algorithm and two with the ML algorithm (IQ-Tree)</p>
 <p>Along the way, we’ve generated bootstraps for all our trees. Now show
@@ -891,7 +896,8 @@ very accurate</li>
 </ul></div>
 </div>
 </div>
-</section><section id="genetic-drift"><h2 class="section-heading">Genetic drift<a class="anchor" aria-label="anchor" href="#genetic-drift"></a>
+</div>
+</section><section id="exercise-3-genetic-drift"><h2 class="section-heading">Exercise 3: Genetic drift<a class="anchor" aria-label="anchor" href="#exercise-3-genetic-drift"></a>
 </h2>
 <hr class="half-width"><p>As a practical way to understand genetic drift, let’s play with
 population size, selection coefficients, number of generations, etc.</p>
@@ -1230,8 +1236,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/phylogenetics.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/phylogenetics.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2024-03-15",
-  "datePublished": "2024-03-19"
+  "dateModified": "2024-03-21",
+  "datePublished": "2024-03-21"
 }
 
   </script><script>
