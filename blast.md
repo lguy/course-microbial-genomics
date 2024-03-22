@@ -36,7 +36,7 @@ Explore the options of BLAST
 Use psi-blast with a pattern
 
 
-module load bioinfo-tools blast blast_databases
+module load bioinfo-tools blast
 blastp -db landmark -query rpoB_ecoli.fasta
 
 :::::::::::::::
@@ -53,13 +53,13 @@ The whole exercise is based on RpoB, the [&Beta;-subunit of the bacterial RNA po
 
 ### Resources at UPPMAX
 
-`BLAST` is available at UPPMAX. To load the `blast` module, you will need to load the `bioinfo-tools` module first. To use the standard databases that NCBI maintains, use the `blast_databases` module. All three can be loaded with the same command: 
+`BLAST` is available at UPPMAX. To load the `blast` module, you will need to load the `bioinfo-tools` module first. The `blast` module also loads the `blast_databases` module, to be able to use the standard databases that NCBI maintains. 
 
 ```bash
-module load bioinfo-tools blast blast_databases
+module load bioinfo-tools blast
 ```
 
-Databases available at UPPMAX are described here: https://www.uppmax.uu.se/resources/databases/blast-databases/. By using the `blast_databases` module, you don't need to specify where the databases are located on the file system. In detail, it sets the `BLASTDB` variable to the right folder. You can see it by typing `echo $BLASTDB` in the terminal.   
+Databases available at UPPMAX are described here: https://www.uppmax.uu.se/resources/databases/blast-databases/. The `blast_databases` module implies that you don't need to specify where the databases are located on the file system. In detail, it sets the `BLASTDB` variable to the right folder. You can see it by typing `echo $BLASTDB` in the terminal.   
 
 Gene and protein records are usually associated with a `taxid`, to describe what organisms they come from. This can be very useful to limit the search to a certain taxon, or to exclude another taxon. E.g. if you want to investigate whether a certain gene has been transferred from bacteria to archaea: you would search for that specific by excluding all bacteria and eukaryotes. 
 
@@ -146,7 +146,7 @@ The sequence is located on your computer, and you need to transfer it to your co
 
 ## Challenge 1.2.1: Use `scp`
 
-`scp`, secure file copy, is a tool to copy files via SSH, the same protocol you use to login to UPPMAX. You can use it with the following syntax: 
+`scp`, secure file copy, is a tool to copy files via SSH, the same protocol you use to login to UPPMAX. You can use it *on your computer* with the following syntax: 
 
 ```bash
 scp <file to copy> <username>@<server>:<remote file location>
@@ -323,22 +323,288 @@ The default format is fine for visual inspection, but not very convenient for co
 
 Play with the different options for outfmt, the different formats and how to customize the tabular formats (6, 7 and 10).
 
-Finally, produce a standard tabular output for the same run as above and put the result into a file called `rpoB_landmark`.
+Finally, produce a standard tabular output for the same run as above and put the result into a file called `rpoB_landmark.tab`. This file can then downloaded to your own computer and opened with `R` or with Excel. 
+
+Note that the query sometimes yields several hits in the same query protein. This is caused by the protein being long and having its different domains being separated by less conserved domains. 
 
 ::: solution
+
+`blastp` command:
 
 ```bash
 blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_landmark.tab
 ```
- 
+
+To import the file to your computer, to the current directory, use the same `scp` program as above. This should be run on your own computer, not from UPPMAX.
+
+```bash
+scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast/rpoB_landmark.tab .
+```
+
 ::::::::::::
 
 ::::::::::::::::
 
-### Task 1.4: Extract the sequences
+### Task 1.4: Use a larger database
+
+So far you have used the `landmark` database, which is tiny. Now, use a different, larger database, to gather more results from a broader set of bacteria. Run a `blastp` again. How many significant hits do you find in these?
+
+:::::: challenge
+
+## Challenge 1.4.1: Larger database
+
+::: solution
+
+`refseq_select_prot` and `refseq_protein` are good candidates. The former is smaller than the latter. Note that these two runs will take time, so run only the one to `refseq_select_prot`
+
+```bash
+blastp -db refseq_select_prot -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_refseq_select.tab
+```
+
+Now count the rows to have the number of hits
+```bash
+wc -l rpoB_refseq_select.tab
+```
+
+```output
+500 rpoB_refseq_select.tab
+```
+
+You have actually hit the maximum number of aligned sequences to keep by default (500). You could change that by using the `-max_target_seqs` option and setting it to a larger number. 
+ 
+::::::::::::
+
+::: hint
+
+The list of locally available databases is listed here: 
+https://www.uppmax.uu.se/resources/databases/blast-databases/ 
+
+::::::::
+
+::::::::::::::::
+
+
+### Task 1.5: Extract the sequences from the database
+
+You found hits, i.e. proteins that show similarity with the query protein. To prepare for the next steps (multiple sequence alignment and building trees), you will need to retrieve the actual proteins and put them in a `FASTA` file. The simplest way is to directly extract them from the database, using the same tool (`blastdbcmd`) as above. You will first need to extract a list of the accession numbers from the blast results. 
+
+:::::: challenge
+
+## Challenge 1.5.1: Extract the sequences with `blastdbcmd`
+
+Use `blastdbcmd` to retrieve the accession ids from the `landmark` database. To prepare the list of proteins to extract, `cut` the blast results to keep the accession number of the hits. As you noticed above, there are multiple hits per protein and one hit per line, resulting in each subject protein being possibly present several times. You will need to produce a non-redundant list of ids.
+
+::: solution
+
+The second column of the default tabular output provides the accession id. It needs to be `sort`ed and `uniq`-ed 
+
+```bash
+cut -f2 rpoB_landmark.tab | sort | uniq > rpoB_landmark_ids 
+blastdbcmd -db landmark -entry_batch rpoB_landmark_ids > rpoB_homologs.fasta
+```
+ 
+::::::::::::
+
+::: hint
+
+```bash
+blastdbcmd -help
+man uniq
+man sort
+```
+
+::::::::
+
+## Challenge 1.5.2: Count the sequences
+
+Can you count how many sequences were included in the fasta file? Use `grep` and your knowledge of the `FASTA` format.
+
+::: solution
+
+You can take a look at the sequences that were included in the blast:
+
+```bash
+grep ">" rpoB_homologs.fasta | less
+```
+
+And then count them by piping the result to `wc -l` instead.
+
+```bash
+grep ">" rpoB_homologs.fasta | wc -l 
+```
+
+There should be around 70 sequences. 
+
+```output
+70
+```
+
+For the upcoming episode on multiple sequence alignment, you will use a subset of these. 
+ 
+::::::::::::
+
+::: hint
+
+```bash
+man grep
+man wc
+```
+
+::::::::
+
+::::::::::::::::
 
 
 ## Exercise 2: Using PSI-BLAST to retrieve distant homologs of proteins
+
+In this exercise, you will use another flavor of `BLAST` to retrieve distant homologs of a protein. As an example, we will use the protein RavC, present in the genomes of  *Legionella* bacteria. This protein is an effector protein, injected by *Legionella* into the cytoplasm of their host (protists). The exact function is unknown, but it is presumably important, as it is conserved throughout the whole order *Legionellales*. Many effectors found in this group are derived from eukaryotic proteins, and this is what you will test here: does RavC have a homolog in eukarotes?
+
+The strategy is to use `psiblast`, which uses - instead of a single query - a matrix of amino-acid frequencies as a query. `psiblast` is an iterative program: you generally start with one sequence, gather *bona fide* homologs, use the profile of these to query the database again, gather new homologs, recalculate the profile, then re-query the database, etc. The search may converge after a certain number of iterations, i.e. there no more new homologs to find with the latest profile. 
+
+In this case, you will use a slightly different strategy: you will start with one sequence, align it to `refseq_select_prot` but only to sequences in the order *Legionellales*, using the `taxids` options that limits the taxonomic scope of the search. You will save the profile (PSSM) generated by the first `psiblast` round and reuse this to then query the whole database, with three iterations. 
+
+### Task 2.1: Extract RavC from a database
+
+As above, you will extract the sequence of RavC from a database. This time you will use `refseq_select_prot`, since there are no *Legionella* in `landmark`. The accession number of RavC that you will use is AAU26214.
+
+:::::: challenge
+
+## Challenge 2.1.1: Extract RavC
+
+Use `blastdbcmd` to retrieve sequence AAU26214 from the `nr` database and put it into a file called `ravC_LP.fasta`.
+
+::: solution
+
+```bash
+blastdbcmd -db nr -entry AAU26214 > ravC_LP.fasta
+```
+
+::::::::::::
+
+::::::::::::::::
+
+### Task 2.2: Align RavC to sequences belonging to *Legionellales*
+
+That task is a bit complex, so let's break it down in several pieces. You will:
+
+1. align the RavC sequence to the `refseq_select_prot` database, using `psiblast`, and put the result into the file `ravC_Leg.psiblast`. 
+1. save the PSSM (the amino-acid profile built by psiblast) after the last round, both in its "native" and in text format.
+1. filter hits so that only hits with E-value < 1e-6 are shown
+1. filter hits so that only hits with E-value < 1e-10 are included in the PSSM
+1. filter hits so that only hits belonging to the order *Legionelalles* are included
+
+:::::: challenge
+
+## Challenge 2.2.1: Psiblast 
+
+Build the command, using the `psiblast` command, the query you extracted above and the `refseq_select_prot` database. Don't run it as yet, as this will run for a while. 
+ 
+::: solution
+
+That is the base of the command:
+
+```bash
+psiblast -query ravC_LP.fasta -db refseq_select_prot > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: hint
+
+```bash
+psiblast -help
+```
+::::::::
+
+### Challenge 2.2.2: Saving the PSSM
+
+Now add the options to save the PSSM after the last round, and save the PSSM both as binary and ascii form. Add these options to the command above, but you will only run it when it is finished.
+
+::: solution
+
+```bash
+psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+### Challenge 2.2.3: Thresholds
+
+Now add the E-value thresholds. You want to display hits with E-value < 1e-6, but only include those with E-value < 1e-10. Add the options to the rest.
+
+::: solution
+
+```bash
+psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt -inclusion_ethresh 1e-10 -evalue 1e-6 > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+
+### Challenge 2.2.4: Taxonomic range
+
+Now limit the results to the order *Legionellales*. Find the taxid of this group on the NCBI website.
+
+Note: this feature has been upgraded in the latest version of `BLAST` (2.15.0+). It is now possible to include all descendants of a single taxid, using only that taxid. In previous versions of `BLAST`, you had to include all descending taxids using a script. 
+
+::: hint
+
+https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=118969&lvl=3&lin=f&keep=1&srchmode=1&unlock 
+
+::::::::
+
+::: solution
+
+```bash
+psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt -inclusion_ethresh 1e-10 -evalue 1e-6 -taxids 118969 > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+### Challenge 2.2.5: Running the command and examining the results
+
+Run now the full command as above. When it's done, look at the resulting files. There should be three of them. Take some time to explore these three files, especially the alignments resulting from the `psiblast`.
+
+
+::::::::::::::::
+
+
+### Task 2.3: Align the PSSM to the whole database
+
+You will now take the resulting PSSM and use that as a query to perform a `psiblast` against the full `refseq_select_prot` database. You want to perform max 10 iterations (the search will stop it converges before the tenth iteration), and increase the max number of target sequences to gather to 1000 per iteration. You also want to change the output to a tabular form with comments and add more columns to get into more details.
+
+:::::: challenge
+
+## Challenge 2.3.1: Align the PSSM, set E-value thresholds, iteration and max sequences
+
+Build the command as above, but don't set the `-query` option, use the option that allows to input a PSSM instead. Set the E-value thresholds as above, the number of iterations to 10 and the maximum number of sequences to gather to 1000 (per round). Direct the result to the file `ravC_all.psiblast`.
+
+
+::: solution
+
+psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 > ravC_all.psiblast
+
+
+::::::::::::
+
+## Challenge 2.3.2: Set the output format
+
+You want to have a tabular result format with comments, to help you understand the output. You also want to use the standard columns but add the query coverage per subject, the scientific and common name of the subject sequence, as well as which super-kingdom (or domain) it belongs to.
+
+
+::: solution
+
+psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 -outfmt "7 qaccver saccver pident length mismatch gapopen qstart qend sstart send qcovs evalue bitscore ssciname scomname sskingdom" > ravC_all.psiblast
+
+
+::::::::::::
+
+## Challenge 2.3.3: Run the command and examine the results
+
+This will take a while to run, maybe 30 minutes. When done, open the result file and examine it. Did you find hits in the eukaryotes? 
+
+::::::::::::::::
+
 
 
 ::: instructors
