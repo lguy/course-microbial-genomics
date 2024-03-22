@@ -514,7 +514,6 @@ psiblast -query ravC_LP.fasta -db refseq_select_prot > ravC_Leg.psiblast
 ```bash
 psiblast -help
 ```
-
 ::::::::
 
 ### Challenge 2.2.2: Saving the PSSM
@@ -592,7 +591,6 @@ psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 
 
 You want to have a tabular result format with comments, to help you understand the output. You also want to use the standard columns but add the query coverage per subject, the scientific and common name of the subject sequence, as well as which super-kingdom (or domain) it belongs to.
 
-::::::::::::::::
 
 ::: solution
 
