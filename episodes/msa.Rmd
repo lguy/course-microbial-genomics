@@ -229,7 +229,7 @@ If you have time over, spend it exploring the different options of Seaview/Align
 
 Often, some regions of the alignment don't align properly, either because they contain low complexity segments (hinges in proteins) or evolved through repeated insertions/deletions, which alignment program cannot handle properly. It is thus good practice to remove (trim) these regions, as they are likely to worsen the quality of the subsequent phylogenetic trees. On the other hand, trimming too much of the alignment removes also potentially valuable information. There is thus a balance to be found. 
 
-In this part, you will use two different alignemnt trimmers, (`TrimAl`)[http://trimal.cgenomics.org/] and (`ClipKIT`)[https://jlsteenwyk.com/ClipKIT/]. 
+In this part, you will use two different alignemnt trimmers, [`TrimAl`](http://trimal.cgenomics.org/) and [`ClipKIT`](https://jlsteenwyk.com/ClipKIT/). 
 
 ### Trimming with TrimAl
 
