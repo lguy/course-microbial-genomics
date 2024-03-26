@@ -18,7 +18,7 @@ exercises: 240
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::: instructors
+::: instructor
 
 Core: 
 Find the protein sequence for RpoB in E. coli
@@ -607,7 +607,7 @@ This will take a while to run, maybe 30 minutes. When done, open the result file
 
 
 
-::: instructors
+::: instructor
 
 Sometimes in future we could develop a new exercise, to retrieve 16S sequences within a specific taxon. But so far this episode is long enough, I believe, so I let it be. 
 
