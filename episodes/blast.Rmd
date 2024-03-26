@@ -96,7 +96,7 @@ Access an interactive session that is booked for us.
 ::: solution
 
 ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 4:00:00 --reservation=uppmax2023-2-10_x
+interactive -A uppmax2024-2-10 -M snowy -t 4:00:00 
 ```
 
 ::::::::::::

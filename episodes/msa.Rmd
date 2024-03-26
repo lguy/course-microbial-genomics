@@ -20,34 +20,55 @@ exercises: 240
 
 ## Introduction
 
-In this short episode, we are exploring multiple sequence alignment (MSA). We are going to use [`mafft`](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) to align homologs of [RpoB](https://en.wikipedia.org/wiki/RpoB), the β subunit of the bacterial RNA polymerase. It is a long, multi-domain protein, suitable for showing issues related to MSA. 
+In this episode, we are exploring multiple sequence alignment (MSA). We are going to use [`mafft`](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) to align homologs of [RpoB](https://en.wikipedia.org/wiki/RpoB), the β subunit of the bacterial RNA polymerase. It is a long, multi-domain protein, suitable for showing issues related to MSA. 
 
-First, go to your home folder and create a phylogenetics folder
+You will also 
+
+But first, go to your own folder and create a phylogenetics subfolder
+
+## Task 1: Use different flavors of `MAFFT` and compare the results
+
+Start by finding the data, which is a [fasta file](episodes/files/rpoB.fasta) containing 19 sequences of RpoB, gathered by aligning RpoB from *E. coli* to a very small database present at NCBI, the [landmark](https://blast.ncbi.nlm.nih.gov/smartblast/smartBlast.cgi?CMD=Web&PAGE_TYPE=BlastDocs) database. These sequences are a subset of the sequences gathered in the previous exercise on `BLAST`.
+
+The file is available in `/proj/g2020004/nobackup/3MK013/data/`.  
+
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Exercise
+## Challenge 1.1: prepare the terrain
 
-Go to your home, use the `mkdir` command to make a `phylogenetics` subfolder, and move into it:  
+Go to your own folder, use the `mkdir` command to make a `phylogenetics` subfolder, and move into it. Also, start the `interactive` session.
 
 :::::::::::::::  solution
 
-## Solution
+Remember to replace `<username>` by your name.
 
 ```bash
-$ cd ~
+$ interactive -A uppmax2024-2-10 -M snowy -t 4:00:00
+$ cd /proj/g2020004/nobackup/3MK013/<username>
 $ mkdir phylogenetics
-
- 
+$ cd phylogenetics
 ```
 
 :::::::::::::::::::::::::
 
+## Challenge 1.2: copy the file
+
+Copy the file to your newly created `~/phylogenetics/` folder.
+
+:::::::::::::::  solution
+
+```bash
+$ cp ../../data/rpoB.fasta .
+```
+
+:::::::::::::::::::::::::
+
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Second, download a [fasta file](episodes/files/rpoB.fasta) containing 19 sequences of RpoB, gathered by aligning RpoB from *E. coli* to a very small database present at NCBI, the [landmark](https://blast.ncbi.nlm.nih.gov/smartblast/smartBlast.cgi?CMD=Web&PAGE_TYPE=BlastDocs) database. Move that file to your newly created `~/phylogenetics/` folder.
 
-## Renaming sequences
+### Renaming sequences
 
 Look at the accession ids of the fasta sequences: they are not very informative: 
 
@@ -64,10 +85,23 @@ $ grep '>' rpoB.fasta | head -n 5
 ```
 
 Keep the taxonomic name following the accession id, separated by `_`, using a bit of `sed` magic. Save the resulting file for later use, and show the headers again. 
+
 ```bash
 $ sed "/^>/ s/>\([^ ]*\) \([^\[]*\)\[\(.*\)\]/>\\3_\\1/"  rpoB.fasta | sed "s/ /_/g" > rpoB_renamed.fasta
 $ grep '>' rpoB_renamed.fasta | head -n 5
 ```
+
+::: discussion
+
+## Nerd alert: dissecting the `sed` magic
+
+This is optional reading. 
+
+The [`sed`](https://www.gnu.org/software/sed/manual/sed.html) command matches (and possibly substitutes) strings (chains of characters). In that case, the goal is to simplify the header by putting the taxonomic group first but keeping it informative enough by adding the accession number. The strategy is to match what is between the `>` and the first space, then what is between square parentheses, and put them back, separated by an underscore. 
+
+The `sed` command first matches only lines that start with a `>` (`/^>/`). It then substitutes (general pattern `s/<something>/<something else>/`) a text with another one. The first part is to match the accession id, between (escaped) brackets, which comes after the `>` at the beginning of the line. This is expressed as `>\([^ ]*\) `: match any number of non-space characters and put it in memory. Then, the description is matched by `\([^\[]*\)`, any number of characters that are not an opening bracket `[`, and put into memory. Finally, the taxonomic description is matched: `\[\(.*\)\]`, that is, any number of characters between square brackets is stored into memory. The whole line is then replaced with a `>`, the third match into memory, followed by an `_` and the content of the first match into memory `>\\3_\\1`. Then, all the input is passed through sed again, to replace any space with an underscore: `s/ /_/g` and the output is stored in a different file.
+
+::::::::::::::
 
 ```output
 >Enterobacteriaceae_WP_000263098.1
@@ -79,21 +113,22 @@ $ grep '>' rpoB_renamed.fasta | head -n 5
 
 It looks better.
 
-## Alignment with progressive algorithm
+### Alignment with progressive algorithm
 
 Use `mafft` with a progressive algorithm to align the sequences. 
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-Use the FFT-NS-2 algorithm from mafft to align the renamed sequences. Also, record the time it takes for `mafft` to complete the task. 
+## Challenge 1.3: Run `mafft` with progressive algorithm
 
-Hint: type `mafft` and try tab-complete to see all versions of `mafft`.
+Use the FFT-NS-2 algorithm from `mafft` to align the renamed sequences. Also, record the time it takes for `mafft` to complete the task. 
 
-Hint: try the command `time` 
+Use the `module` command to load `bioinfo-tools` and `MAFFT`.
 
 :::::::::::::::  solution
 
 ```bash
+$ module load bioinfo-tools MAFFT
 $ time mafft-fftns rpoB_renamed.fasta > rpoB.fftns.aln
 ```
 
@@ -117,13 +152,23 @@ The last line is the output of the `time` command. It took 1.47 seconds to compl
 
 :::::::::::::::::::::::::
 
+::: hint
+
+Type `mafft` and try tab-complete to see all versions of `mafft`.
+
+Try the command `time` 
+
+::: 
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Alignment with iterative algorithm
+### Alignment with iterative algorithm
 
 Now use one of the supposedly better iterative algorithm of `mafft` to align the same sequences. Choose the [E-INS-i algorithm](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) which is suited for proteins that have highly conserved motifs interspersed with less conserved ones. 
 
 :::::::::::::::::::::::::::::::::::::::  challenge
+
+## Challenge 1.4
 
 Use the E-INS-i algorithm from mafft to align the renamed sequences. Also, record the time it takes for `mafft` to complete the task. 
 
@@ -158,22 +203,17 @@ It now took 7.54 seconds to complete this time, i.e. about 5 times slower than w
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Alignment visualization 
+### Alignment visualization 
 
-We want to compare the two alignments. Use `seaview`: 
+You will now inspect the two resulting alignment methods. There are no convenient way to do that from Uppmax, and the easiest solution is to download the alignments **on your computer** and to use either [`seaview`](https://doua.prabi.fr/software/seaview) (you will need to install it on your computer) or an online alignment viewer like [AlignmentViewer](https://alignmentviewer.org/). 
 
-```bash
-$ seaview rpoB.fftns.aln &
-$ seaview rpoB.einsi.aln &
-```
-
-Arrange the two windows on top of each other. Change the fontsize (Props -> Fontsize) to 8 to see a larger portion of the alignment. 
+Arrange the two windows on top of each other. Change the fontsize (Props -> Fontsize in Seaview) to 8 to see a larger portion of the alignment. 
 
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 Can you spot differences? Which alignment is longer?
 
-Hint: try to scroll to position 800-900.
+Hint: try to scroll to position 800-900. What do you see there? How are the blocks arranged?
 
 :::::::::::::::  solution
 
@@ -183,4 +223,16 @@ Hint: try to scroll to position 800-900.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-If you have time over, spend it exploring the different options of Seaview.
+If you have time over, spend it exploring the different options of Seaview/AlignmentViewer.
+
+## Task 2: Trim the alignment 
+
+Often, some regions of the alignment don't align properly, either because they contain low complexity segments (hinges in proteins) or evolved through repeated insertions/deletions, which alignment program cannot handle properly. It is thus good practice to remove (trim) these regions, as they are likely to worsen the quality of the subsequent phylogenetic trees. On the other hand, trimming too much of the alignment removes also potentially valuable information. There is thus a balance to be found. 
+
+In this part, you will use two different alignemnt trimmers, (`TrimAl`)[http://trimal.cgenomics.org/] and (`ClipKIT`)[https://jlsteenwyk.com/ClipKIT/]. 
+
+### Trimming with TrimAl
+
+First, look at the list of options available with `trimAl`
+
+
