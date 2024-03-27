@@ -24,10 +24,7 @@ exercises: 240
 
 ### Setup
 
-The exercise is done for a large part with pen and paper, and then a 
-demonstration in R. We'll also use the R package 
-[`ape`](https://emmanuelparadis.github.io/) , which you should
-install if it's not present on your setup:
+The exercise is done for a large part with pen and paper, and then a demonstration in R on your laptop. You can already RStudio. We'll also use the R package [`ape`](https://emmanuelparadis.github.io/) , which you should install if it's not present on your setup:
 
 ```r
 install.packages('ape')
@@ -39,6 +36,7 @@ And to load it:
 ```r
 library(ape)
 ```
+
 
 ### UPGMA-based tree
 
@@ -53,8 +51,7 @@ cat(">A", "----ATCCGCTGATCGGCTG----",
     file = FASTAfile, sep = "\n")
 aln <- read.dna(FASTAfile, format = "fasta")
 ```
-Now look at the alignment. Notice there are gaps, which we don't want in 
-this example. We also remove the non-informative (identical) columns. 
+Now look at the alignment. Notice there are gaps, which we don't want in this example. We also remove the non-informative (identical) columns. 
 
 
 ```r
@@ -82,17 +79,13 @@ B ..T...
 C .T.C..
 D T...AT
 ```
-Now we have a simple alignment as in the lecture. Dots (`.`) mean that the
-sequence is identical to the top row, which makes it easier to calculate 
-distances.
+Now we have a simple alignment as in the lecture. Dots (`.`) mean that the sequence is identical to the top row, which makes it easier to calculate distances.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ### Calculating distance "by hand"
 
-Let's use a matrix to calculate distances between sequences. We'll just count
-the number of differences between the sequences. We'll then group the two 
-closest sequences. Which are they?
+Let's use a matrix to calculate distances between sequences. We'll just count the number of differences between the sequences. We'll then group the two closest sequences. Which are they?
 
 Table: Distances between the sequences.
 
@@ -120,8 +113,7 @@ The two closest sequences are A and B.
 
 :::::::::::::::::::::::::::::::::
 
-Let's now cluster together A and B, and calculate the average distance 
-from AB to the other sequences, weighted by the size of the clusters. 
+Let's now cluster together A and B, and calculate the average distance from AB to the other sequences, weighted by the size of the clusters. 
 
 Table: Recalculated distances.
 
@@ -173,8 +165,7 @@ Table: Recalculated distances.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-The tree is reconstructed by dividing the distances equally between the two
-leaves. 
+The tree is reconstructed by dividing the distances equally between the two leaves. 
 - A-B: each 0.5.
 - AB-C: each side gets 2.5/2 = 1.25. The branch to AB is 1.25 - 0.75 = 0.75
 - ABC-D: each side gets 4/2 = 2. The branch to ABC is 2 - 0.75 - 0.5 = 0.75
@@ -187,10 +178,7 @@ Let's know do the same using bioinformatics tools.
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 We'll use `dist.dna` to 
-calculate the distances. We'll use a "N" model, that just counts the differences
-and doesn't correct or normalizes. We'll use the function `hclust` to perform
-the UPGMA method calculation. The tree is then plotted, and the branch 
-lengths plotted with `edgelabels`:
+calculate the distances. We'll use a "N" model, that just counts the differences and doesn't correct or normalizes. We'll use the function `hclust` to perform the UPGMA method calculation. The tree is then plotted, and the branch lengths plotted with `edgelabels`:
 
 :::::::::::::::::::::::: solution 
 
@@ -232,12 +220,12 @@ The principle of [Neighbor-joining method](https://en.wikipedia.org/wiki/Neighbo
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-To perform NJ on our sequences, we'll use the function inbuilt in Seaview. First (re-)open the alignment we obtained from `mafft` with the E-INS-i method. 
+To perform NJ on our sequences, we'll use the function inbuilt in Seaview. First (re-)open the alignment we obtained from `mafft` with the E-INS-i method, trimmed with ClipKIT. 
 
 :::::::::::::::::::::::: solution 
 
 ```bash
-seaview rpoB.einsi.aln &
+seaview rpoB.einsi.clipkit.aln &
 ```
 
 :::::::::::::::::::::::::::::::::
@@ -266,46 +254,63 @@ Do you see any differences between the two trees? What can you make out of it?
 
 ### Maximum likelihood
 
-We will now use IQ-TREE to infer a maximum-likelihood tree of the RpoB dataset we aligned with `mafft` previously. 
+We will now use IQ-TREE to infer a maximum-likelihood (ML) tree of the RpoB dataset we aligned with `mafft` previously. While you performed the first trees on your laptop, you will infer the ML tree on Uppmax. As usual, use the `interactive` command to gain access to compute time. Go to the `phylogentics` folder created in the MSA episode, and load the right modules.
 
-```bash
-$ iqtree -s rpoB.einsi.aln -m TEST -B 1000
+:::::: challenge
+
+Get to the right folder, require compute time and load the right modules.
+
+::: solution
+
+ ```bash
+interactive -A uppmax2024-2-10 -M snowy -t 4:00:00
+module load bioinfo-tools iqtree
+cd /proj/g2020004/nobackup/3MK013/<username>/phylogenetics
 ```
 
-Here, we tell IQ-TREE to use the alignment `rpoB.einsi.aln`, and to test among the standard substitution models which one fits best (`-m TEST`). We also tell IQ-TREE to perform 1000 ultra-fast bootstraps (`-B 1000`). We'll discuss these later.
+::::::::::::
+
+::::::::::::::::
+
+Loading the `iqtree` module resulted in:
+
+```output
+iqtree/2.2.2.6-omp-mpi: executables are prefixed with 'iqtree2'. Additional modules are required for the multi-node MPI version. See 'module help iqtree/2.2.2.6-omp-mpi'.
+```
+
+You won't be using the multi-node MPI version, so you don't need to load additional modules. But you will need to use `iqtree2` instead of the "normal" `iqtree`.
+
+Then run your first tree, on the `ClipKIT`-trimmed alignment.
+
+```bash
+$ iqtree2 -s rpoB.einsi.clipkit.aln -m TEST -B 1000
+```
+
+Here, we tell IQ-TREE to use the alignment `rpoB.einsi.clipkit.aln`, and to test among the standard substitution models which one fits best (`-m TEST`). We also tell IQ-TREE to perform 1000 ultra-fast bootstraps (`-B 1000`). We'll discuss these later.
 
 IQ-TREE is a very complete program that can do a large variety of phylogenetic analysis. To get a flavor of what it's capable of, look at its [extensive documentation](http://www.iqtree.org/doc/). 
 
 Have a look at the output files:
 
 ```bash
-ls rpoB.einsi.aln.*
+ls rpoB.einsi.clipkit.aln.*
 ```
 
 ```output
-rpoB.einsi.aln.bionj      rpoB.einsi.aln.iqtree     rpoB.einsi.aln.model.gz
-rpoB.einsi.aln.ckp.gz     rpoB.einsi.aln.log        rpoB.einsi.aln.splits.nex
-rpoB.einsi.aln.contree    rpoB.einsi.aln.mldist     rpoB.einsi.aln.treefile
+rpoB.einsi.clipkit.aln.bionj    rpoB.einsi.clipkit.aln.iqtree  rpoB.einsi.clipkit.aln.model.gz
+rpoB.einsi.clipkit.aln.ckp.gz   rpoB.einsi.clipkit.aln.log     rpoB.einsi.clipkit.aln.splits.nex
+rpoB.einsi.clipkit.aln.contree	rpoB.einsi.clipkit.aln.mldist  rpoB.einsi.clipkit.aln.treefile
 ```
 
 There are two important files:  
 * `*.iqtree` file provides a text summary of the analysis. 
 * `*.treefile` is the resulting tree in [Newick format](https://en.wikipedia.org/wiki/Newick_format). 
 
-Now display the resulting tree in FigTree. 
+To visualize the tree, open the [Beta version of phylo.io](https://beta.phylo.io/viewer/#). Click on "add a tree" and copy/paste the content of the `treefile` (use e.g. `less` or `cat` to display it) in the box. Make sure the "Newick format" is selected and click on "Done". 
 
-```bash
-$ figtree rpoB.einsi.aln.treefile &
-```
-
-A window will pop-up and ask to provide a name for branch/node labels. Use e.g. 'bootstraps'.
-
-The tree appears as unrooted. It is good practice to start by ordering the nodes and root it. Since we don't really know otherwise where the root is, we'll do a mid-point rooting to start with.
-
-In the left menu, develop the 'Trees' menu. Tick the 'Root tree' and select 'Midpoint' from the drop-down menu. Tick the 'Order nodes' box and keep the 'increasing' option selected. 
+The tree appears as unrooted. It is good practice to start by ordering the nodes and root it. There is no good way to automatically order the branches in phylo.io as of yet, but rerooting can be done by clicking on a branch and selecting "Reroot". Reroot the tree between archaea and bacteria. Now the tree makes a bit more sense. 
 
 Scrutinize the tree. Is it different from the BioNJ tree generated in Seaview? How?
-
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
@@ -314,7 +319,7 @@ Redo a ML tree from the other alignment (FFT-NS) we inferred with `mafft` and di
 :::::::::::::::::::::::: solution 
 
 ```bash
-$ iqtree -s rpoB.fftns.aln -m TEST -B 1000
+$ iqtree2 -s rpoB.fftns.aln -m TEST -B 1000
 $ figtree rpoB.fftns.aln.treefile &
 ```
 
@@ -325,12 +330,12 @@ $ figtree rpoB.fftns.aln.treefile &
 ### Bootstraps
 
 We have inferred four trees:
-* Two based on the alignment generated from the E-INS-i algorithm, two from the FFT-NS.
+* Two based on the alignment generated from the E-INS-i algorithm (trimmed by ClipKIT), two from the FFT-NS.
 * Two inferred with the BioNJ algorithm and two with the ML algorithm (IQ-Tree)
 
 Along the way, we've generated bootstraps for all our trees. Now show them on all four trees.
 * For the Seaview trees, tick the 'Br support' box
-* For the trees shown in FigTree, develop the 'Branch labels' menu, tick the corresponding box and select 'bootstraps' from the 'Display' drop-down menu.
+* For the trees shown in phylo.io, click on "Settings" > "Branch & Labels" and above the branch, click the drop-down menu and select "Data". 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
