@@ -229,10 +229,140 @@ If you have time over, spend it exploring the different options of Seaview/Align
 
 Often, some regions of the alignment don't align properly, either because they contain low complexity segments (hinges in proteins) or evolved through repeated insertions/deletions, which alignment program cannot handle properly. It is thus good practice to remove (trim) these regions, as they are likely to worsen the quality of the subsequent phylogenetic trees. On the other hand, trimming too much of the alignment removes also potentially valuable information. There is thus a balance to be found. 
 
-In this part, you will use two different alignemnt trimmers, [`TrimAl`](http://trimal.cgenomics.org/) and [`ClipKIT`](https://jlsteenwyk.com/ClipKIT/). 
+In this part, you will use two different alignment trimmers, [`TrimAl`](http://trimal.cgenomics.org/) and [`ClipKIT`](https://jlsteenwyk.com/ClipKIT/), on the results of `mafft`'s E-INS-i algorithm.
 
 ### Trimming with TrimAl
 
-First, look at the list of options available with `trimAl`
+First, load the module and look at the list of options available with `trimAl`. Then 
 
+```bash
+module load trimal
+trimal -h
+```
+
+`trimAl` offers a lot of different options. You are going to explore two different: gap threshold (`-gt`) and the heuristic method `-automated1`, which automatically decides between three automated methods, `-gappyout`, `-strict` and `-strictplus`, based on the properties of the alignment. The gap threshold methods removes columns that contain a fraction of sequences lower than the cut-off.
+
+
+For comparison purposes, you will be adding an html output.
+
+:::::: challenge
+
+## Challenge 2.1: TrimAl with gap threshold
+
+Use `trimAl` to remove positions in the alignment that have more than 40% gaps. 
+
+::: solution
+
+```bash
+trimal -in rpoB.einsi.aln -out rpoB.einsi.trimalgt.aln -gt 0.6 -htmlout rpoB.einsi.trimalgt.aln.html
+```
+
+::::::::::::
+
+::: hint
+
+The "gap threshold" is actually expressed as fraction of non-gap residues.
+
+::::::::
+
+## Challenge 2.2: TrimAl with automated trimming
+
+Use `trimAl` with the automated heuristic algorithm. 
+
+::: solution
+
+```bash
+trimal -in rpoB.einsi.aln -out rpoB.einsi.trimalauto.aln -automated1 -htmlout rpoB.einsi.trimalauto.aln.html
+```
+
+::::::::::::
+
+## Challenge 2.3: Compare the results
+
+Use `scp` to get the files (both alignments and html files) to your own laptop and visualize the results, by opening the `html` files with your browser and the alignment files with `seaview` or the viewer you used above.
+
+::: solution
+
+On your own laptop, inside the folder where you want to import the files. Replace `username` with your own username. 
+
+```bash
+scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal* .
+```
+
+On some OS it is necessary to escape the `*`. If the output says something about `no matches found`, try:
+
+```bash
+scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal\* .
+```
+
+::::::::::::
+
+::::::::::::::::
+
+### Trimming with ClipKIT
+
+[`ClipKIT`](https://jlsteenwyk.com/ClipKIT/) is one of the more recent tool to trim multiple sequence alignments. In a nutshell, it tries to preseve phylogenetically-informative sites, rather than trimming gappy regions. Although it also has multiple options and modes, you will only use the default mode, `smart-gap`.
+
+
+:::::: challenge
+
+## Challenge 2.4: Use ClipKIT
+
+To get an idea of the modes and options, look at the help of ClipKit:
+
+```bash
+clipkit -h
+```
+
+Then run ClipKIT, explicitly using the `smart-gap` mode. Compare how much ClipKIT has trimmed the original alignment compared to trimAl.
+
+::: solution
+
+```bash
+clipkit rpoB.einsi.aln -m smart-gap -l -o rpoB.einsi.clipkit.aln
+```
+
+```output
+---------------------
+| Output Statistics |
+---------------------
+Original length: 2043
+Number of sites kept: 1543
+Number of sites trimmed: 500
+Percentage of alignment trimmed: 24.474%
+
+Execution time: 0.057s
+```
+
+::::::::::::
+
+::::::::::::::::
+
+### Comparing all the results
+
+Import the data and inspect the three alignments.
+
+:::::: challenge
+
+## Challenge 2.5: Import data and compare results
+
+Use `scp` as above. 
+
+::: solution
+
+```bash
+scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.clipkit.aln .
+
+```
+
+Then use `seaview` or another viewer to visualize and compare results.
+
+::::::::::::
+
+::::::::::::::::
+
+The three alignments on top of each other look like this. Click [on this link](episodes/fig/seaview_trimal_vs_clipkit.png) to better see the figure.
+
+![](episodes/fig/seaview_trimal_vs_clipkit.png){alt='Alignments shown in seaview'}
+It is of course difficult to draw conclusions based on this figure, but can you spot some trends? What alignment is more likely to generate good results?
 
