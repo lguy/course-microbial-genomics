@@ -323,6 +323,7 @@ Then run ClipKIT, explicitly using the `smart-gap` mode. Compare how much ClipKI
 ::: solution
 
 ```bash
+module load clipkit
 clipkit rpoB.einsi.aln -m smart-gap -l -o rpoB.einsi.clipkit.aln
 ```
 
