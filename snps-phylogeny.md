@@ -47,22 +47,22 @@ ls trimmed_fastq
 First we'll create a folder to hold the results from snippy:
 
 ```bash
-$ cd ~/molepi/results
-$ mkdir snps
+cd ~/molepi/results
+mkdir snps
 ```
 
-We need to activate a separate environment to run snippy: 
+We need to load snippy: 
 
 ```bash
-$ mamba activate snippy
+module load snippy
 ```
 
 Snippy is fast but a single run still takes about 2-3 minutes. We would therefore tell snippy to run all the samples after each other. However this time we cannot use a wildcard to do so. We would instead run all the samples in a loop. The "real" loop is commented out, and we use one that runs only the sample we've analyzed so far.  
 
 ```bash
-$ cd ../data/trimmed_fastq/
-$ #for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
-$ for sample in ERR029206
+cd ../data/trimmed_fastq/
+#for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+for sample in ERR029206
 do
 snippy --ram 1 --outdir ../../results/snps/"${sample}" --ref ../GCF_000195955.2_ASM19595v2_genomic.fna --R1 "${sample}"_1.fastq.gz_trim.fastq --R2 "${sample}"_2.fastq.gz_trim.fastq
 done
@@ -71,7 +71,7 @@ done
 Here, we provide snippy with an output folder (`--outdir`), the location of the reference genome (`--ref`), and the trimmed read files for each end of the pair (`--R1` and `--R2`). We also indicate that snippy should use 1 Gb of memory (`--ram 1`, very specific issue to this VM).
 
 ```bash
-$ head -n10 ~/molepi/results/snps/ERR029206/snps.tab 
+head -n10 ~/molepi/results/snps/ERR029206/snps.tab 
 ```
 
 ```output
@@ -135,7 +135,7 @@ Hint: The `.txt` file in the snippy output contains summary information:
 ## Solution
 
 ```bash
-$ cat ~/molepi/results/snps/ERR029207/snps.txt
+cat ~/molepi/results/snps/ERR029207/snps.txt
 ```
 
 ```output
@@ -169,8 +169,8 @@ In this second part, after identifying them, snippy will concatenate the core SN
 The `--ref` argument provides the reference genome. Each folder containing the result of the previous step of `snippy` is then added to the command line.
 
 ```bash
-$ cd ~/molepi/results/snps/
-$ snippy-core --ref=../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+cd ~/molepi/results/snps/
+snippy-core --ref=../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 ```
 
 The last few lines look like this:
@@ -217,11 +217,6 @@ What is in core.aln?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-Let's deactivate the specific snippy `env` before we move on:
-
-```bash
-$ mamba deactivate snippy
-```
 
 
 ## Phylogenetic tree
@@ -231,7 +226,8 @@ Phylogenetic trees have been discussed during the lectures. We will here establi
 In our case, we want IQ-TREE to automatically select the best substitution model. IQ-TREE does that by testing many (among a very large collection) substitution models. We also have SNP data, which by definition do not contain constant (invariable) sites. We thus input the alignment with the `-s` option and the model with `-m MFP+ASC`. `MFP` will tell IQ-TREE to test a range of models, and `ASC` will correct for the fact that there is no constant sites. 
 
 ```bash
-$ iqtree -s core.aln -m MFP+ASC
+module load iqtree
+iqtree2 -s core.aln -m MFP+ASC
 ```
 
 ```output
@@ -251,18 +247,18 @@ With this small data set, IQ-TREE finishes very quickly. Let's put the resulting
 and let's rename our resulting tree.
 
 ```bash
-$ cd ~/molepi/results
-$ mkdir tree
-$ mv snps/core.aln.* tree
+cd ~/molepi/results
+mkdir tree
+mv snps/core.aln.* tree
 ```
 
 Let's inspect our tree, and give it another extension to make it clear it is a newick file.
 
 ```bash
-$ cd ~/molepi/results/
-$ cd tree
-$ mv core.aln.treefile core.aln.newick
-$ core.aln.newick
+cd ~/molepi/results/
+cd tree
+mv core.aln.treefile core.aln.newick
+core.aln.newick
 ```
 
 ```output
@@ -283,7 +279,7 @@ Hint: The log file of IQ-TREE contains a lot of information.
 ## Solution
 
 ```bash
-$ cat core.aln.iqtree
+cat core.aln.iqtree
 ```
 
 ```output

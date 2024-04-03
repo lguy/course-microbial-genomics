@@ -4,7 +4,7 @@ teaching: 0
 exercises: 240
 ---
 
-This episode starts the a series of labs where you will trace an outbreak of *Mycobacterium tuberculosis*, from downloading the reads to making assumptions about the transmissions between patients. 
+This episode starts a series of labs where you will trace an outbreak of *Mycobacterium tuberculosis*, from downloading the reads to making assumptions about the transmissions between patients. 
 
 The first part, here, describes how to retrieve all necessary data from public repositories - the raw sequenced data of our isolates and a reference genome. It also introduces for loops which we will use for the rest of our analysis.
 
@@ -37,7 +37,7 @@ This part of the course is largely inspired from [another tutorial](https://gith
 
 ## Background of the data
 
-Epidemiological contact tracing through interviewing of patients can identify potential chains of patients that transmitted an infectious disease to each other. Contact tracing was performed following the [stone-in-the-pond principle](https://www.ncbi.nlm.nih.gov/pubmed/1643300), which  interviews and tests potential contacts in concentric circles around a potential source case.
+Epidemiological contact tracing through interviewing of patients can identify potential chains of patients that transmitted an infectious disease to each other. Contact tracing was performed following the [stone-in-the-pond principle](https://www.ncbi.nlm.nih.gov/pubmed/1643300), which  interviews and tests potential contacts in concentric circles around a potential bash case.
 
 Tuberculosis (TB) is an infectious disease caused by *Mycobacterium tuberculosis*. It mostly affects the lungs. An infection with *M. tuberculosis* is often asymptomatic (latent infection). Only in about 10% of the cases the latent infection progresses to an active infection during a patients lifetime, which, if untreated, leads to death in about half of the cases. The symptoms of an active TB infection include cough, fever, night sweats, weight loss etc. An active TB infection can spread. Once exposed, people often have latent TB. To identify people with latent TB, a [skin test](https://www.cdc.gov/tb/publications/factsheets/testing/skintesting.htm) can be applied.
 
@@ -75,24 +75,19 @@ Other questions might arise along the way:
 
 In this exercise we will setup a file system for the project we will be working on during this workshop.
 
-We will start by creating a directory that we can use for the rest of the workshop. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
+We will start by creating a sub directory that we can use for the rest of the labs. First navigate to your own directory on Uppmax and start an `interactive` session. Then confirm that you are in the correct directory using the `pwd` command.
 
-``` bash
-$ cd
-$ pwd
+```bash
+cd /proj/g2020004/nobackup/3MK013/<username>
+interactive -A uppmax2024-2-10 -M snowy -t 04:00:00
+pwd
 ```
 
 You should see the output:
 
-``` output
-/home/chewbe
+```output
+/proj/g2020004/nobackup/3MK013/<username>
 ```
-
-::: callout
-## Tip
-
-If you aren't in your home directory, the easiest way to get there is to enter the command `cd`, which always returns you to home.
-:::
 
 ::: challenge
 ## Exercise
@@ -109,24 +104,24 @@ molepi/results
 ::: solution
 ## Solution
 
-``` bash
-$ mkdir molepi
-$ mkdir molepi/docs
-$ mkdir molepi/data
-$ mkdir molepi/results
+```bash
+mkdir molepi
+mkdir molepi/docs
+mkdir molepi/data
+mkdir molepi/results
 ```
 :::
 :::
 
 Use `ls -R` to verify that you have created these directories. The `-R` option for `ls` stands for recursive. This option causes `ls` to return the contents of each subdirectory within the directory iteratively.
 
-``` bash
-$ ls -R molepi
+```bash
+ls -R molepi
 ```
 
 You should see the following output:
 
-``` output
+```output
 molepi/:
 data  docs  results
 
@@ -149,28 +144,28 @@ Download the *M.tuberculosis* reference genome from the NCBI ftp site.
 
 First, we switch to the data folder to store all our data
 
-``` source
-$ cd molepi/data 
+```bash
+cd molepi/data 
 ```
 
 The reference genome will be downloaded programmatically from NCBI with `wget`. `wget` is a computer program that retrieves content from web servers. Its name derives from World Wide Web and get.
 
-``` source
-$ wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
+```bash
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ```
 
 This file is compressed as indicated by the extension of `.gz`. It means that this file has been compressed using the `gzip` command.
 
 Extract the file by typing
 
-``` source
-$ gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
+```bash
+gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ```
 
 Make sure that is was extracted
 
-``` source
-$ ls
+```bash
+ls
 ```
 
 ``` output
@@ -180,10 +175,11 @@ GCF_000195955.2_ASM19595v2_genomic.fna
 ::: challenge
 ## Challenge: What is the size of the genome?
 
-Find out how many basepairs the genome has. Hints:
+Find out how many nucleotides the genome has. Hint:
 
-```         
-assembly-stats
+```bash   
+module load bioinfo-tools SeqKit
+seqkit -h
 ```
 
 Get assembly statistics from FASTA and FASTQ files.
@@ -194,45 +190,54 @@ Get assembly statistics from FASTA and FASTQ files.
 The genome has 4'411'532 bp.
 
 ``` bash
-$ assembly-stats GCF_000195955.2_ASM19595v2_genomic.fna
+seqkit stats GCF_000195955.2_ASM19595v2_genomic.fna
 ```
 
 ``` output
+file                                    format  type  num_seqs    sum_len    min_len    avg_len    max_len
+GCF_000195955.2_ASM19595v2_genomic.fna  FASTA   DNA          1  4,411,532  4,411,532  4,411,532  4,411,532
 
-stats for GCF_000195955.2_ASM19595v2_genomic.fna
-sum = 4411532, n = 1, ave = 4411532.00, largest = 4411532
-N50 = 4411532, n = 1
-N60 = 4411532, n = 1
-N70 = 4411532, n = 1
-N80 = 4411532, n = 1
-N90 = 4411532, n = 1
-N100 = 4411532, n = 1
-N_count = 0
-Gaps = 0
 ```
-:::
-:::
+
+::::::::::::
+
+::::::::::::
 
 ## Loops
 
-*Loops* are key to productivity improvements through automation as they allow us to execute commands repeatedly. Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes). Our next task is to download our [data](../episodes/molecular-epidemiology.Rmd) from the short read archive [(SRA) at the European Nucleotide Archive (ENA)](https://www.ebi.ac.uk/ena). There are many repositories for public data. Some model organisms or fields have specific databases, and there are ones for particular types of data. Two of the most comprehensive are the National Center for Biotechnology Information (NCBI) and European Nucleotide Archive (EMBL-EBI). In this lesson we're working with the ENA, but the general process is the same for any database.
+*Loops* are key to productivity improvements through automation as they allow us to execute commands repeatedly. Similar to wildcards and tab completion, using loops also reduces the amount of typing (and typing mistakes). Our next task is to download our data (see the introduction to this episode) from the short read archive [(SRA) at the European Nucleotide Archive (ENA)](https://www.ebi.ac.uk/ena). There are many repositories for public data. Some model organisms or fields have specific databases, and there are ones for particular types of data. Two of the most comprehensive are the National Center for Biotechnology Information (NCBI) and European Nucleotide Archive (EMBL-EBI). In this lesson we're working with the ENA, but the general process is the same for any database.
 
 We can do this one by one but given that each download takes about one to two hours, this could keep us up all night. Instead of downloading one by one we can apply a loop. Let's see what that looks like and then we'll discuss what we're doing with each line of our loop.
 
-``` bash
-$ for filename in ERR01 ERR02 ERR03
-> do
-> echo ftp://ftp.sra.ebi.ac.uk/"${filename}".fastq.gz
-> done
+```bash
+for filename in ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482
+do
+  wget --spider ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${filename:0:6}"/"${filename}"/"${filename}"_*.fastq.gz
+done
 ```
 
 When the shell sees the keyword `for`, it knows to repeat a command (or group of commands) once for each item in a list. Each time the loop runs (called an iteration), an item in the list is assigned in sequence to the **variable**, and the commands inside the loop are executed, before moving on to the next item in the list.
 
 Inside the loop, we call for the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable** as a variable name and substitute its value in its place, rather than treat it as text or an external command.
 
-In this example, the list is seven filenames/ Each time the loop iterates, it will assign a file name to the variable `filename` and run the `wget` command. The first time through the loop, `$filename` is `ERR01.fastq.gz`. The interpreter runs the command `wget` on `ERR01.fastq.gz` at the server <ftp://ftp.sra.ebi.ac.uk/> For the second iteration, `$filename` becomes `ERR02.fastq.gz`. This time, the shell runs `wget` on `ERR02.fastq.gz`.
+In this example, the list is seven accession numbers of reads belonging to the genomes we are interested in. Each time the loop iterates, it will assign a file name to the variable `filename` and run the `wget` command. The first time through the loop, `$filename` is `ERR029207`. The FTP site at EBI is constructed so that fastq files are stored in a `vol1/fastq` subfolder. Read files are not directly in that subfolder, but grouped in subfolders starting with the six first characters of the accession number (`ERR029` in the first case), then in the accession number subfolder. To get to the right place, the file path is constructed with the root path (`ftp://ftp.sra.ebi.ac.uk/vol1/fastq/`), to which the first 6 characters of the accession number is added through that special variable operation (`"${filename:0:6}"`) to get to the right subfolder. Finally, the correct accession subfolder (`"${filename}"`), the file name prefix  (`"${filename}"_*.fastq.gz"`) and the suffix (`_*.fastq.gz`) are added. The `*` ensures that we get reads from both ends. 
 
-Use {} to wrap the variable so that .fastq.gz will not be interpreted as part of the variable name. In addition, quoting the shell variables is a good practice AND necessary if your variables have spaces in them.
+Use `{}` to wrap the variable so that .fastq.gz will not be interpreted as part of the variable name. In addition, quoting the shell variables is a good practice AND necessary if your variables have spaces in them.
+
+For the second iteration, `$filename` becomes `ERR029206`. 
+
+
+We added a `--spider` option to `wget` just for this exercise, to retrieve only the names of the files and not the actual file, to spare some time downloading files. The data is present in the `data/fastq` subfolder of our group folder:
+
+```bash
+ls /proj/g2020004/nobackup/3MK013/data/fastq
+```
+
+```output
+ERR026473_1.fastq.gz  ERR026474_2.fastq.gz  ERR026481_1.fastq.gz  ERR026482_2.fastq.gz	ERR029207_1.fastq.gz
+ERR026473_2.fastq.gz  ERR026478_1.fastq.gz  ERR026481_2.fastq.gz  ERR029206_1.fastq.gz	ERR029207_2.fastq.gz
+ERR026474_1.fastq.gz  ERR026478_2.fastq.gz  ERR026482_1.fastq.gz  ERR029206_2.fastq.gz
+```
 
 For more, check [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls)
 
@@ -254,75 +259,48 @@ If *you* type `>` or `$` yourself, it is an instruction from you that the shell 
 
 We have called the variable in this loop `filename` in order to make its purpose clearer to human readers. The shell itself doesn't care what the variable is called; if we wrote this loop as:
 
-``` bash
-$ for x in ERR01 ERR02 ERR03
+```bash
+for x in ERR01 ERR02 ERR03
 do
-echo ftp://ftp.sra.ebi.ac.uk/"${x}".fastq.gz
+  echo ftp://ftp.sra.ebi.ac.uk/"${x}".fastq.gz
 done
 ```
 
 or:
 
-``` bash
-$ for temperature in ERR01 ERR02 ERR03
+```bash
+for pizza in ERR01 ERR02 ERR03
 do
-echo ftp://ftp.sra.ebi.ac.uk/"${temperature}".fastq.gz
+  echo ftp://ftp.sra.ebi.ac.uk/"${pizza}".fastq.gz
 done
 ```
 
-it would work exactly the same way. *Don't do this.* Programs are only useful if people can understand them, so meaningless names (like `x`) or misleading names (like `temperature`) increase the odds that the program won't do what its readers think it does.
+it would work exactly the same way. *Don't do this.* Programs are only useful if people can understand them, so meaningless names (like `x`) or misleading names (like `pizza`) increase the odds that the program won't do what its readers think it does.
 
 ::: callout
 ## Multipart commands
 
 The `for` loop is interpreted as a multipart command. If you press the up arrow on your keyboard to recall the command, it may be shown like so (depends on your bash version):
 
-``` bash
-$ for filename in ERR01 ERR02 ERR03; do echo ftp://ftp.sra.ebi.ac.uk/"${filename}".fastq.gz ; done
+```bash
+for filename in ERR01 ERR02 ERR03; do echo ftp://ftp.sra.ebi.ac.uk/"${filename}".fastq.gz ; done
 ```
 
 When you check your history later, it will help your remember what you did!
 :::
 
-## Download the sequenced genomes from the European Nucleotide Archive (ENA)
 
-To ensure that we complete this tutorial in time, we will not perform all operations on all genomes, only on one or two. The principles are - however - the same for two or seven (or, to some extent, 189) genomes.
+All the read files start with ERR and have a `fastq.gz` extension. It means they are in fastq format and compressed. Softlink the files in your `molepi/data` folder, using a nested loop. The `data/fastq` folder is three levels up:
 
-Let's download data for the *M. tuberculosis* genomes with a `for` loop. We would use the following loop to download all samples:
-
-``` bash
-$ for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482
-do 
-# wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
+```bash
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
+for filename in ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482
+do
+  for end in 1 2
+  do
+    ln -s ../../../data/fastq/"${filename}"_"${end}".fastq.gz .
+  done
 done
-```
-
-Note the `#` that prevents the `wget` command from running: that would take too long, so we're downloading only one (that's a short loop!):
-
-``` bash
-$ cd molepi/data
-$ for files in ERR029/ERR029206 
-do 
-wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
-done
-```
-
-This will run for a little while (hopefully no more than 5-10 minutes). Let's check if the downloads finished. Let's have a look at the files.
-
-``` source
-$ ls
-```
-
-``` output
-ERR029206_1.fastq.gz
-ERR029206_2.fastq.gz 
-```
-
-All new files start with ERR and have a `fastq.gz` extension. It means they are in fastq format and compressed. Let's make a copy of one file and uncompress this file to inspect it further
-
-``` bash
-cp ERR029206_1.fastq.gz ERR029206_1.copy.fastq.gz
-gunzip ERR029206_1.copy.fastq.gz
 ```
 
 ## Bioinformatics workflows
@@ -366,13 +344,13 @@ Although it looks complicated (and it is), it's easy to understand the [fastq](h
 | 3    | Always begins with a '+' and sometimes the same info in line 1                                               |
 | 4    | Has a string of characters which represent the quality scores; must have same number of characters as line 2 |
 
-We can view the first complete read in one of the files our dataset by using `head` to look at the first four lines.
+We can view the first complete read in one of the files our dataset by using `head` to look at the first four lines. You will use zcat to extract text from a gzipped file:
 
-``` bash
-$ head -n4 ERR029206_1.copy.fastq
+```bash
+zcat ERR029206_1.fastq.gz | head -n4 
 ```
 
-``` output
+```output
 @ERR029206.1 IL31_5505:8:1:6233:1087#4/1
 TCNAGTCAGCACACACATGCGAAAGAATCCACCGACTAGGGTCAGCGGGGTTTGCAGTTGGTCGCGGACGTAACCG
 +
@@ -383,13 +361,13 @@ One of the nucleotides in this read is unknown (`N`).
 
 Line 4 shows the quality for each nucleotide in the read. Quality is interpreted as the probability of an incorrect base call (e.g. 1 in 10) or, equivalently, the base call accuracy (eg 90%). To make it possible to line up each individual nucleotide with its quality score, the numerical score is converted into a code where each individual character represents the numerical quality score for an individual nucleotide. For example, in the line above, the quality score line is:
 
-``` output
+```output
 <='=ABBBBCBBBBBBBBC>BBCBBBBBB@BBBBBB=BCBB@@B@@BB@@,@@@@@@@@@@@@@@@@@@@@@@@@@
 ```
 
 The `<` character and each of the `=` characters represent the encoded quality for an individual nucleotide. The numerical value assigned to each of these characters depends on the sequencing platform that generated the reads. The sequencing machine used to generate our data uses the standard Sanger quality PHRED score encoding, using by Illumina version 1.8 onwards. Each character is assigned a quality score between 0 and 40 as shown in the chart below.
 
-``` output
+```output
 Quality encoding: !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHI
                   |         |         |         |         |
 Quality score:    0........10........20........30........40                                
@@ -399,7 +377,7 @@ Each quality score represents the probability that the corresponding nucleotide 
 
 Looking back at our read:
 
-``` output
+```output
 @ERR029206.1 IL31_5505:8:1:6233:1087#4/1
 TCNAGTCAGCACACACATGCGAAAGAATCCACCGACTAGGGTCAGCGGGGTTTGCAGTTGGTCGCGGACGTAACCG
 +
@@ -438,31 +416,32 @@ Here, we see positions within the read in which the boxes span a much wider rang
 
 Navigate to your FASTQ dataset:
 
-``` bash
-$ cd ~/molepi/data/
+```bash
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 ```
 
 ::: challenge
 ### Exercise
 
-We downloaded the samples. How many FASTQ files are in this dataset? Why is this? What is the difference between the two files that start with the same name? Discuss with your neighbour.
+We softlinked the samples. How many FASTQ files are in this dataset? Why is this? What is the difference between the two files that start with the same name? Discuss with your neighbour.
 
 ::: solution
 ### Solution
 
-There are 2 FASTQ files. Each sample has [paired-end reads](https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/).
+There are 14 FASTQ files. Each sample has [paired-end reads](https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/).
 :::
 :::
 
-FastQC can accept multiple file names as input, including files that are compressed (`.gz`) so we can use the `*.fastq.gz` wildcard to run FastQC on all of the compressed FASTQ files in this directory.
+FastQC can accept multiple file names as input, including files that are compressed (`.gz`) so we can use the `*.fastq.gz` wildcard to run FastQC on both the compressed FASTQ files for sample ERR029206 in this directory.
 
-``` bash
-$ fastqc *.fastq.gz
+```bash
+module load FastQC
+fastqc ERR029206*.fastq.gz
 ```
 
 You will see an automatically updating output message telling you the progress of the analysis. It will start like this:
 
-``` output
+```output
 Started analysis of ERR029206_1.fastq.gz
 Approx 5% complete for ERR029206_1.fastq.gz
 Approx 10% complete for ERR029206_1.fastq.gz
@@ -474,7 +453,7 @@ Approx 30% complete for ERR029206_1.fastq.gz
 
 In total, it should take about 15-20 minutes for FastQC to run on all four of our FASTQ files. When the analysis completes, your prompt will return. So your screen will look something like this:
 
-``` output
+```output
 Approx 85% complete for ERR029206_2.fastq.gz
 Approx 90% complete for ERR029206_2.fastq.gz
 Approx 95% complete for ERR029206_2.fastq.gz
@@ -484,43 +463,44 @@ data $
 
 The FastQC program has created several new files within our `/data/` directory.
 
-``` bash
-$ ls
+```bash
+ls
 ```
 
-``` output
+```output
 ...
-ERR029206_1.copy.fastq
+[...]
 ERR029206_1.fastq.gz
 ERR029206_1_fastqc.html
 ERR029206_1_fastqc.zip
 ERR029206_2.fastq.gz
 ERR029206_2_fastqc.html
 ERR029206_2_fastqc.zip
+[...]
 ```
 
 For each input gzipped FASTQ file, FastQC has created a `.zip` file and a `.html` file. The `.zip` file extension indicates that this is actually a compressed set of multiple output files. We'll be working with these output files soon. The `.html` file is a stable webpage displaying the summary report for each of our samples.
 
 We want to keep our data files and our results files separate, so we will move these output files into a new directory within our `results/` directory.
 
-``` bash
-$ mkdir ../results/fastqc_untrimmed_reads
-$ mv *.zip ../results/fastqc_untrimmed_reads/
-$ mv *.html ../results/fastqc_untrimmed_reads/
+```bash
+mkdir ../results/fastqc_untrimmed_reads
+mv *.zip ../results/fastqc_untrimmed_reads/
+mv *.html ../results/fastqc_untrimmed_reads/
 ```
 
 Now we can navigate into this results directory and do some closer inspection of our output files.
 
-``` bash
-$ cd ../results/fastqc_untrimmed_reads/
+```bash
+cd ../results/fastqc_untrimmed_reads/
 ```
 
 ### Viewing HTML files
 
-If we are working on our local computers, we may display each of these HTML files as a webpage:
+If we are working on our local computers, we may display each of these HTML files as a webpage. Otherwise, copy the files to your local computer using `scp` and use your browser:
 
-``` bash
-$ firefox ERR029206_1_fastqc.html
+```bash
+firefox ERR029206_1_fastqc.html
 ```
 
 You may need to replace the command `firefox` with the name of another web navigator if you have one.
@@ -545,8 +525,9 @@ It's very common to have some reads within a sample, or some positions (near the
 
 Seqtk is a program written C and aims to be a Swiss army knife for sequencing reads. You don't need to learn C to use Seqtk, but the fact that it's a C program helps explain the syntax that is used to run Seqtk. Seqtk takes as input files either FASTQ files or gzipped FASTQ files and outputs FASTQ or FASTA files. The basic command to run Seqtk starts like this:
 
-``` bash
-$ seqtk
+```bash
+module load seqtk
+seqtk
 ```
 
 That's just the basic command, however. Seqtk has a variety of options and parameters. We will need to specify what options we want to use for our analysis. Here are some of the options:
@@ -559,8 +540,8 @@ That's just the basic command, however. Seqtk has a variety of options and param
 
 In addition to these options, there are a number if trimming options available:
 
-``` bash
-$ seqtk trimfq
+```bash
+seqtk trimfq
 ```
 
 | step | meaning                                                 |
@@ -574,22 +555,22 @@ We will use only a few of these options in our analysis. It is important to unde
 
 A complete command for trimming with seqtk will look something like this:
 
-``` bash
-$ seqtk trimfq -q 0.01 ERR01_1.fastq.gz > ERR01_1_trim.fastq
+```bash
+seqtk trimfq -q 0.01 ERR01_1.fastq.gz > ERR01_1_trim.fastq
 ```
 
 ### Trimming
 
 Now we will run seqtk trimfq on our data. To begin, navigate to your `data` directory:
 
-``` bash
-$ cd ~/molepi/data/
+```bash
+cd molepi/data/
 ```
 
 We are going to run seqtk on one sample giving it an error rate threshold of 0.01 which indicates the base call accuracy. We request that, after trimming, the chances that a base is called incorrectly are only 1 in 10000.
 
-``` bash
-$ seqtk trimfq -q 0.01 ERR029206_1.fastq.gz > ERR029206_1_trim.fastq
+```bash
+seqtk trimfq -q 0.01 ERR029206_1.fastq.gz > ERR029206_1_trim.fastq
 ```
 
 Notice that we needed to redirect the output to a file. If we don't do that, the trimmed fastq data will be displayed in the console.
@@ -602,21 +583,21 @@ Use seqtk fqchk to compare the untrimmed and trimmed reads of ERR029206_1 in ter
 ::: solution
 ### Solution
 
-``` bash
-seqtk fqchk ERR029206_1.copy.fastq | head -n 3
+```bash
+seqtk fqchk ERR029206_1.fastq.gz | head -n 3
 ```
 
-``` output
+```output
 min_len: 76; max_len: 76; avg_len: 76.00; 36 distinct quality values
 POS #bases  %A  %C  %G  %T  %N  avgQ    errQ    %low    %high
 ALL 315791552   18.0    32.1    32.2    17.7    0.0 30.6    21.4    5.4 94.6
 ```
 
-``` bash
+```bash
 seqtk fqchk ERR029206_1_trim.fastq | head -n 3
 ```
 
-``` output
+```output
 min_len: 30; max_len: 76; avg_len: 69.12; 36 distinct quality values
 POS #bases  %A  %C  %G  %T  %N  avgQ    errQ    %low    %high
 ALL 287211920   18.2    32.0    31.9    17.8    0.0 31.7    28.8    1.3 98.7
@@ -626,17 +607,17 @@ ALL 287211920   18.2    32.0    31.9    17.8    0.0 31.7    28.8    1.3 98.7
 
 We've just successfully trimmed one of our FASTQ files! However, there is some bad news. `seqtk` can only operate on one sample at a time and we have more than one sample. The good news is that we can use a `for` loop to iterate through our sample files quickly!
 
-``` bash
-$ for infile in *.fastq.gz
+```bash
+for infile in *.fastq.gz
 do
-outfile="${infile}"_trim.fastq
-seqtk trimfq -q 0.01 "${infile}" >  "${outfile}" 
+  outfile="${infile}"_trim.fastq
+  seqtk trimfq -q 0.01 "${infile}" >  "${outfile}" 
 done
 ```
 
 The new part in our `for` loop is the line:
 
-``` bash
+```bash
 outfile="${infile}"_trim.fastq
 ```
 
@@ -647,7 +628,7 @@ For more, check [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls). There
 Go ahead and run the for loop. It should take a few minutes for seqtk to run for each of our fourteen input files. Once it's done running, take a look at your directory contents.
 
 ``` bash
-$ ls
+ls
 ```
 
 ``` output
@@ -664,10 +645,10 @@ GCF_000195955.2_ASM19595v2_genomic.fna
 We've now completed the trimming and filtering steps of our quality control process! Before we move on, let's move our trimmed FASTQ files to a new subdirectory within our `data/` directory.
 
 ``` bash
-$ mkdir trimmed_fastq
-$ mv *fastq.gz_trim* trimmed_fastq
-$ cd trimmed_fastq
-$ ls
+mkdir trimmed_fastq
+mv *fastq.gz_trim* trimmed_fastq
+cd trimmed_fastq
+ls
 ```
 
 ``` output
@@ -686,21 +667,21 @@ Hint: Sum up forward and reverse reads!
 ::: solution
 ### Solution
 
-``` bash
+```bash
 seqtk fqchk ERR029206_1.fastq.gz_trim.fastq | head -n 3
 ```
 
-``` output
+```output
 min_len: 30; max_len: 76; avg_len: 69.12; 36 distinct quality values
 POS #bases  %A  %C  %G  %T  %N  avgQ    errQ    %low    %high
 ALL 287211920   18.2    32.0    31.9    17.8    0.0 31.7    28.8    1.3 98.7
 ```
 
-``` bash
+```bash
 seqtk fqchk ERR029206_2.fastq.gz_trim.fastq | head -n 3
 ```
 
-``` output
+```output
 min_len: 30; max_len: 76; avg_len: 63.79; 36 distinct quality values
 POS #bases  %A  %C  %G  %T  %N  avgQ    errQ    %low    %high
 ALL 265048852   18.1    32.1    32.1    17.7    0.0 31.2    25.7    2.5 97.5

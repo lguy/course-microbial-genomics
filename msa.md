@@ -44,10 +44,10 @@ Go to your own folder, use the `mkdir` command to make a `phylogenetics` subfold
 Remember to replace `<username>` by your name.
 
 ```bash
-$ interactive -A uppmax2024-2-10 -M snowy -t 4:00:00
-$ cd /proj/g2020004/nobackup/3MK013/<username>
-$ mkdir phylogenetics
-$ cd phylogenetics
+interactive -A uppmax2024-2-10 -M snowy -t 4:00:00
+cd /proj/g2020004/nobackup/3MK013/<username>
+mkdir phylogenetics
+cd phylogenetics
 ```
 
 :::::::::::::::::::::::::
@@ -59,7 +59,7 @@ Copy the file to your newly created `~/phylogenetics/` folder.
 :::::::::::::::  solution
 
 ```bash
-$ cp ../../data/rpoB.fasta .
+cp ../../data/rpoB.fasta .
 ```
 
 :::::::::::::::::::::::::
@@ -73,7 +73,7 @@ $ cp ../../data/rpoB.fasta .
 Look at the accession ids of the fasta sequences: they are not very informative: 
 
 ```bash
-$ grep '>' rpoB.fasta | head -n 5
+grep '>' rpoB.fasta | head -n 5
 ```
 
 ```output
@@ -87,8 +87,8 @@ $ grep '>' rpoB.fasta | head -n 5
 Keep the taxonomic name following the accession id, separated by `_`, using a bit of `sed` magic. Save the resulting file for later use, and show the headers again. 
 
 ```bash
-$ sed "/^>/ s/>\([^ ]*\) \([^\[]*\)\[\(.*\)\]/>\\3_\\1/"  rpoB.fasta | sed "s/ /_/g" > rpoB_renamed.fasta
-$ grep '>' rpoB_renamed.fasta | head -n 5
+sed "/^>/ s/>\([^ ]*\) \([^\[]*\)\[\(.*\)\]/>\\3_\\1/"  rpoB.fasta | sed "s/ /_/g" > rpoB_renamed.fasta
+grep '>' rpoB_renamed.fasta | head -n 5
 ```
 
 ::: discussion
@@ -128,8 +128,8 @@ Use the `module` command to load `bioinfo-tools` and `MAFFT`.
 :::::::::::::::  solution
 
 ```bash
-$ module load bioinfo-tools MAFFT
-$ time mafft-fftns rpoB_renamed.fasta > rpoB.fftns.aln
+module load bioinfo-tools MAFFT
+time mafft-fftns rpoB_renamed.fasta > rpoB.fftns.aln
 ```
 
 ```output
@@ -166,6 +166,8 @@ Try the command `time`
 
 Now use one of the supposedly better iterative algorithm of `mafft` to align the same sequences. Choose the [E-INS-i algorithm](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) which is suited for proteins that have highly conserved motifs interspersed with less conserved ones. 
 
+Take a few minutes to read upon the different alignment strategies on the page above.
+
 :::::::::::::::::::::::::::::::::::::::  challenge
 
 ## Challenge 1.4
@@ -175,7 +177,7 @@ Use the E-INS-i algorithm from mafft to align the renamed sequences. Also, recor
 :::::::::::::::  solution
 
 ```bash
-$ time mafft-einsi rpoB_renamed.fasta > rpoB.einsi.aln
+time mafft-einsi rpoB_renamed.fasta > rpoB.einsi.aln
 ```
 
 ```output
@@ -294,6 +296,8 @@ On some OS it is necessary to escape the `*`. If the output says something about
 ```bash
 scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal\* .
 ```
+
+As before, if you do not have access to a terminal on your windows laptop, use MobaXterm and Session > SFTP to copy files to your computer.
 
 ::::::::::::
 
