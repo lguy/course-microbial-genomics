@@ -285,7 +285,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Sequence assembly</h1>
-        <p>Last updated on 2024-03-15 |
+        <p>Last updated on 2024-04-03 |
         
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/sequence-assembly.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -344,8 +344,8 @@ disconnect from the machine.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">$</span> mkdir ~/molepi/results/assembly</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="ex">$</span> cd ~/molepi/data/trimmed_fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">mkdir</span> ~/molepi/results/assembly</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> ~/molepi/data/trimmed_fastq</span></code></pre>
 </div>
 <p>To run SKESA we will use the skesa command with a number of option
 that we will explore later on. We can start the loop (again, a short
@@ -353,7 +353,7 @@ loop) with the assemblies with:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">$</span> for sample in ERR029206</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> ERR029206</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">do</span></span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="ex">skesa</span> <span class="dt">\</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>--cores 2 <span class="dt">\</span></span>
@@ -374,7 +374,7 @@ and 8 GB of memory.</p>
   <h3 class="accordion-header" id="headingInstructor1">
 <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>Downloading the missing assemblies</h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>If you haven’t assembled all samples, download the finished contigs
 to your computer and decompress them. They will decompress in a folder
@@ -405,13 +405,17 @@ ERR026474.fasta ERR026481.fasta ERR029206.fasta</code></pre>
 </div>
 <div id="challenge-what-do-the-command-line-parameters-of-skesa-mean" class="callout-inner">
 <h3 class="callout-title">Challenge: What do the command line parameters
-of SKESA mean??<a class="anchor" aria-label="anchor" href="#challenge-what-do-the-command-line-parameters-of-skesa-mean"></a>
+of SKESA mean?<a class="anchor" aria-label="anchor" href="#challenge-what-do-the-command-line-parameters-of-skesa-mean"></a>
 </h3>
 <div class="callout-content">
 <p>Find out a) the version of SKESA you are using and b) what the used
 command line parameters mean.</p>
 <p>Hint:</p>
-<pre><code>$ skesa -h</code></pre>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">skesa</span> <span class="at">-h</span></span></code></pre>
+</div>
 <p>prints the ‘help’</p>
 </div>
 </div>
@@ -421,12 +425,12 @@ command line parameters mean.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>$ skesa -h
+<pre class="output" tabindex="0"><code>skesa -h
 ..
 General options:
 -h [ --help ]                 Produce help message
@@ -443,13 +447,13 @@ General options:
 </div>
 </div>
 </div>
-<div id="exercise-how-many-contigs-were-generated-by-skesa" class="callout challenge">
+<div id="challenge-how-many-contigs-were-generated-by-skesa" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div id="exercise-how-many-contigs-were-generated-by-skesa" class="callout-inner">
-<h3 class="callout-title">Exercise: How many contigs were generated by
-SKESA??<a class="anchor" aria-label="anchor" href="#exercise-how-many-contigs-were-generated-by-skesa"></a>
+<div id="challenge-how-many-contigs-were-generated-by-skesa" class="callout-inner">
+<h3 class="callout-title">Challenge: How many contigs were generated by
+SKESA?<a class="anchor" aria-label="anchor" href="#challenge-how-many-contigs-were-generated-by-skesa"></a>
 </h3>
 <div class="callout-content">
 <p>Find out how many contigs there are in the <em>M. tuberculosis</em>
@@ -462,7 +466,7 @@ isolates.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -563,8 +567,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/sequence-assembly.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/sequence-assembly.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2024-03-15",
-  "datePublished": "2024-04-02"
+  "dateModified": "2024-04-03",
+  "datePublished": "2024-04-03"
 }
 
   </script><script>
