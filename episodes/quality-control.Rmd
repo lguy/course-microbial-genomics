@@ -416,7 +416,7 @@ Here, we see positions within the read in which the boxes span a much wider rang
 
 Navigate to your FASTQ dataset:
 
-``` bash
+```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 ```
 
@@ -484,15 +484,15 @@ For each input gzipped FASTQ file, FastQC has created a `.zip` file and a `.html
 We want to keep our data files and our results files separate, so we will move these output files into a new directory within our `results/` directory.
 
 ```bash
-$ mkdir ../results/fastqc_untrimmed_reads
-$ mv *.zip ../results/fastqc_untrimmed_reads/
-$ mv *.html ../results/fastqc_untrimmed_reads/
+mkdir ../results/fastqc_untrimmed_reads
+mv *.zip ../results/fastqc_untrimmed_reads/
+mv *.html ../results/fastqc_untrimmed_reads/
 ```
 
 Now we can navigate into this results directory and do some closer inspection of our output files.
 
 ```bash
-$ cd ../results/fastqc_untrimmed_reads/
+cd ../results/fastqc_untrimmed_reads/
 ```
 
 ### Viewing HTML files

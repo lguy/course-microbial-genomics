@@ -219,7 +219,7 @@ Do you see any differences between the two trees? What can you make out of it?
 
 ### Maximum likelihood
 
-We will now use IQ-TREE to infer a maximum-likelihood (ML) tree of the RpoB dataset we aligned with `mafft` previously. While you performed the first trees on your laptop, you will infer the ML tree on Uppmax. As usual, use the `interactive` command to gain access to compute time. Go to the `phylogentics` folder created in the MSA episode, and load the right modules.
+We will now use IQ-TREE to infer a maximum-likelihood (ML) tree of the RpoB dataset we aligned with `mafft` previously. While you performed the first trees on your laptop, you will infer the ML tree on Uppmax. As usual, use the `interactive` command to gain access to compute time. Go to the `phylogenetics` folder created in the MSA episode, and load the right modules.
 
 :::::: challenge
 
@@ -248,7 +248,7 @@ You won't be using the multi-node MPI version, so you don't need to load additio
 Then run your first tree, on the `ClipKIT`-trimmed alignment.
 
 ```bash
-$ iqtree2 -s rpoB.einsi.clipkit.aln -m TEST -B 1000
+iqtree2 -s rpoB.einsi.clipkit.aln -m TEST -B 1000
 ```
 
 Here, we tell IQ-TREE to use the alignment `rpoB.einsi.clipkit.aln`, and to test among the standard substitution models which one fits best (`-m TEST`). We also tell IQ-TREE to perform 1000 ultra-fast bootstraps (`-B 1000`). We'll discuss these later.
@@ -284,8 +284,13 @@ Redo a ML tree from the other alignment (FFT-NS) we inferred with `mafft` and di
 :::::::::::::::::::::::: solution 
 
 ```bash
-$ iqtree2 -s rpoB.fftns.aln -m TEST -B 1000
-$ figtree rpoB.fftns.aln.treefile &
+iqtree2 -s rpoB.fftns.aln -m TEST -B 1000
+```
+
+Import the tree on your computer and load it with FigTree or with [phylo.io](https://beta.phylo.io/viewer/#)
+
+```bash
+figtree rpoB.fftns.aln.treefile &
 ```
 
 :::::::::::::::::::::::::::::::::
