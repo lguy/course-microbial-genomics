@@ -154,6 +154,8 @@ scp <file to copy> <username>@<server>:<remote file location>
 
 The remote file location can be a relative path from your home or an absolute path, starting with `/`. 
 
+To bring up a local terminal on your Windows computer, click on the "+" sign on the main window of MobaXTerm. If that doesn't work, use SFTP. Click on Session, SFTP, and fill in the Remote host as usual `rackham.uppmax.uu.se` and your username. Navigate to `/proj/g2020004/nobackup/3MK013/<username>/blast` on the right panel, then drag and drop files between your computer and Uppmax.
+
 ::: solution
 
  
@@ -353,15 +355,32 @@ So far you have used the `landmark` database, which is tiny. Now, use a differen
 
 ## Challenge 1.4.1: Larger database
 
+`refseq_select_prot` and `refseq_protein` are good candidates. The former is smaller than the latter. Note that these two runs will take time, so run only the one to `refseq_select_prot`. We will run it in the background (adding a `&` at the end of the command) so that you can continue with other tasks and come back to that one later.
+
 ::: solution
 
-`refseq_select_prot` and `refseq_protein` are good candidates. The former is smaller than the latter. Note that these two runs will take time, so run only the one to `refseq_select_prot`
 
 ```bash
-blastp -db refseq_select_prot -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_refseq_select.tab
+blastp -db refseq_select_prot -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_refseq_select.tab &
 ```
 
-Now count the rows to have the number of hits
+You can check whether `blastp` is still running by typing `ps`:
+
+```bash
+ps
+```
+
+```output
+  PID TTY          TIME CMD
+13920 pts/64   00:00:00 bash
+33117 pts/64   00:00:00 blastp
+35427 pts/64   00:00:00 ps
+```
+
+If you see `blastp` there, it means it is still running.
+
+When it has finished (it may take up to 30 minutes), count the rows to have the number of hits:
+
 ```bash
 wc -l rpoB_refseq_select.tab
 ```

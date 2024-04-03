@@ -87,7 +87,11 @@ What do the three different databases contain? What information do you get from 
 
 ::: hint
 
+NCBI is not as smart as Google, and copy/pasting might fail. Try spelling out *Escherichia coli* and removing parts of the search text.
+
 If you get too many hits, go to the field “Search details”, and refine your search, using the [Organism] field, for example. You don’t need to get exactly one hit or to get the result you want on top. By default, the search will include everything that has the species name anywhere in the record.
+
+Nucleotide database contains mostly **genome** records, so the Shiga toxin gene might be anywhere there.
 
 ::::::::
 
