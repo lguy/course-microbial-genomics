@@ -24,10 +24,21 @@ exercises: 240
 
 ### Setup
 
-The exercise is done for a large part with pen and paper, and then a demonstration in R on your laptop. You can already RStudio. We'll also use the R package [`ape`](https://emmanuelparadis.github.io/) , which you should install if it's not present on your setup:
+The exercise is done for a large part with pen and paper, and then a demonstration in R on your laptop, using RStudio. We'll also use the R package [`ape`](https://emmanuelparadis.github.io/), which you should install if it's not present on your setup. Commands can be typed or pasted in the "Console" part of RStudio.
+
 
 ```r
 install.packages('ape')
+```
+
+```{.output}
+The following package(s) will be installed:
+- ape [5.7-1]
+These packages will be installed into "~/work/course-microbial-genomics/course-microbial-genomics/renv/profiles/lesson-requirements/renv/library/R-4.3/x86_64-pc-linux-gnu".
+
+# Installing packages --------------------------------------------------------
+- Installing ape ...                            OK [linked from cache]
+Successfully installed 1 package in 5.6 milliseconds.
 ```
 
 And to load it:
@@ -170,7 +181,7 @@ The tree is reconstructed by dividing the distances equally between the two leav
 - AB-C: each side gets 2.5/2 = 1.25. The branch to AB is 1.25 - 0.75 = 0.75
 - ABC-D: each side gets 4/2 = 2. The branch to ABC is 2 - 0.75 - 0.5 = 0.75
 
-![UPGMA tree](fig/upgma_manual.png){alt='Manually built UPGMA tree'}
+![UPGMA tree](episodes/fig/upgma_manual.png){alt='Manually built UPGMA tree'}
 
 
 Let's know do the same using bioinformatics tools. 
@@ -202,13 +213,13 @@ plot(tree)
 edgelabels(tree$edge.length)
 ```
 
-<img src="fig/phylogenetics-rendered-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="fig/phylogenetics-rendered-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 :::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Exercise 2: maximum-likelihood tree
+## Exercise 2: Neighbor-joining and Maximum-likelihood tree
 
 ### Introduction
 
