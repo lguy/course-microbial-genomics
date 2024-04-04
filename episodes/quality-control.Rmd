@@ -78,8 +78,8 @@ In this exercise we will setup a file system for the project we will be working 
 We will start by creating a sub directory that we can use for the rest of the labs. First navigate to your own directory on Uppmax and start an `interactive` session. Then confirm that you are in the correct directory using the `pwd` command.
 
 ```bash
-cd /proj/g2020004/nobackup/3MK013/<username>
 interactive -A uppmax2024-2-10 -M snowy -t 04:00:00
+cd /proj/g2020004/nobackup/3MK013/<username>
 pwd
 ```
 
@@ -225,7 +225,6 @@ In this example, the list is seven accession numbers of reads belonging to the g
 Use `{}` to wrap the variable so that .fastq.gz will not be interpreted as part of the variable name. In addition, quoting the shell variables is a good practice AND necessary if your variables have spaces in them.
 
 For the second iteration, `$filename` becomes `ERR029206`. 
-
 
 We added a `--spider` option to `wget` just for this exercise, to retrieve only the names of the files and not the actual file, to spare some time downloading files. The data is present in the `data/fastq` subfolder of our group folder:
 
@@ -451,7 +450,7 @@ Approx 25% complete for ERR029206_1.fastq.gz
 Approx 30% complete for ERR029206_1.fastq.gz
 ```
 
-In total, it should take about 15-20 minutes for FastQC to run on all four of our FASTQ files. When the analysis completes, your prompt will return. So your screen will look something like this:
+In total, it should take a couple minutes minutes for FastQC to run on our two FASTQ files. When the analysis completes, your prompt will return. So your screen will look something like this:
 
 ```output
 Approx 85% complete for ERR029206_2.fastq.gz
@@ -561,10 +560,10 @@ seqtk trimfq -q 0.01 ERR01_1.fastq.gz > ERR01_1_trim.fastq
 
 ### Trimming
 
-Now we will run seqtk trimfq on our data. To begin, navigate to your `data` directory:
+Now we will run seqtk trimfq on our data. To begin, make sure you are still in your `data` directory:
 
 ```bash
-cd molepi/data/
+pwd
 ```
 
 We are going to run seqtk on one sample giving it an error rate threshold of 0.01 which indicates the base call accuracy. We request that, after trimming, the chances that a base is called incorrectly are only 1 in 10000.
@@ -605,7 +604,7 @@ ALL 287211920   18.2    32.0    31.9    17.8    0.0 31.7    28.8    1.3 98.7
 :::
 :::
 
-We've just successfully trimmed one of our FASTQ files! However, there is some bad news. `seqtk` can only operate on one sample at a time and we have more than one sample. The good news is that we can use a `for` loop to iterate through our sample files quickly!
+We've just successfully trimmed one of our FASTQ files! However, there is some bad news. `seqtk` can only operate on one sample at a time and we have more than one sample. The good news is that we can use a `for` loop to iterate through our sample files quickly! This will take a few minutes.
 
 ```bash
 for infile in *.fastq.gz
@@ -628,18 +627,14 @@ For more, check [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls). There
 Go ahead and run the for loop. It should take a few minutes for seqtk to run for each of our fourteen input files. Once it's done running, take a look at your directory contents.
 
 ``` bash
-ls
+ls ERR029206*
 ```
 
 ``` output
 ...
-ERR029206_1.copy.fastq 
-ERR029206_1.fastq.gz
-ERR029206_1.fastq.gz_trim.fastq 
-ERR029206_1_trim.fastq 
-ERR029206_2.fastq.gz
-ERR029206_2.fastq.gz_trim.fastq
-GCF_000195955.2_ASM19595v2_genomic.fna
+ERR029206_1_fastqc.html     ERR029206_1.fastq.gz_trim.fastq  ERR029206_2_fastqc.zip
+ERR029206_1_fastqc.zip	    ERR029206_1_trim.fastq		       ERR029206_2.fastq.gz
+ERR029206_1.fastq.gz        ERR029206_2_fastqc.html	         ERR029206_2.fastq.gz_trim.fastq
 ```
 
 We've now completed the trimming and filtering steps of our quality control process! Before we move on, let's move our trimmed FASTQ files to a new subdirectory within our `data/` directory.
@@ -648,13 +643,13 @@ We've now completed the trimming and filtering steps of our quality control proc
 mkdir trimmed_fastq
 mv *fastq.gz_trim* trimmed_fastq
 cd trimmed_fastq
-ls
+ls ERR029206*
 ```
 
 ``` output
 ...
-ERR029206_1.fastq.gz_trim.fastq 
-ERR029206_2.fastq.gz_trim.fastq 
+ERR029206_1.fastq.gz_trim.fastq  
+ERR029206_2.fastq.gz_trim.fastq
 ```
 
 ::: challenge
