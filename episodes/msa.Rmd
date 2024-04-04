@@ -1,7 +1,7 @@
 ---
 title: 'Multiple sequence alignment'
 teaching: 0
-exercises: 240
+exercises: 120
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
@@ -59,7 +59,7 @@ Copy the file to your newly created `~/phylogenetics/` folder.
 :::::::::::::::  solution
 
 ```bash
-cp ../../data/rpoB.fasta .
+cp ../../data/rpoB/rpoB.fasta .
 ```
 
 :::::::::::::::::::::::::
@@ -315,6 +315,7 @@ As before, if you do not have access to a terminal on your windows laptop, use M
 To get an idea of the modes and options, look at the help of ClipKit:
 
 ```bash
+module load ClipKIT
 clipkit -h
 ```
 
@@ -323,7 +324,6 @@ Then run ClipKIT, explicitly using the `smart-gap` mode. Compare how much ClipKI
 ::: solution
 
 ```bash
-module load clipkit
 clipkit rpoB.einsi.aln -m smart-gap -l -o rpoB.einsi.clipkit.aln
 ```
 
