@@ -55,10 +55,10 @@ mkdir snps
 We need to load snippy: 
 
 ```bash
-module load snippy
+module load bioinfo-tools snippy
 ```
 
-Snippy is fast but a single run still takes about 2-3 minutes. We would therefore tell snippy to run all the samples after each other. However this time we cannot use a wildcard to do so. We would instead run all the samples in a loop. The "real" loop is commented out, and we use one that runs only the sample we've analyzed so far.  
+Snippy is fast but a single run still takes about 15 minutes. We would therefore tell snippy to run all the samples after each other. However this time we cannot use a wildcard to do so. We would instead run all the samples in a loop. The "real" loop is commented out, and we use one that runs only the sample we've analyzed so far.  
 
 ```bash
 cd ../data/trimmed_fastq/
@@ -72,7 +72,7 @@ done
 Here, we provide snippy with an output folder (`--outdir`), the location of the reference genome (`--ref`), and the trimmed read files for each end of the pair (`--R1` and `--R2`). We also indicate that snippy should use 8 Gb of memory (`--ram 8`).
 
 ```bash
-head -n10 ~/molepi/results/snps/ERR029206/snps.tab 
+head -n10 ../../results/snps/ERR029206/snps.tab 
 ```
 
 ```output
@@ -98,30 +98,22 @@ mv snps snps_partial
 mkdir snps
 cd snps
 tar xvzf ../../../../data/snps.tar.gz
-ls
+ls *
 ```
 
 ```output
-ERR026473     ERR026482
-ERR026474     ERR029206
-ERR026478     ERR029207
-ERR026481
+ERR026473:
+ref.fa.          snps.bam.bai  snps.filt.vcf  snps.log	     snps.tab  snps.vcf.gz
+ref.fa.fai	     snps.bed      snps.gff       snps.raw.vcf   snps.txt  snps.vcf.gz.csi
+snps.aligned.fa  snps.csv      snps.html      snps.subs.vcf  snps.vcf
+
+ERR026474:
+ref.fa		       snps.bam.bai  snps.filt.vcf  snps.log	     snps.tab  snps.vcf.gz
+ref.fa.fai	     snps.bed      snps.gff       snps.raw.vcf   snps.txt  snps.vcf.gz.csi
+snps.aligned.fa  snps.csv      snps.html      snps.subs.vcf  snps.vcf
 ```
 
 The folders don't contain everything that is output by `snippy`, to save space. But it is enough to run `snippy-core`.
-
-```bash
-ls ERR026473
-```
-
-```output
-ref.fa          snps.filt.vcf   snps.tab
-ref.fa.fai      snps.gff        snps.txt
-snps.aligned.fa snps.html       snps.vcf
-snps.bam.bai    snps.log        snps.vcf.gz
-snps.bed        snps.raw.vcf    snps.vcf.gz.csi
-snps.csv        snps.subs.vcf
-```
 
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -136,7 +128,7 @@ Hint: The `.txt` file in the snippy output contains summary information:
 ## Solution
 
 ```bash
-cat ~/molepi/results/snps/ERR029207/snps.txt
+cat /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps/ERR029207/snps.txt
 ```
 
 ```output
@@ -170,7 +162,7 @@ In this second part, after identifying them, snippy will concatenate the core SN
 The `--ref` argument provides the reference genome. Each folder containing the result of the previous step of `snippy` is then added to the command line.
 
 ```bash
-cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
 snippy-core --ref=../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 ```
 
