@@ -38,7 +38,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 - Installing ape ...                            OK [linked from cache]
-Successfully installed 1 package in 5.6 milliseconds.
+Successfully installed 1 package in 5.4 milliseconds.
 ```
 
 And to load it:
@@ -231,13 +231,19 @@ The principle of [Neighbor-joining method](https://en.wikipedia.org/wiki/Neighbo
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-To perform NJ on our sequences, we'll use the function inbuilt in Seaview. First (re-)open the alignment we obtained from `mafft` with the E-INS-i method, trimmed with ClipKIT. 
+To perform NJ on our sequences, we'll use the function inbuilt in Seaview. First (re-)open the alignment we obtained from `mafft` with the E-INS-i method, trimmed with ClipKIT. If it is not on your computer anymore, transfer it again from Uppmax using `scp` or `SFTP`.
+
+If [Seaview](https://doua.prabi.fr/software/seaview) is not installed on your computer, download it and install it on your computer. 
 
 :::::::::::::::::::::::: solution 
+
+On a Linux computer, you can run it on the command line:
 
 ```bash
 seaview rpoB.einsi.clipkit.aln &
 ```
+
+On other computer, just open the file with the regular File > Open menu.
 
 :::::::::::::::::::::::::::::::::
 
