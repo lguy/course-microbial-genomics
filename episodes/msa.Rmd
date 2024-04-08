@@ -238,7 +238,7 @@ In this part, you will use two different alignment trimmers, [`TrimAl`](http://t
 First, load the module and look at the list of options available with `trimAl`. Then 
 
 ```bash
-module load trimal
+module load trimAl
 trimal -h
 ```
 
