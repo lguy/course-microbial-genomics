@@ -383,11 +383,14 @@ TCNAGTCAGCACACACATGCGAAAGAATCCACCGACTAGGGTCAGCGGGGTTTGCAGTTGGTCGCGGACGTAACCG
 <='=ABBBBCBBBBBBBBC>BBCBBBBBB@BBBBBB=BCBB@@B@@BB@@,@@@@@@@@@@@@@@@@@@@@@@@@@
 ```
 
-We can now see that the quality of an `N` (`'`) is 6, which corresponds to a over 25% error probability (\$10\^{-\frac{6}{10}} \cong 0.25 \$).
+We can now see that the quality of an `N` (`'`) is 6, which corresponds to a over 25% error probability: 
 
-> ### Quality Encodings Vary
->
-> Although we've used a particular quality encoding system to demonstrate interpretation of read quality, different sequencing machines use different encoding systems. This means that, depending on which sequencer you use to generate your data, a `#` may not be an indicator of a poor quality base call.
+$10^{-\frac{6}{10}} \cong 0.25 $
+
+
+### Quality Encodings Vary
+
+Although we've used a particular quality encoding system to demonstrate interpretation of read quality, different sequencing machines use different encoding systems. This means that, depending on which sequencer you use to generate your data, a `#` may not be an indicator of a poor quality base call.
 
 ::: callout
 This mainly relates to older Solexa/Illumina data, but it's essential that you know which sequencing platform was used to generate your data, so that you can tell your quality control program which encoding to use. If you choose the wrong encoding, you run the risk of throwing away good reads or (even worse) not throwing away bad reads!
@@ -632,9 +635,7 @@ ls ERR029206*
 
 ``` output
 ...
-ERR029206_1_fastqc.html     ERR029206_1.fastq.gz_trim.fastq  ERR029206_2_fastqc.zip
-ERR029206_1_fastqc.zip	    ERR029206_1_trim.fastq		       ERR029206_2.fastq.gz
-ERR029206_1.fastq.gz        ERR029206_2_fastqc.html	         ERR029206_2.fastq.gz_trim.fastq
+ERR029206_1.fastq.gz_trim.fastq  ERR029206_2.fastq.gz_trim.fastq
 ```
 
 We've now completed the trimming and filtering steps of our quality control process! Before we move on, let's move our trimmed FASTQ files to a new subdirectory within our `data/` directory.
@@ -653,6 +654,7 @@ ERR029206_2.fastq.gz_trim.fastq
 ```
 
 ::: challenge
+
 ### Challenge
 
 Again, use seqtk fqchk to compare the untrimmed and trimmed reads of both samples. Note the number of bases '#bases' of the trimmed and untrimmed reads. Calculate the theoretical coverage of the genomes before and after trimming, assuming that all our genomes do have the same size as our reference genome (4411532 bases).
@@ -660,6 +662,7 @@ Again, use seqtk fqchk to compare the untrimmed and trimmed reads of both sample
 Hint: Sum up forward and reverse reads!
 
 ::: solution
+
 ### Solution
 
 ```bash
@@ -682,7 +685,10 @@ POS #bases  %A  %C  %G  %T  %N  avgQ    errQ    %low    %high
 ALL 265048852   18.1    32.1    32.1    17.7    0.0 31.2    25.7    2.5 97.5
 ```
 
-Coverage = #bases (forward + reverse) / genome size In this case: 125.18 = (287211920 + 265048852) / 4411532
+Coverage = #bases (forward + reverse) / genome size In this case: 
+
+$125.18 = \dfrac{(287211920 + 265048852)}{4411532}$
+
 :::
 :::
 

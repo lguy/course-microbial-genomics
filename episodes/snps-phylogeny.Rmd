@@ -31,10 +31,10 @@ The identified SNPs will be used to compare the isolates to each other and to es
 If you don't have all the trimmed reads, you can download them (will take a while, *dont't do it if you have the reads*):
 
 ```bash
-cd ~/molepi/data
+interactive -A uppmax2024-2-10 -M snowy -t 04:00:00
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 mv trimmed_fastq trimmed_fastq_partial
-wget https://uppsala.box.com/s/s1zpt0w84iq4o42qhgho5vrz9qnpxouk trimmed_fastq.tar.gz
-tar xvzf trimmed_fastq.tar.gz
+tar xvzf ../../../data/trimmed_fastq.tar.gz
 ls trimmed_fastq
 ```
 
@@ -47,7 +47,8 @@ ls trimmed_fastq
 First we'll create a folder to hold the results from snippy:
 
 ```bash
-cd ~/molepi/results
+interactive -A uppmax2024-2-10 -M snowy -t 04:00:00
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 mkdir snps
 ```
 
@@ -64,11 +65,11 @@ cd ../data/trimmed_fastq/
 #for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 for sample in ERR029206
 do
-snippy --ram 1 --outdir ../../results/snps/"${sample}" --ref ../GCF_000195955.2_ASM19595v2_genomic.fna --R1 "${sample}"_1.fastq.gz_trim.fastq --R2 "${sample}"_2.fastq.gz_trim.fastq
+snippy --ram 8 --outdir ../../results/snps/"${sample}" --ref ../GCF_000195955.2_ASM19595v2_genomic.fna --R1 "${sample}"_1.fastq.gz_trim.fastq --R2 "${sample}"_2.fastq.gz_trim.fastq
 done
 ```
 
-Here, we provide snippy with an output folder (`--outdir`), the location of the reference genome (`--ref`), and the trimmed read files for each end of the pair (`--R1` and `--R2`). We also indicate that snippy should use 1 Gb of memory (`--ram 1`, very specific issue to this VM).
+Here, we provide snippy with an output folder (`--outdir`), the location of the reference genome (`--ref`), and the trimmed read files for each end of the pair (`--R1` and `--R2`). We also indicate that snippy should use 8 Gb of memory (`--ram 8`).
 
 ```bash
 head -n10 ~/molepi/results/snps/ERR029206/snps.tab 
@@ -89,14 +90,14 @@ NC_000962.3	14785	snp	T	C	C:163 T:1
 
 This list gives us information on every SNP that was found by snippy when compared to the reference genome. The first SNP is found at the position 1849 of the reference genome, and is a C in the H37Rv (reference strain) and an A in isolate ERR029206. There is a high confidence associated with this SNP: an A has been found 217 times in the sequencing reads and never a C at this position.
 
-Now download a [reduced version of the result of snippy](files/snps.tar.gz) on the other samples, save it in the `~/molepi/results/` folder. We will also rename the existing `snps` folder to save it.
+Now copy a reduced version of the results on the other samples, save it in the `results` folder. We will also rename the existing `snps` folder to save it.
 
 ```bash
-cd ~/molepi/results/
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 mv snps snps_partial
 mkdir snps
 cd snps
-tar xvzf ../snps.tar.gz
+tar xvzf ../../../../data/snps.tar.gz
 ls
 ```
 
@@ -169,7 +170,7 @@ In this second part, after identifying them, snippy will concatenate the core SN
 The `--ref` argument provides the reference genome. Each folder containing the result of the previous step of `snippy` is then added to the command line.
 
 ```bash
-cd ~/molepi/results/snps/
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 snippy-core --ref=../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
 ```
 
@@ -247,7 +248,7 @@ With this small data set, IQ-TREE finishes very quickly. Let's put the resulting
 and let's rename our resulting tree.
 
 ```bash
-cd ~/molepi/results
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 mkdir tree
 mv snps/core.aln.* tree
 ```
@@ -255,10 +256,10 @@ mv snps/core.aln.* tree
 Let's inspect our tree, and give it another extension to make it clear it is a newick file.
 
 ```bash
-cd ~/molepi/results/
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 cd tree
-mv core.aln.treefile core.aln.newick
-core.aln.newick
+mv core.aln.treefile core.aln.newick 
+cat core.aln.newick
 ```
 
 ```output
