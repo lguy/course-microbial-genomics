@@ -65,7 +65,7 @@ episodes:
 - phylogenetics.Rmd
 - quality-control.Rmd
 - sequence-assembly.Rmd
-- annotation.Rmd
+#- annotation.Rmd
 - snps-phylogeny.Rmd
 - data-visualization.Rmd
 
