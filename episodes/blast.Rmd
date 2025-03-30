@@ -45,7 +45,7 @@ blastp -db landmark -query rpoB_ecoli.fasta
 
 The goal of this exercise is to practice with the command line-based version of `BLAST`. It is also the first step in building phylogenetic trees, namely by gathering homologous sequences that will then be aligned. The alignment is finally used to build a tree. 
 
-The whole exercise is based on RpoB, the [&Beta;-subunit of the bacterial RNA polymerase](https://en.wikipedia.org/wiki/RpoB). This protein is essential to the cell, and present in all bacteria and plastids. It is also very conserved, and thus suitable for deep-scale phylogenies.
+The whole exercise is based on RpoB, the [&beta;-subunit of the bacterial RNA polymerase](https://en.wikipedia.org/wiki/RpoB). This protein is essential to the cell, and present in all bacteria and plastids. It is also very conserved, and thus suitable for deep-scale phylogenies.
 
 ### BLAST
 
@@ -59,11 +59,11 @@ The whole exercise is based on RpoB, the [&Beta;-subunit of the bacterial RNA po
 module load bioinfo-tools blast
 ```
 
-Databases available at UPPMAX are described here: https://www.uppmax.uu.se/resources/databases/blast-databases/. The `blast_databases` module implies that you don't need to specify where the databases are located on the file system. In detail, it sets the `BLASTDB` variable to the right folder. You can see it by typing `echo $BLASTDB` in the terminal.   
+Databases available at UPPMAX are described here: https://docs.uppmax.uu.se/databases/blast/. The `blast_databases` module implies that you don't need to specify where the databases are located on the file system. In detail, it sets the `BLASTDB` variable to the right folder. You can see it by typing `echo $BLASTDB` in the terminal.   
 
 Gene and protein records are usually associated with a `taxid`, to describe what organisms they come from. This can be very useful to limit the search to a certain taxon, or to exclude another taxon. E.g. if you want to investigate whether a certain gene has been transferred from bacteria to archaea: you would search for that specific by excluding all bacteria and eukaryotes. 
 
-Taxonomy resources at UPPMAX are described here: https://www.uppmax.uu.se/resources/databases/ncbi-taxonomy-databases
+Taxonomy resources at UPPMAX are described here: https://docs.uppmax.uu.se/databases/ncbi/
 
 ## Exercise 0: Login to Uppmax
 
