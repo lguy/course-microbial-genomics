@@ -27,24 +27,24 @@ exercises: 240
 The exercise is done for a large part with pen and paper, and then a demonstration in R on your laptop, using RStudio. We'll also use the R package [`ape`](https://emmanuelparadis.github.io/), which you should install if it's not present on your setup. Commands can be typed or pasted in the "Console" part of RStudio.
 
 
-```r
+``` r
 install.packages('ape')
 ```
 
-```{.output}
+``` output
 The following package(s) will be installed:
-- ape [5.7-1]
-These packages will be installed into "~/work/course-microbial-genomics/course-microbial-genomics/renv/profiles/lesson-requirements/renv/library/R-4.3/x86_64-pc-linux-gnu".
+- ape [5.8-1]
+These packages will be installed into "~/work/course-microbial-genomics/course-microbial-genomics/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 - Installing ape ...                            OK [linked from cache]
-Successfully installed 1 package in 5.4 milliseconds.
+Successfully installed 1 package in 5.3 milliseconds.
 ```
 
 And to load it:
 
 
-```r
+``` r
 library(ape)
 ```
 
@@ -53,7 +53,7 @@ library(ape)
 
 Load the tree in fasta format, reading from a `temp` file
 
-```r
+``` r
 FASTAfile <- tempfile("aln", fileext = ".fasta")
 cat(">A", "----ATCCGCTGATCGGCTG----",
     ">B", "GCTGATCCGTTGATCGG-------",
@@ -65,11 +65,11 @@ aln <- read.dna(FASTAfile, format = "fasta")
 Now look at the alignment. Notice there are gaps, which we don't want in this example. We also remove the non-informative (identical) columns. 
 
 
-```r
+``` r
 alview(aln)
 ```
 
-```{.output}
+``` output
   000000000111111111122222
   123456789012345678901234
 A ----ATCCGCTGATCGGCTG----
@@ -78,12 +78,12 @@ C .......T...C.......-....
 D ......T......A.T....GCTG
 ```
 
-```r
+``` r
 aln_filtered <- aln[,c(7,8,10,12,14,16)]
 alview(aln_filtered)
 ```
 
-```{.output}
+``` output
   123456
 A CCCGTG
 B ..T...
@@ -195,19 +195,19 @@ calculate the distances. We'll use a "N" model, that just counts the differences
 
 
 
-```r
+``` r
 dist_matrix <- dist.dna(aln_filtered, model="N")
 dist_matrix
 ```
 
-```{.output}
+``` output
   A B C
 B 1    
 C 2 3  
 D 3 4 5
 ```
 
-```r
+``` r
 tree <- as.phylo(hclust(dist_matrix, "average"))
 plot(tree)
 edgelabels(tree$edge.length)
