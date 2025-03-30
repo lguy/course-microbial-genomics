@@ -397,7 +397,7 @@ rpoB_ecoli.fasta</p>
 version of <code>BLAST</code>. It is also the first step in building
 phylogenetic trees, namely by gathering homologous sequences that will
 then be aligned. The alignment is finally used to build a tree.</p>
-<p>The whole exercise is based on RpoB, the <a href="https://en.wikipedia.org/wiki/RpoB" class="external-link">Β-subunit of the bacterial RNA
+<p>The whole exercise is based on RpoB, the <a href="https://en.wikipedia.org/wiki/RpoB" class="external-link">β-subunit of the bacterial RNA
 polymerase</a>. This protein is essential to the cell, and present in
 all bacteria and plastids. It is also very conserved, and thus suitable
 for deep-scale phylogenies.</p>
@@ -422,8 +422,8 @@ the standard databases that NCBI maintains.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools blast</span></code></pre>
 </div>
-<p>Databases available at UPPMAX are described here: <a href="https://www.uppmax.uu.se/resources/databases/blast-databases/" class="external-link uri">https://www.uppmax.uu.se/resources/databases/blast-databases/</a>.
-The <code>blast_databases</code> module implies that you don’t need to
+<p>Databases available at UPPMAX are described here: <a href="https://docs.uppmax.uu.se/databases/blast/" class="external-link uri">https://docs.uppmax.uu.se/databases/blast/</a>. The
+<code>blast_databases</code> module implies that you don’t need to
 specify where the databases are located on the file system. In detail,
 it sets the <code>BLASTDB</code> variable to the right folder. You can
 see it by typing <code>echo $BLASTDB</code> in the terminal.</p>
@@ -433,7 +433,7 @@ be very useful to limit the search to a certain taxon, or to exclude
 another taxon. E.g. if you want to investigate whether a certain gene
 has been transferred from bacteria to archaea: you would search for that
 specific by excluding all bacteria and eukaryotes.</p>
-<p>Taxonomy resources at UPPMAX are described here: <a href="https://www.uppmax.uu.se/resources/databases/ncbi-taxonomy-databases" class="external-link uri">https://www.uppmax.uu.se/resources/databases/ncbi-taxonomy-databases</a></p>
+<p>Taxonomy resources at UPPMAX are described here: <a href="https://docs.uppmax.uu.se/databases/ncbi/" class="external-link uri">https://docs.uppmax.uu.se/databases/ncbi/</a></p>
 </div>
 </section><section><h2 class="section-heading" id="exercise-0-login-to-uppmax">Exercise 0: Login to Uppmax<a class="anchor" aria-label="anchor" href="#exercise-0-login-to-uppmax"></a></h2>
 <hr class="half-width"><p>This is just a reminder of the introduction to Linux and how to login
