@@ -1349,45 +1349,6 @@
       "Maintainer": "Winston Chang <winston@posit.co>",
       "Repository": "CRAN"
     },
-    "lattice": {
-      "Package": "lattice",
-      "Version": "0.22-6",
-      "Source": "Repository",
-      "Date": "2024-03-20",
-      "Priority": "recommended",
-      "Title": "Trellis Graphics for R",
-      "Authors@R": "c(person(\"Deepayan\", \"Sarkar\", role = c(\"aut\", \"cre\"), email = \"deepayan.sarkar@r-project.org\", comment = c(ORCID = \"0000-0003-4107-1553\")), person(\"Felix\", \"Andrews\", role = \"ctb\"), person(\"Kevin\", \"Wright\", role = \"ctb\", comment = \"documentation\"), person(\"Neil\", \"Klepeis\", role = \"ctb\"), person(\"Johan\", \"Larsson\", role = \"ctb\", comment = \"miscellaneous improvements\"), person(\"Zhijian (Jason)\", \"Wen\", role = \"cph\", comment = \"filled contour code\"), person(\"Paul\", \"Murrell\", role = \"ctb\", email = \"paul@stat.auckland.ac.nz\"), person(\"Stefan\", \"Eng\", role = \"ctb\", comment = \"violin plot improvements\"), person(\"Achim\", \"Zeileis\", role = \"ctb\", comment = \"modern colors\"), person(\"Alexandre\", \"Courtiol\", role = \"ctb\", comment = \"generics for larrows, lpolygon, lrect and lsegments\") )",
-      "Description": "A powerful and elegant high-level data visualization system inspired by Trellis graphics, with an emphasis on multivariate data. Lattice is sufficient for typical graphics needs, and is also flexible enough to handle most nonstandard requirements. See ?Lattice for an introduction.",
-      "Depends": [
-        "R (>= 4.0.0)"
-      ],
-      "Suggests": [
-        "KernSmooth",
-        "MASS",
-        "latticeExtra",
-        "colorspace"
-      ],
-      "Imports": [
-        "grid",
-        "grDevices",
-        "graphics",
-        "stats",
-        "utils"
-      ],
-      "Enhances": [
-        "chron",
-        "zoo"
-      ],
-      "LazyLoad": "yes",
-      "LazyData": "yes",
-      "License": "GPL (>= 2)",
-      "URL": "https://lattice.r-forge.r-project.org/",
-      "BugReports": "https://github.com/deepayan/lattice/issues",
-      "NeedsCompilation": "yes",
-      "Author": "Deepayan Sarkar [aut, cre] (<https://orcid.org/0000-0003-4107-1553>), Felix Andrews [ctb], Kevin Wright [ctb] (documentation), Neil Klepeis [ctb], Johan Larsson [ctb] (miscellaneous improvements), Zhijian (Jason) Wen [cph] (filled contour code), Paul Murrell [ctb], Stefan Eng [ctb] (violin plot improvements), Achim Zeileis [ctb] (modern colors), Alexandre Courtiol [ctb] (generics for larrows, lpolygon, lrect and lsegments)",
-      "Maintainer": "Deepayan Sarkar <deepayan.sarkar@r-project.org>",
-      "Repository": "CRAN"
-    },
     "lifecycle": {
       "Package": "lifecycle",
       "Version": "1.0.4",
@@ -1614,20 +1575,21 @@
         "withr"
       ],
       "VignetteBuilder": "knitr",
-      "Remotes": "ropensci/tinkr",
       "Additional_repositories": "https://carpentries.r-universe.dev/",
       "Config/testthat/edition": "3",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "Roxygen": "list(markdown = TRUE)",
       "RoxygenNote": "7.3.2",
-      "Config/pak/sysreqs": "make libxslt-dev",
-      "Repository": "https://carpentries.r-universe.dev",
-      "RemoteUrl": "https://github.com/carpentries/pegboard",
-      "RemoteRef": "0.7.9",
-      "RemoteSha": "5e0d711121a581777d83cf270e298c933f112d52",
-      "NeedsCompilation": "no",
       "Author": "Robert Davey [aut, cre] (<https://orcid.org/0000-0002-5589-7754>), Erin Becker [aut] (<https://orcid.org/0000-0002-6832-0233>), Zhian N. Kamvar [aut] (<https://orcid.org/0000-0003-1458-7108>), Toby Hodges [ctb], Erin Becker [ctb], Kelly Barnes [ctb]",
-      "Maintainer": "Robert Davey <robertdavey@carpentries.org>"
+      "Maintainer": "Robert Davey <robertdavey@carpentries.org>",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "carpentries",
+      "RemoteRepo": "pegboard",
+      "RemoteRef": "main",
+      "RemoteSha": "5e0d711121a581777d83cf270e298c933f112d52",
+      "Remotes": "ropensci/tinkr"
     },
     "pillar": {
       "Package": "pillar",
@@ -2622,18 +2584,19 @@
       ],
       "Config/testthat/edition": "3",
       "Encoding": "UTF-8",
+      "LazyData": "true",
       "Roxygen": "list(markdown = TRUE, roclets = c(\"collate\", \"rd\", \"namespace\", \"devtag::dev_roclet\"))",
       "RoxygenNote": "7.3.2.9000",
       "VignetteBuilder": "knitr",
       "Config/Needs/build": "moodymudskipper/devtag",
-      "Config/pak/sysreqs": "libxslt-dev",
-      "Repository": "https://carpentries.r-universe.dev",
-      "RemoteUrl": "https://github.com/ropensci/tinkr",
-      "RemoteRef": "maelle-patch-1",
-      "RemoteSha": "be22fa6fc01e88ecf11ebdfa4c52a45e765dff84",
-      "NeedsCompilation": "no",
       "Author": "Maëlle Salmon [aut] (<https://orcid.org/0000-0002-2815-0399>), Zhian N. Kamvar [aut, cre] (<https://orcid.org/0000-0003-1458-7108>), Jeroen Ooms [aut], Nick Wellnhofer [cph] (Nick Wellnhofer wrote the XSLT stylesheet.), rOpenSci [fnd] (019jywm96), Peter Daengeli [ctb]",
-      "Maintainer": "Zhian N. Kamvar <zkamvar@gmail.com>"
+      "Maintainer": "Zhian N. Kamvar <zkamvar@gmail.com>",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "ropensci",
+      "RemoteRepo": "tinkr",
+      "RemoteRef": "main",
+      "RemoteSha": "22659e9caed693633a4ebf565473d303f64f0a46"
     },
     "tinytex": {
       "Package": "tinytex",
