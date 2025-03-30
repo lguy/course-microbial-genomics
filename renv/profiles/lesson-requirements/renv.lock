@@ -1472,6 +1472,40 @@
       "Maintainer": "Yihui Xie <xie@yihui.name>",
       "Repository": "CRAN"
     },
+    "nlme": {
+      "Package": "nlme",
+      "Version": "3.1-167",
+      "Source": "Repository",
+      "Date": "2025-01-27",
+      "Priority": "recommended",
+      "Title": "Linear and Nonlinear Mixed Effects Models",
+      "Authors@R": "c(person(\"José\", \"Pinheiro\", role = \"aut\", comment = \"S version\"), person(\"Douglas\", \"Bates\", role = \"aut\", comment = \"up to 2007\"), person(\"Saikat\", \"DebRoy\", role = \"ctb\", comment = \"up to 2002\"), person(\"Deepayan\", \"Sarkar\", role = \"ctb\", comment = \"up to 2005\"), person(\"EISPACK authors\", role = \"ctb\", comment = \"src/rs.f\"), person(\"Siem\", \"Heisterkamp\", role = \"ctb\", comment = \"Author fixed sigma\"), person(\"Bert\", \"Van Willigen\",role = \"ctb\", comment = \"Programmer fixed sigma\"), person(\"Johannes\", \"Ranke\", role = \"ctb\", comment = \"varConstProp()\"), person(\"R Core Team\", email = \"R-core@R-project.org\", role = c(\"aut\", \"cre\"), comment = c(ROR = \"02zz1nj61\")))",
+      "Contact": "see 'MailingList'",
+      "Description": "Fit and compare Gaussian linear and nonlinear mixed-effects models.",
+      "Depends": [
+        "R (>= 3.6.0)"
+      ],
+      "Imports": [
+        "graphics",
+        "stats",
+        "utils",
+        "lattice"
+      ],
+      "Suggests": [
+        "MASS",
+        "SASmixed"
+      ],
+      "LazyData": "yes",
+      "Encoding": "UTF-8",
+      "License": "GPL (>= 2)",
+      "BugReports": "https://bugs.r-project.org",
+      "MailingList": "R-help@r-project.org",
+      "URL": "https://svn.r-project.org/R-packages/trunk/nlme/",
+      "NeedsCompilation": "yes",
+      "Author": "José Pinheiro [aut] (S version), Douglas Bates [aut] (up to 2007), Saikat DebRoy [ctb] (up to 2002), Deepayan Sarkar [ctb] (up to 2005), EISPACK authors [ctb] (src/rs.f), Siem Heisterkamp [ctb] (Author fixed sigma), Bert Van Willigen [ctb] (Programmer fixed sigma), Johannes Ranke [ctb] (varConstProp()), R Core Team [aut, cre] (02zz1nj61)",
+      "Maintainer": "R Core Team <R-core@R-project.org>",
+      "Repository": "CRAN"
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "2.3.2",
@@ -1508,7 +1542,7 @@
     "pegboard": {
       "Package": "pegboard",
       "Version": "0.7.9",
-      "Source": "GitHub",
+      "Source": "Repository",
       "Title": "Explore and Manipulate Markdown Curricula from the Carpentries",
       "Authors@R": "c( person(given = \"Robert\", family = \"Davey\", role = c(\"aut\", \"cre\"), email = \"robertdavey@carpentries.org\", comment = c(ORCID = \"0000-0002-5589-7754\")), person(given = \"Erin\", family = \"Becker\", role = c(\"aut\"), email = \"erinbecker@carpentries.org\", comment = c(ORCID = \"0000-0002-6832-0233\")), person(given = \"Zhian N.\", family = \"Kamvar\", role = c(\"aut\"), email = \"zkamvar@carpentries.org\", comment = c(ORCID = \"0000-0003-1458-7108\")), person(given = \"Toby\", family = \"Hodges\", role = c(\"ctb\"), email = \"tobyhodges@carpentries.org\"), person(given = \"Erin\", family = \"Becker\", role = c(\"ctb\"), email = \"ebecker@carpentries.org\"), person(given = \"Kelly\", family = \"Barnes\", role = c(\"ctb\"), email = \"kbarnes@carpentries.org\"), person())",
       "Description": "The Carpentries (<https://carpentries.org>) curricula is made of of lessons that are hosted as websites. Each lesson represents between a half day to two days of instruction and contains several episodes, which are written as 'kramdown'-flavored 'markdown' documents and converted to HTML using the 'Jekyll' static website generator. This package builds on top of the 'tinkr' package; reads in these markdown documents to 'XML' and stores them in R6 classes for convenient exploration and manipulation of sections within episodes.",
@@ -2523,7 +2557,7 @@
     "tinkr": {
       "Package": "tinkr",
       "Version": "0.2.0.9002",
-      "Source": "GitHub",
+      "Source": "Repository",
       "Title": "Cast '(R)Markdown' Files to 'XML' and Back Again",
       "Authors@R": "c(person(given = \"Maëlle\", family = \"Salmon\", role = c(\"aut\"), email = \"msmaellesalmon@gmail.com\", comment = c(ORCID = \"0000-0002-2815-0399\")), person(given = \"Zhian N.\", family = \"Kamvar\", role = c(\"aut\", \"cre\"), email = \"zkamvar@gmail.com\", comment = c(ORCID = \"0000-0003-1458-7108\")), person(given = \"Jeroen\", family = \"Ooms\", role = \"aut\"), person(given = \"Nick\", family = \"Wellnhofer\", role = \"cph\", comment = \"Nick Wellnhofer wrote the XSLT stylesheet.\"), person(given = \"rOpenSci\", role = \"fnd\", comment = c(ROR = \"019jywm96\")), person(given = \"Peter\", family = \"Daengeli\", role = \"ctb\"))",
       "Description": "Parsing '(R)Markdown' files with numerous regular expressions can be fraught with peril, but it does not have to be this way. Converting '(R)Markdown' files to 'XML' using the 'commonmark' package allows in-memory editing via of 'markdown' elements via 'XPath' through the extensible 'R6' class called 'yarn'. These modified 'XML' representations can be written to '(R)Markdown' documents via an 'xslt' stylesheet which implements an extended version of 'GitHub'-flavoured 'markdown' so that you can tinker to your hearts content.",
