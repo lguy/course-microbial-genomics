@@ -271,7 +271,13 @@ There are several ways to display the GenBank file.
 
 In this exericse, you will use the sequence alignment tool BLAST to align and retrieve sequences. 
 
-NOTE: the NCBI blast service can be under very heavy load (especially during daytime in the US), and don’t be surprised if a single blast takes >10 minutes. As an alternative, you can use the BLAST service at the EBI website (http://www.ebi.ac.uk). Note that the EBI doesn’t have the same level of tool integration as NCBI, and some parts of the questions might be more challenging to answer with the EBI tools. A good tip to accelerate your searches and to reduce the load on the NCBI server is to consider smaller databases than the standard nr/nt ones.
+::: caution
+
+NOTE: the NCBI blast service can be under very heavy load (especially during daytime in the US), and don’t be surprised if a single blast takes >10 minutes. As an alternative, you can use the BLAST service at the EBI website (http://www.ebi.ac.uk). Note that the EBI doesn’t have the same level of tool integration as NCBI, and some parts of the questions might be more challenging to answer with the EBI tools. 
+
+In general, try reduce the load on the NCBI server and consider smaller databases than the standard `nr`/`nt` ones, for example `refseq_select` or `refseq_protein`: under the "Choose Search Set" heading on the Blast search page, you can choose the right "Database". 
+
+::::::::::
 
 ### Task 2.1: Find nucleotide blast hits
 
@@ -287,9 +293,16 @@ Find the NCBI blast main page.
 - What is blastn? blastx? blastp? tblastn?
 
 
+::: hint
+
+See the different flavors of BLAST:
+https://blast.ncbi.nlm.nih.gov/doc/blast-quick-start-guide/
+
+::::::::
+
 ::::::::::::::::
 
-Find sequence hits for the following sequence, but first consider the options available on the BLAST page. One option that might come in very handy is the “open results in another window”, which will allow you to modify your query and rerun it quickly without losing the results:
+Find sequence hits for the following sequence, but first consider the options available on the BLAST page. One option that might come in very handy is the "open results in another window" option, which will allow you to modify your query and rerun it quickly without losing the results:
 
 ```
 >a
@@ -337,10 +350,11 @@ Now go back to the blast main page.
 - Did you choose the right blast algorithm to answer the questions above? 
 - Can you do better?
 
-
 ::: hint
 
 What if you try another flavor of the blast suite?
+
+What if you aligned the gene to the genome while keeping the codon frame?
 
 ::::::::
 
@@ -391,6 +405,12 @@ if you get stuck, try e.g. StarORF (http://star.mit.edu/orf/index.html).
 
 - Can you perform a pairwise alignment between both sequences? 
 - What are the differences? 
+
+::: hint
+
+Check the "Align two or more sequences" on the BLAST search page.
+
+::::::::
 
 ::::::::::::::::
 
@@ -476,7 +496,7 @@ GTTTCGCAATCCGTGAAGGCGGCCGTACCGTTGGTGCGGGCGTTGTTGCTAAAGTTCTGGGCTAA
 
 ::: hint
 
-Use rather blastn to identify the origin of the gene. Explore the alignments of the first hit, and try the “Graphics” button associated with the results. 
+Use rather blastn to identify the origin of the gene. Explore the alignments of the first hit, and try the "Graphics" button associated with the results. 
 
 ::::::::
 
@@ -516,7 +536,7 @@ Now can you find that gene in the genome above?
 
 ::: hint
 
-What is the dnaA gene doing?
+What is the *dnaA* gene doing?
 
 :::::::
 
