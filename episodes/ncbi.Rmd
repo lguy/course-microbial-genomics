@@ -10,6 +10,7 @@ exercises: 240
 
 Exercise 1
 - How do you efficiently and reliably navigate NCBI's website?
+
 Exercise 2
 - How do you search sequences?
 - How do you use the right BLAST flavor?
@@ -21,6 +22,7 @@ Exercise 2
 Exercise 1
 - Familiarize yourself with the differences NCBI databases
 - Browse and search the databases, using cross-links
+
 Exercise 2
 - Use and understand blast alignment tools
 - Characterize sequences
@@ -29,6 +31,7 @@ Exercise 2
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 This part is to encourage you to explore NCBI resources. Questions are examples or real-life questions that you might ask yourself later. There are not necessarily exactly one solution to the question. 
+
 Start by going to NCBI's web site, main search page: https://www.ncbi.nlm.nih.gov/search/. There, you have the list of most of NCBI’s databases, sorted by category. Take some time to explore the following sections: Literature, Genomes, Genes and Proteins.
 
 ### Task 1.1: Find publications (this is a warm up!)
@@ -36,7 +39,7 @@ Start by going to NCBI's web site, main search page: https://www.ncbi.nlm.nih.go
 You want to find the following articles: 
 
 1. an article about *Escherichia coli* O104:H4 published by Matthew K Waldor in the New England Journal of Medicine; and 
-1. a paper about *E. coli* whose last author is L. Wang, published in PLoS ONE in 2014. 
+1. a paper that has *Escherichia coli* in the title, whose last author is L. Wang, and was published in PLoS ONE in 2014. 
 
 NOTE: you do not know the exact title, list of authors, PMID etc. Use your search skills (solution provided below). There may be more than one result.
 
@@ -48,23 +51,36 @@ Find the two articles above using NCBI's literature database.
 
 :::::::::::::::::::::::: hint
 
-Use the advanced search from PubMed, by clicking on “Advanced” (tutorial https://www.ncbi.nlm.nih.gov/books/NBK3827/#pubmedhelp.PubMed_Quick_Start), to build an exact search. Use the different fields to build a search that returns only a single match.
+Use the advanced search from PubMed, by clicking on “Advanced” (tutorial https://www.ncbi.nlm.nih.gov/books/NBK3827/#pubmedhelp.PubMed_Quick_Start), to build an exact search. Use the different fields to build a search that returns only a single match. In particular, look at the [Search field tags](https://pubmed.ncbi.nlm.nih.gov/help/#using-search-field-tags). 
+
+:::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::: hint
+
+Use search terms with search tags ("search term"[searchTag]")and combine them with Boolean operators ("AND").
+
+:::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::: hint
+
+Useful search tags: Author [au], Date of publication [dp], Journal [ta], Last author [lastau], Title [ti].
 
 :::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::: solution 
 
-1. Rasko DA, Webster DR, […], Waldor MK. Origins of the *E. coli* strain causing an outbreak of hemolytic-uremic syndrome in Germany. N Engl J Med. 2011 Aug 25;365(8):709-17. doi: 10.1056/NEJMoa1106920. Epub 2011 Jul 27.
-1. Zhang X, Li Y, Liu B, Wang J, Feng C, Gao M, Wang L. Prevalence of veterinary antibiotics and antibiotic-resistant *Escherichia coli* in the surface water of a livestock production region in northern China. PLoS One. 2014 Nov 5;9(11):e111026. doi: 10.1371/journal.pone.0111026. eCollection 2014.
+1. Waldor[au] AND "Escherichia coli O104:H4" AND NEJM[ta]
+1. "Wang L"[lastau] AND "Escherichia coli"[ti] AND 2014[dp] and "PLOS One"[ta]. 
 
 :::::::::::::::::::::::::::::::::
 
 ## Challenge 1.1.2
 
-Now try to find the most recent paper citing the first article by Rasko et al above. NCBI provides the “Cited by” link (right menu), but you can also use 
+Now try to find the most recent paper citing the first article by Rasko et al above. Compare the use of 
 
-- Google Scholar (https://scholar.google.com) or 
-- Web of Knowledge (https://www.webofknowledge.com; Access from UU: https://www.ub.uu.se/ > Databases A-Z > W > Web of Science Core Collection). The language settings of Google Scholar can be adjusted in the menu under Settings.
+- NCBI (“Cited by” link) and
+- Google Scholar (https://scholar.google.com) (the language settings of Google Scholar can be adjusted in the menu under Settings) and
+- Web of Knowledge (https://www.webofknowledge.com; Access from UU: https://www.ub.uu.se/ > Databases A-Z > W > Web of Science Core Collection). 
 
 Then: 
 
@@ -91,7 +107,7 @@ NCBI is not as smart as Google, and copy/pasting might fail. Try spelling out *E
 
 If you get too many hits, go to the field “Search details”, and refine your search, using the [Organism] field, for example. You don’t need to get exactly one hit or to get the result you want on top. By default, the search will include everything that has the species name anywhere in the record.
 
-Nucleotide database contains mostly **genome** records, so the Shiga toxin gene might be anywhere there.
+Nucleotide database contains mostly **genome** records, so the Shiga toxin gene might be anywhere on these contigs/genomes.
 
 ::::::::
 
@@ -111,6 +127,12 @@ Click on a Gene search result from Task 1.2 and skim through the entire page.
 
 Who published the sequence? When? Is there a paper? 
 
+::: hint
+
+There is often a "Bibliography" section. There is also often a "PubMed" link under "Related Information" in the right menu.
+
+::::::::
+
 ::::::::::::::::
 
 :::::: challenge
@@ -118,6 +140,12 @@ Who published the sequence? When? Is there a paper?
 ## Challenge 1.3.2 
 
 What is known about the gene? Does the record include taxonomy information? 
+
+::: hint
+
+The taxonomic information is under the "Summary" section, under "Organism" and "Lineage".
+
+::::::::
 
 ::::::::::::::::
 
@@ -141,7 +169,7 @@ Where can you go from there?
 
 ::: hint
 
-All the information in that section ("Related information") is coming through the Entrez system. In the `FASTA` record, look for `\dbxref` (database cross-reference) which provides the Entrez links.
+All the information in that section ("Related information") is coming through the Entrez system. In `GenBank` records, look for `\dbxref` (database cross-reference) which provides the Entrez links.
 
 ::::::::
 
@@ -161,7 +189,8 @@ What can you learn here? What information do you find here? What is the name of 
 ::: hint
 
 You can change the format by clicking on the top left corner.
-Look for "Related information" in the right menu.
+
+Look also for "Related information" in the right menu and for the `/db_xref` links in the main file.
 
 ::::::::
 
@@ -171,7 +200,7 @@ Look for "Related information" in the right menu.
 
 ## Challenge 1.4.2 
 
-Can you find just the sequence information in `FASTA` format? How is the format organized? What is included in the header? Discuss the advantages of the two formats. Can you find a definition of both formats on the NCBI website or elsewhere?
+Can you find only the sequence information in `FASTA` format? How is the format organized? What is included in the header? Discuss the advantages of the two formats. Can you find a definition of both formats on the NCBI website or elsewhere?
 
 ::: solution
 
@@ -190,13 +219,50 @@ If you are stuck, here is the link to
 
 Can you find a 3D protein structure for this protein? 
 
+::: hint
+
+Not all proteins have 3D structures. If your protein doesn't have one, try the following Shiga toxin:
+
+https://www.ncbi.nlm.nih.gov/protein/NP_311001.1
+
+::::::::
+
+::: hint
+
+In the right menu, under "Related Information", there may be a "Related Structures" link. 
+
+::::::::
+
+::: solution
+
+See here: https://www.ncbi.nlm.nih.gov/structure?LinkName=protein_structure_related_list&from_uid=15832228
+
+::::::::::::
+
 ::::::::::::::::
 
 :::::: challenge
 
 ## Challenge 1.4.4 
 
-Can you display the genome record on which this gene is encoded?
+Can you display the genome record on which the gene is encoded?
+
+::: hint
+
+If you lost the gene page, here is another one: 
+
+https://www.ncbi.nlm.nih.gov/gene/26516284
+
+::::::::
+
+::: solution
+
+There are several ways to display the GenBank file. 
+- In the "Genomic regions, transcripts, and products" section, there is a link to the GenBank record
+- There is another one in the "Related sequences" section (column "Accession and Version"). 
+
+
+::::::::::::
 
 ::::::::::::::::
 
@@ -210,7 +276,6 @@ NOTE: the NCBI blast service can be under very heavy load (especially during day
 ### Task 2.1: Find nucleotide blast hits
 
 Find the NCBI blast main page. 
-
 
 
 :::::: challenge
