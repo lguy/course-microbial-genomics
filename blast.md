@@ -18,7 +18,9 @@ exercises: 240
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::: instructor
+<!---
+
+NOTES: 
 
 Core: 
 Find the protein sequence for RpoB in E. coli
@@ -39,7 +41,7 @@ Use psi-blast with a pattern
 module load bioinfo-tools blast
 blastp -db landmark -query rpoB_ecoli.fasta
 
-:::::::::::::::
+---> 
 
 ## Introduction
 
@@ -79,24 +81,37 @@ Remember the best practices you learned for file naming.
 
 All exercises should be performed inside `/proj/g2020004/nobackup/3MK013/<username>` where `<username>` is your own folder.
 
-::: solution
+::: hint
+
+`ssh` is used to connect to an external server. `-Y` forwards the graphical display to your computer. The address of the server is `rackham.uppmax.uu.se`. You need to add your user name in front of it, with a `@` in between. 
+
+The course folder is at `/proj/g2020004/nobackup/3MK013/`.
+
+There, make a folder with your username. 
+
+Inside it, create a `blast` folder for this exercise.
+
+::::::::
+
+::: instructor
 
 ```bash
 ssh –Y username@rackham.uppmax.uu.se
 cd /proj/g2020004/nobackup/3MK013/<username>/
 mkdir blast
 ```
- 
+
 ::::::::::::
+
 
 ## Challenge 0.2
 
-Access an interactive session that is booked for us.
+Access an `interactive` session that is booked for us. The session is `uppmax2025-3-4`. Use the `snowy` cluster, for 4 hours.
 
 ::: solution
 
 ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 4:00:00 
+interactive -A <project> -M <cluster> -t <hh:mm:ss> 
 ```
 
 ::::::::::::
@@ -120,11 +135,9 @@ Find the accession number for the IPG containing the RpoB sequence of *E. coli* 
 
 ::: solution
 
-The IPG record can be found here: https://www.ncbi.nlm.nih.gov/ipg/1258700
-
 The accession number is `WP_000263098.1`.
 
-The sequence in fasta format can be downloaded at https://www.ncbi.nlm.nih.gov/protein/WP_000263098.1?report=fasta by clicking on the "Send to" link and then choosing `FASTA` format. Save the file under `rpoB_ecoli.fasta`.
+The sequence in fasta format can be downloaded at https://www.ncbi.nlm.nih.gov/protein/ by searching the accession number clicking on the "Send to" link and then choosing `FASTA` format. Save the file under `rpoB_ecoli.fasta`.
 
 The fasta file should look like:
 
@@ -135,6 +148,14 @@ VSYRLGEPVFDVQECQIRGVTYSAPLRVKLRLVIYEREAPEGTVKDIKEQEVYMGEIPLMTDNGTFVING
 ```
 
 ::::::::::::
+
+::: instructor
+
+The IPG record can be found here: https://www.ncbi.nlm.nih.gov/ipg/1258700
+
+The fasta file can be found here: https://www.ncbi.nlm.nih.gov/protein/WP_000263098.1?report=fasta
+
+::::::::::::::
 
 ::::::::::::::::
 
@@ -156,13 +177,13 @@ The remote file location can be a relative path from your home or an absolute pa
 
 To bring up a local terminal on your Windows computer, click on the "+" sign on the main window of MobaXTerm. If that doesn't work, use SFTP. Click on Session, SFTP, and fill in the Remote host as usual `rackham.uppmax.uu.se` and your username. Navigate to `/proj/g2020004/nobackup/3MK013/<username>/blast` on the right panel, then drag and drop files between your computer and Uppmax.
 
-::: solution
+::: instructor
 
- 
 ```bash
 scp rpoB_ecoli.fasta <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast
 ```
-::::::::::::
+
+::::::::::::::
 
 ::: hint
 
@@ -199,13 +220,30 @@ The manual for `blastdbcmd` can be obtained with:
 blastdbcmd -help
 ```
 
+::: hint
+
+If you have closed your session, you may need to use `module load` to load the appropriate module.
+
+You may want to look into `-db` and `-entry` arguments.
+
+::::::::
+
+
 ::: solution
+
+```bash
+blastdbcmd -db <db name> -entry <accession> > <file>
+```
+ 
+::::::::::::
+
+::: instructor
 
 ```bash
 blastdbcmd -db landmark -entry WP_000263098 > rpoB_ecoli.fasta
 ```
  
-::::::::::::
+::::::::::::::
 
 ::: hint
 
@@ -217,16 +255,18 @@ You should use the `-db` option and the `-entry` one.
 
 Can you figure out a way to find the size of these two databases? How does it affect the time to retrieve information from them? Is it worth thinking about it?
 
-::: solution
+::: hint
 
 You can look at the size of the databases by using `blastdbcmd` and the flag `-info`. To see how much time it takes to retrieve that single sequence from either database, use the command `time` in front of the command: 
 
-```bash
-blastdbcmd -db landmark -info
-blastdbcmd -db nr -info
+::::::::
 
-time blastdbcmd -db landmark -entry WP_000263098 > /dev/null
-time blastdbcmd -db nr -entry WP_000263098 > /dev/null
+::: solution
+
+```bash
+blastdbcmd -db <db> -info
+
+time blastdbcmd -db <db> -entry <accession> > /dev/null
 ```
 
 ```output
@@ -251,6 +291,17 @@ real	0m10.059s.   # for nr
 
 ::::::::::::
 
+::: instructor
+
+```bash
+blastdbcmd -db landmark -info
+blastdbcmd -db nr -info
+
+time blastdbcmd -db landmark -entry WP_000263098 > /dev/null
+time blastdbcmd -db nr -entry WP_000263098 > /dev/null
+```
+::::::::::::::
+
 ::::::::::::::::
 
 ### Task 1.3: Finding homologs to RpoB with `BLAST`
@@ -260,6 +311,7 @@ Now we have a query to start our search. Check that the file is present (`ls`) a
 ```output
 >WP_000263098.1 unnamed protein product [Escherichia coli] >NP_312937.1 RNA polymerase beta subunit [Escherichia coli O157:H7 str. Sakai]
 MVYSYTEKKRIRKDFGKRPQVLDVPYLLSIQLDSFQKFIEQDPEGQYGLEAAFRSVFPIQSYSGNSELQYVSYRLGEPVF
+[...]
 ```
 
 The file header might look slightly different, depending on how you obtained it. Now use `blastp` to find homologs of the RpoB protein. Use the help for `blastp` to explore the options you need to set.
@@ -268,13 +320,7 @@ The file header might look slightly different, depending on how you obtained it.
 
 ## Challenge 1.3.1: Use `blastp` to find homologs in the landmark database
 
-The path to the databases is already set correctly by the `modules blast_databases` command. See `echo $BLASTDB` to display it. Put the results into a file called `rpoB_landmark.blast`
-
-::: solution
-
-blastp -db landmark -query rpoB_ecoli.fasta > rpoB_landmark.blast
-
-::::::::::::
+The path to the databases is already set correctly by the `modules load blast` command. See `echo $BLASTDB` to display it. Put the results into a file called `rpoB_landmark.blast`
 
 ::: hint
 
@@ -286,24 +332,35 @@ blastp -help
 
 ::::::::
 
+
+::: solution
+
+```bash
+blastp -db <db> -query <fasta file> > <output file>
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
+blastp -db landmark -query rpoB_ecoli.fasta > rpoB_landmark.blast
+```
+
+::::::::::::::
+
 ::::::::::::::::
 
-Explore the results of the `blastp` command by displaying the file in which you put the output of `blastp`. In particular look at the E-values: do all hits look like true homologs? How can you change that?
+Explore the results of the `blastp` command by displaying the file in which you put the output of `blastp`. Inspect the alignments, including those at the bottom of file, which have worse alignments. In particular look at the E-values: do all hits look like true homologs? How can you change that?
 
 
 :::::: challenge
 
 ## Challenge 1.3.2: Use `blastp` to find better homologs
 
-Find the right option to change the E-value threshold to include hits. Try to rerun the `blastp` search with a more reasonable value than the default (10). 
+Find the right option to change the E-value threshold to include hits. What is the default E-value? What does that mean? 
 
-::: solution
-
-```bash
-blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 > rpoB_landmark.blast
-```
-
-::::::::::::
+Try to rerun the `blastp` search with a more reasonable value than the default. 
 
 ::: hint
 
@@ -311,9 +368,25 @@ As a rule of thumb, hits that have a E-value < 1e-6 are *bona fide* homologs. Lo
 
 ::::::::
 
+::: solution
+
+```bash
+blastp -db <db> -query <fasta_file> -evalue <evalue> > output
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
+blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 > rpoB_landmark.blast
+```
+
+::::::::::::
+
 ::::::::::::::::
 
-Explore the results again. Is it better? 
+Explore the results again. Is it better, even the last alignments?
 
 The default format of the `blast` output is "human-friendly", something that resembles the output that is created on the NCBI website. To produce an output that is even closer to NCBI's output, use the `-html` option.
 
@@ -334,10 +407,22 @@ Note that the query sometimes yields several hits in the same query protein. Thi
 `blastp` command:
 
 ```bash
-blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_landmark.tab
+blastp -db <db> -query <fasta file> -evalue <e-value> -outfmt <number> > <output_file>
 ```
 
-To import the file to your computer, to the current directory, use the same `scp` program as above. This should be run on your own computer, not from UPPMAX.
+To import the file to your computer, to the current directory, use the same `scp` program as above. **This should be run on your own computer, not from UPPMAX**.
+
+```bash
+scp <username>@rackham.uppmax.uu.se:<course base folde>/3MK013/<username>/blast/<file> .
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
+blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_landmark.tab
+``` 
 
 ```bash
 scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast/rpoB_landmark.tab .
@@ -355,14 +440,7 @@ So far you have used the `landmark` database, which is tiny. Now, use a differen
 
 ## Challenge 1.4.1: Larger database
 
-`refseq_select_prot` and `refseq_protein` are good candidates. The former is smaller than the latter. Note that these two runs will take time, so run only the one to `refseq_select_prot`. We will run it in the background (adding a `&` at the end of the command) so that you can continue with other tasks and come back to that one later.
-
-::: solution
-
-
-```bash
-blastp -db refseq_select_prot -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_refseq_select.tab &
-```
+`refseq_select_prot` and `refseq_protein` are good candidates. The former is smaller than the latter. Note that these two runs will take time, so run only the one to `refseq_select_prot`. We will run it in the background (adding a `&` at the end of the command) so that you can continue with other tasks and come back to that one later. 
 
 You can check whether `blastp` is still running by typing `ps`:
 
@@ -377,12 +455,26 @@ ps
 35427 pts/64   00:00:00 ps
 ```
 
-If you see `blastp` there, it means it is still running.
+If you see `blastp` there, it means it is still running. It could take up to 30 minutes. When `blastp` is done, count the number of hits obtained. 
 
+::: hint
+
+The list of locally available databases is listed here: 
+https://www.uppmax.uu.se/resources/databases/blast-databases/ 
+
+::::::::
+
+
+::: solution
+
+
+```bash
+blastp -db <db> -query <fasta file> -evalue <e-value> -outfmt 6 > rpoB_<db>.tab &
+```
 When it has finished (it may take up to 30 minutes), count the rows to have the number of hits:
 
 ```bash
-wc -l rpoB_refseq_select.tab
+wc -l rpoB_<db>.tab
 ```
 
 ```output
@@ -393,12 +485,19 @@ You have actually hit the maximum number of aligned sequences to keep by default
  
 ::::::::::::
 
-::: hint
+::: instructor
 
-The list of locally available databases is listed here: 
-https://www.uppmax.uu.se/resources/databases/blast-databases/ 
 
-::::::::
+```bash
+blastp -db refseq_select_prot -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_refseq_select.tab &
+```
+
+```bash
+wc -l rpoB_refseq_select.tab
+```
+ 
+::::::::::::
+
 
 ::::::::::::::::
 
@@ -413,17 +512,6 @@ You found hits, i.e. proteins that show similarity with the query protein. To pr
 
 Use `blastdbcmd` to retrieve the accession ids from the `landmark` database. To prepare the list of proteins to extract, `cut` the blast results to keep the accession number of the hits. As you noticed above, there are multiple hits per protein and one hit per line, resulting in each subject protein being possibly present several times. You will need to produce a non-redundant list of ids.
 
-::: solution
-
-The second column of the default tabular output provides the accession id. It needs to be `sort`ed and `uniq`-ed 
-
-```bash
-cut -f2 rpoB_landmark.tab | sort | uniq > rpoB_landmark_ids 
-blastdbcmd -db landmark -entry_batch rpoB_landmark_ids > rpoB_homologs.fasta
-```
- 
-::::::::::::
-
 ::: hint
 
 ```bash
@@ -434,23 +522,54 @@ man sort
 
 ::::::::
 
+::: hint
+
+The second column of the default tabular output provides the accession id. `cut` the tabular output of the blast file, pipe it to `sort` and then to `uniq`, and send the result in a file. Then use that file as a input to `blastcmd` to extract the proteins. Last time we used `-entry` because we had just one, but there is another argument that takes a list of entries instead. Put the result in the `rpoB_homologs.fasta` file. 
+
+::::::::
+
+::: solution
+
+```bash
+cut -f2 <blast_output_file> | sort | uniq > <id_file> 
+blastdbcmd -db <db> -entry_batch <id_file> > rpoB_homologs.fasta
+```
+ 
+::::::::::::
+
+::: instructor
+
+```bash
+cut -f2 rpoB_landmark.tab | sort | uniq > rpoB_landmark_ids 
+blastdbcmd -db landmark -entry_batch rpoB_landmark_ids > rpoB_homologs.fasta
+```
+ 
+::::::::::::
+
+
 ## Challenge 1.5.2: Count the sequences
 
 Can you count how many sequences were included in the fasta file? Use `grep` and your knowledge of the `FASTA` format.
+
+
+::: hint
+
+```bash
+man grep
+man wc
+```
+
+::::::::
 
 ::: solution
 
 You can take a look at the sequences that were included in the blast:
 
 ```bash
-grep ">" rpoB_homologs.fasta | less
+grep ">" <fasta_file> | less
 ```
 
-And then count them by piping the result to `wc -l` instead.
-
-```bash
-grep ">" rpoB_homologs.fasta | wc -l 
-```
+And then count them by piping the result to `wc` instead.
 
 There should be around 70 sequences. 
 
@@ -462,21 +581,22 @@ For the upcoming episode on multiple sequence alignment, you will use a subset o
  
 ::::::::::::
 
-::: hint
+::: instructor
+
 
 ```bash
-man grep
-man wc
+grep ">" rpoB_homologs.fasta | less
+grep ">" rpoB_homologs.fasta | wc -l 
 ```
-
-::::::::
+ 
+::::::::::::
 
 ::::::::::::::::
 
 
 ## Exercise 2: Using PSI-BLAST to retrieve distant homologs of proteins
 
-In this exercise, you will use another flavor of `BLAST` to retrieve distant homologs of a protein. As an example, we will use the protein RavC, present in the genomes of  *Legionella* bacteria. This protein is an effector protein, injected by *Legionella* into the cytoplasm of their host (protists). The exact function is unknown, but it is presumably important, as it is conserved throughout the whole order *Legionellales*. Many effectors found in this group are derived from eukaryotic proteins, and this is what you will test here: does RavC have a homolog in eukarotes?
+In this exercise, you will use another flavor of `BLAST` to retrieve distant homologs of a protein. As an example, we will use the protein RavC, present in the genomes of  [*Legionella* bacteria](https://en.wikipedia.org/wiki/Legionella). This protein is an effector protein, injected by *Legionella* into the cytoplasm of their host (protists). The exact function is unknown, but it is presumably important, as it is conserved throughout the whole order *Legionellales*. Many effectors found in this group are derived from eukaryotic proteins, and this is what you will test here: does RavC have a homolog in eukarotes?
 
 The strategy is to use `psiblast`, which uses - instead of a single query - a matrix of amino-acid frequencies as a query. `psiblast` is an iterative program: you generally start with one sequence, gather *bona fide* homologs, use the profile of these to query the database again, gather new homologs, recalculate the profile, then re-query the database, etc. The search may converge after a certain number of iterations, i.e. there no more new homologs to find with the latest profile. 
 
@@ -484,30 +604,52 @@ In this case, you will use a slightly different strategy: you will start with on
 
 ### Task 2.1: Extract RavC from a database
 
-As above, you will extract the sequence of RavC from a database. This time you will use `refseq_select_prot`, since there are no *Legionella* in `landmark`. The accession number of RavC that you will use is AAU26214.
+As above, you will extract the sequence of RavC from a database. This time you will use `refseq_select_prot`, since there are no *Legionella* in `landmark`. The accession number of RavC that you will use is [`WP_010945868.1`](https://www.ncbi.nlm.nih.gov/protein/WP_010945868.1).
 
 :::::: challenge
 
 ## Challenge 2.1.1: Extract RavC
 
-Use `blastdbcmd` to retrieve sequence AAU26214 from the `nr` database and put it into a file called `ravC_LP.fasta`.
+Retrieve sequence `WP_010945868.1` from the `refseq_protein` database and put it into a file called `ravC_LP.fasta`. Check the content of the `FASTA` file.
+
+::: hint
+
+`blastdbcmd -help`
+
+::::::::
 
 ::: solution
 
 ```bash
-blastdbcmd -db nr -entry AAU26214 > ravC_LP.fasta
+blastdbcmd -db <db> -entry <accession> > <output_file>
+```
+
+```output
+>WP_010945868.1 RMD1 family protein [Legionella pneumophila] >ERH46094.1 hypothetical protein N750_05210 [Legionella pneumophila str. Leg01/53] >ERH46577.1 hypothetical protein N751_07400 [Legionella pneumophila str. Leg01/11] >ERI48669.1 hypothetical protein N749_09265 [Legionella pneumophila str. Leg01/20] >MFO2512789.1 RMD1 family protein [Legionella pneumophila serogroup 2] >MFO2594790.1 RMD1 family protein [Legionella pneumophila serogroup 3] >MFO2645706.1 RMD1 family protein [Legionella pneumophila serogroup 8] >MFO2989133.1 RMD1 family protein [Legionella pneumophila serogroup 6] >MFO3234997.1 RMD1 family protein [Legionella pneumophila serogroup 5] >MFO3476243.1 RMD1 family protein [Legionella pneumophila serogroup 7] >MFO8588967.1 RMD1 family protein [Legionella pneumophila serogroup 14] >MFO8774718.1 RMD1 family protein [Legionella pneumophila serogroup 10] >MFP3789783.1 RMD1 family protein [Legionella pneumophila serogroup 9]
+MECLSFCVAKTIDLTRLDLHLKNVSKEFSAVKTRDVIRLNSHRNKDHTLFIFKNGTVVSWGVKRYQIHEYLDIIKLLVDK
+PVALLVHDEFHYQIGDKTAIEPHGFYDVDCLTIEEDSDELKLSLSYGFSQSVKLQYFETIIDALIEKYNPLIQALSHKGE
+MPISRKQIQQVIGEILGAKSELNLISNFLYHPKYFWQHPTLEEHFSMLERYLHIQRRVNAINHRLDTLNEIFDMFNGYLE
+SRHGHHLEIIIIVLIAVEIIIAVMNFHF
 ```
 
 ::::::::::::
+
+::: instructor
+
+```bash
+blastdbcmd -db refseq_protein -entry WP_010945868.1 > ravC_LP.fasta
+```
+
+::::::::::::::
 
 ::::::::::::::::
 
 ### Task 2.2: Align RavC to sequences belonging to *Legionellales*
 
-That task is a bit complex, so let's break it down in several pieces. You will:
+That task is a bit complex, so let's break it down in several steps. You will:
 
 1. align the RavC sequence to the `refseq_select_prot` database, using `psiblast`, and put the result into the file `ravC_Leg.psiblast`. 
-1. save the PSSM (the amino-acid profile built by psiblast) after the last round, both in its "native" and in text format.
+1. save the [PSSM (the amino-acid profile built by psiblast)](https://en.wikipedia.org/wiki/Position_weight_matrix) after the last round, both in its "native" form and in text format.
 1. filter hits so that only hits with E-value < 1e-6 are shown
 1. filter hits so that only hits with E-value < 1e-10 are included in the PSSM
 1. filter hits so that only hits belonging to the order *Legionelalles* are included
@@ -516,17 +658,13 @@ That task is a bit complex, so let's break it down in several pieces. You will:
 
 ## Challenge 2.2.1: Psiblast 
 
-Build the command, using the `psiblast` command, the query you extracted above and the `refseq_select_prot` database. Don't run it as yet, as this will run for a while. 
- 
-::: solution
+Build the command, using the `psiblast` command, the query you extracted above and the `refseq_select_prot` database. 
 
-That is the base of the command:
+::: caution 
 
-```bash
-psiblast -query ravC_LP.fasta -db refseq_select_prot > ravC_Leg.psiblast
-```
- 
-::::::::::::
+Don't run the command yet, as this will run for a while! We are just building the command now. Wait for the end of the section.
+
+::::::::::
 
 ::: hint
 
@@ -535,11 +673,52 @@ psiblast -help
 ```
 ::::::::
 
+::: solution
+
+That is the base of the command:
+
+```bash
+psiblast -query <fasta file> -db <db> > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: instructor
+
+```bash
+psiblast -query ravC_LP.fasta -db refseq_select_prot > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+
 ### Challenge 2.2.2: Saving the PSSM
 
 Now add the options to save the PSSM after the last round, and save the PSSM both as binary and ascii form. Add these options to the command above, but you will only run it when it is finished.
 
+::: hint 
+
+In the PSI-blast help there is a "PSI-BLAST options" section.
+
+For long help pages, it is sometimes useful to pipe the help message to `grep` and use a combination of `-A` (after), `-B` (before), and `--color` (color matches).
+
+
+```bash
+psiblast -help
+psiblast -help | grep --color -B 5 -A 2 pssm
+```
+
+::::::::
+
 ::: solution
+
+```bash
+psiblast -query <fasta_file> -db <db> -save_pssm_after_last_round -out_pssm <pssm_file> -out_ascii_pssm <pssm_file.txt> > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: instructor
 
 ```bash
 psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt > ravC_Leg.psiblast
@@ -552,6 +731,14 @@ psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round
 Now add the E-value thresholds. You want to display hits with E-value < 1e-6, but only include those with E-value < 1e-10. Add the options to the rest.
 
 ::: solution
+
+```bash
+psiblast -query <fasta_file> -db <db> -save_pssm_after_last_round -out_pssm <pssm_file> -out_ascii_pssm <pssm_file.txt> -inclusion_ethresh <evalue> -evalue <evalue> > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: instructor
 
 ```bash
 psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt -inclusion_ethresh 1e-10 -evalue 1e-6 > ravC_Leg.psiblast
@@ -568,17 +755,28 @@ Note: this feature has been upgraded in the latest version of `BLAST` (2.15.0+).
 
 ::: hint
 
-https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=118969&lvl=3&lin=f&keep=1&srchmode=1&unlock 
+Check out the Taxonomy section of NCBI: https://www.ncbi.nlm.nih.gov/Taxonomy/
 
 ::::::::
 
 ::: solution
+
+https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=118969&lvl=3&lin=f&keep=1&srchmode=1&unlock 
+
+```bash
+psiblast -query <fasta_file> -db <db> -save_pssm_after_last_round -out_pssm <pssm_file> -out_ascii_pssm <pssm_file.txt> -inclusion_ethresh <evalue> -evalue <evalue> -taxids <taxid> > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: instructor
 
 ```bash
 psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt -inclusion_ethresh 1e-10 -evalue 1e-6 -taxids 118969 > ravC_Leg.psiblast
 ```
  
 ::::::::::::
+
 
 ### Challenge 2.2.5: Running the command and examining the results
 
@@ -590,16 +788,35 @@ Run now the full command as above. When it's done, look at the resulting files. 
 
 ### Task 2.3: Align the PSSM to the whole database
 
-You will now take the resulting PSSM and use that as a query to perform a `psiblast` against the full `refseq_select_prot` database. You want to perform max 10 iterations (the search will stop it converges before the tenth iteration), and increase the max number of target sequences to gather to 1000 per iteration. You also want to change the output to a tabular form with comments and add more columns to get into more details.
+You will now take the resulting PSSM and use that as a query to perform a `psiblast` against the whole `refseq_select_prot` database (not only against *Legionellales*). You want to perform max 10 iterations (the search will stop if it converges before the tenth iteration), and increase the max number of target sequences to gather to 1000 per iteration. You also want to change the output to a tabular form with comments and add more columns to get into more details.
 
 :::::: challenge
 
 ## Challenge 2.3.1: Align the PSSM, set E-value thresholds, iteration and max sequences
 
-Build the command as above, but don't set the `-query` option, use the option that allows to input a PSSM instead. Set the E-value thresholds as above, the number of iterations to 10 and the maximum number of sequences to gather to 1000 (per round). Direct the result to the file `ravC_all.psiblast`.
+Build the command as above, but don't set the `-query` option, use the option that allows to input a PSSM instead. Set the E-value thresholds as above, the number of iterations to 10 and the maximum number of sequences to gather to 1000 (per round). Direct the result to the file `ravC_all.psiblast`. 
 
+Don't run it yet, more options to come.
+
+
+::: hint
+
+```bash
+psiblast -help
+psiblast -help | grep --color -B 5 -A 2 pssm
+```
+
+::::::::
 
 ::: solution
+
+```bash
+psiblast -in_pssm <binary pssm file> -db <db> -inclusion_ethresh <evalue> -evalue <evalue> -max_target_seqs <number> -num_iterations 10 > ravC_all.psiblast
+```
+
+::::::::::::
+
+::: instructor
 
 psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 > ravC_all.psiblast
 
@@ -610,13 +827,26 @@ psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 
 
 You want to have a tabular result format with comments, to help you understand the output. You also want to use the standard columns but add the query coverage per subject, the scientific and common name of the subject sequence, as well as which super-kingdom (or domain) it belongs to.
 
+::: hint
+
+Inspect the "Formatting options" section of the psiblast help page.
+
+:::
 
 ::: solution
 
-psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 -outfmt "7 qaccver saccver pident length mismatch gapopen qstart qend sstart send qcovs evalue bitscore ssciname scomname sskingdom" > ravC_all.psiblast
+The correct `-outfmt` is 7. The string with the correct columns is composed with this number and then column names, separated by spaces, the whole enclosed by double quotes. An example in the help file of psiblast is `"10 delim=@ qacc sacc score"`
 
+psiblast -in_pssm <binary pssm file> -db <db> -inclusion_ethresh <evalue> -evalue <evalue> -max_target_seqs <number> -num_iterations 10 -outfmt "<format_number> <col1> <col2> ..." > ravC_all.psiblast
 
 ::::::::::::
+
+::: instructor
+
+psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 -outfmt "7 qaccver saccver pident length mismatch gapopen qstart qend sstart send qcovs evalue bitscore ssciname scomname sskingdom" > ravC_all.psiblast
+
+::::::::::::
+
 
 ## Challenge 2.3.3: Run the command and examine the results
 
@@ -626,19 +856,19 @@ This will take a while to run, maybe 30 minutes. When done, open the result file
 
 
 
-::: instructor
+<!---
 
 Sometimes in future we could develop a new exercise, to retrieve 16S sequences within a specific taxon. But so far this episode is long enough, I believe, so I let it be. 
 
+
 ## Exercise 3: Finding full-length 16S sequences within a taxon
 
-
-
-:::::::::::::::
+--->
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- BLAST is a blast!
+- Using BLAST is a blast! 
+- Choice of database is a crucial trade-off between efficiency and sensitivity
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
