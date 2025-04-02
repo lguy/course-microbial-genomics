@@ -18,7 +18,9 @@ exercises: 240
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-::: instructor
+<!---
+
+NOTES: 
 
 Core: 
 Find the protein sequence for RpoB in E. coli
@@ -39,7 +41,7 @@ Use psi-blast with a pattern
 module load bioinfo-tools blast
 blastp -db landmark -query rpoB_ecoli.fasta
 
-:::::::::::::::
+---> 
 
 ## Introduction
 
@@ -79,24 +81,37 @@ Remember the best practices you learned for file naming.
 
 All exercises should be performed inside `/proj/g2020004/nobackup/3MK013/<username>` where `<username>` is your own folder.
 
-::: solution
+::: hint
+
+`ssh` is used to connect to an external server. `-Y` forwards the graphical display to your computer. The address of the server is `rackham.uppmax.uu.se`. You need to add your user name in front of it, with a `@` in between. 
+
+The course folder is at `/proj/g2020004/nobackup/3MK013/`.
+
+There, make a folder with your username. 
+
+Inside it, create a `blast` folder for this exercise.
+
+::::::::
+
+::: instructor
 
 ```bash
 ssh –Y username@rackham.uppmax.uu.se
 cd /proj/g2020004/nobackup/3MK013/<username>/
 mkdir blast
 ```
- 
+
 ::::::::::::
+
 
 ## Challenge 0.2
 
-Access an interactive session that is booked for us.
+Access an `interactive` session that is booked for us. The session is `uppmax2025-3-4`. Use the `snowy` cluster, for 4 hours.
 
 ::: solution
 
 ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 4:00:00 
+interactive -A <project> -M <cluster> -t <hh:mm:ss> 
 ```
 
 ::::::::::::
@@ -120,11 +135,9 @@ Find the accession number for the IPG containing the RpoB sequence of *E. coli* 
 
 ::: solution
 
-The IPG record can be found here: https://www.ncbi.nlm.nih.gov/ipg/1258700
-
 The accession number is `WP_000263098.1`.
 
-The sequence in fasta format can be downloaded at https://www.ncbi.nlm.nih.gov/protein/WP_000263098.1?report=fasta by clicking on the "Send to" link and then choosing `FASTA` format. Save the file under `rpoB_ecoli.fasta`.
+The sequence in fasta format can be downloaded at https://www.ncbi.nlm.nih.gov/protein/ by searching the accession number clicking on the "Send to" link and then choosing `FASTA` format. Save the file under `rpoB_ecoli.fasta`.
 
 The fasta file should look like:
 
@@ -135,6 +148,14 @@ VSYRLGEPVFDVQECQIRGVTYSAPLRVKLRLVIYEREAPEGTVKDIKEQEVYMGEIPLMTDNGTFVING
 ```
 
 ::::::::::::
+
+::: instructor
+
+The IPG record can be found here: https://www.ncbi.nlm.nih.gov/ipg/1258700
+
+The fasta file can be found here: https://www.ncbi.nlm.nih.gov/protein/WP_000263098.1?report=fasta
+
+::::::::::::::
 
 ::::::::::::::::
 
@@ -156,13 +177,13 @@ The remote file location can be a relative path from your home or an absolute pa
 
 To bring up a local terminal on your Windows computer, click on the "+" sign on the main window of MobaXTerm. If that doesn't work, use SFTP. Click on Session, SFTP, and fill in the Remote host as usual `rackham.uppmax.uu.se` and your username. Navigate to `/proj/g2020004/nobackup/3MK013/<username>/blast` on the right panel, then drag and drop files between your computer and Uppmax.
 
-::: solution
+::: instructor
 
- 
 ```bash
 scp rpoB_ecoli.fasta <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast
 ```
-::::::::::::
+
+::::::::::::::
 
 ::: hint
 
@@ -199,13 +220,30 @@ The manual for `blastdbcmd` can be obtained with:
 blastdbcmd -help
 ```
 
+::: hint
+
+If you have closed your session, you may need to use `module load` to load the appropriate module.
+
+You may want to look into `-db` and `-entry` arguments.
+
+::::::::
+
+
 ::: solution
+
+```bash
+blastdbcmd -db <db name> -entry <accession> > <file>
+```
+ 
+::::::::::::
+
+::: instructor
 
 ```bash
 blastdbcmd -db landmark -entry WP_000263098 > rpoB_ecoli.fasta
 ```
  
-::::::::::::
+::::::::::::::
 
 ::: hint
 
@@ -217,16 +255,18 @@ You should use the `-db` option and the `-entry` one.
 
 Can you figure out a way to find the size of these two databases? How does it affect the time to retrieve information from them? Is it worth thinking about it?
 
-::: solution
+::: hint
 
 You can look at the size of the databases by using `blastdbcmd` and the flag `-info`. To see how much time it takes to retrieve that single sequence from either database, use the command `time` in front of the command: 
 
-```bash
-blastdbcmd -db landmark -info
-blastdbcmd -db nr -info
+::::::::
 
-time blastdbcmd -db landmark -entry WP_000263098 > /dev/null
-time blastdbcmd -db nr -entry WP_000263098 > /dev/null
+::: solution
+
+```bash
+blastdbcmd -db <db> -info
+
+time blastdbcmd -db <db> -entry <accession> > /dev/null
 ```
 
 ```output
@@ -251,6 +291,17 @@ real	0m10.059s.   # for nr
 
 ::::::::::::
 
+::: instructor
+
+```bash
+blastdbcmd -db landmark -info
+blastdbcmd -db nr -info
+
+time blastdbcmd -db landmark -entry WP_000263098 > /dev/null
+time blastdbcmd -db nr -entry WP_000263098 > /dev/null
+```
+::::::::::::::
+
 ::::::::::::::::
 
 ### Task 1.3: Finding homologs to RpoB with `BLAST`
@@ -260,6 +311,7 @@ Now we have a query to start our search. Check that the file is present (`ls`) a
 ```output
 >WP_000263098.1 unnamed protein product [Escherichia coli] >NP_312937.1 RNA polymerase beta subunit [Escherichia coli O157:H7 str. Sakai]
 MVYSYTEKKRIRKDFGKRPQVLDVPYLLSIQLDSFQKFIEQDPEGQYGLEAAFRSVFPIQSYSGNSELQYVSYRLGEPVF
+[...]
 ```
 
 The file header might look slightly different, depending on how you obtained it. Now use `blastp` to find homologs of the RpoB protein. Use the help for `blastp` to explore the options you need to set.
@@ -268,13 +320,7 @@ The file header might look slightly different, depending on how you obtained it.
 
 ## Challenge 1.3.1: Use `blastp` to find homologs in the landmark database
 
-The path to the databases is already set correctly by the `modules blast_databases` command. See `echo $BLASTDB` to display it. Put the results into a file called `rpoB_landmark.blast`
-
-::: solution
-
-blastp -db landmark -query rpoB_ecoli.fasta > rpoB_landmark.blast
-
-::::::::::::
+The path to the databases is already set correctly by the `modules load blast` command. See `echo $BLASTDB` to display it. Put the results into a file called `rpoB_landmark.blast`
 
 ::: hint
 
@@ -286,24 +332,35 @@ blastp -help
 
 ::::::::
 
+
+::: solution
+
+```bash
+blastp -db <db> -query <fasta file> > <output file>
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
+blastp -db landmark -query rpoB_ecoli.fasta > rpoB_landmark.blast
+```
+
+::::::::::::::
+
 ::::::::::::::::
 
-Explore the results of the `blastp` command by displaying the file in which you put the output of `blastp`. In particular look at the E-values: do all hits look like true homologs? How can you change that?
+Explore the results of the `blastp` command by displaying the file in which you put the output of `blastp`. Inspect the alignments, including those at the bottom of file, which have worse alignments. In particular look at the E-values: do all hits look like true homologs? How can you change that?
 
 
 :::::: challenge
 
 ## Challenge 1.3.2: Use `blastp` to find better homologs
 
-Find the right option to change the E-value threshold to include hits. Try to rerun the `blastp` search with a more reasonable value than the default (10). 
+Find the right option to change the E-value threshold to include hits. What is the default E-value? What does that mean? 
 
-::: solution
-
-```bash
-blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 > rpoB_landmark.blast
-```
-
-::::::::::::
+Try to rerun the `blastp` search with a more reasonable value than the default. 
 
 ::: hint
 
@@ -311,9 +368,25 @@ As a rule of thumb, hits that have a E-value < 1e-6 are *bona fide* homologs. Lo
 
 ::::::::
 
+::: solution
+
+```bash
+blastp -db <db> -query <fasta_file> -evalue <evalue> > output
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
+blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 > rpoB_landmark.blast
+```
+
+::::::::::::
+
 ::::::::::::::::
 
-Explore the results again. Is it better? 
+Explore the results again. Is it better, even the last alignments?
 
 The default format of the `blast` output is "human-friendly", something that resembles the output that is created on the NCBI website. To produce an output that is even closer to NCBI's output, use the `-html` option.
 
@@ -334,10 +407,24 @@ Note that the query sometimes yields several hits in the same query protein. Thi
 `blastp` command:
 
 ```bash
+blastp -db <db> -query <fasta file> -evalue <e-value> -outfmt <number> > <output_file>
+```
+
+To import the file to your computer, to the current directory, use the same `scp` program as above. **This should be run on your own computer, not from UPPMAX**.
+
+```bash
+scp <username>@rackham.uppmax.uu.se:<course base folde>/3MK013/<username>/blast/<file> .
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
 blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_landmark.tab
 ```
 
-To import the file to your computer, to the current directory, use the same `scp` program as above. This should be run on your own computer, not from UPPMAX.
+**This should be run on your own computer, not from UPPMAX**.
 
 ```bash
 scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast/rpoB_landmark.tab .
@@ -355,14 +442,7 @@ So far you have used the `landmark` database, which is tiny. Now, use a differen
 
 ## Challenge 1.4.1: Larger database
 
-`refseq_select_prot` and `refseq_protein` are good candidates. The former is smaller than the latter. Note that these two runs will take time, so run only the one to `refseq_select_prot`. We will run it in the background (adding a `&` at the end of the command) so that you can continue with other tasks and come back to that one later.
-
-::: solution
-
-
-```bash
-blastp -db refseq_select_prot -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_refseq_select.tab &
-```
+`refseq_select_prot` and `refseq_protein` are good candidates. The former is smaller than the latter. Note that these two runs will take time, so run only the one to `refseq_select_prot`. We will run it in the background (adding a `&` at the end of the command) so that you can continue with other tasks and come back to that one later. 
 
 You can check whether `blastp` is still running by typing `ps`:
 
@@ -377,12 +457,26 @@ ps
 35427 pts/64   00:00:00 ps
 ```
 
-If you see `blastp` there, it means it is still running.
+If you see `blastp` there, it means it is still running. It could take up to 30 minutes. When `blastp` is done, count the number of hits obtained. 
 
+::: hint
+
+The list of locally available databases is listed here: 
+https://www.uppmax.uu.se/resources/databases/blast-databases/ 
+
+::::::::
+
+
+::: solution
+
+
+```bash
+blastp -db <db> -query <fasta file> -evalue <e-value> -outfmt 6 > rpoB_<db>.tab &
+```
 When it has finished (it may take up to 30 minutes), count the rows to have the number of hits:
 
 ```bash
-wc -l rpoB_refseq_select.tab
+wc -l rpoB_<db>.tab
 ```
 
 ```output
@@ -393,12 +487,19 @@ You have actually hit the maximum number of aligned sequences to keep by default
  
 ::::::::::::
 
-::: hint
+::: instructor
 
-The list of locally available databases is listed here: 
-https://www.uppmax.uu.se/resources/databases/blast-databases/ 
 
-::::::::
+```bash
+blastp -db refseq_select_prot -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_refseq_select.tab &
+```
+
+```bash
+wc -l rpoB_refseq_select.tab
+```
+ 
+::::::::::::
+
 
 ::::::::::::::::
 
@@ -413,17 +514,6 @@ You found hits, i.e. proteins that show similarity with the query protein. To pr
 
 Use `blastdbcmd` to retrieve the accession ids from the `landmark` database. To prepare the list of proteins to extract, `cut` the blast results to keep the accession number of the hits. As you noticed above, there are multiple hits per protein and one hit per line, resulting in each subject protein being possibly present several times. You will need to produce a non-redundant list of ids.
 
-::: solution
-
-The second column of the default tabular output provides the accession id. It needs to be `sort`ed and `uniq`-ed 
-
-```bash
-cut -f2 rpoB_landmark.tab | sort | uniq > rpoB_landmark_ids 
-blastdbcmd -db landmark -entry_batch rpoB_landmark_ids > rpoB_homologs.fasta
-```
- 
-::::::::::::
-
 ::: hint
 
 ```bash
@@ -434,23 +524,54 @@ man sort
 
 ::::::::
 
+::: hint
+
+The second column of the default tabular output provides the accession id. `cut` the tabular output of the blast file, pipe it to `sort` and then to `uniq`, and send the result in a file. Then use that file as a input to `blastcmd` to extract the proteins. Last time we used `-entry` because we had just one, but there is another argument that takes a list of entries instead. Put the result in the `rpoB_homologs.fasta` file. 
+
+::::::::
+
+::: solution
+
+```bash
+cut -f2 <blast_output_file> | sort | uniq > <id_file> 
+blastdbcmd -db <db> -entry_batch <id_file> > rpoB_homologs.fasta
+```
+ 
+::::::::::::
+
+::: instructor
+
+```bash
+cut -f2 rpoB_landmark.tab | sort | uniq > rpoB_landmark_ids 
+blastdbcmd -db landmark -entry_batch rpoB_landmark_ids > rpoB_homologs.fasta
+```
+ 
+::::::::::::
+
+
 ## Challenge 1.5.2: Count the sequences
 
 Can you count how many sequences were included in the fasta file? Use `grep` and your knowledge of the `FASTA` format.
+
+
+::: hint
+
+```bash
+man grep
+man wc
+```
+
+::::::::
 
 ::: solution
 
 You can take a look at the sequences that were included in the blast:
 
 ```bash
-grep ">" rpoB_homologs.fasta | less
+grep ">" <fasta_file> | less
 ```
 
-And then count them by piping the result to `wc -l` instead.
-
-```bash
-grep ">" rpoB_homologs.fasta | wc -l 
-```
+And then count them by piping the result to `wc` instead.
 
 There should be around 70 sequences. 
 
@@ -462,14 +583,17 @@ For the upcoming episode on multiple sequence alignment, you will use a subset o
  
 ::::::::::::
 
-::: hint
+::: instructor
+
 
 ```bash
-man grep
-man wc
+grep ">" rpoB_homologs.fasta | less
+grep ">" rpoB_homologs.fasta | wc -l 
 ```
+ 
+::::::::::::
 
-::::::::
+
 
 ::::::::::::::::
 
