@@ -422,9 +422,7 @@ scp <username>@rackham.uppmax.uu.se:<course base folde>/3MK013/<username>/blast/
 
 ```bash
 blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_landmark.tab
-```
-
-**This should be run on your own computer, not from UPPMAX**.
+``` 
 
 ```bash
 scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast/rpoB_landmark.tab .
@@ -593,14 +591,12 @@ grep ">" rpoB_homologs.fasta | wc -l
  
 ::::::::::::
 
-
-
 ::::::::::::::::
 
 
 ## Exercise 2: Using PSI-BLAST to retrieve distant homologs of proteins
 
-In this exercise, you will use another flavor of `BLAST` to retrieve distant homologs of a protein. As an example, we will use the protein RavC, present in the genomes of  *Legionella* bacteria. This protein is an effector protein, injected by *Legionella* into the cytoplasm of their host (protists). The exact function is unknown, but it is presumably important, as it is conserved throughout the whole order *Legionellales*. Many effectors found in this group are derived from eukaryotic proteins, and this is what you will test here: does RavC have a homolog in eukarotes?
+In this exercise, you will use another flavor of `BLAST` to retrieve distant homologs of a protein. As an example, we will use the protein RavC, present in the genomes of  [*Legionella* bacteria](https://en.wikipedia.org/wiki/Legionella). This protein is an effector protein, injected by *Legionella* into the cytoplasm of their host (protists). The exact function is unknown, but it is presumably important, as it is conserved throughout the whole order *Legionellales*. Many effectors found in this group are derived from eukaryotic proteins, and this is what you will test here: does RavC have a homolog in eukarotes?
 
 The strategy is to use `psiblast`, which uses - instead of a single query - a matrix of amino-acid frequencies as a query. `psiblast` is an iterative program: you generally start with one sequence, gather *bona fide* homologs, use the profile of these to query the database again, gather new homologs, recalculate the profile, then re-query the database, etc. The search may converge after a certain number of iterations, i.e. there no more new homologs to find with the latest profile. 
 
@@ -608,30 +604,52 @@ In this case, you will use a slightly different strategy: you will start with on
 
 ### Task 2.1: Extract RavC from a database
 
-As above, you will extract the sequence of RavC from a database. This time you will use `refseq_select_prot`, since there are no *Legionella* in `landmark`. The accession number of RavC that you will use is AAU26214.
+As above, you will extract the sequence of RavC from a database. This time you will use `refseq_select_prot`, since there are no *Legionella* in `landmark`. The accession number of RavC that you will use is [`WP_010945868.1`](https://www.ncbi.nlm.nih.gov/protein/WP_010945868.1).
 
 :::::: challenge
 
 ## Challenge 2.1.1: Extract RavC
 
-Use `blastdbcmd` to retrieve sequence AAU26214 from the `nr` database and put it into a file called `ravC_LP.fasta`.
+Retrieve sequence `WP_010945868.1` from the `refseq_protein` database and put it into a file called `ravC_LP.fasta`. Check the content of the `FASTA` file.
+
+::: hint
+
+`blastdbcmd -help`
+
+::::::::
 
 ::: solution
 
 ```bash
-blastdbcmd -db nr -entry AAU26214 > ravC_LP.fasta
+blastdbcmd -db <db> -entry <accession> > <output_file>
+```
+
+```output
+>WP_010945868.1 RMD1 family protein [Legionella pneumophila] >ERH46094.1 hypothetical protein N750_05210 [Legionella pneumophila str. Leg01/53] >ERH46577.1 hypothetical protein N751_07400 [Legionella pneumophila str. Leg01/11] >ERI48669.1 hypothetical protein N749_09265 [Legionella pneumophila str. Leg01/20] >MFO2512789.1 RMD1 family protein [Legionella pneumophila serogroup 2] >MFO2594790.1 RMD1 family protein [Legionella pneumophila serogroup 3] >MFO2645706.1 RMD1 family protein [Legionella pneumophila serogroup 8] >MFO2989133.1 RMD1 family protein [Legionella pneumophila serogroup 6] >MFO3234997.1 RMD1 family protein [Legionella pneumophila serogroup 5] >MFO3476243.1 RMD1 family protein [Legionella pneumophila serogroup 7] >MFO8588967.1 RMD1 family protein [Legionella pneumophila serogroup 14] >MFO8774718.1 RMD1 family protein [Legionella pneumophila serogroup 10] >MFP3789783.1 RMD1 family protein [Legionella pneumophila serogroup 9]
+MECLSFCVAKTIDLTRLDLHLKNVSKEFSAVKTRDVIRLNSHRNKDHTLFIFKNGTVVSWGVKRYQIHEYLDIIKLLVDK
+PVALLVHDEFHYQIGDKTAIEPHGFYDVDCLTIEEDSDELKLSLSYGFSQSVKLQYFETIIDALIEKYNPLIQALSHKGE
+MPISRKQIQQVIGEILGAKSELNLISNFLYHPKYFWQHPTLEEHFSMLERYLHIQRRVNAINHRLDTLNEIFDMFNGYLE
+SRHGHHLEIIIIVLIAVEIIIAVMNFHF
 ```
 
 ::::::::::::
+
+::: instructor
+
+```bash
+blastdbcmd -db refseq_protein -entry WP_010945868.1 > ravC_LP.fasta
+```
+
+::::::::::::::
 
 ::::::::::::::::
 
 ### Task 2.2: Align RavC to sequences belonging to *Legionellales*
 
-That task is a bit complex, so let's break it down in several pieces. You will:
+That task is a bit complex, so let's break it down in several steps. You will:
 
 1. align the RavC sequence to the `refseq_select_prot` database, using `psiblast`, and put the result into the file `ravC_Leg.psiblast`. 
-1. save the PSSM (the amino-acid profile built by psiblast) after the last round, both in its "native" and in text format.
+1. save the [PSSM (the amino-acid profile built by psiblast)](https://en.wikipedia.org/wiki/Position_weight_matrix) after the last round, both in its "native" form and in text format.
 1. filter hits so that only hits with E-value < 1e-6 are shown
 1. filter hits so that only hits with E-value < 1e-10 are included in the PSSM
 1. filter hits so that only hits belonging to the order *Legionelalles* are included
@@ -640,17 +658,13 @@ That task is a bit complex, so let's break it down in several pieces. You will:
 
 ## Challenge 2.2.1: Psiblast 
 
-Build the command, using the `psiblast` command, the query you extracted above and the `refseq_select_prot` database. Don't run it as yet, as this will run for a while. 
- 
-::: solution
+Build the command, using the `psiblast` command, the query you extracted above and the `refseq_select_prot` database. 
 
-That is the base of the command:
+::: caution 
 
-```bash
-psiblast -query ravC_LP.fasta -db refseq_select_prot > ravC_Leg.psiblast
-```
- 
-::::::::::::
+Don't run the command yet, as this will run for a while! We are just building the command now. Wait for the end of the section.
+
+::::::::::
 
 ::: hint
 
@@ -659,11 +673,52 @@ psiblast -help
 ```
 ::::::::
 
+::: solution
+
+That is the base of the command:
+
+```bash
+psiblast -query <fasta file> -db <db> > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: instructor
+
+```bash
+psiblast -query ravC_LP.fasta -db refseq_select_prot > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+
 ### Challenge 2.2.2: Saving the PSSM
 
 Now add the options to save the PSSM after the last round, and save the PSSM both as binary and ascii form. Add these options to the command above, but you will only run it when it is finished.
 
+::: hint 
+
+In the PSI-blast help there is a "PSI-BLAST options" section.
+
+For long help pages, it is sometimes useful to pipe the help message to `grep` and use a combination of `-A` (after), `-B` (before), and `--color` (color matches).
+
+
+```bash
+psiblast -help
+psiblast -help | grep --color -B 5 -A 2 pssm
+```
+
+::::::::
+
 ::: solution
+
+```bash
+psiblast -query <fasta_file> -db <db> -save_pssm_after_last_round -out_pssm <pssm_file> -out_ascii_pssm <pssm_file.txt> > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: instructor
 
 ```bash
 psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt > ravC_Leg.psiblast
@@ -676,6 +731,14 @@ psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round
 Now add the E-value thresholds. You want to display hits with E-value < 1e-6, but only include those with E-value < 1e-10. Add the options to the rest.
 
 ::: solution
+
+```bash
+psiblast -query <fasta_file> -db <db> -save_pssm_after_last_round -out_pssm <pssm_file> -out_ascii_pssm <pssm_file.txt> -inclusion_ethresh <evalue> -evalue <evalue> > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: instructor
 
 ```bash
 psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt -inclusion_ethresh 1e-10 -evalue 1e-6 > ravC_Leg.psiblast
@@ -692,17 +755,28 @@ Note: this feature has been upgraded in the latest version of `BLAST` (2.15.0+).
 
 ::: hint
 
-https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=118969&lvl=3&lin=f&keep=1&srchmode=1&unlock 
+Check out the Taxonomy section of NCBI: https://www.ncbi.nlm.nih.gov/Taxonomy/
 
 ::::::::
 
 ::: solution
+
+https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=118969&lvl=3&lin=f&keep=1&srchmode=1&unlock 
+
+```bash
+psiblast -query <fasta_file> -db <db> -save_pssm_after_last_round -out_pssm <pssm_file> -out_ascii_pssm <pssm_file.txt> -inclusion_ethresh <evalue> -evalue <evalue> -taxids <taxid> > ravC_Leg.psiblast
+```
+ 
+::::::::::::
+
+::: instructor
 
 ```bash
 psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt -inclusion_ethresh 1e-10 -evalue 1e-6 -taxids 118969 > ravC_Leg.psiblast
 ```
  
 ::::::::::::
+
 
 ### Challenge 2.2.5: Running the command and examining the results
 
@@ -714,16 +788,35 @@ Run now the full command as above. When it's done, look at the resulting files. 
 
 ### Task 2.3: Align the PSSM to the whole database
 
-You will now take the resulting PSSM and use that as a query to perform a `psiblast` against the full `refseq_select_prot` database. You want to perform max 10 iterations (the search will stop it converges before the tenth iteration), and increase the max number of target sequences to gather to 1000 per iteration. You also want to change the output to a tabular form with comments and add more columns to get into more details.
+You will now take the resulting PSSM and use that as a query to perform a `psiblast` against the whole `refseq_select_prot` database (not only against *Legionellales*). You want to perform max 10 iterations (the search will stop if it converges before the tenth iteration), and increase the max number of target sequences to gather to 1000 per iteration. You also want to change the output to a tabular form with comments and add more columns to get into more details.
 
 :::::: challenge
 
 ## Challenge 2.3.1: Align the PSSM, set E-value thresholds, iteration and max sequences
 
-Build the command as above, but don't set the `-query` option, use the option that allows to input a PSSM instead. Set the E-value thresholds as above, the number of iterations to 10 and the maximum number of sequences to gather to 1000 (per round). Direct the result to the file `ravC_all.psiblast`.
+Build the command as above, but don't set the `-query` option, use the option that allows to input a PSSM instead. Set the E-value thresholds as above, the number of iterations to 10 and the maximum number of sequences to gather to 1000 (per round). Direct the result to the file `ravC_all.psiblast`. 
 
+Don't run it yet, more options to come.
+
+
+::: hint
+
+```bash
+psiblast -help
+psiblast -help | grep --color -B 5 -A 2 pssm
+```
+
+::::::::
 
 ::: solution
+
+```bash
+psiblast -in_pssm <binary pssm file> -db <db> -inclusion_ethresh <evalue> -evalue <evalue> -max_target_seqs <number> -num_iterations 10 > ravC_all.psiblast
+```
+
+::::::::::::
+
+::: instructor
 
 psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 > ravC_all.psiblast
 
@@ -734,13 +827,26 @@ psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 
 
 You want to have a tabular result format with comments, to help you understand the output. You also want to use the standard columns but add the query coverage per subject, the scientific and common name of the subject sequence, as well as which super-kingdom (or domain) it belongs to.
 
+::: hint
+
+Inspect the "Formatting options" section of the psiblast help page.
+
+:::
 
 ::: solution
 
-psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 -outfmt "7 qaccver saccver pident length mismatch gapopen qstart qend sstart send qcovs evalue bitscore ssciname scomname sskingdom" > ravC_all.psiblast
+The correct `-outfmt` is 7. The string with the correct columns is composed with this number and then column names, separated by spaces, the whole enclosed by double quotes. An example in the help file of psiblast is `"10 delim=@ qacc sacc score"`
 
+psiblast -in_pssm <binary pssm file> -db <db> -inclusion_ethresh <evalue> -evalue <evalue> -max_target_seqs <number> -num_iterations 10 -outfmt "<format_number> <col1> <col2> ..." > ravC_all.psiblast
 
 ::::::::::::
+
+::: instructor
+
+psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 -outfmt "7 qaccver saccver pident length mismatch gapopen qstart qend sstart send qcovs evalue bitscore ssciname scomname sskingdom" > ravC_all.psiblast
+
+::::::::::::
+
 
 ## Challenge 2.3.3: Run the command and examine the results
 
@@ -750,19 +856,19 @@ This will take a while to run, maybe 30 minutes. When done, open the result file
 
 
 
-::: instructor
+<!---
 
 Sometimes in future we could develop a new exercise, to retrieve 16S sequences within a specific taxon. But so far this episode is long enough, I believe, so I let it be. 
 
+
 ## Exercise 3: Finding full-length 16S sequences within a taxon
 
-
-
-:::::::::::::::
+--->
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- BLAST is a blast!
+- Using BLAST is a blast! 
+- Choice of database is a crucial trade-off between efficiency and sensitivity
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
