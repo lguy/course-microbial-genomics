@@ -393,23 +393,177 @@ any links that you are not going to use.
 <h3 id="blast-headingInstructor1">
 <a href="blast.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor1"></a>
 </h3>
-<p>Core: Find the protein sequence for RpoB in E. coli Find homologs in
-landmark Extract proteins from database</p>
-<p>Extra: Explore the options of BLAST - query - subject - database -
-taxids (etc) - num_threads - outfmt Use psi-blast with a pattern</p>
-<p>module load bioinfo-tools blast blastp -db landmark -query
-rpoB_ecoli.fasta</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ssh</span> –Y username@rackham.uppmax.uu.se</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">mkdir</span> blast</span></code></pre>
+</div>
 <hr>
 <br><h3 id="blast-headingInstructor2">
 <a href="blast.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor2"></a>
 </h3>
-<p>Sometimes in future we could develop a new exercise, to retrieve 16S
-sequences within a specific taxon. But so far this episode is long
-enough, I believe, so I let it be.</p>
-<div class="section level2">
-<h2 id="exercise-3-finding-full-length-16s-sequences-within-a-taxon">Exercise 3: Finding full-length 16S sequences within a taxon<a class="anchor" aria-label="anchor" href="#exercise-3-finding-full-length-16s-sequences-within-a-taxon"></a>
-</h2>
+<p>The IPG record can be found here: <a href="https://www.ncbi.nlm.nih.gov/ipg/1258700" class="external-link uri">https://www.ncbi.nlm.nih.gov/ipg/1258700</a></p>
+<p>The fasta file can be found here: <a href="https://www.ncbi.nlm.nih.gov/protein/WP_000263098.1?report=fasta" class="external-link uri">https://www.ncbi.nlm.nih.gov/protein/WP_000263098.1?report=fasta</a></p>
+<hr>
+<br><h3 id="blast-headingInstructor3">
+<a href="blast.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor3"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">scp</span> rpoB_ecoli.fasta <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast</span></code></pre>
 </div>
+<hr>
+<br><h3 id="blast-headingInstructor4">
+<a href="blast.html#headingInstructor4">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor4"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-db</span> landmark <span class="at">-entry</span> WP_000263098 <span class="op">&gt;</span> rpoB_ecoli.fasta</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor5">
+<a href="blast.html#headingInstructor5">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor5"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-db</span> landmark <span class="at">-info</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-db</span> nr <span class="at">-info</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="bu">time</span> blastdbcmd <span class="at">-db</span> landmark <span class="at">-entry</span> WP_000263098 <span class="op">&gt;</span> /dev/null</span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="bu">time</span> blastdbcmd <span class="at">-db</span> nr <span class="at">-entry</span> WP_000263098 <span class="op">&gt;</span> /dev/null</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor6">
+<a href="blast.html#headingInstructor6">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor6"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-db</span> landmark <span class="at">-query</span> rpoB_ecoli.fasta <span class="op">&gt;</span> rpoB_landmark.blast</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor7">
+<a href="blast.html#headingInstructor7">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor7"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-db</span> landmark <span class="at">-query</span> rpoB_ecoli.fasta <span class="at">-evalue</span> 1e-6 <span class="op">&gt;</span> rpoB_landmark.blast</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor8">
+<a href="blast.html#headingInstructor8">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor8"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-db</span> landmark <span class="at">-query</span> rpoB_ecoli.fasta <span class="at">-evalue</span> 1e-6 <span class="at">-outfmt</span> 6 <span class="op">&gt;</span> rpoB_landmark.tab</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb23">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast/rpoB_landmark.tab .</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor9">
+<a href="blast.html#headingInstructor9">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor9"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb29">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-db</span> refseq_select_prot <span class="at">-query</span> rpoB_ecoli.fasta <span class="at">-evalue</span> 1e-6 <span class="at">-outfmt</span> 6 <span class="op">&gt;</span> rpoB_refseq_select.tab <span class="kw">&amp;</span></span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb30">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> rpoB_refseq_select.tab</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor10">
+<a href="blast.html#headingInstructor10">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor10"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb33">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f2</span> rpoB_landmark.tab <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="op">&gt;</span> rpoB_landmark_ids </span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-db</span> landmark <span class="at">-entry_batch</span> rpoB_landmark_ids <span class="op">&gt;</span> rpoB_homologs.fasta</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor11">
+<a href="blast.html#headingInstructor11">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor11"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb37">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> rpoB_homologs.fasta <span class="kw">|</span> <span class="fu">less</span></span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> rpoB_homologs.fasta <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span> </span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor12">
+<a href="blast.html#headingInstructor12">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor12"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb40">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" tabindex="-1"></a><span class="ex">blastdbcmd</span> <span class="at">-db</span> refseq_protein <span class="at">-entry</span> WP_010945868.1 <span class="op">&gt;</span> ravC_LP.fasta</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor13">
+<a href="blast.html#headingInstructor13">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor13"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb43">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="ex">psiblast</span> <span class="at">-query</span> ravC_LP.fasta <span class="at">-db</span> refseq_select_prot <span class="op">&gt;</span> ravC_Leg.psiblast</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor14">
+<a href="blast.html#headingInstructor14">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor14"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb46">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="ex">psiblast</span> <span class="at">-query</span> ravC_LP.fasta <span class="at">-db</span> refseq_select_prot <span class="at">-save_pssm_after_last_round</span> <span class="at">-out_pssm</span> ravC_Leg.pssm <span class="at">-out_ascii_pssm</span> ravC_Leg.pssm.txt <span class="op">&gt;</span> ravC_Leg.psiblast</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor15">
+<a href="blast.html#headingInstructor15">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor15"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb48">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="ex">psiblast</span> <span class="at">-query</span> ravC_LP.fasta <span class="at">-db</span> refseq_select_prot <span class="at">-save_pssm_after_last_round</span> <span class="at">-out_pssm</span> ravC_Leg.pssm <span class="at">-out_ascii_pssm</span> ravC_Leg.pssm.txt <span class="at">-inclusion_ethresh</span> 1e-10 <span class="at">-evalue</span> 1e-6 <span class="op">&gt;</span> ravC_Leg.psiblast</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor16">
+<a href="blast.html#headingInstructor16">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor16"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb50">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="ex">psiblast</span> <span class="at">-query</span> ravC_LP.fasta <span class="at">-db</span> refseq_select_prot <span class="at">-save_pssm_after_last_round</span> <span class="at">-out_pssm</span> ravC_Leg.pssm <span class="at">-out_ascii_pssm</span> ravC_Leg.pssm.txt <span class="at">-inclusion_ethresh</span> 1e-10 <span class="at">-evalue</span> 1e-6 <span class="at">-taxids</span> 118969 <span class="op">&gt;</span> ravC_Leg.psiblast</span></code></pre>
+</div>
+<hr>
+<br><h3 id="blast-headingInstructor17">
+<a href="blast.html#headingInstructor17">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor17"></a>
+</h3>
+<p>psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot
+-inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000
+-num_iterations 10 &gt; ravC_all.psiblast</p>
+<hr>
+<br><h3 id="blast-headingInstructor18">
+<a href="blast.html#headingInstructor18">Instructor Note</a><a class="anchor" aria-label="anchor" href="#blast-headingInstructor18"></a>
+</h3>
+<p>psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot
+-inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000
+-num_iterations 10 -outfmt “7 qaccver saccver pident length mismatch
+gapopen qstart qend sstart send qcovs evalue bitscore ssciname scomname
+sskingdom” &gt; ravC_all.psiblast</p>
 <hr>
 <br></section><section id="msa"><h2 class="section-heading"><a href="msa.html">Multiple sequence alignment</a></h2>
 <hr class="half-width"></section><section id="phylogenetics"><h2 class="section-heading"><a href="phylogenetics.html">Phylogenetics</a></h2>
@@ -481,8 +635,8 @@ take a while, <em>dont’t do it if you have the reads</em>):</p>
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2025-04-01",
-  "datePublished": "2025-04-01"
+  "dateModified": "2025-04-02",
+  "datePublished": "2025-04-02"
 }
 
   </script><script>
