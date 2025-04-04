@@ -855,7 +855,6 @@ This will take a while to run, maybe 30 minutes. When done, open the result file
 ::::::::::::::::
 
 
-
 <!---
 
 Sometimes in future we could develop a new exercise, to retrieve 16S sequences within a specific taxon. But so far this episode is long enough, I believe, so I let it be. 

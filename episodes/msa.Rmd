@@ -20,11 +20,11 @@ exercises: 120
 
 ## Introduction
 
-In this episode, we are exploring multiple sequence alignment (MSA). We are going to use [`mafft`](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) to align homologs of [RpoB](https://en.wikipedia.org/wiki/RpoB), the β subunit of the bacterial RNA polymerase. It is a long, multi-domain protein, suitable for showing issues related to MSA. 
+In this episode, we are exploring multiple sequence alignment (MSA). In the first task, you are going to use [`mafft`](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html) to align homologs of [RpoB](https://en.wikipedia.org/wiki/RpoB), the β subunit of the bacterial RNA polymerase. It is a long, multi-domain protein, suitable for showing issues related to MSA. 
 
-You will also 
+In the second task, you will trim that alignment to remove poorly aligned regions.
 
-But first, go to your own folder and create a phylogenetics subfolder
+But first, go to your own folder and create a phylogenetics subfolder. You will use the alignments for other tutorials as well. 
 
 ## Task 1: Use different flavors of `MAFFT` and compare the results
 
@@ -37,11 +37,45 @@ The file is available in `/proj/g2020004/nobackup/3MK013/data/`.
 
 ## Challenge 1.1: prepare the terrain
 
-Go to your own folder, use the `mkdir` command to make a `phylogenetics` subfolder, and move into it. Also, start the `interactive` session.
+The course base folder is at `/proj/g2020004/nobackup/3MK013`. Go to your own folder, create a `phylogenetics` subfolder, and move into it. Also, start the `interactive` session, for 4 hours. The session name is `uppmax2025-3-4` and the cluster is `snowy`.
+
+::: hint
+
+Remember those commands?
+
+```bash
+ssh -Y
+cd
+mkdir
+ls
+interactive
+```
+
+::::::::
 
 :::::::::::::::  solution
 
+```bash
+ssh -Y <username>@rackham.uppmax.uu.se
+```
+
 Remember to replace `<username>` by your name.
+
+```bash
+interactive -A <session> -M <cluster> -t <hh::mm::ss>
+cd <basefolder>/<username>
+mkdir <folder>
+cd <folder>
+```
+
+:::::::::::::::::::::::::
+
+
+:::::::::::::::  instructor
+
+```bash
+ssh -Y <username>@rackham.uppmax.uu.se
+```
 
 ```bash
 interactive -A uppmax2024-2-10 -M snowy -t 4:00:00
@@ -54,7 +88,17 @@ cd phylogenetics
 
 ## Challenge 1.2: copy the file
 
-Copy the file to your newly created `~/phylogenetics/` folder.
+Copy the file to your newly created `phylogenetics` folder. Use a relative path.
+
+::: hint
+
+```bash
+cp
+pwd
+ls ../..
+```
+
+::::::::
 
 :::::::::::::::  solution
 
@@ -70,7 +114,7 @@ cp ../../data/rpoB/rpoB.fasta .
 
 ### Renaming sequences
 
-Look at the accession ids of the fasta sequences: they are not very informative: 
+Look at the accession ids of the fasta sequences: they are not very informative.
 
 ```bash
 grep '>' rpoB.fasta | head -n 5
@@ -99,7 +143,7 @@ This is optional reading.
 
 The [`sed`](https://www.gnu.org/software/sed/manual/sed.html) command matches (and possibly substitutes) strings (chains of characters). In that case, the goal is to simplify the header by putting the taxonomic group first but keeping it informative enough by adding the accession number. The strategy is to match what is between the `>` and the first space, then what is between square parentheses, and put them back, separated by an underscore. 
 
-The `sed` command first matches only lines that start with a `>` (`/^>/`). It then substitutes (general pattern `s/<something>/<something else>/`) a text with another one. The first part is to match the accession id, between (escaped) brackets, which comes after the `>` at the beginning of the line. This is expressed as `>\([^ ]*\) `: match any number of non-space characters and put it in memory. Then, the description is matched by `\([^\[]*\)`, any number of characters that are not an opening bracket `[`, and put into memory. Finally, the taxonomic description is matched: `\[\(.*\)\]`, that is, any number of characters between square brackets is stored into memory. The whole line is then replaced with a `>`, the third match into memory, followed by an `_` and the content of the first match into memory `>\\3_\\1`. Then, all the input is passed through sed again, to replace any space with an underscore: `s/ /_/g` and the output is stored in a different file.
+The `sed` command first matches only lines that start with a `>` (`/^>/`). It then substitutes (general pattern `s/<something>/<something else>/`) a text with another one. The first part is to match the accession id, between (escaped) square brackets, which comes after the `>` at the beginning of the line. This is expressed as `>\([^ ]*\) `: match any number of non-space characters (`[^ ]*`) and put it in memory (what is between `\(` and `\)`). Then, the description is matched by `\([^\[]*\)`, any number of characters that are not an opening bracket `[`, and put into memory. Finally, the taxonomic description is matched: `\[\(.*\)\]`, that is, any number of characters between square brackets is stored into memory. The whole line is then replaced with a `>`, the third match into memory, followed by an `_` and the content of the first match into memory `>\\3_\\1`. Then, all the input is passed through sed again, to replace any space with an underscore: `s/ /_/g` and the output is stored in a different file.
 
 ::::::::::::::
 
