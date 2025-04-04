@@ -102,12 +102,25 @@ ls ../..
 
 :::::::::::::::  solution
 
+Use the `../../` to see what's two folders up, and then `data/rpoB/rpoB.fasta` 
+
+:::::::::::::::::::::::::
+
+:::::::::::::::  instructor
+
 ```bash
 cp ../../data/rpoB/rpoB.fasta .
 ```
 
 :::::::::::::::::::::::::
 
+<!--- 
+
+```bash
+cp ../../data/rpoB/rpoB.fasta .
+```
+
+--->
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -171,18 +184,22 @@ Use the FFT-NS-2 algorithm from `mafft` to align the renamed sequences. Also, re
 
 Use the `module` command to load `bioinfo-tools` and `MAFFT`. Use `time` to record the time.
 
+The help obtained through `mafft -h` is not very informative about algorithms, so check the [mafft webpage](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html). 
+
+`mafft` actually has one executable program for each algorithm, all starting with `mafft-`. A way to display them all is to type that and push the Tab key twice to see all possibilities.
 
 ::::::::
 
 :::::::::::::::  solution
 
 ```bash
-module load bioinfo-tools MAFFT
-time mafft-fftns rpoB_renamed.fasta > rpoB.fftns.aln
+module load <general module> <mafft module>
+time mafft-<algorithm> <fasta_file> > rpoB.fftns.aln
 ```
 
 ```output
 ...
+[...]
 Strategy:
  FFT-NS-2 (Fast but rough)
  Progressive method (guide trees were built 2 times.)
@@ -194,10 +211,13 @@ The default gap scoring scheme has been changed in version 7.110 (2013 Oct).
 It tends to insert more gaps into gap-rich regions than previous versions.
 To disable this change, add the --leavegappyregion option.
 
-mafft-fftns rpoB_renamed.fasta > rpoB.fftns.aln  1.02s user 0.52s system 104% cpu 1.471 total
+
+real	0m1.125s
+user	0m0.818s
+sys	0m0.181s
 ```
 
-The last line is the output of the `time` command. It took 1.47 seconds to complete this time.
+The last line is the output of the `time` command. It took 1.125 seconds to complete this time.
 
 :::::::::::::::::::::::::
 
@@ -230,16 +250,16 @@ Take a few minutes to read upon the different alignment strategies on the page a
 
 ## Challenge 1.4
 
-Use the E-INS-i algorithm from mafft to align the renamed sequences. Also, record the time it takes for `mafft` to complete the task. 
+Use the superior E-INS-i algorithm from mafft to align the renamed sequences. Also, record the time it takes for `mafft` to complete the task. 
 
 :::::::::::::::  solution
 
 ```bash
-time mafft-einsi rpoB_renamed.fasta > rpoB.einsi.aln
+time mafft-<better algo> <fasta file> > rpoB.einsi.aln
 ```
 
 ```output
-...
+[...]
 Strategy:
  E-INS-i (Suitable for sequences with long unalignable regions, very slow)
  Iterative refinement method (<16) with LOCAL pairwise alignment with generalized affine gap costs (Altschul 1998)
@@ -254,10 +274,21 @@ To disable this change, add the --leavegappyregion option.
 Parameters for the E-INS-i option have been changed in version 7.243 (2015 Jun).
 To switch to the old parameters, use --oldgenafpair, instead of --genafpair.
 
-mafft-einsi rpoB_renamed.fasta > rpoB.einsi.aln  6.84s user 0.65s system 99% cpu 7.542 total
+
+real	0m7.367s
+user	0m7.022s
+sys	0m0.244s
 ```
 
-It now took 7.54 seconds to complete this time, i.e. about 5 times slower than with the progressive algorithm. It doesn't make a big difference now, but with hundreds of sequences it will make one.
+It now took 7.36 seconds to complete this time, i.e. 6 times more than with the progressive algorithm. It doesn't make a big difference now, but with hundreds of sequences it will make one.
+
+:::::::::::::::::::::::::
+
+:::::::::::::::  instructor
+
+```bash
+time mafft-einsi rpoB_renamed.fasta > rpoB.einsi.aln
+```
 
 :::::::::::::::::::::::::
 
@@ -277,9 +308,24 @@ Hint: try to scroll to position 800-900. What do you see there? How are the bloc
 
 :::::::::::::::  solution
 
+Use `scp` to copy files from Uppmax to your computer. `scp` allows wildcards, but you probably need to escape the `*`.
+
+```bash
+scp <username>@rackham.uppmax.uu.se:/<absolute path to phylogenetics folder>/rpoB.\*.aln <localfolder>/
+```
+
 ![](episodes/fig/seaview.png){alt='Alignments shown in seaview'}
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::  instructor
+
+```bash
+scp lionel@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<user>/phylogenetics/rpoB.\*.aln .
+```
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
