@@ -38,7 +38,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 - Installing ape ...                            OK [linked from cache]
-Successfully installed 1 package in 5.1 milliseconds.
+Successfully installed 1 package in 5.5 milliseconds.
 ```
 
 And to load it:
@@ -280,7 +280,7 @@ Get to the right folder, require compute time and load the right modules.
 ::: solution
 
  ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 4:00:00
+interactive -A uppmax2025-3-4 -M snowy -t 4:00:00
 module load bioinfo-tools iqtree
 cd /proj/g2020004/nobackup/3MK013/<username>/phylogenetics
 ```

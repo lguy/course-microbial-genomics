@@ -78,7 +78,7 @@ In this exercise we will setup a file system for the project we will be working 
 We will start by creating a sub directory that we can use for the rest of the labs. First navigate to your own directory on Uppmax and start an `interactive` session. Then confirm that you are in the correct directory using the `pwd` command.
 
 ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 04:00:00
+interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>
 pwd
 ```

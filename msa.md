@@ -78,7 +78,7 @@ ssh -Y <username>@rackham.uppmax.uu.se
 ```
 
 ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 4:00:00
+interactive -A uppmax2025-3-4 -M snowy -t 4:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>
 mkdir phylogenetics
 cd phylogenetics
@@ -167,7 +167,12 @@ Use `mafft` with a progressive algorithm to align the sequences.
 
 Use the FFT-NS-2 algorithm from `mafft` to align the renamed sequences. Also, record the time it takes for `mafft` to complete the task. 
 
-Use the `module` command to load `bioinfo-tools` and `MAFFT`.
+::: hint
+
+Use the `module` command to load `bioinfo-tools` and `MAFFT`. Use `time` to record the time.
+
+
+::::::::
 
 :::::::::::::::  solution
 
@@ -193,6 +198,15 @@ mafft-fftns rpoB_renamed.fasta > rpoB.fftns.aln  1.02s user 0.52s system 104% cp
 ```
 
 The last line is the output of the `time` command. It took 1.47 seconds to complete this time.
+
+:::::::::::::::::::::::::
+
+:::::::::::::::  instructor
+
+```bash
+module load bioinfo-tools MAFFT
+time mafft-fftns rpoB_renamed.fasta > rpoB.fftns.aln
+```
 
 :::::::::::::::::::::::::
 

@@ -32,7 +32,7 @@ Because assembly of each genome would take a long time, you will only run one as
 Start the interactive session, go to the `molepi` subfolder, create a `results/assembly` subfolder. Then go to the folder containing the fastq files.
 
 ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 04:00:00
+interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/
 mkdir results/assembly
 cd data/trimmed_fastq
