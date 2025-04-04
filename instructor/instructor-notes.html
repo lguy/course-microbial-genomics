@@ -587,11 +587,38 @@ sskingdom” &gt; ravC_all.psiblast</p>
 <br><h3 id="msa-headingInstructor2">
 <a href="msa.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor2"></a>
 </h3>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">cp</span> ../../data/rpoB/rpoB.fasta .</span></code></pre>
+</div>
+<hr>
+<br><h3 id="msa-headingInstructor3">
+<a href="msa.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor3"></a>
+</h3>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools MAFFT</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="bu">time</span> mafft-fftns rpoB_renamed.fasta <span class="op">&gt;</span> rpoB.fftns.aln</span></code></pre>
+</div>
+<hr>
+<br><h3 id="msa-headingInstructor4">
+<a href="msa.html#headingInstructor4">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor4"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="bu">time</span> mafft-einsi rpoB_renamed.fasta <span class="op">&gt;</span> rpoB.einsi.aln</span></code></pre>
+</div>
+<hr>
+<br><h3 id="msa-headingInstructor5">
+<a href="msa.html#headingInstructor5">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor5"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">scp</span> lionel@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>user<span class="op">&gt;</span>/phylogenetics/rpoB.\*.aln .</span></code></pre>
 </div>
 <hr>
 <br></section><section id="phylogenetics"><h2 class="section-heading"><a href="phylogenetics.html">Phylogenetics</a></h2>
