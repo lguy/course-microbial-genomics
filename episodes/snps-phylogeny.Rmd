@@ -31,7 +31,7 @@ The identified SNPs will be used to compare the isolates to each other and to es
 If you don't have all the trimmed reads, you can download them (will take a while, *dont't do it if you have the reads*):
 
 ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 04:00:00
+interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 mv trimmed_fastq trimmed_fastq_partial
 tar xvzf ../../../data/trimmed_fastq.tar.gz
@@ -47,7 +47,7 @@ ls trimmed_fastq
 First we'll create a folder to hold the results from snippy:
 
 ```bash
-interactive -A uppmax2024-2-10 -M snowy -t 04:00:00
+interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 mkdir snps
 ```
