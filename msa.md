@@ -339,7 +339,7 @@ In this part, you will use two different alignment trimmers, [`TrimAl`](http://t
 
 ### Trimming with TrimAl
 
-First, load the module and look at the list of options available with `trimAl`. Then 
+First, load the module and look at the list of options available with `trimAl`. 
 
 ```bash
 module load trimAl
@@ -357,7 +357,21 @@ For comparison purposes, you will be adding an html output.
 
 Use `trimAl` to remove positions in the alignment that have more than 40% gaps. 
 
+::: hint
+
+The "gap threshold" is actually expressed as fraction of non-gap residues.
+
+::::::::
+
 ::: solution
+
+```bash
+trimal -in <input aln> -out rpoB.einsi.trimalgt.aln -gt <cut-off> -htmlout <html_output>
+```
+
+::::::::::::
+
+::: instructor
 
 ```bash
 trimal -in rpoB.einsi.aln -out rpoB.einsi.trimalgt.aln -gt 0.6 -htmlout rpoB.einsi.trimalgt.aln.html
@@ -365,11 +379,6 @@ trimal -in rpoB.einsi.aln -out rpoB.einsi.trimalgt.aln -gt 0.6 -htmlout rpoB.ein
 
 ::::::::::::
 
-::: hint
-
-The "gap threshold" is actually expressed as fraction of non-gap residues.
-
-::::::::
 
 ## Challenge 2.2: TrimAl with automated trimming
 
@@ -377,31 +386,37 @@ Use `trimAl` with the automated heuristic algorithm.
 
 ::: solution
 
+Add a `-automated1` option and rerun as above, choosing a different output file.
+
+::::::::::::
+
+::: instructor
+
 ```bash
 trimal -in rpoB.einsi.aln -out rpoB.einsi.trimalauto.aln -automated1 -htmlout rpoB.einsi.trimalauto.aln.html
 ```
 
 ::::::::::::
 
+
 ## Challenge 2.3: Compare the results
 
-Use `scp` to get the files (both alignments and html files) to your own laptop and visualize the results, by opening the `html` files with your browser and the alignment files with `seaview` or the viewer you used above.
+Get the files (both alignments and html files) to your own laptop and visualize the results, by opening the `html` files with your browser and the alignment files with `seaview` or the viewer you used above.
 
 ::: solution
 
-On your own laptop, inside the folder where you want to import the files. Replace `username` with your own username. 
+On your own laptop, go inside the folder where you want to import the files. Use `scp`. On some OS it is necessary to escape the wildcard `*`. If the output says something about `no matches found`, try that.
 
-```bash
-scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal* .
-```
+As before, if you do not have access to a terminal on your windows laptop, use MobaXterm and Session > SFTP to copy files to your computer.
 
-On some OS it is necessary to escape the `*`. If the output says something about `no matches found`, try:
+::::::::::::
+
+::: instructor
 
 ```bash
 scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal\* .
+scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal* .
 ```
-
-As before, if you do not have access to a terminal on your windows laptop, use MobaXterm and Session > SFTP to copy files to your computer.
 
 ::::::::::::
 
@@ -409,14 +424,14 @@ As before, if you do not have access to a terminal on your windows laptop, use M
 
 ### Trimming with ClipKIT
 
-[`ClipKIT`](https://jlsteenwyk.com/ClipKIT/) is one of the more recent tool to trim multiple sequence alignments. In a nutshell, it tries to preseve phylogenetically-informative sites, rather than trimming gappy regions. Although it also has multiple options and modes, you will only use the default mode, `smart-gap`.
+[`ClipKIT`](https://jlsteenwyk.com/ClipKIT/) is one of the more recent tools to trim multiple sequence alignments. In a nutshell, it tries to preseve phylogenetically-informative sites, rather than trimming gappy regions. Although it also has multiple options and modes, you will only use the default mode, `smart-gap`.
 
 
 :::::: challenge
 
 ## Challenge 2.4: Use ClipKIT
 
-To get an idea of the modes and options, look at the help of ClipKit:
+To get an idea of the modes and options, load the `ClipKIT` module and look at the help page:
 
 ```bash
 module load ClipKIT
@@ -428,7 +443,12 @@ Then run ClipKIT, explicitly using the `smart-gap` mode. Compare how much ClipKI
 ::: solution
 
 ```bash
-clipkit rpoB.einsi.aln -m smart-gap -l -o rpoB.einsi.clipkit.aln
+module load ClipKIT
+clipkit -h
+```
+
+```bash
+clipkit <input aln> -m <mode> -l -o <output file>
 ```
 
 ```output
@@ -440,7 +460,17 @@ Number of sites kept: 1543
 Number of sites trimmed: 500
 Percentage of alignment trimmed: 24.474%
 
-Execution time: 0.057s
+Execution time: 0.379s
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
+module load ClipKIT
+clipkit -h
+clipkit rpoB.einsi.aln -m smart-gap -l -o rpoB.einsi.clipkit.aln
 ```
 
 ::::::::::::
@@ -455,9 +485,25 @@ Import the data and inspect the three alignments.
 
 ## Challenge 2.5: Import data and compare results
 
+Copy the alignment file and visualize with `seaview` or the web-based visualization tool.
+
+::: hint
+
 Use `scp` as above. 
 
+Then use `seaview` or another viewer to visualize and compare results.
+
+::::::::
+
 ::: solution
+
+The three alignments on top of each other look like this. Click [on this link](episodes/fig/seaview_trimal_vs_clipkit.png) to better see the figure.
+
+![](episodes/fig/seaview_trimal_vs_clipkit.png){alt='Alignments shown in seaview'}
+
+::::::::::::
+
+::: instructor
 
 ```bash
 scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.clipkit.aln .
@@ -470,8 +516,6 @@ Then use `seaview` or another viewer to visualize and compare results.
 
 ::::::::::::::::
 
-The three alignments on top of each other look like this. Click [on this link](episodes/fig/seaview_trimal_vs_clipkit.png) to better see the figure.
 
-![](episodes/fig/seaview_trimal_vs_clipkit.png){alt='Alignments shown in seaview'}
 It is of course difficult to draw conclusions based on this figure, but can you spot some trends? What alignment is more likely to generate good results?
 
