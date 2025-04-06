@@ -621,6 +621,56 @@ sskingdom” &gt; ravC_all.psiblast</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">scp</span> lionel@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>user<span class="op">&gt;</span>/phylogenetics/rpoB.\*.aln .</span></code></pre>
 </div>
 <hr>
+<br><h3 id="msa-headingInstructor6">
+<a href="msa.html#headingInstructor6">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor6"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb22">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">trimal</span> <span class="at">-in</span> rpoB.einsi.aln <span class="at">-out</span> rpoB.einsi.trimalgt.aln <span class="at">-gt</span> 0.6 <span class="at">-htmlout</span> rpoB.einsi.trimalgt.aln.html</span></code></pre>
+</div>
+<hr>
+<br><h3 id="msa-headingInstructor7">
+<a href="msa.html#headingInstructor7">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor7"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb23">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="ex">trimal</span> <span class="at">-in</span> rpoB.einsi.aln <span class="at">-out</span> rpoB.einsi.trimalauto.aln <span class="at">-automated1</span> <span class="at">-htmlout</span> rpoB.einsi.trimalauto.aln.html</span></code></pre>
+</div>
+<hr>
+<br><h3 id="msa-headingInstructor8">
+<a href="msa.html#headingInstructor8">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor8"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/phylogenetics/rpoB.einsi.trimal\* .</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/phylogenetics/rpoB.einsi.trimal<span class="pp">*</span> .</span></code></pre>
+</div>
+<hr>
+<br><h3 id="msa-headingInstructor9">
+<a href="msa.html#headingInstructor9">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor9"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb29">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">module</span> load ClipKIT</span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a><span class="ex">clipkit</span> <span class="at">-h</span></span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a><span class="ex">clipkit</span> rpoB.einsi.aln <span class="at">-m</span> smart-gap <span class="at">-l</span> <span class="at">-o</span> rpoB.einsi.clipkit.aln</span></code></pre>
+</div>
+<hr>
+<br><h3 id="msa-headingInstructor10">
+<a href="msa.html#headingInstructor10">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-headingInstructor10"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb30">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/phylogenetics/rpoB.einsi.clipkit.aln .</span></code></pre>
+</div>
+<p>Then use <code>seaview</code> or another viewer to visualize and
+compare results.</p>
+<hr>
 <br></section><section id="phylogenetics"><h2 class="section-heading"><a href="phylogenetics.html">Phylogenetics</a></h2>
 <hr class="half-width"></section><section id="quality-control"><h2 class="section-heading"><a href="quality-control.html">Reads, QC and trimming</a></h2>
 <hr class="half-width"></section><section id="sequence-assembly"><h2 class="section-heading"><a href="sequence-assembly.html">Sequence assembly</a></h2>
@@ -690,8 +740,8 @@ take a while, <em>dont’t do it if you have the reads</em>):</p>
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2025-04-04",
-  "datePublished": "2025-04-04"
+  "dateModified": "2025-04-06",
+  "datePublished": "2025-04-06"
 }
 
   </script><script>
