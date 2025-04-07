@@ -22,7 +22,7 @@ The first part, here, describes how to retrieve all necessary data from public r
 
 ::: questions
 
-- Trace an outbreak of Mycobacterium, from reads to phylogenetic tree.
+- Trace an outbreak of *Mycobacterium*, from reads to phylogenetic tree.
 - How can I organize my file system for a new bioinformatics project?
 - How and where can data be downloaded?
 - How can I describe the quality of my data?
@@ -39,7 +39,7 @@ This part of the course is largely inspired from [another tutorial](https://gith
 
 Epidemiological contact tracing through interviewing of patients can identify potential chains of patients that transmitted an infectious disease to each other. Contact tracing was performed following the [stone-in-the-pond principle](https://www.ncbi.nlm.nih.gov/pubmed/1643300), which  interviews and tests potential contacts in concentric circles around a potential bash case.
 
-Tuberculosis (TB) is an infectious disease caused by *Mycobacterium tuberculosis*. It mostly affects the lungs. An infection with *M. tuberculosis* is often asymptomatic (latent infection). Only in about 10% of the cases the latent infection progresses to an active infection during a patients lifetime, which, if untreated, leads to death in about half of the cases. The symptoms of an active TB infection include cough, fever, night sweats, weight loss etc. An active TB infection can spread. Once exposed, people often have latent TB. To identify people with latent TB, a [skin test](https://www.cdc.gov/tb/publications/factsheets/testing/skintesting.htm) can be applied.
+Tuberculosis (TB) is an infectious disease caused by *Mycobacterium tuberculosis*. It mostly affects the lungs. An infection with *M. tuberculosis* is often asymptomatic (latent infection). Only in about 10% of the cases the latent infection progresses to an active infection during a patients lifetime, which, if untreated, leads to death in about half of the cases. The symptoms of an active TB infection include cough, fever, night sweats, weight loss etc. An active TB infection can spread. Once exposed, people often have latent TB. To identify people with latent TB, a [skin test](https://www.cdc.gov/tb/hcp/testing-diagnosis/tuberculin-skin-test.html) can be applied.
 
 Here we have 7 tuberculosis patients with active TB, that form three separate clusters of potential transmission as determined by epidemiological interviews. Patients were asked if they have been in direct contact with each other, or if they visited the same localities. From all patients, a bacterial isolate was grown, DNA isolated, and whole-genome sequenced on an Illumina sequencer.
 
@@ -75,13 +75,9 @@ Other questions might arise along the way:
 
 In this exercise we will setup a file system for the project we will be working on during this workshop.
 
-We will start by creating a sub directory that we can use for the rest of the labs. First navigate to your own directory on Uppmax and start an `interactive` session. Then confirm that you are in the correct directory using the `pwd` command.
+::: challenge
 
-```bash
-interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
-cd /proj/g2020004/nobackup/3MK013/<username>
-pwd
-```
+We will start by creating a sub directory that we can use for the rest of the labs. First navigate to your own directory on Uppmax and start an `interactive` session. Then confirm that you are in the correct directory using the `pwd` command.
 
 You should see the output:
 
@@ -89,7 +85,26 @@ You should see the output:
 /proj/g2020004/nobackup/3MK013/<username>
 ```
 
-::: challenge
+
+::: solution
+
+```bash
+interactive ...
+cd /proj/g2020004/nobackup/3MK013/<username>
+pwd
+```
+
+:::::::::::
+
+::: instructor
+
+```bash
+interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
+cd /proj/g2020004/nobackup/3MK013/<username>
+pwd
+```
+::::::::::::::
+
 ## Exercise
 
 Use the `mkdir` command to make the following directories:
@@ -105,13 +120,12 @@ molepi/results
 ## Solution
 
 ```bash
-mkdir molepi
-mkdir molepi/docs
-mkdir molepi/data
-mkdir molepi/results
+mkdir molepi molepi/docs molepi/data molepi/results
 ```
-:::
-:::
+
+::::::::::::
+
+::::::::::::::
 
 Use `ls -R` to verify that you have created these directories. The `-R` option for `ls` stands for recursive. This option causes `ls` to return the contents of each subdirectory within the directory iteratively.
 
@@ -138,21 +152,43 @@ Reference sequences (including many pathogen genomes) are available at [NCBI's r
 
 A reference genome is a genome that was previously sequenced and is closely related to the isolates we would like to analyse. The selection of a closely related reference genome is not trivial and will warrant an analysis in itself. However, for simplicity, here we will work with the *M. tuberculosis* reference genome H37Rv.
 
+::: challenge 
+
 ### Download reference genomes from NCBI
 
 Download the *M.tuberculosis* reference genome from the NCBI ftp site.
 
-First, we switch to the data folder to store all our data
+First, we switch to the `data` subfolder to store all our data
 
+::: solution 
 ```bash
 cd molepi/data 
 ```
+::::::::::::
 
-The reference genome will be downloaded programmatically from NCBI with `wget`. `wget` is a computer program that retrieves content from web servers. Its name derives from World Wide Web and get.
+The reference genome will be downloaded programmatically from NCBI with `wget`. `wget` is a computer program that retrieves content from web servers. Its name derives from World Wide Web and get. 
+
+Find the location of the gzipped `fna` file for that reference genome via NCBI's genome, by finding the FTP site and copying the link to the `*_genomic.fna.gz` file and using that as an argument to `wget`.
+
+::: hint 
+
+```bash
+wget -h
+```
+:::::::::
+
+::: solution 
+
+Search for *Mycobacterium tuberculosis* on the [Datasets/Genome](https://www.ncbi.nlm.nih.gov/datasets/genome/) website. Identify the "reference genome" (at the top), click on the accession number, and find the `FTP` tab. There is many files, among which `GCF_000195955.2_ASM19595v2_genomic.fna.gz`. Right-click and copy the link. 
+
+::::::::::::
+
+::: instructor
 
 ```bash
 wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ```
+::::::::::::::
 
 This file is compressed as indicated by the extension of `.gz`. It means that this file has been compressed using the `gzip` command.
 
@@ -172,31 +208,39 @@ ls
 GCF_000195955.2_ASM19595v2_genomic.fna
 ```
 
-::: challenge
 ## Challenge: What is the size of the genome?
 
-Find out how many nucleotides the genome has. Hint:
+Find out how many nucleotides the genome has. There is a software called SeqKit (and a corresponding module at Uppmax) that can help. 
+
+::: hint:
 
 ```bash   
 module load bioinfo-tools SeqKit
 seqkit -h
 ```
 
+:::::::::
+
 Get assembly statistics from FASTA and FASTQ files.
 
 ::: solution
 ## Solution
 
-The genome has 4'411'532 bp.
+The genome has 4'411'532 bp. The `stat` command of `seqkit` is helpful.
 
-``` bash
-seqkit stats GCF_000195955.2_ASM19595v2_genomic.fna
-```
 
 ``` output
 file                                    format  type  num_seqs    sum_len    min_len    avg_len    max_len
 GCF_000195955.2_ASM19595v2_genomic.fna  FASTA   DNA          1  4,411,532  4,411,532  4,411,532  4,411,532
 
+```
+
+::::::::::::
+
+::: instructor
+
+``` bash
+seqkit stats GCF_000195955.2_ASM19595v2_genomic.fna
 ```
 
 ::::::::::::
@@ -212,6 +256,7 @@ We can do this one by one but given that each download takes about one to two ho
 ```bash
 for filename in ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482
 do
+  echo -e "$filename"
   wget --spider ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${filename:0:6}"/"${filename}"/"${filename}"_*.fastq.gz
 done
 ```
@@ -220,9 +265,11 @@ When the shell sees the keyword `for`, it knows to repeat a command (or group of
 
 Inside the loop, we call for the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable** as a variable name and substitute its value in its place, rather than treat it as text or an external command.
 
-In this example, the list is seven accession numbers of reads belonging to the genomes we are interested in. Each time the loop iterates, it will assign a file name to the variable `filename` and run the `wget` command. The first time through the loop, `$filename` is `ERR029207`. The FTP site at EBI is constructed so that fastq files are stored in a `vol1/fastq` subfolder. Read files are not directly in that subfolder, but grouped in subfolders starting with the six first characters of the accession number (`ERR029` in the first case), then in the accession number subfolder. To get to the right place, the file path is constructed with the root path (`ftp://ftp.sra.ebi.ac.uk/vol1/fastq/`), to which the first 6 characters of the accession number is added through that special variable operation (`"${filename:0:6}"`) to get to the right subfolder. Finally, the correct accession subfolder (`"${filename}"`), the file name prefix  (`"${filename}"_*.fastq.gz"`) and the suffix (`_*.fastq.gz`) are added. The `*` ensures that we get reads from both ends. 
+In this example, the list is seven accession numbers of reads belonging to the genomes we are interested in. Each time the loop iterates, it will assign a file name to the variable `filename` and `echo` (print) the filename. In the second line, it will run the `wget` command. 
 
-Use `{}` to wrap the variable so that .fastq.gz will not be interpreted as part of the variable name. In addition, quoting the shell variables is a good practice AND necessary if your variables have spaces in them.
+The first time through the loop, `$filename` is `ERR029207`. The FTP site at EBI is constructed so that fastq files are stored in a `vol1/fastq` subfolder. Read files are not directly in that subfolder, but grouped in subfolders starting with the six first characters of the accession number (`ERR029` in the first case), then in the accession number subfolder. To get to the right place, the file path is constructed with the root path (`ftp://ftp.sra.ebi.ac.uk/vol1/fastq/`), to which the first 6 characters of the accession number is added through that special variable operation (`"${filename:0:6}"`) to get to the right subfolder. Finally, the correct accession subfolder (`"${filename}"`), the file name prefix  (`"${filename}"_*.fastq.gz"`) and the suffix (`_*.fastq.gz`) are added. The `*` ensures that we get reads from both ends. 
+
+Use `{}` to wrap the variable so that `.fastq.gz` will not be interpreted as part of the variable name. In addition, quoting the shell variables is a good practice AND necessary if your variables have spaces in them.
 
 For the second iteration, `$filename` becomes `ERR029206`. 
 
@@ -288,8 +335,36 @@ for filename in ERR01 ERR02 ERR03; do echo ftp://ftp.sra.ebi.ac.uk/"${filename}"
 When you check your history later, it will help your remember what you did!
 :::
 
+### Link the read files
 
-All the read files start with ERR and have a `fastq.gz` extension. It means they are in fastq format and compressed. Softlink the files in your `molepi/data` folder, using a nested loop. The `data/fastq` folder is three levels up:
+Now link the files from the `data` folder, to perform quality control. 
+
+::: challenge
+
+All the read files start with ERR and have a `fastq.gz` extension. It means they are in fastq format and compressed. Softlink the files in your `molepi/data` folder, using a nested loop. The `data/fastq` folder is three levels up. For each accession number there are two `fastq.gz` files, one for each end (1 or 2). 
+
+::: hint
+
+Softlinks are done with `ln -s`. Use the same loop backbone as above, and nest a `for` loop over the two ends of the reads (1 and 2). 
+
+::::::::
+
+::: solution
+
+```bash
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
+for filename in <...>
+do
+  for <loop over 1 2>
+  do
+    <softlink> ../../../data/fastq/<build the filename with $ and double quotes>.fastq.gz .
+  done
+done
+```
+
+::::::::::::
+
+::: instructor
 
 ```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
@@ -301,6 +376,10 @@ do
   done
 done
 ```
+
+:::::::::::::
+
+::::::::::::::
 
 ## Bioinformatics workflows
 
@@ -343,11 +422,11 @@ Although it looks complicated (and it is), it's easy to understand the [fastq](h
 | 3    | Always begins with a '+' and sometimes the same info in line 1                                               |
 | 4    | Has a string of characters which represent the quality scores; must have same number of characters as line 2 |
 
-We can view the first complete read in one of the files our dataset by using `head` to look at the first four lines. You will use zcat to extract text from a gzipped file:
+We can view the first complete read in one of the files our dataset by using `head` to look at the first four lines. 
 
-```bash
-zcat ERR029206_1.fastq.gz | head -n4 
-```
+::: challenge 
+
+You will use zcat to extract text from a gzipped file. 
 
 ```output
 @ERR029206.1 IL31_5505:8:1:6233:1087#4/1
@@ -355,6 +434,22 @@ TCNAGTCAGCACACACATGCGAAAGAATCCACCGACTAGGGTCAGCGGGGTTTGCAGTTGGTCGCGGACGTAACCG
 +
 <='=ABBBBCBBBBBBBBC>BBCBBBBBB@BBBBBB=BCBB@@B@@BB@@,@@@@@@@@@@@@@@@@@@@@@@@@@
 ```
+
+::: hint
+
+```bash
+zcat -h
+head -h
+```
+
+::: solution 
+
+```bash
+zcat ERR029206_1.fastq.gz | head -n4 
+```
+::::::::::::::
+
+::::::::::::::
 
 One of the nucleotides in this read is unknown (`N`).
 
@@ -385,7 +480,7 @@ TCNAGTCAGCACACACATGCGAAAGAATCCACCGACTAGGGTCAGCGGGGTTTGCAGTTGGTCGCGGACGTAACCG
 
 We can now see that the quality of an `N` (`'`) is 6, which corresponds to a over 25% error probability: 
 
-$10^{-\frac{6}{10}} \cong 0.25 $
+$10^{-\frac{6}{10}} \cong 0.25$
 
 
 ### Quality Encodings Vary
@@ -393,7 +488,9 @@ $10^{-\frac{6}{10}} \cong 0.25 $
 Although we've used a particular quality encoding system to demonstrate interpretation of read quality, different sequencing machines use different encoding systems. This means that, depending on which sequencer you use to generate your data, a `#` may not be an indicator of a poor quality base call.
 
 ::: callout
+
 This mainly relates to older Solexa/Illumina data, but it's essential that you know which sequencing platform was used to generate your data, so that you can tell your quality control program which encoding to use. If you choose the wrong encoding, you run the risk of throwing away good reads or (even worse) not throwing away bad reads!
+
 :::
 
 ### Assessing Quality using FastQC

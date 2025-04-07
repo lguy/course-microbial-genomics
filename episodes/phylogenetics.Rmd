@@ -272,10 +272,10 @@ You won't be using the multi-node MPI version, so you don't need to load additio
 Then run your first tree, on the `ClipKIT`-trimmed alignment.
 
 ```bash
-iqtree2 -s rpoB.einsi.clipkit.aln -m TEST -B 1000
+iqtree2 -s rpoB.einsi.clipkit.aln -m MFP -B 1000
 ```
 
-Here, we tell IQ-TREE to use the alignment `-s rpoB.einsi.clipkit.aln`, and to test among the standard substitution models which one fits best (`-m TEST`). We also tell IQ-TREE to perform 1000 ultra-fast bootstraps (`-B 1000`). We'll discuss these later.
+Here, we tell IQ-TREE to use the alignment `-s rpoB.einsi.clipkit.aln`, and to test among the standard substitution models which one fits best (`-m MFP`). We also tell IQ-TREE to perform 1000 ultra-fast bootstraps (`-B 1000`). We'll discuss these later.
 
 IQ-TREE is a very complete program that can do a large variety of phylogenetic analysis. To get a flavor of what it's capable of, look at its [extensive documentation](http://www.iqtree.org/doc/). 
 
@@ -330,7 +330,7 @@ figtree rpoB.fftns.aln.treefile &
 :::::::::::::::::::::::: instructor 
 
 ```bash
-iqtree2 -s rpoB.fftns.aln -m TEST -B 1000
+iqtree2 -s rpoB.fftns.aln -m MFP -B 1000
 ```
 
 ```bash
