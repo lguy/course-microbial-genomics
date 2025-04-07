@@ -442,6 +442,8 @@ zcat -h
 head -h
 ```
 
+::::::::
+
 ::: solution 
 
 ```bash
@@ -528,6 +530,7 @@ We softlinked the samples. How many FASTQ files are in this dataset? Why is this
 ### Solution
 
 There are 14 FASTQ files. Each sample has [paired-end reads](https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/).
+
 :::
 :::
 
@@ -622,7 +625,7 @@ It's very common to have some reads within a sample, or some positions (near the
 
 ### Seqtk Options
 
-Seqtk is a program written C and aims to be a Swiss army knife for sequencing reads. You don't need to learn C to use Seqtk, but the fact that it's a C program helps explain the syntax that is used to run Seqtk. Seqtk takes as input files either FASTQ files or gzipped FASTQ files and outputs FASTQ or FASTA files. The basic command to run Seqtk starts like this:
+Seqtk is a program written in C and aims to be a Swiss Army Knife for sequencing reads. You don't need to learn C to use Seqtk, but the fact that it's a C program helps explain the syntax that is used to run Seqtk. Seqtk takes as input files either FASTQ files or gzipped FASTQ files and outputs FASTQ or FASTA files. The basic command to run Seqtk starts like this:
 
 ```bash
 module load seqtk
@@ -706,15 +709,13 @@ ALL 287211920   18.2    32.0    31.9    17.8    0.0 31.7    28.8    1.3 98.7
 
 We've just successfully trimmed one of our FASTQ files! However, there is some bad news. `seqtk` can only operate on one sample at a time and we have more than one sample. The good news is that we can use a `for` loop to iterate through our sample files quickly! This will take a few minutes.
 
-```bash
-for infile in *.fastq.gz
-do
-  outfile="${infile}"_trim.fastq
-  seqtk trimfq -q 0.01 "${infile}" >  "${outfile}" 
-done
-```
+::: challenge 
 
-The new part in our `for` loop is the line:
+Write a loop which trims all `.fastq.gz` files and redirect the output into `_trim.fastq` files. 
+
+::: hint
+
+Create a new variable, built from the input file name (ending in `.fastq.gz`).
 
 ```bash
 outfile="${infile}"_trim.fastq
@@ -723,6 +724,34 @@ outfile="${infile}"_trim.fastq
 `infile` is the first variable in our loop and takes the value of each of the FASTQ files in our directory. `outfile` is the second variable in our loop and is defined by adding `_trim.fastq` to the end of our input file name. Use `{}` to wrap the variable so that `_trim.fastq` will not be interpreted as part of the variable name. In addition, quoting the shell variables is a good practice AND necessary if your variables have spaces in them.
 
 For more, check [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls). There are no spaces before or after the `=`.
+
+::::::::
+
+::: solution 
+
+```bash
+for <loop over infiles ending with .fastq.gz>
+do
+  outfile="${infile}"_trim.fastq
+  seqtk trimfq <error prob at most 0.01> <infile> > <outfile>
+done
+```
+
+:::::::::::::
+
+::: instructor 
+
+```bash
+for infile in *.fastq.gz
+do
+  outfile="${infile}"_trim.fastq
+  seqtk trimfq -q 0.01 "${infile}" >  "${outfile}" 
+done
+```
+
+:::::::::::::
+
+:::::::::::::::::
 
 Go ahead and run the for loop. It should take a few minutes for seqtk to run for each of our fourteen input files. Once it's done running, take a look at your directory contents.
 
@@ -754,7 +783,7 @@ ERR029206_2.fastq.gz_trim.fastq
 
 ### Challenge
 
-Again, use seqtk fqchk to compare the untrimmed and trimmed reads of both samples. Note the number of bases '#bases' of the trimmed and untrimmed reads. Calculate the theoretical coverage of the genomes before and after trimming, assuming that all our genomes do have the same size as our reference genome (4411532 bases).
+Again, use `seqtk fqchk` to compare the untrimmed and trimmed reads of both samples. Note the number of bases '#bases' of the trimmed and untrimmed reads. Calculate the theoretical coverage of the genomes before and after trimming, assuming that all our genomes do have the same size as our reference genome (4411532 bases).
 
 Hint: Sum up forward and reverse reads!
 
