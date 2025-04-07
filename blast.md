@@ -20,6 +20,11 @@ exercises: 240
 
 <!---
 
+Feedback VT2025
+- Perhaps too long / challenging; 80% of students stayed until the last minute
+- They don't know what a PSSM (if that's the word) is; Chayan explained it on the blackboard
+- The "big" blast takes >1h, so afaik a single student had it finished in time. I let others copy from his folder for the sake of comparison
+
 NOTES: 
 
 Core: 
