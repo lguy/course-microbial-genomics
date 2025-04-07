@@ -895,11 +895,11 @@ alignment.</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.einsi.clipkit.aln <span class="at">-m</span> TEST <span class="at">-B</span> 1000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.einsi.clipkit.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
 </div>
 <p>Here, we tell IQ-TREE to use the alignment
 <code>-s rpoB.einsi.clipkit.aln</code>, and to test among the standard
-substitution models which one fits best (<code>-m TEST</code>). We also
+substitution models which one fits best (<code>-m MFP</code>). We also
 tell IQ-TREE to perform 1000 ultra-fast bootstraps
 (<code>-B 1000</code>). We’ll discuss these later.</p>
 <p>IQ-TREE is a very complete program that can do a large variety of
@@ -996,7 +996,7 @@ FigTree or with <a href="https://beta.phylo.io/viewer/#" class="external-link">p
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.fftns.aln <span class="at">-m</span> TEST <span class="at">-B</span> 1000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.fftns.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>

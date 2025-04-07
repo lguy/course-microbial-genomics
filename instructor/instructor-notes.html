@@ -690,7 +690,7 @@ compare results.</p>
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.fftns.aln <span class="at">-m</span> TEST <span class="at">-B</span> 1000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.fftns.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
 </div>
 <div class="codewrapper sourceCode" id="cb25">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -699,7 +699,66 @@ compare results.</p>
 </div>
 <hr>
 <br></section><section id="quality-control"><h2 class="section-heading"><a href="quality-control.html">Reads, QC and trimming</a></h2>
-<hr class="half-width"></section><section id="sequence-assembly"><h2 class="section-heading"><a href="sequence-assembly.html">Sequence assembly</a></h2>
+<hr class="half-width">
+<h3 id="quality-control-headingInstructor1">
+<a href="quality-control.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#quality-control-headingInstructor1"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2025-3-4 <span class="at">-M</span> snowy <span class="at">-t</span> 04:00:00</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre>
+</div>
+<hr>
+<br><h3 id="quality-control-headingInstructor2">
+<a href="quality-control.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#quality-control-headingInstructor2"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">wget</span> ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz</span></code></pre>
+</div>
+<hr>
+<br><h3 id="quality-control-headingInstructor3">
+<a href="quality-control.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#quality-control-headingInstructor3"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">seqkit</span> stats GCF_000195955.2_ASM19595v2_genomic.fna</span></code></pre>
+</div>
+<hr>
+<br><h3 id="quality-control-headingInstructor4">
+<a href="quality-control.html#headingInstructor4">Instructor Note</a><a class="anchor" aria-label="anchor" href="#quality-control-headingInstructor4"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/data</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="cf">for</span> filename <span class="kw">in</span> ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>  <span class="cf">for</span> end <span class="kw">in</span> 1 2</span>
+<span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>  <span class="cf">do</span></span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> ../../../data/fastq/<span class="st">"</span><span class="va">${filename}</span><span class="st">"</span>_<span class="st">"</span><span class="va">${end}</span><span class="st">"</span>.fastq.gz .</span>
+<span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>  <span class="cf">done</span></span>
+<span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<hr>
+<br><h3 id="quality-control-headingInstructor5">
+<a href="quality-control.html#headingInstructor5">Instructor Note</a><a class="anchor" aria-label="anchor" href="#quality-control-headingInstructor5"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb51">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="cf">for</span> infile <span class="kw">in</span> <span class="pp">*</span>.fastq.gz</span>
+<span id="cb51-2"><a href="#cb51-2" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb51-3"><a href="#cb51-3" tabindex="-1"></a>  <span class="va">outfile</span><span class="op">=</span><span class="st">"</span><span class="va">${infile}</span><span class="st">"</span>_trim.fastq</span>
+<span id="cb51-4"><a href="#cb51-4" tabindex="-1"></a>  <span class="ex">seqtk</span> trimfq <span class="at">-q</span> 0.01 <span class="st">"</span><span class="va">${infile}</span><span class="st">"</span> <span class="op">&gt;</span>  <span class="st">"</span><span class="va">${outfile}</span><span class="st">"</span> </span>
+<span id="cb51-5"><a href="#cb51-5" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<hr>
+<br></section><section id="sequence-assembly"><h2 class="section-heading"><a href="sequence-assembly.html">Sequence assembly</a></h2>
 <hr class="half-width"></section><section id="snps-phylogeny"><h2 class="section-heading"><a href="snps-phylogeny.html">Mapping</a></h2>
 <hr class="half-width">
 <h3 id="snps-phylogeny-headingInstructor1">
