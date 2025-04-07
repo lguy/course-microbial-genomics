@@ -672,7 +672,33 @@ sskingdom” &gt; ravC_all.psiblast</p>
 compare results.</p>
 <hr>
 <br></section><section id="phylogenetics"><h2 class="section-heading"><a href="phylogenetics.html">Phylogenetics</a></h2>
-<hr class="half-width"></section><section id="quality-control"><h2 class="section-heading"><a href="quality-control.html">Reads, QC and trimming</a></h2>
+<hr class="half-width">
+<h3 id="phylogenetics-headingInstructor1">
+<a href="phylogenetics.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#phylogenetics-headingInstructor1"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2025-3-4 <span class="at">-M</span> snowy <span class="at">-t</span> 4:00:00</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools iqtree</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/phylogenetics</span></code></pre>
+</div>
+<hr>
+<br><h3 id="phylogenetics-headingInstructor2">
+<a href="phylogenetics.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#phylogenetics-headingInstructor2"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.fftns.aln <span class="at">-m</span> TEST <span class="at">-B</span> 1000</span></code></pre>
+</div>
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">figtree</span> rpoB.fftns.aln.treefile <span class="kw">&amp;</span></span></code></pre>
+</div>
+<hr>
+<br></section><section id="quality-control"><h2 class="section-heading"><a href="quality-control.html">Reads, QC and trimming</a></h2>
 <hr class="half-width"></section><section id="sequence-assembly"><h2 class="section-heading"><a href="sequence-assembly.html">Sequence assembly</a></h2>
 <hr class="half-width"></section><section id="snps-phylogeny"><h2 class="section-heading"><a href="snps-phylogeny.html">Mapping</a></h2>
 <hr class="half-width">
@@ -740,8 +766,8 @@ take a while, <em>dont’t do it if you have the reads</em>):</p>
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2025-04-06",
-  "datePublished": "2025-04-06"
+  "dateModified": "2025-04-07",
+  "datePublished": "2025-04-07"
 }
 
   </script><script>
