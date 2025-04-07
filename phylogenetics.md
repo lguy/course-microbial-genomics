@@ -38,7 +38,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 - Installing ape ...                            OK [linked from cache]
-Successfully installed 1 package in 5.1 milliseconds.
+Successfully installed 1 package in 5.4 milliseconds.
 ```
 
 And to load it:
@@ -188,8 +188,7 @@ Let's know do the same using bioinformatics tools.
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-We'll use `dist.dna` to 
-calculate the distances. We'll use a "N" model, that just counts the differences and doesn't correct or normalizes. We'll use the function `hclust` to perform the UPGMA method calculation. The tree is then plotted, and the branch lengths plotted with `edgelabels`:
+We'll use `dist.dna` to calculate the distances. We'll use a "N" model, that just counts the differences and doesn't correct or normalizes. We'll use the function `hclust` to perform the UPGMA method calculation. The tree is then plotted, and the branch lengths plotted with `edgelabels`:
 
 :::::::::::::::::::::::: solution 
 
@@ -243,7 +242,7 @@ On a Linux computer, you can run it on the command line:
 seaview rpoB.einsi.clipkit.aln &
 ```
 
-On other computer, just open the file with the regular File > Open menu.
+On other computers, just open the file with the regular File > Open menu.
 
 :::::::::::::::::::::::::::::::::
 
@@ -275,9 +274,28 @@ We will now use IQ-TREE to infer a maximum-likelihood (ML) tree of the RpoB data
 
 :::::: challenge
 
-Get to the right folder, require compute time and load the right modules.
+Get to the right folder, require compute time and load the right modules. The project is `uppmax2025-3-4`. The module containing IQ tree is called `iqtree`.
+
+::: hint
+
+ ```bash
+interactive ...
+module load ...
+```
+
+::::::::::::
 
 ::: solution
+
+ ```bash
+interactive -A <project> -M <cluster> -t <time>
+module load <general bioinfo module> iqtree
+```
+
+::::::::::::
+
+
+::: instructor
 
  ```bash
 interactive -A uppmax2025-3-4 -M snowy -t 4:00:00
@@ -303,7 +321,7 @@ Then run your first tree, on the `ClipKIT`-trimmed alignment.
 iqtree2 -s rpoB.einsi.clipkit.aln -m TEST -B 1000
 ```
 
-Here, we tell IQ-TREE to use the alignment `rpoB.einsi.clipkit.aln`, and to test among the standard substitution models which one fits best (`-m TEST`). We also tell IQ-TREE to perform 1000 ultra-fast bootstraps (`-B 1000`). We'll discuss these later.
+Here, we tell IQ-TREE to use the alignment `-s rpoB.einsi.clipkit.aln`, and to test among the standard substitution models which one fits best (`-m TEST`). We also tell IQ-TREE to perform 1000 ultra-fast bootstraps (`-B 1000`). We'll discuss these later.
 
 IQ-TREE is a very complete program that can do a large variety of phylogenetic analysis. To get a flavor of what it's capable of, look at its [extensive documentation](http://www.iqtree.org/doc/). 
 
@@ -331,15 +349,35 @@ Scrutinize the tree. Is it different from the BioNJ tree generated in Seaview? H
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
-Redo a ML tree from the other alignment (FFT-NS) we inferred with `mafft` and display the resulting tree in FigTree
+Redo a ML tree from the other alignment (FFT-NS) we inferred with `mafft` and display the resulting tree in FigTree.
+
+
+::: hint
+
+```bash
+iqtree2 -h
+```
+::::::::
 
 :::::::::::::::::::::::: solution 
 
 ```bash
-iqtree2 -s rpoB.fftns.aln -m TEST -B 1000
+iqtree2 -s <alignment file> <option and text for testing model> <option and test for 1000 fast bootstraps> 
 ```
 
-Import the tree on your computer and load it with FigTree or with [phylo.io](https://beta.phylo.io/viewer/#)
+Import the tree **on your computer** and load it with FigTree or with [phylo.io](https://beta.phylo.io/viewer/#)
+
+```bash
+figtree rpoB.fftns.aln.treefile &
+```
+
+:::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::: instructor 
+
+```bash
+iqtree2 -s rpoB.fftns.aln -m TEST -B 1000
+```
 
 ```bash
 figtree rpoB.fftns.aln.treefile &
@@ -363,9 +401,17 @@ Along the way, we've generated bootstraps for all our trees. Now show them on al
 
 Compare all four trees. Do you find any significant differences? 
 
-Hint: what are *Glycine* and *Arabidopsis*? What about *Synechocystis* and *Microcystis*?
+::: hint
 
-Hint: search for the accession number of the *Glycine* RpoB sequence on [NCBI](https://www.ncbi.nlm.nih.gov/search/). Any hint there?
+What are *Glycine* and *Arabidopsis*? What about *Synechocystis* and *Microcystis*?
+
+::::::::
+
+::: hint
+
+Search for the accession number of the *Glycine* RpoB sequence on [NCBI](https://www.ncbi.nlm.nih.gov/search/). Any hint there?
+
+::::::::
 
 :::::::::::::::::::::::: solution 
 
@@ -408,28 +454,20 @@ As a practical way to understand genetic drift, let's play with population size,
 
 ### Introduction
 
-This exercise is to illustrate the concepts of selection, population size and
-genetic drift, using simulations. We will use mostly 
-[Red Lynx] by 
-[Reed A. Cartwright](https://github.com/reedacartwright). 
+This exercise is to illustrate the concepts of selection, population size and genetic drift, using simulations. We will use mostly [Red Lynx] by [Reed A. Cartwright](https://github.com/reedacartwright). 
 
-Another option is to
-use a [web interface](https://phytools.shinyapps.io/drift-selection/) to the [R]
-[learnPopGen](https://github.com/liamrevell/learnPopGen) package, but the last
-one is mostly for biallelic genes (and thus not that relevant for bacteria).
+Another option is to use a [web interface](https://phytools.shinyapps.io/drift-selection/) to the [R] [learnPopGen](https://github.com/liamrevell/learnPopGen) package, but the last one is mostly for biallelic genes (and thus not that relevant for bacteria).
 
 Open now the [Red Lynx] website and get familiar with the different options. 
 
-You won't need the right panel (but feel free to explore). The dominance option
-in the left panel won't be used either. 
+You won't need the right panel (but feel free to explore). The dominance option in the left panel won't be used either.
 
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ### Genetic Drift without selection
 
-In the first part, you will only play with the number of generations, the
-initial frequency and the population size. 
+In the first part, you will only play with the number of generations, the initial frequency and the population size. 
 
 - Lower the number of generations to 200. 
 - Adjust the population size to 1000.
@@ -440,28 +478,23 @@ Did any allele got fixed? What is the range of frequencies after 200 generations
 
 :::::::::::::::::::::::: solution 
 
-In my simulations, no allele got fixed, the final allele frequencies range 
-20-80%
+In my simulations, no allele got fixed, the final allele frequencies range20-80%
 
 :::::::::::::::::::::::::::::::::
 
-Now increase the population to 100'000, clear the graph, and repeat the 
-simulations. What's the range of final frequencies now?
+Now increase the population to 100'000, clear the graph, and repeat the simulations. What's the range of final frequencies now?
 
 :::::::::::::::::::::::: solution 
 
-In my simulations, no allele got fixed, and the final allele frequencies range
-45-55%
+In my simulations, no allele got fixed, and the final allele frequencies range 45-55%
 
 :::::::::::::::::::::::::::::::::
 
-Now decrease the population to 10 individuals, clear the graph and repeat
-these simulations. What's the range of final frequencies now?
+Now decrease the population to 10 individuals, clear the graph and repeat these simulations. What's the range of final frequencies now?
 
 :::::::::::::::::::::::: solution 
 
-In my simulations, one allele got fixed quickly, the latest one was at
-generation 100.
+In my simulations, one allele got fixed quickly, the latest one was at generation 100.
 
 :::::::::::::::::::::::::::::::::
 
@@ -469,9 +502,7 @@ What do you conclude here?
 
 :::::::::::::::::::::::: solution 
 
-It is clear that stochastic (random) variation in allele frequencies 
-strongly affects the probability of fixation of alleles in small populations,
-not so much in large ones.
+It is clear that stochastic (random) variation in allele frequencies strongly affects the probability of fixation of alleles in small populations, not so much in large ones.
 
 :::::::::::::::::::::::::::::::::
 
@@ -481,37 +512,25 @@ not so much in large ones.
 
 ### Genetic Drift with selection
 
-So far we've only looked at how allele frequencies vary in the absence of 
-selection, that is when the two alleles provide an equal fitness. What's the
-influence of random genetic drift when alleles are not neutral?
+So far we've only looked at how allele frequencies vary in the absence of selection, that is when the two alleles provide an equal fitness. What's the influence of random genetic drift when alleles are not neutral?
 
-The selection strength is equivalent to the selection coefficient, i.e.
-how much higher relative fitness the new allele provides. A selection 
-coefficient of 0.01 means that the organism harboring the new allele has a 
-1% increased fitness.
+The selection strength is equivalent to the selection coefficient, i.e. how much higher relative fitness the new allele provides. A selection coefficient of 0.01 means that the organism harboring the new allele has a 1% increased fitness.
 
 - Increase the number of generations to 1000.
 - Set the selection strength to 0.01 (1%).
 - Set the population size first to 100'000, then to 1000, then to 100.
 
-How long does it take for the allele to get fixed - in average - with
-the three population sizes?
+How long does it take for the allele to get fixed - in average - with the three population sizes?
 
 :::::::::::::::::::::::: solution 
 
-About the same time, but the trajectories are much smoother with larger
-populations. In the small population, it happens that the beneficial allele
-disappears from the population (although not often).
+About the same time, but the trajectories are much smoother with larger populations. In the small population, it happens that the beneficial allele disappears from the population (although not often).
 
 :::::::::::::::::::::::::::::::::
 
 ### Fixation of slightly deleterious alleles in very small populations
 
-We're now simulating what would happen in a very small population (or a 
-population that undergoes very narrow bottlenecks), when a gene mutates. We'll
-have a very small population (10 individuals), a selection value of -0.01 
-(the mutated allele provides a 1% lower fitness), and a 10% initial frequency, 
-which corresponds to one individual getting a mutation:
+We're now simulating what would happen in a very small population (or a population that undergoes very narrow bottlenecks), when a gene mutates. We'll have a very small population (10 individuals), a selection value of -0.01 (the mutated allele provides a 1% lower fitness), and a 10% initial frequency, which corresponds to one individual getting a mutation:
 
 - Set the population to 10 individuals.
 - Set generations to 200.
@@ -522,24 +541,18 @@ Run many simulations. What happens?
 
 :::::::::::::::::::::::: solution 
 
-Most new alleles go extinct quickly. In my simulations, I usually get one
-of the slightly deleterious mutations fixed after 20 simulations.
+Most new alleles go extinct quickly. In my simulations, I usually get one of the slightly deleterious mutations fixed after 20 simulations.
 
 :::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-That's it for that part, but feel free to continue playing with the different 
-settings later.
+That's it for that part, but feel free to continue playing with the different settings later.
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
 
-- Random genetic drift has a large influence on the probability of fixation of
-alleles in small populations, even for non-neutral alleles.
-- Random genetic drift has very little influence of the probability of fixation of
-alleles in large populations.
-- Slightly deleterious mutations can get fixed into the population through
-random genetic drift, if the population is small enough and the selective value
-is not too large.
+- Random genetic drift has a large influence on the probability of fixation of alleles in small populations, even for non-neutral alleles.
+- Random genetic drift has very little influence of the probability of fixation of alleles in large populations.
+- Slightly deleterious mutations can get fixed into the population through random genetic drift, if the population is small enough and the selective value is not too large.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
