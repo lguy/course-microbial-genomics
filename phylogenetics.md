@@ -38,7 +38,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 - Installing ape ...                            OK [linked from cache]
-Successfully installed 1 package in 5.4 milliseconds.
+Successfully installed 1 package in 5.3 milliseconds.
 ```
 
 And to load it:
@@ -178,7 +178,7 @@ Table: Recalculated distances.
 
 The tree is reconstructed by dividing the distances equally between the two leaves. 
 - A-B: each 0.5.
-- AB-C: each side gets 2.5/2 = 1.25. The branch to AB is 1.25 - 0.75 = 0.75
+- AB-C: each side gets 2.5/2 = 1.25. The branch to AB is 1.25 - 0.5 = 0.75
 - ABC-D: each side gets 4/2 = 2. The branch to ABC is 2 - 0.75 - 0.5 = 0.75
 
 ![UPGMA tree](episodes/fig/upgma_manual.png){alt='Manually built UPGMA tree'}
