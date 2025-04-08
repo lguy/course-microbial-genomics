@@ -4,7 +4,7 @@ teaching: 0
 exercises: 240
 ---
 
-Sequence assembly means the alignment and merging of reads in order to reconstruct the original sequence. The assembly of a genome from short sequencing reads can take a while. We will therefore run this process only for two genomes.
+Sequence assembly means the alignment and merging of reads in order to reconstruct the original sequence. The assembly of a genome from short sequencing reads can take a while. We will therefore run this process for two genomes only.
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
@@ -27,9 +27,37 @@ The assembler we will run is [SKESA](https://github.com/ncbi/SKESA). SKESA gener
 
 Because assembly of each genome would take a long time, you will only run one assembly here.
 
+::: challenge
+
 ### Preparation
 
-Start the interactive session, go to the `molepi` subfolder, create a `results/assembly` subfolder. Then go to the folder containing the fastq files.
+Start the interactive session, go to the `molepi` subfolder, create a `results/assembly` subfolder. Then go to the folder containing the fastq files (`data/trimmed_fastq`) that you created in the previous tutorial.
+
+::: hint
+
+You know this by now... 
+```bash
+interactive
+cd
+mkdir
+```
+
+:::::::::
+
+::: solution
+
+Project is `uppmax2025-3-4`, cluster is `snowy`
+
+```bash
+interactive <project> <cluster> <time>
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/
+mkdir results/assembly
+cd data/trimmed_fastq
+```
+
+:::::::::::::
+
+::: instructor
 
 ```bash
 interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
@@ -37,6 +65,10 @@ cd /proj/g2020004/nobackup/3MK013/<username>/molepi/
 mkdir results/assembly
 cd data/trimmed_fastq
 ```
+
+:::::::::::::
+
+### Running SKESA in a loop
 
 To run SKESA we will use the skesa command with a number of option that we will explore later on. We can start the loop (again, a short loop with only one sample in this actual case to spare computing resources) with the assemblies with: 
 
