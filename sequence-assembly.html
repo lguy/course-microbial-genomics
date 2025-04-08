@@ -350,7 +350,7 @@
 <p>Sequence assembly means the alignment and merging of reads in order
 to reconstruct the original sequence. The assembly of a genome from
 short sequencing reads can take a while. We will therefore run this
-process only for two genomes.</p>
+process for two genomes only.</p>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -384,56 +384,107 @@ lengths of kmers can be specified with the <code>--kmer</code> and
 selection.</p>
 <p>Because assembly of each genome would take a long time, you will only
 run one assembly here.</p>
-<div class="section level3">
-<h3 id="preparation">Preparation<a class="anchor" aria-label="anchor" href="#preparation"></a></h3>
+<div id="preparation" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="preparation" class="callout-inner">
+<h3 class="callout-title">Preparation</h3>
+<div class="callout-content">
 <p>Start the interactive session, go to the <code>molepi</code>
 subfolder, create a <code>results/assembly</code> subfolder. Then go to
-the folder containing the fastq files.</p>
+the folder containing the fastq files (<code>data/trimmed_fastq</code>)
+that you created in the previous tutorial.</p>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div class="accordion-body">
+<p>You know this by now…</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2025-3-4 <span class="at">-M</span> snowy <span class="at">-t</span> 04:00:00</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">mkdir</span> results/assembly</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="bu">cd</span> data/trimmed_fastq</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">interactive</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">mkdir</span></span></code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<p>Project is <code>uppmax2025-3-4</code>, cluster is
+<code>snowy</code></p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="op">&lt;</span>project<span class="op">&gt;</span> <span class="op">&lt;</span>cluster<span class="op">&gt;</span> <span class="op">&lt;</span>time<span class="op">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">mkdir</span> results/assembly</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="bu">cd</span> data/trimmed_fastq</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="running-skesa-in-a-loop" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="running-skesa-in-a-loop" class="callout-inner">
+<h3 class="callout-title">Running SKESA in a loop</h3>
+<div class="callout-content">
 <p>To run SKESA we will use the skesa command with a number of option
 that we will explore later on. We can start the loop (again, a short
 loop with only one sample in this actual case to spare computing
 resources) with the assemblies with:</p>
-<div class="codewrapper sourceCode" id="cb2">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools SKESA</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> ERR029206</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="ex">skesa</span> <span class="dt">\</span></span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>--cores 2 <span class="dt">\</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>--memory 8 <span class="dt">\</span></span>
-<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>--fastq <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq <span class="dv">1</span><span class="op">&gt;</span> ../../results/assembly/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>.fasta</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools SKESA</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> ERR029206</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">skesa</span> <span class="dt">\</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>--cores 2 <span class="dt">\</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>--memory 8 <span class="dt">\</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>--fastq <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq <span class="dv">1</span><span class="op">&gt;</span> ../../results/assembly/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>.fasta</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>A non-quoted backslash, <code>\</code> is used as an escape character
 in Bash. It preserves the literal value of the next character that
 follows, with the exception of newline. This means that the back slash
 starts a new line without starting a new command - we only add it for
 better readability.</p>
+</div>
+</div>
+</div>
 <p>The assembly should take about 5 minutes per genome, using 2 cores
 and 8 GB of memory.</p>
-</div>
 <div class="section level3">
 <h3 id="downloading-the-missing-assemblies">Downloading the missing assemblies<a class="anchor" aria-label="anchor" href="#downloading-the-missing-assemblies"></a></h3>
 <p>If you haven’t assembled all samples, download the finished contigs
 to your computer and decompress them. They will decompress in a folder
 called <code>assembly</code>, so one solution is to rename the assembly
 folder you already have to something else:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> ../../results/</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">mv</span> assembly partial_assembly</span>
-<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">tar</span> xvzf /proj/g2020004/nobackup/3MK013/data/assemblies.tar.gz</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="fu">ls</span> assembly</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">cd</span> ../../results/</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">mv</span> assembly partial_assembly</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">tar</span> xvzf /proj/g2020004/nobackup/3MK013/data/assemblies.tar.gz</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">ls</span> assembly</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -451,21 +502,21 @@ ERR026474.fasta ERR026481.fasta ERR029206.fasta</code></pre>
 <p>Find out a) the version of SKESA you are using and b) what the used
 command line parameters mean.</p>
 <p>Hint:</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">skesa</span> <span class="at">-h</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">skesa</span> <span class="at">-h</span></span></code></pre>
 </div>
 <p>prints the ‘help’</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -505,18 +556,18 @@ isolates.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">module</span> load GenomeTools </span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="ex">gt</span> seqstat ERR026473.fasta</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">module</span> load GenomeTools </span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="ex">gt</span> seqstat ERR026473.fasta</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -554,32 +605,32 @@ isolates.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="cf">for</span> accession <span class="kw">in</span> ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="ex">gt</span> seqstat <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>.fasta <span class="kw">|</span> <span class="fu">grep</span> N50</span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="cf">for</span> accession <span class="kw">in</span> ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="ex">gt</span> seqstat <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>.fasta <span class="kw">|</span> <span class="fu">grep</span> N50</span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionHint2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
-  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
+  <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>Hint: <a href="https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics" class="external-link uri">https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics</a>
 ¨¨</p>
@@ -606,31 +657,31 @@ form anyway. You will use the <code>--isolate</code> mode, but the
 </div>
 </div>
 </div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">module</span> load spades</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="fu">mkdir</span> spades_assembly</span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="bu">cd</span> spades_assembly</span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="cf">for</span> accession <span class="kw">in</span> ERR029206</span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>  <span class="ex">spades.py</span> <span class="dt">\</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>    <span class="at">--isolate</span> <span class="dt">\</span></span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>    <span class="at">-1</span> ../../data/trimmed_fastq/<span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="dt">\</span></span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>    <span class="at">-2</span> ../../data/trimmed_fastq/<span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_2.fastq.gz_trim.fastq <span class="dt">\</span></span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_spades <span class="dt">\</span></span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>    <span class="at">-t</span> 2 <span class="dt">\</span></span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>    <span class="at">-m</span> 8</span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">module</span> load spades</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">mkdir</span> spades_assembly</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="bu">cd</span> spades_assembly</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="cf">for</span> accession <span class="kw">in</span> ERR029206</span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>  <span class="ex">spades.py</span> <span class="dt">\</span></span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>    <span class="at">--isolate</span> <span class="dt">\</span></span>
+<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a>    <span class="at">-1</span> ../../data/trimmed_fastq/<span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="dt">\</span></span>
+<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a>    <span class="at">-2</span> ../../data/trimmed_fastq/<span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_2.fastq.gz_trim.fastq <span class="dt">\</span></span>
+<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_spades <span class="dt">\</span></span>
+<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a>    <span class="at">-t</span> 2 <span class="dt">\</span></span>
+<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a>    <span class="at">-m</span> 8</span>
+<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -647,19 +698,19 @@ form anyway. You will use the <code>--isolate</code> mode, but the
 </div>
 </div>
 </div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">gt</span> seqstat assembly/ERR029206.fasta</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="ex">gt</span> seqstat spades_assembly/ERR029206_spades/contigs.fasta</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">gt</span> seqstat assembly/ERR029206.fasta</span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="ex">gt</span> seqstat spades_assembly/ERR029206_spades/contigs.fasta</span></code></pre>
 </div>
 </div>
 </div>
@@ -679,29 +730,29 @@ the genome.</p>
 <div class="callout-content">
 <p>Find how prodigal works and use it to annotate the proteome of
 ERR029206.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">prodigal</span> <span class="at">-h</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">prodigal</span> <span class="at">-h</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">mkdir</span> annotation</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="bu">cd</span> annotation</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="ex">module</span> load prodigal</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="ex">prodigal</span> <span class="at">-i</span> ../assembly/ERR029206.fasta <span class="at">-a</span> ERR029206.faa <span class="op">&gt;</span> ERR029206.gbk</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">mkdir</span> annotation</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="bu">cd</span> annotation</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="ex">module</span> load prodigal</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="ex">prodigal</span> <span class="at">-i</span> ../assembly/ERR029206.fasta <span class="at">-a</span> ERR029206.faa <span class="op">&gt;</span> ERR029206.gbk</span></code></pre>
 </div>
 </div>
 </div>
@@ -733,18 +784,18 @@ package.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
-  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
+  <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">module</span> load</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">makeblastdb</span> <span class="at">-dbtype</span> prot <span class="at">-in</span> ERR029206.faa <span class="at">-out</span> ERR029206</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">module</span> load</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">makeblastdb</span> <span class="at">-dbtype</span> prot <span class="at">-in</span> ERR029206.faa <span class="at">-out</span> ERR029206</span></code></pre>
 </div>
 </div>
 </div>
@@ -764,17 +815,17 @@ Examine the BLAST results: how many homologs to RpoB in that genome?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
-  <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
+  <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-query</span> ../../../blast/rpoB_ecoli.fasta <span class="at">-db</span> ERR029206</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-query</span> ../../../blast/rpoB_ecoli.fasta <span class="at">-db</span> ERR029206</span></code></pre>
 </div>
 <p>Just one has E-values at the right level.</p>
 </div>
