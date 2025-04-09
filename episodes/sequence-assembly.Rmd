@@ -491,8 +491,6 @@ Just one has E-values at the right level.
 blastp -query ../../../blast/rpoB_ecoli.fasta -db ERR029206
 ```
 
-Just one has E-values at the right level.
-
 :::::::::::::
 
 
