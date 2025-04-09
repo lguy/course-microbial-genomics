@@ -772,6 +772,96 @@ compare results.</p>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="bu">cd</span> data/trimmed_fastq</span></code></pre>
 </div>
 <hr>
+<br><h3 id="sequence-assembly-headingInstructor2">
+<a href="sequence-assembly.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#sequence-assembly-headingInstructor2"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">module</span> load GenomeTools </span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">gt</span> seqstat ERR026473.fasta</span></code></pre>
+</div>
+<hr>
+<br><h3 id="sequence-assembly-headingInstructor3">
+<a href="sequence-assembly.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#sequence-assembly-headingInstructor3"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="cf">for</span> accession <span class="kw">in</span> ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="ex">gt</span> seqstat <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>.fasta <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-e</span> N50 <span class="at">-e</span> L50</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<hr>
+<br><h3 id="sequence-assembly-headingInstructor4">
+<a href="sequence-assembly.html#headingInstructor4">Instructor Note</a><a class="anchor" aria-label="anchor" href="#sequence-assembly-headingInstructor4"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">module</span> load spades</span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="fu">mkdir</span> spades_assembly</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="bu">cd</span> spades_assembly</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="cf">for</span> accession <span class="kw">in</span> ERR029206</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span></span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>  <span class="ex">spades.py</span> <span class="dt">\</span></span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>    <span class="at">--isolate</span> <span class="dt">\</span></span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>    <span class="at">-1</span> ../../data/trimmed_fastq/<span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="dt">\</span></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>    <span class="at">-2</span> ../../data/trimmed_fastq/<span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_2.fastq.gz_trim.fastq <span class="dt">\</span></span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>    <span class="at">-o</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>_spades <span class="dt">\</span></span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>    <span class="at">-t</span> 2 <span class="dt">\</span></span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>    <span class="at">-m</span> 8</span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<hr>
+<br><h3 id="sequence-assembly-headingInstructor5">
+<a href="sequence-assembly.html#headingInstructor5">Instructor Note</a><a class="anchor" aria-label="anchor" href="#sequence-assembly-headingInstructor5"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="ex">gt</span> seqstat assembly/ERR029206.fasta</span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="ex">gt</span> seqstat spades_assembly/ERR029206_spades/contigs.fasta</span></code></pre>
+</div>
+<hr>
+<br><h3 id="sequence-assembly-headingInstructor6">
+<a href="sequence-assembly.html#headingInstructor6">Instructor Note</a><a class="anchor" aria-label="anchor" href="#sequence-assembly-headingInstructor6"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb27">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">mkdir</span> annotation</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="bu">cd</span> annotation</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="ex">module</span> load prodigal</span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="ex">prodigal</span> <span class="at">-i</span> ../assembly/ERR029206.fasta <span class="at">-a</span> ERR029206.faa <span class="op">&gt;</span> ERR029206.gbk</span></code></pre>
+</div>
+<hr>
+<br><h3 id="sequence-assembly-headingInstructor7">
+<a href="sequence-assembly.html#headingInstructor7">Instructor Note</a><a class="anchor" aria-label="anchor" href="#sequence-assembly-headingInstructor7"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb30">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">module</span> load blast</span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a><span class="ex">makeblastdb</span> <span class="at">-dbtype</span> prot <span class="at">-in</span> ERR029206.faa <span class="at">-out</span> ERR029206</span></code></pre>
+</div>
+<hr>
+<br><h3 id="sequence-assembly-headingInstructor8">
+<a href="sequence-assembly.html#headingInstructor8">Instructor Note</a><a class="anchor" aria-label="anchor" href="#sequence-assembly-headingInstructor8"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb32">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-query</span> ../../../blast/rpoB_ecoli.fasta <span class="at">-db</span> ERR029206</span></code></pre>
+</div>
+<p>Just one has E-values at the right level.</p>
+<hr>
 <br></section><section id="snps-phylogeny"><h2 class="section-heading"><a href="snps-phylogeny.html">Mapping</a></h2>
 <hr class="half-width">
 <h3 id="snps-phylogeny-headingInstructor1">
@@ -838,8 +928,8 @@ take a while, <em>dont’t do it if you have the reads</em>):</p>
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2025-04-08",
-  "datePublished": "2025-04-08"
+  "dateModified": "2025-04-09",
+  "datePublished": "2025-04-09"
 }
 
   </script><script>
