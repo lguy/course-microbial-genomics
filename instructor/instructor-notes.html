@@ -736,11 +736,11 @@ compare results.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/data</span>
-<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="cf">for</span> filename <span class="kw">in</span> ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482</span>
 <span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="cf">do</span></span>
 <span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>  <span class="cf">for</span> end <span class="kw">in</span> 1 2</span>
 <span id="cb24-5"><a href="#cb24-5" tabindex="-1"></a>  <span class="cf">do</span></span>
-<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> ../../../data/fastq/<span class="st">"</span><span class="va">${filename}</span><span class="st">"</span>_<span class="st">"</span><span class="va">${end}</span><span class="st">"</span>.fastq.gz .</span>
+<span id="cb24-6"><a href="#cb24-6" tabindex="-1"></a>    <span class="fu">ln</span> <span class="at">-s</span> ../../../data/fastq/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_<span class="st">"</span><span class="va">${end}</span><span class="st">"</span>.fastq.gz .</span>
 <span id="cb24-7"><a href="#cb24-7" tabindex="-1"></a>  <span class="cf">done</span></span>
 <span id="cb24-8"><a href="#cb24-8" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
