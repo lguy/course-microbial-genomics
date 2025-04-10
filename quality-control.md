@@ -1,7 +1,7 @@
 ---
 title: "Reads, QC and trimming"
 teaching: 0
-exercises: 240
+exercises: 150
 ---
 
 This episode starts a series of labs where you will trace an outbreak of *Mycobacterium tuberculosis*, from downloading the reads to making assumptions about the transmissions between patients. 
@@ -254,10 +254,10 @@ seqkit stats GCF_000195955.2_ASM19595v2_genomic.fna
 We can do this one by one but given that each download takes about one to two hours, this could keep us up all night. Instead of downloading one by one we can apply a loop. Let's see what that looks like and then we'll discuss what we're doing with each line of our loop.
 
 ```bash
-for filename in ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482
+for sample in ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482
 do
-  echo -e "$filename"
-  wget --spider ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${filename:0:6}"/"${filename}"/"${filename}"_*.fastq.gz
+  echo -e "$sample"
+  wget --spider ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${sample:0:6}"/"${sample}"/"${sample}"_*.fastq.gz
 done
 ```
 
@@ -265,13 +265,13 @@ When the shell sees the keyword `for`, it knows to repeat a command (or group of
 
 Inside the loop, we call for the variable's value by putting `$` in front of it. The `$` tells the shell interpreter to treat the **variable** as a variable name and substitute its value in its place, rather than treat it as text or an external command.
 
-In this example, the list is seven accession numbers of reads belonging to the genomes we are interested in. Each time the loop iterates, it will assign a file name to the variable `filename` and `echo` (print) the filename. In the second line, it will run the `wget` command. 
+In this example, the list is seven accession numbers of reads belonging to the genomes we are interested in. Each time the loop iterates, it will assign a sample name to the variable `sample` and `echo` (print) the value of the variable. In the second line, it will run the `wget` command. 
 
-The first time through the loop, `$filename` is `ERR029207`. The FTP site at EBI is constructed so that fastq files are stored in a `vol1/fastq` subfolder. Read files are not directly in that subfolder, but grouped in subfolders starting with the six first characters of the accession number (`ERR029` in the first case), then in the accession number subfolder. To get to the right place, the file path is constructed with the root path (`ftp://ftp.sra.ebi.ac.uk/vol1/fastq/`), to which the first 6 characters of the accession number is added through that special variable operation (`"${filename:0:6}"`) to get to the right subfolder. Finally, the correct accession subfolder (`"${filename}"`), the file name prefix  (`"${filename}"_*.fastq.gz"`) and the suffix (`_*.fastq.gz`) are added. The `*` ensures that we get reads from both ends. 
+The first time through the loop, `$sample` is `ERR029207`. The FTP site at EBI is constructed so that fastq files are stored in a `vol1/fastq` subfolder. Read files are not directly in that subfolder, but grouped in subfolders starting with the six first characters of the accession number (`ERR029` in the first case), then in the accession number subfolder. To get to the right place, the file path is constructed with the root path (`ftp://ftp.sra.ebi.ac.uk/vol1/fastq/`), to which the first 6 characters of the accession number is added through that special variable operation (`"${sample:0:6}"`) to get to the right subfolder. Finally, the correct accession subfolder (`"${sample}"`), the file name prefix  (`"${sample}"_*.fastq.gz"`) and the suffix (`_*.fastq.gz`) are added. The `*` ensures that we get reads from both ends. 
 
 Use `{}` to wrap the variable so that `.fastq.gz` will not be interpreted as part of the variable name. In addition, quoting the shell variables is a good practice AND necessary if your variables have spaces in them.
 
-For the second iteration, `$filename` becomes `ERR029206`. 
+For the second iteration, `$sample` becomes `ERR029206`. 
 
 We added a `--spider` option to `wget` just for this exercise, to retrieve only the names of the files and not the actual file, to spare some time downloading files. The data is present in the `data/fastq` subfolder of our group folder:
 
@@ -303,7 +303,7 @@ If the *shell* prints `>` or `$` then it expects you to type something, and the 
 If *you* type `>` or `$` yourself, it is an instruction from you that the shell to redirect output or get the value of a variable.
 :::
 
-We have called the variable in this loop `filename` in order to make its purpose clearer to human readers. The shell itself doesn't care what the variable is called; if we wrote this loop as:
+We have called the variable in this loop `sample` in order to make its purpose clearer to human readers. The shell itself doesn't care what the variable is called; if we wrote this loop as:
 
 ```bash
 for x in ERR01 ERR02 ERR03
@@ -329,7 +329,7 @@ it would work exactly the same way. *Don't do this.* Programs are only useful if
 The `for` loop is interpreted as a multipart command. If you press the up arrow on your keyboard to recall the command, it may be shown like so (depends on your bash version):
 
 ```bash
-for filename in ERR01 ERR02 ERR03; do echo ftp://ftp.sra.ebi.ac.uk/"${filename}".fastq.gz ; done
+for sample in ERR01 ERR02 ERR03; do echo ftp://ftp.sra.ebi.ac.uk/"${sample}".fastq.gz ; done
 ```
 
 When you check your history later, it will help your remember what you did!
@@ -353,11 +353,11 @@ Softlinks are done with `ln -s`. Use the same loop backbone as above, and nest a
 
 ```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
-for filename in <...>
+for sample in <...>
 do
   for <loop over 1 2>
   do
-    <softlink> ../../../data/fastq/<build the filename with $ and double quotes>.fastq.gz .
+    <softlink> ../../../data/fastq/<build the sample with $ and double quotes>.fastq.gz .
   done
 done
 ```
@@ -368,11 +368,11 @@ done
 
 ```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
-for filename in ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482
+for sample in ERR029207 ERR029206 ERR026478 ERR026474 ERR026473 ERR026481 ERR026482
 do
   for end in 1 2
   do
-    ln -s ../../../data/fastq/"${filename}"_"${end}".fastq.gz .
+    ln -s ../../../data/fastq/"${sample}"_"${end}".fastq.gz .
   done
 done
 ```
