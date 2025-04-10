@@ -860,15 +860,19 @@ compare results.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="ex">blastp</span> <span class="at">-query</span> ../../../blast/rpoB_ecoli.fasta <span class="at">-db</span> ERR029206</span></code></pre>
 </div>
-<p>Just one has E-values at the right level.</p>
 <hr>
 <br></section><section id="snps-phylogeny"><h2 class="section-heading"><a href="snps-phylogeny.html">Mapping</a></h2>
 <hr class="half-width">
 <h3 id="snps-phylogeny-headingInstructor1">
 <a href="snps-phylogeny.html#headingInstructor1">Getting missing data</a><a class="anchor" aria-label="anchor" href="#snps-phylogeny-headingInstructor1"></a>
 </h3>
-<p>If you don’t have all the trimmed reads, you can download them (will
-take a while, <em>dont’t do it if you have the reads</em>):</p>
+<p>If you don’t have all the trimmed reads, extract them from the
+archive in the <code>data</code> folder, using <code>tar</code>.
+<code>tar</code> is a program to take multiple files, including their
+folder structure and put them in a single <code>tar</code> “ball”. Often
+the tarballs are compressed with <code>gzip</code>.</p>
+<p><code>tar</code> and <code>gzip</code> are computationally intensive
+and require you to start an interactive session.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -928,8 +932,8 @@ take a while, <em>dont’t do it if you have the reads</em>):</p>
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/instructor-notes.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2025-04-09",
-  "datePublished": "2025-04-09"
+  "dateModified": "2025-04-10",
+  "datePublished": "2025-04-10"
 }
 
   </script><script>

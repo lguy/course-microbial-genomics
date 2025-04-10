@@ -334,7 +334,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Mapping</h1>
-        <p>Last updated on 2025-04-09 |
+        <p>Last updated on 2025-04-10 |
 
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/snps-phylogeny.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -348,10 +348,11 @@
 
         
 
-<p>In this episode we will try to pinpoint single nucleotide variants or
-single nucleotide polymorphism (SNPs) between our samples and the
-reference. The SNPs are determined by a process called read mapping in
-which they are aligned to the reference sequence.</p>
+<p>In this episode we will try to pinpoint single nucleotide
+polymorphism (SNPs), also called single nucleotide variants (SNVs),
+between our samples and the reference. The SNPs are determined by a
+process called read mapping in which reads are aligned to the reference
+sequence.</p>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -384,8 +385,13 @@ other and to establish a phylogenetic tree.</p>
 </button>
 <div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
-<p>If you don’t have all the trimmed reads, you can download them (will
-take a while, <em>dont’t do it if you have the reads</em>):</p>
+<p>If you don’t have all the trimmed reads, extract them from the
+archive in the <code>data</code> folder, using <code>tar</code>.
+<code>tar</code> is a program to take multiple files, including their
+folder structure and put them in a single <code>tar</code> “ball”. Often
+the tarballs are compressed with <code>gzip</code>.</p>
+<p><code>tar</code> and <code>gzip</code> are computationally intensive
+and require you to start an interactive session.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -404,44 +410,62 @@ take a while, <em>dont’t do it if you have the reads</em>):</p>
 that contains different tools to determine SNPs in sequencing reads
 against a reference genome. It takes forward and reverse reads of
 paired-end sequences and aligns them against a reference.</p>
-<p>First we’ll create a folder to hold the results from snippy:</p>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>First we’ll start the interactive session, load the snippy module and
+create a <code>snippy</code> folder in the <code>molepi/data</code> to
+hold the results from snippy.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2025-3-4 <span class="at">-M</span> snowy <span class="at">-t</span> 04:00:00</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/data</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">mkdir</span> snps</span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools snippy</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/data</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">mkdir</span> snps</span></code></pre>
 </div>
-<p>We need to load snippy:</p>
-<div class="codewrapper sourceCode" id="cb3">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools snippy</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 <p>Snippy is fast but a single run still takes about 15 minutes. We
 would therefore tell snippy to run all the samples after each other.
 However this time we cannot use a wildcard to do so. We would instead
 run all the samples in a loop. The “real” loop is commented out, and we
 use one that runs only the sample we’ve analyzed so far.</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="bu">cd</span> ../data/trimmed_fastq/</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> ERR029206</span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="cf">do</span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="ex">snippy</span> <span class="at">--ram</span> 8 <span class="at">--outdir</span> ../../results/snps/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span> <span class="at">--ref</span> ../GCF_000195955.2_ASM19595v2_genomic.fna <span class="at">--R1</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="at">--R2</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq</span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="bu">cd</span> ../data/trimmed_fastq/</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#for sample in ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> ERR029206</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="cf">do</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="ex">snippy</span> <span class="at">--ram</span> 8 <span class="at">--outdir</span> ../../results/snps/<span class="st">"</span><span class="va">${sample}</span><span class="st">"</span> <span class="at">--ref</span> ../GCF_000195955.2_ASM19595v2_genomic.fna <span class="at">--R1</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_1.fastq.gz_trim.fastq <span class="at">--R2</span> <span class="st">"</span><span class="va">${sample}</span><span class="st">"</span>_2.fastq.gz_trim.fastq</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
 <p>Here, we provide snippy with an output folder
 (<code>--outdir</code>), the location of the reference genome
 (<code>--ref</code>), and the trimmed read files for each end of the
 pair (<code>--R1</code> and <code>--R2</code>). We also indicate that
 snippy should use 8 Gb of memory (<code>--ram 8</code>).</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n10</span> ../../results/snps/ERR029206/snps.tab </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n10</span> ../../results/snps/ERR029206/snps.tab </span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -466,15 +490,15 @@ the sequencing reads and never a C at this position.</p>
 <p>Now copy a reduced version of the results on the other samples, save
 it in the <code>results</code> folder. We will also rename the existing
 <code>snps</code> folder to save it.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">mv</span> snps snps_partial</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">mkdir</span> snps</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="bu">cd</span> snps</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">tar</span> xvzf ../../../../data/snps.tar.gz</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">mv</span> snps snps_partial</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="fu">mkdir</span> snps</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="bu">cd</span> snps</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="fu">tar</span> xvzf ../../../../data/snps.tar.gz</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -506,17 +530,17 @@ information:</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">cat</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps/ERR029207/snps.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">cat</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps/ERR029207/snps.txt</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -553,11 +577,11 @@ reduces the size of the alignment.</p>
 <p>The <code>--ref</code> argument provides the reference genome. Each
 folder containing the result of the previous step of <code>snippy</code>
 is then added to the command line.</p>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="ex">snippy-core</span> <span class="at">--ref</span><span class="op">=</span>../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">snippy-core</span> <span class="at">--ref</span><span class="op">=</span>../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
 </div>
 <p>The last few lines look like this:</p>
 <div class="codewrapper">
@@ -617,11 +641,11 @@ alignment with the <code>-s</code> option and the model with
 <code>-m MFP+ASC</code>. <code>MFP</code> will tell IQ-TREE to test a
 range of models, and <code>ASC</code> will correct for the fact that
 there is no constant sites.</p>
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">module</span> load iqtree</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">module</span> load iqtree</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -640,22 +664,22 @@ Date and Time: Thu May 18 09:00:37 2023</code></pre>
 <p>With this small data set, IQ-TREE finishes very quickly. Let’s put
 the resulting files into a separate folder and let’s rename our
 resulting tree.</p>
+<div class="codewrapper sourceCode" id="cb14">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">mkdir</span> tree</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">mv</span> snps/core.aln.<span class="pp">*</span> tree</span></code></pre>
+</div>
+<p>Let’s inspect our tree, and give it another extension to make it
+clear it is a newick file.</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">mkdir</span> tree</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">mv</span> snps/core.aln.<span class="pp">*</span> tree</span></code></pre>
-</div>
-<p>Let’s inspect our tree, and give it another extension to make it
-clear it is a newick file.</p>
-<div class="codewrapper sourceCode" id="cb16">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="bu">cd</span> tree</span>
-<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">mv</span> core.aln.treefile core.aln.newick </span>
-<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a><span class="fu">cat</span> core.aln.newick</span></code></pre>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">cd</span> tree</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">mv</span> core.aln.treefile core.aln.newick </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="fu">cat</span> core.aln.newick</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -676,17 +700,17 @@ order to make sense of it we can better view this in a tree viewer.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">cat</span> core.aln.iqtree</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">cat</span> core.aln.iqtree</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -783,8 +807,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/snps-phylogeny.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/snps-phylogeny.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2025-04-09",
-  "datePublished": "2025-04-09"
+  "dateModified": "2025-04-10",
+  "datePublished": "2025-04-10"
 }
 
   </script><script>
