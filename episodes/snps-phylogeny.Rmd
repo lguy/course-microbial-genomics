@@ -423,8 +423,12 @@ When that finishes, copy the resulting tree to your local computer and visualize
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ![As shown by FigTree](fig/figtree.png){alt='Figtree'}
+
 ![As shown by phylo.io, stable version](fig/phylo_io.png){alt='phylo.io'}
-  ![As shown by phylo.io, beta version. Note the position of the "99"](fig/phylo_io_beta.png){alt='beta.phylo.io'}
+
+![As shown by phylo.io, beta version. Note the position of the "99"](fig/phylo_io_beta.png){alt='beta.phylo.io'}
+
+As shown by phylo.io, beta version. Note the position of the "99".
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
