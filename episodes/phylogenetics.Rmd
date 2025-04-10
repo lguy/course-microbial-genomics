@@ -1,7 +1,7 @@
 ---
 title: 'Phylogenetics'
 teaching: 0
-exercises: 240
+exercises: 180
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 

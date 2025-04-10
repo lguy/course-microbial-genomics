@@ -62,6 +62,7 @@ mkdir snps
 ::::::::::::
 
 :::::::::::::
+
 Snippy is fast but a single run still takes about 15 minutes. We would therefore tell snippy to run all the samples after each other. However this time we cannot use a wildcard to do so. We would instead run all the samples in a loop. The "real" loop is commented out, and we use one that runs only the sample we've analyzed so far.  
 
 ```bash
@@ -94,7 +95,8 @@ NC_000962.3	14785	snp	T	C	C:163 T:1
 
 This list gives us information on every SNP that was found by snippy when compared to the reference genome. The first SNP is found at the position 1849 of the reference genome, and is a C in the H37Rv (reference strain) and an A in isolate ERR029206. There is a high confidence associated with this SNP: an A has been found 217 times in the sequencing reads and never a C at this position.
 
-Now copy a reduced version of the results on the other samples, save it in the `results` folder. We will also rename the existing `snps` folder to save it.
+Now copy a reduced version of the results obtained from the other samples, save it in the `results` folder. We will also rename the existing `snps` folder to save it. We extract them from the archive in the `data` folder, using `tar`. `tar` is a program to take multiple files, including their folder structure and put them in a single `tar` "ball". Often the tarballs are compressed with `gzip`. 
+
 
 ```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
@@ -117,7 +119,9 @@ ref.fa.fai	     snps.bed      snps.gff       snps.raw.vcf   snps.txt  snps.vcf.g
 snps.aligned.fa  snps.csv      snps.html      snps.subs.vcf  snps.vcf
 ```
 
-The folders don't contain everything that is output by `snippy`, to save space. But it is enough to run `snippy-core`.
+Note the unusual way to pass arguments to `tar` with just `xvzf` instead of `-x -v -z -f` or `-xvzf`. `x` tells tar to extract the archive (`c` would be used to create the archive); `v` is for verbose, providing more information on the output; `z` tells tar to decompress the file; `f` tells what file to work on. 
+
+The folders don't contain everything that is output by `snippy`, to save space. But it is enough to run `snippy-core`, which summarizes several `snippy` runs.
 
 
 :::::::::::::::::::::::::::::::::::::::  challenge
@@ -129,11 +133,14 @@ Hint: The `.txt` file in the snippy output contains summary information:
 
 :::::::::::::::  solution
 
-## Solution
+From the `molepi/results/snps` folder:
 
 ```bash
-cat /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps/ERR029207/snps.txt
+cat ERR029207/snps.txt
 ```
+
+:::::::::::::::::::::::::
+
 
 ```output
 DateTime        2023-05-17T13:51:57
@@ -153,6 +160,26 @@ This *M. tuberculosis* isolate contains 1290 SNPs compared to H37Rv.
 
 Repeat this for the other isolates. How about using a `for` loop?
 
+:::::::::::::::  solution
+
+```bash
+for accession in ERR*; do
+  echo <accession>
+  cat <accession/snps.txt | grep <pattern>
+done
+```
+
+:::::::::::::::::::::::::
+
+:::::::::::::::  instructor
+
+```bash
+for accession in ERR*; do
+  echo "${accession}"
+  cat "${accession}"/snps.txt | grep "Variant-SNP"
+done
+```
+
 :::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -168,6 +195,13 @@ The `--ref` argument provides the reference genome. Each folder containing the r
 ```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
 snippy-core --ref=../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207
+```
+
+Instead of writing all samples explicitly, we could use wildcards:
+
+```bash
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
+snippy-core --ref=../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR*
 ```
 
 The last few lines look like this:
@@ -199,7 +233,7 @@ Our output was written to 'core.aln'. But let's have a look at the results.
 
 ## Discussion: What's in the output of snippy??
 
-Have a look at the content of these three files with `cat` or `head`.
+Have a look at the content of these three files>
 
 `core.aln`
 
@@ -209,8 +243,8 @@ Have a look at the content of these three files with `cat` or `head`.
 
 `core.txt`
 
-What is the difference between these files? Why is core.aln smaller than ?
-What is in core.aln?
+What is the difference between these files? Why is `core.aln` smaller than `core.full.aln`?
+What is in `core.aln`?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -218,14 +252,43 @@ What is in core.aln?
 
 ## Phylogenetic tree
 
-Phylogenetic trees have been discussed during the lectures. We will here establish a phylogenetic tree from the file 'core.aln' with [IQ-TREE](http://www.iqtree.org/). IQ-TREE is a phylogeny software based on the maximum-likelihood principle. IQ-TREE has been widely used and cited. There is a very wide range of parameters that need to be chosen, such as nucleotide or amino-acid substitution models.
+We will here infer a phylogenetic tree from the file 'core.aln' with [IQ-TREE](http://www.iqtree.org/). 
 
-In our case, we want IQ-TREE to automatically select the best substitution model. IQ-TREE does that by testing many (among a very large collection) substitution models. We also have SNP data, which by definition do not contain constant (invariable) sites. We thus input the alignment with the `-s` option and the model with `-m MFP+ASC`. `MFP` will tell IQ-TREE to test a range of models, and `ASC` will correct for the fact that there is no constant sites. 
+In this case, we want IQ-TREE to automatically select the best (nucleotide) substitution model. IQ-TREE does that by testing many (among a very large collection) substitution models. We also have SNP data, which by definition do not contain constant (invariable) sites. We thus input the alignment with the `-s` option and the model with `-m MFP+ASC`. `MFP` will tell IQ-TREE to test a range of models, and `ASC` will correct for the fact that there is no constant sites. 
+
+::: challenge
+
+Infer a phylogenetic tree with IQ-TREE, using the aligned polymorphic sites identified by `snippy-core` above. IQ-TREE should find the best possible model, adding the correction for no constant sites. Don't forget to load the right module.
+
+::: hint
 
 ```bash
-module load iqtree
+iqtree -h
+``` 
+
+::::::::
+
+::: solution
+
+```bash
+module load <module>
+iqtree2 <alignment> <model testing>
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
+module load bioinfo-tools iqtree
 iqtree2 -s core.aln -m MFP+ASC
 ```
+
+::::::::::::
+
+
+:::::::::::::
 
 ```output
 ...
@@ -252,7 +315,6 @@ mv snps/core.aln.* tree
 Let's inspect our tree, and give it another extension to make it clear it is a newick file.
 
 ```bash
-cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 cd tree
 mv core.aln.treefile core.aln.newick 
 cat core.aln.newick
@@ -269,7 +331,15 @@ This does not look much like a tree yet. The tree is written in a bracket annota
 
 ## Challenge: Can you identify what substitution model IQ-TREE used?
 
-Hint: The log file of IQ-TREE contains a lot of information. 
+What model was selected? How does IQ-TREE choose between different models? What does e.g. "JC+ASC+G4" means?
+
+::: hint
+
+The log file of IQ-TREE contains a lot of information. 
+
+The [IQ-TREE website](http://www.iqtree.org/doc/Substitution-Models#dna-models) contains a description of the DNA substitution models. 
+
+:::::::::
 
 :::::::::::::::  solution
 
@@ -285,14 +355,76 @@ Best-fit model according to BIC: TVMe+ASC
 ...
 ```
 
-IQ-TREE chose the TVMe+ASC model. We've discussed the ASC above, and you can read more about the TVMe in the [IQ-TREE manual](https://www.iqtree.org/doc/Substitution-Models). In short, it is a mdoel where base frequencies are deemed equal, and all rates estimated independently, except the rates of transversions (A <-> G and C <-> T) are equal. 
+IQ-TREE chose the TVMe+ASC model. We've discussed the ASC above, and you can read more about the TVMe in the [IQ-TREE manual](http://www.iqtree.org/doc/Substitution-Models#dna-models). In short, it is a mdoel where base frequencies are deemed equal, and all rates estimated independently, except the rates of transversions (A <-> G and C <-> T) are equal. 
+
+The model selection process is also described on the [IQ-TREE website](http://www.iqtree.org/doc/Tutorial#choosing-the-right-substitution-model). 
 
 :::::::::::::::::::::::::
 
+## Challenge: Visualize the tree on your computer
+
+Copy the tree in Newick format (`core.aln.newick`) to your computer using `scp` and use FigTree or (phylo.io)[https://beta.phylo.io/] to visualize it. Do you see a way to assess the quality of the tree?
+
+::: solution
+
+```bash
+scp <username>@rackham.uppmax.uu.se:<file with path> .
+```
+
+::::::::::::
+
+
+::: instructor
+
+```bash
+scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<user>/molepi/results/tree/core.aln.newick .
+```
+
+::::::::::::
+
+## Challenge: Rerun the tree, calculating bootstraps this time
+
+In the [Phylogenetics](phylogenetics.Rmd) module, we calculated 1000 UltraFast bootstraps using the `-B 1000` option. Here, calculate 100 non-parametric bootstraps. [Non-parametric](https://en.wikipedia.org/wiki/Nonparametric_statistics) bootstraps are bootstraps that are calculated without making assumptions about the data. In that case, it means actually resampling the alignment and calculating trees for each of the bootstrapped alignments. It is a much slower process than the UltraFast method (which is parametric), but in that case, since the alignment is very small, the computational load is acceptable. 
+
+With IQ-TREE, [non-parametric bootstraps](http://www.iqtree.org/doc/Tutorial#assessing-branch-supports-with--standard-nonparametric-bootstrap) are inferred using the `-b <n bootstraps>` option. Make sure all files are prefixed with `core.aln.100npb` (option `--prefix`). 
+
+The process will take a minute or so. Then in the `results` folder, next to the `tree` folder, create a `tree100npb` folder and move the results file there.
+
+
+::: solution
+
+```bash
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
+iqtree2 <alignment> <model as before> <100 non-parametric bootstraps> <prefix>
+cd ..
+mkdir tree100npb
+mv snps/core.aln.100npb* tree100npb/
+```
+
+::::::::::::
+
+::: instructor
+
+```bash
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
+iqtree2 -s core.aln -m MFP+ASC -b 100 --prefix core.aln.100npb
+cd ..
+mkdir tree100npb
+mv snps/core.aln.100npb* tree100npb/
+
+```
+
+::::::::::::
+
+When that finishes, copy the resulting tree to your local computer and visualize it. Display support values:
+- With FigTree: on the left menu, tick "Branch labels", and choose the last row (what you entered when prompted to do so, `label` by default)
+- With phylo.io: do *not* use the "beta" service, as it displays the support values incorrectly. Use the stable version, but compare both!
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
-
-
+![As shown by FigTree](fig/figtree.png){alt='Figtree'}
+![As shown by phylo.io, stable version](fig/phylo_io.png){alt='phylo.io'}
+  ![As shown by phylo.io, beta version. Note the position of the "99"](fig/phylo_io_beta.png){alt='beta.phylo.io'}
 
 :::::::::::::::::::::::::::::::::::::::: keypoints
 
