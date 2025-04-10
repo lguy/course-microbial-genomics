@@ -883,6 +883,51 @@ and require you to start an interactive session.</p>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">ls</span> trimmed_fastq</span></code></pre>
 </div>
 <hr>
+<br><h3 id="snps-phylogeny-headingInstructor2">
+<a href="snps-phylogeny.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#snps-phylogeny-headingInstructor2"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="cf">for</span> accession <span class="kw">in</span> ERR<span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>  <span class="fu">cat</span> <span class="st">"</span><span class="va">${accession}</span><span class="st">"</span>/snps.txt <span class="kw">|</span> <span class="fu">grep</span> <span class="st">"Variant-SNP"</span></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
+</div>
+<hr>
+<br><h3 id="snps-phylogeny-headingInstructor3">
+<a href="snps-phylogeny.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#snps-phylogeny-headingInstructor3"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb17">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools iqtree</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
+</div>
+<hr>
+<br><h3 id="snps-phylogeny-headingInstructor4">
+<a href="snps-phylogeny.html#headingInstructor4">Instructor Note</a><a class="anchor" aria-label="anchor" href="#snps-phylogeny-headingInstructor4"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>user<span class="op">&gt;</span>/molepi/results/tree/core.aln.newick .</span></code></pre>
+</div>
+<hr>
+<br><h3 id="snps-phylogeny-headingInstructor5">
+<a href="snps-phylogeny.html#headingInstructor5">Instructor Note</a><a class="anchor" aria-label="anchor" href="#snps-phylogeny-headingInstructor5"></a>
+</h3>
+<div class="codewrapper sourceCode" id="cb27">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC <span class="at">-b</span> 100 <span class="at">--prefix</span> core.aln.100npb</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="fu">mkdir</span> tree100npb</span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="fu">mv</span> snps/core.aln.100npb<span class="pp">*</span> tree100npb/</span></code></pre>
+</div>
+<hr>
 <br></section><section id="data-visualization"><h2 class="section-heading"><a href="data-visualization.html">Molecular epidemiology</a></h2>
 <hr class="half-width"></section></section>
 </div>

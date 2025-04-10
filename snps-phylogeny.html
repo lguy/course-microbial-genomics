@@ -107,11 +107,11 @@
   Microbial Genomics: evolution, phylogenetics, and molecular epidemiology
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 73%" class="percentage">
-    73%
+<aside class="col-md-12 lesson-progress"><div style="width: 72%" class="percentage">
+    72%
   </div>
   <div class="progress data">
-    <div class="progress-bar data" role="progressbar" style="width: 73%" aria-valuenow="73" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar data" role="progressbar" style="width: 72%" aria-valuenow="72" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -460,9 +460,13 @@ position 1849 of the reference genome, and is a C in the H37Rv
 (reference strain) and an A in isolate ERR029206. There is a high
 confidence associated with this SNP: an A has been found 217 times in
 the sequencing reads and never a C at this position.</p>
-<p>Now copy a reduced version of the results on the other samples, save
-it in the <code>results</code> folder. We will also rename the existing
-<code>snps</code> folder to save it.</p>
+<p>Now copy a reduced version of the results obtained from the other
+samples, save it in the <code>results</code> folder. We will also rename
+the existing <code>snps</code> folder to save it. We extract them from
+the archive in the <code>data</code> folder, using <code>tar</code>.
+<code>tar</code> is a program to take multiple files, including their
+folder structure and put them in a single <code>tar</code> “ball”. Often
+the tarballs are compressed with <code>gzip</code>.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -486,9 +490,17 @@ ref.fa		       snps.bam.bai  snps.filt.vcf  snps.log	     snps.tab  snps.vcf.gz
 ref.fa.fai	     snps.bed      snps.gff       snps.raw.vcf   snps.txt  snps.vcf.gz.csi
 snps.aligned.fa  snps.csv      snps.html      snps.subs.vcf  snps.vcf</code></pre>
 </div>
+<p>Note the unusual way to pass arguments to <code>tar</code> with just
+<code>xvzf</code> instead of <code>-x -v -z -f</code> or
+<code>-xvzf</code>. <code>x</code> tells tar to extract the archive
+(<code>c</code> would be used to create the archive); <code>v</code> is
+for verbose, providing more information on the output; <code>z</code>
+tells tar to decompress the file; <code>f</code> tells what file to work
+on.</p>
 <p>The folders don’t contain everything that is output by
 <code>snippy</code>, to save space. But it is enough to run
-<code>snippy-core</code>.</p>
+<code>snippy-core</code>, which summarizes several <code>snippy</code>
+runs.</p>
 <div id="challenge-how-many-snps-were-identified-in-each-sample" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -510,11 +522,25 @@ information:</p>
 </button>
 <div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
+<p>From the <code>molepi/results/snps</code> folder:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">cat</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps/ERR029207/snps.txt</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">cat</span> ERR029207/snps.txt</span></code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div id="challenge-how-many-snps-were-identified-in-each-sample" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-how-many-snps-were-identified-in-each-sample" class="callout-inner">
+<h3 class="callout-title">Challenge: How many SNPs were identified in
+each sample??<em> (continued)</em>
+</h3>
+<div class="callout-content">
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -537,7 +563,26 @@ H37Rv.</p>
 </div>
 </div>
 </div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="cf">for</span> accession <span class="kw">in</span> ERR<span class="pp">*</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="bu">echo</span> <span class="op">&lt;</span>accession<span class="op">&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">cat</span> <span class="op">&lt;</span>accession/snps.txt <span class="kw">|</span> <span class="fu">grep</span> <span class="op">&lt;</span>pattern<span class="op">&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="cf">done</span></span></code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+
 </section><section><h2 class="section-heading" id="core-snps">Core SNPs<a class="anchor" aria-label="anchor" href="#core-snps"></a></h2>
 <hr class="half-width"><p>In order to compare the identified SNPs with each other we need to
 know if a certain position exists in all isolates. A core site can have
@@ -550,11 +595,19 @@ reduces the size of the alignment.</p>
 <p>The <code>--ref</code> argument provides the reference genome. Each
 folder containing the result of the previous step of <code>snippy</code>
 is then added to the command line.</p>
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="ex">snippy-core</span> <span class="at">--ref</span><span class="op">=</span>../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">snippy-core</span> <span class="at">--ref</span><span class="op">=</span>../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR026473 ERR026474 ERR026478 ERR026481 ERR026482 ERR029206 ERR029207</span></code></pre>
+</div>
+<p>Instead of writing all samples explicitly, we could use
+wildcards:</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="ex">snippy-core</span> <span class="at">--ref</span><span class="op">=</span>../../data/GCF_000195955.2_ASM19595v2_genomic.fna ERR<span class="pp">*</span></span></code></pre>
 </div>
 <p>The last few lines look like this:</p>
 <div class="codewrapper">
@@ -588,38 +641,76 @@ results.</p>
 <div id="discussion-whats-in-the-output-of-snippy" class="callout-inner">
 <h3 class="callout-title">Discussion: What’s in the output of snippy??</h3>
 <div class="callout-content">
-<p>Have a look at the content of these three files with <code>cat</code>
-or <code>head</code>.</p>
+<p>Have a look at the content of these three files&gt;</p>
 <p><code>core.aln</code></p>
 <p><code>core.full.aln</code></p>
 <p><code>core.tab</code></p>
 <p><code>core.txt</code></p>
-<p>What is the difference between these files? Why is core.aln smaller
-than ? What is in core.aln?</p>
+<p>What is the difference between these files? Why is
+<code>core.aln</code> smaller than <code>core.full.aln</code>? What is
+in <code>core.aln</code>?</p>
 </div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="phylogenetic-tree">Phylogenetic tree<a class="anchor" aria-label="anchor" href="#phylogenetic-tree"></a></h2>
-<hr class="half-width"><p>Phylogenetic trees have been discussed during the lectures. We will
-here establish a phylogenetic tree from the file ‘core.aln’ with <a href="http://www.iqtree.org/" class="external-link">IQ-TREE</a>. IQ-TREE is a phylogeny
-software based on the maximum-likelihood principle. IQ-TREE has been
-widely used and cited. There is a very wide range of parameters that
-need to be chosen, such as nucleotide or amino-acid substitution
-models.</p>
-<p>In our case, we want IQ-TREE to automatically select the best
-substitution model. IQ-TREE does that by testing many (among a very
-large collection) substitution models. We also have SNP data, which by
-definition do not contain constant (invariable) sites. We thus input the
-alignment with the <code>-s</code> option and the model with
-<code>-m MFP+ASC</code>. <code>MFP</code> will tell IQ-TREE to test a
-range of models, and <code>ASC</code> will correct for the fact that
+<hr class="half-width"><p>We will here infer a phylogenetic tree from the file ‘core.aln’ with
+<a href="http://www.iqtree.org/" class="external-link">IQ-TREE</a>.</p>
+<p>In this case, we want IQ-TREE to automatically select the best
+(nucleotide) substitution model. IQ-TREE does that by testing many
+(among a very large collection) substitution models. We also have SNP
+data, which by definition do not contain constant (invariable) sites. We
+thus input the alignment with the <code>-s</code> option and the model
+with <code>-m MFP+ASC</code>. <code>MFP</code> will tell IQ-TREE to test
+a range of models, and <code>ASC</code> will correct for the fact that
 there is no constant sites.</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div id="challenge4" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>Infer a phylogenetic tree with IQ-TREE, using the aligned polymorphic
+sites identified by <code>snippy-core</code> above. IQ-TREE should find
+the best possible model, adding the correction for no constant sites.
+Don’t forget to load the right module.</p>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">module</span> load iqtree</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-h</span></span></code></pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
+  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+</button>
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb16">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">module</span> load <span class="op">&lt;</span>module<span class="op">&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="op">&lt;</span>alignment<span class="op">&gt;</span> <span class="op">&lt;</span>model testing<span class="op">&gt;</span></span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -637,22 +728,21 @@ Date and Time: Thu May 18 09:00:37 2023</code></pre>
 <p>With this small data set, IQ-TREE finishes very quickly. Let’s put
 the resulting files into a separate folder and let’s rename our
 resulting tree.</p>
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">mkdir</span> tree</span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">mv</span> snps/core.aln.<span class="pp">*</span> tree</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">mkdir</span> tree</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="fu">mv</span> snps/core.aln.<span class="pp">*</span> tree</span></code></pre>
 </div>
 <p>Let’s inspect our tree, and give it another extension to make it
 clear it is a newick file.</p>
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="bu">cd</span> tree</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">mv</span> core.aln.treefile core.aln.newick </span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a><span class="fu">cat</span> core.aln.newick</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="bu">cd</span> tree</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">mv</span> core.aln.treefile core.aln.newick </span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">cat</span> core.aln.newick</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -669,21 +759,36 @@ order to make sense of it we can better view this in a tree viewer.</p>
 <div id="challenge-can-you-identify-what-substitution-model-iq-tree-used" class="callout-inner">
 <h3 class="callout-title">Challenge: Can you identify what substitution model IQ-TREE used?</h3>
 <div class="callout-content">
-<p>Hint: The log file of IQ-TREE contains a lot of information.</p>
+<p>What model was selected? How does IQ-TREE choose between different
+models? What does e.g. “JC+ASC+G4” means?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionHint2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
+  <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb17">
+<p>The log file of IQ-TREE contains a lot of information.</p>
+<p>The <a href="http://www.iqtree.org/doc/Substitution-Models#dna-models" class="external-link">IQ-TREE
+website</a> contains a description of the DNA substitution models.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
+  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+</button>
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">cat</span> core.aln.iqtree</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">cat</span> core.aln.iqtree</span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -693,14 +798,119 @@ Best-fit model according to BIC: TVMe+ASC
 ...</code></pre>
 </div>
 <p>IQ-TREE chose the TVMe+ASC model. We’ve discussed the ASC above, and
-you can read more about the TVMe in the <a href="https://www.iqtree.org/doc/Substitution-Models" class="external-link">IQ-TREE
+you can read more about the TVMe in the <a href="http://www.iqtree.org/doc/Substitution-Models#dna-models" class="external-link">IQ-TREE
 manual</a>. In short, it is a mdoel where base frequencies are deemed
 equal, and all rates estimated independently, except the rates of
 transversions (A &lt;-&gt; G and C &lt;-&gt; T) are equal.</p>
+<p>The model selection process is also described on the <a href="http://www.iqtree.org/doc/Tutorial#choosing-the-right-substitution-model" class="external-link">IQ-TREE
+website</a>.</p>
 </div>
 </div>
 </div>
 </div>
+<div id="challenge-visualize-the-tree-on-your-computer" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-visualize-the-tree-on-your-computer" class="callout-inner">
+<h3 class="callout-title">Challenge: Visualize the tree on your computer</h3>
+<div class="callout-content">
+<p>Copy the tree in Newick format (<code>core.aln.newick</code>) to your
+computer using <code>scp</code> and use FigTree or (phylo.io)[<a href="https://beta.phylo.io/" class="external-link uri">https://beta.phylo.io/</a>] to
+visualize it. Do you see a way to assess the quality of the tree?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb24">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:<span class="op">&lt;</span>file with path<span class="op">&gt;</span> .</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="challenge-rerun-the-tree-calculating-bootstraps-this-time" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-rerun-the-tree-calculating-bootstraps-this-time" class="callout-inner">
+<h3 class="callout-title">Challenge: Rerun the tree, calculating bootstraps this time</h3>
+<div class="callout-content">
+<p>In the <a href="phylogenetics.html">Phylogenetics</a> module, we
+calculated 1000 UltraFast bootstraps using the <code>-B 1000</code>
+option. Here, calculate 100 non-parametric bootstraps. <a href="https://en.wikipedia.org/wiki/Nonparametric_statistics" class="external-link">Non-parametric</a>
+bootstraps are bootstraps that are calculated without making assumptions
+about the data. In that case, it means actually resampling the alignment
+and calculating trees for each of the bootstrapped alignments. It is a
+much slower process than the UltraFast method (which is parametric), but
+in that case, since the alignment is very small, the computational load
+is acceptable.</p>
+<p>With IQ-TREE, <a href="http://www.iqtree.org/doc/Tutorial#assessing-branch-supports-with--standard-nonparametric-bootstrap" class="external-link">non-parametric
+bootstraps</a> are inferred using the
+<code>-b &lt;n bootstraps&gt;</code> option. Make sure all files are
+prefixed with <code>core.aln.100npb</code> (option
+<code>--prefix</code>).</p>
+<p>The process will take a minute or so. Then in the
+<code>results</code> folder, next to the <code>tree</code> folder,
+create a <code>tree100npb</code> folder and move the results file
+there.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb26">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="op">&lt;</span>alignment<span class="op">&gt;</span> <span class="op">&lt;</span>model as before<span class="op">&gt;</span> <span class="op">&lt;</span>100 non-parametric bootstraps<span class="op">&gt;</span> <span class="op">&lt;</span>prefix<span class="op">&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a><span class="fu">mkdir</span> tree100npb</span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="fu">mv</span> snps/core.aln.100npb<span class="pp">*</span> tree100npb/</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="challenge-can-you-identify-what-substitution-model-iq-tree-used" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="challenge-can-you-identify-what-substitution-model-iq-tree-used" class="callout-inner">
+<h3 class="callout-title">Challenge: Can you identify what substitution
+model IQ-TREE used?<em> (continued)</em>
+</h3>
+<div class="callout-content">
+<p>When that finishes, copy the resulting tree to your local computer
+and visualize it. Display support values: - With FigTree: on the left
+menu, tick “Branch labels”, and choose the last row (what you entered
+when prompted to do so, <code>label</code> by default) - With phylo.io:
+do <em>not</em> use the “beta” service, as it displays the support
+values incorrectly. Use the stable version, but compare both!</p>
+</div>
+</div>
+</div>
+<figure><img src="fig/figtree.png" alt="Figtree" class="figure mx-auto d-block"><div class="figcaption">As shown by FigTree</div>
+</figure><figure><img src="fig/phylo_io.png" alt="phylo.io" class="figure mx-auto d-block"><div class="figcaption">As shown by phylo.io, stable version</div>
+</figure><figure><img src="fig/phylo_io_beta.png" alt="beta.phylo.io" class="figure mx-auto d-block"><div class="figcaption">As shown by phylo.io, beta version. Note the
+position of the “99”</div>
+</figure><p>As shown by phylo.io, beta version. Note the position of the
+“99”.</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
