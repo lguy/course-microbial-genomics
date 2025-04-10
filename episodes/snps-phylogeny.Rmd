@@ -4,7 +4,7 @@ teaching: 0
 exercises: 240
 ---
 
-In this episode we will try to pinpoint single nucleotide variants or single nucleotide polymorphism (SNPs) between our samples and the reference. The SNPs are determined by a process called read mapping in which they are aligned to the reference sequence.
+In this episode we will try to pinpoint single nucleotide polymorphism (SNPs), also called single nucleotide variants (SNVs), between our samples and the reference. The SNPs are determined by a process called read mapping in which reads are aligned to the reference sequence.
 
 ::::::::::::::::::::::::::::::::::::::: objectives
 
@@ -28,7 +28,10 @@ The identified SNPs will be used to compare the isolates to each other and to es
 
 ## Getting missing data
 
-If you don't have all the trimmed reads, you can download them (will take a while, *dont't do it if you have the reads*):
+If you don't have all the trimmed reads, extract them from the archive in the `data` folder, using `tar`. `tar` is a program to take multiple files, including their folder structure and put them in a single `tar` "ball". Often the tarballs are compressed with `gzip`.
+
+`tar` and `gzip` are computationally intensive and require you to start an interactive session. 
+
 
 ```bash
 interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
@@ -44,20 +47,21 @@ ls trimmed_fastq
 
 [snippy](https://github.com/tseemann/snippy) is a pipeline that contains different tools to determine SNPs in sequencing reads against a reference genome. It takes forward and reverse reads of paired-end sequences and aligns them against a reference.
 
-First we'll create a folder to hold the results from snippy:
+::: challenge
+
+First we'll start the interactive session, load the snippy module and create a `snippy` folder in the `molepi/data` to hold the results from snippy.
+
+::: solution
 
 ```bash
 interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
+module load bioinfo-tools snippy
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 mkdir snps
 ```
+::::::::::::
 
-We need to load snippy: 
-
-```bash
-module load bioinfo-tools snippy
-```
-
+:::::::::::::
 Snippy is fast but a single run still takes about 15 minutes. We would therefore tell snippy to run all the samples after each other. However this time we cannot use a wildcard to do so. We would instead run all the samples in a loop. The "real" loop is commented out, and we use one that runs only the sample we've analyzed so far.  
 
 ```bash
