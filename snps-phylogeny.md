@@ -49,14 +49,14 @@ ls trimmed_fastq
 
 ::: challenge
 
-First we'll start the interactive session, load the snippy module and create a `snippy` folder in the `molepi/data` to hold the results from snippy.
+First we'll start the interactive session, load the snippy module and create a `snps` folder in the `molepi/results` to hold the results from snippy.
 
 ::: solution
 
 ```bash
 interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
 module load bioinfo-tools snippy
-cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
+cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 mkdir snps
 ```
 ::::::::::::
