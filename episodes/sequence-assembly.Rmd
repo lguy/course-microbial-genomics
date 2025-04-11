@@ -68,6 +68,9 @@ cd data/trimmed_fastq
 
 :::::::::::::
 
+:::::::::::::
+
+
 ### Running SKESA in a loop
 
 To run SKESA we will use the skesa command with a number of option that we will explore later on. We can start the loop (again, a short loop with only one sample in this actual case to spare computing resources) with the assemblies with: 
@@ -85,13 +88,15 @@ done
 
 A non-quoted backslash, `\` is used as an escape character in Bash. It preserves the literal value of the next character that follows, with the exception of newline. This means that the back slash starts a new line without starting a new command - we only add it for better readability. 
 
+::: discussion 
+
 The output redirection sign (`1>`) is different than the ususal `>`. It specifies that only the standard output (i.e. generally the results) will go to that file, while the standard error (i.e. warning and error messages, or other logging information) are displayed on the console. To save the standard error to a file, use `2>`, e.g. 
 
 ```bash
+# Information, don't run that
 skesa <options> 1> results.fasta 2> logfile
 ```
-
-:::::::::::::
+::::::::::::::
 
 The assembly should take about 5 minutes per genome, using 2 cores and 8 GB of memory. 
 
@@ -233,13 +238,13 @@ How could you get N50 stats for all the assemblies?
 
 :::hint
 
-Hint: https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics
+Wikipedia is your friend: https://en.wikipedia.org/wiki/N50,_L50,_and_related_statistics
 
 :::::::
 
 :::hint
 
-Write loop over accessions, printing the accession name and running `gt` on each fasta file. Grepping for the information you want. You can grep two different patterns by prefixing each pattern with `-e`. E.g. `grep -e "this" -e "that"` greps this or that.
+Write a `for` loop over accessions, printing the accession name and running `gt` on each fasta file. Grepping for the information you want. You can grep two different patterns by prefixing each pattern with `-e`. E.g. `grep -e "this" -e "that"` greps this or that.
 
 :::::::
 
