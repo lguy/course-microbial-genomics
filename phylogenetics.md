@@ -34,11 +34,11 @@ install.packages('ape')
 ``` output
 The following package(s) will be installed:
 - ape [5.8-1]
-These packages will be installed into "~/work/course-microbial-genomics/course-microbial-genomics/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.4/x86_64-pc-linux-gnu".
+These packages will be installed into "~/work/course-microbial-genomics/course-microbial-genomics/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 - Installing ape ...                            OK [linked from cache]
-Successfully installed 1 package in 5.4 milliseconds.
+Successfully installed 1 package in 8 milliseconds.
 ```
 
 And to load it:

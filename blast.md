@@ -465,7 +465,7 @@ If you see `blastp` there, it means it is still running. It could take up to 30 
 ::: hint
 
 The list of locally available databases is listed here: 
-https://www.uppmax.uu.se/resources/databases/blast-databases/ 
+https://docs.uppmax.uu.se/databases/blast/
 
 ::::::::
 
