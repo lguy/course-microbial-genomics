@@ -38,7 +38,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 - Installing ape ...                            OK [linked from cache]
-Successfully installed 1 package in 9.9 milliseconds.
+Successfully installed 1 package in 10 milliseconds.
 ```
 
 And to load it:
