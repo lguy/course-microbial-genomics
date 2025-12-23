@@ -38,7 +38,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 - Installing ape ...                            OK [linked from cache]
-Successfully installed 1 package in 5.5 milliseconds.
+Successfully installed 1 package in 5.6 milliseconds.
 ```
 
 And to load it:
@@ -212,7 +212,7 @@ plot(tree)
 edgelabels(tree$edge.length)
 ```
 
-<img src="fig/phylogenetics-rendered-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+<img src="fig/phylogenetics-rendered-unnamed-chunk-5-1.png" alt="" style="display: block; margin: auto;" />
 
 :::::::::::::::::::::::::::::::::
 
