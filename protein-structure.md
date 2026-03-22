@@ -8,19 +8,22 @@ exercises: 120
 - How do we evaluate the confidence of predicted structures?
 ::::::::::::::::::::::::::::::::::::::::::::::::
 ::::::::::::::::::::::::::::::::::::: objectives
-- Predict a protein structure using `AlphaFold`.
+- Predict protein and protein complex structure using `AlphaFold`.
 - Interpret prediction confidence scores.
 - Visualize predicted structures.
 - Compare predicted structures to known structures.
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 ## Introduction
 In this episode, we are going to explore protein structure prediction. For structure prediction, you are going to use [`AlphaFold`](https://www.nature.com/articles/s41586-021-03819-2), a deep learning model based tool developed by DeepMind that has revolutionized the field of protein structure prediction.
 We will (1) predict the structure of a protein, (2) interpret the confidence of the predictions, (3) visualize the predicted structures, and (4) compare them to known structures.
 Let's get started by setting up our environment for prediction and loading the necessary libraries.
+
 ## Task 1: Predicting a protein structure
 To predict a protein structure using `AlphaFold`, we will use the `alphafold` module from Pelle.
 For protein structure prediction, we need to provide the amino acid (AA) sequence of the protein we want to predict. 
 For this episode, we will use the AA sequence of Adenylate kinase from *Escherichia coli* (UniProt ID: [P69441](https://www.uniprot.org/uniprot/P69441)).
+
 ## Challenge 1.1: prepare the terrain
 The course base folder is at `/proj/g2020004/nobackup/3MK013`. Go to your own folder, create a `protein-structure-exercise` subfolder, and move into it.
 ::: hint
@@ -210,7 +213,7 @@ fetch 1AKE
 
 You can then align the predicted structure to the known structure using the following command:
 ```
-align p69441_model.cif, 1AKE
+align p69441_model, 1AKE
 ```
 
 This will align the predicted structure (P69441_model) to the known structure (1AKE) and provide you with an RMSD (Root Mean Square Deviation) value, which indicates how closely the predicted structure matches the known structure. 
@@ -218,8 +221,65 @@ A lower RMSD value indicates a better match.
 
 You can also superimpose the two structures to visually compare them using the following command:
 ```
-super P69441_model, 1AKE
+super p69441_model, 1AKE
 ```
 This will superimpose the predicted structure onto the known structure, allowing you to visually assess the similarities and differences between the two structures.
 
 Q.4 What is the RMSD value between the predicted structure and the known structure? Does it indicate a good prediction?
+
+
+## Challenge 5: Predict structure of a protein complex
+
+In previous example of P69441, we predicted the structure of a protein Adenylate kinase. In this section, we will predict structure of a protein complex [4fqb](https://www.rcsb.org/structure/4FQB), where one protein is a toxic effector Tse1 and the other one is an immune protein Tsi1. 
+
+You can copy the FASTA file from <basefolder>/data/ directory and file name is `4fqb.fasta`.
+::: hint
+cp <basefolder>/data/4fqb.fasta .
+::::::::
+::: hint
+::::::::
+:::::::::::::::  solution
+cp ../../data/4fqb.fasta .
+:::::::::::::::::::::::::
+
+Then, you prepare the AlphaFold3 input `JSON` file using the `fasta_to_af3_json.py` script. 
+
+Now use the following command to prepare the input file for AlphaFold:
+```bash
+python3 <basefolder>/scripts/fasta_to_af3_json.py -i ./4fqb.fasta -n 4fqb -o af3-input/
+```
+
+Next, you need to run AlphaFold3 prediction using `af3-input/4fqb.json` file as input. It is very similar as the steps described in Challenge 1.4. Only exception is when you use `create_af3_slurm_job.py` script, the input (-i) should be changed as `-i af3-input/4fqb.json`. You can follow the instruction below as well:
+
+
+Check whether the AlphaFold3 module is still loaded:
+```bash
+module list
+```
+
+If not, load AlphaFold module:
+```bash
+module load AlphaFold/3.0.1
+```
+
+Check whether the module is now loaded successfully: 
+```bash
+module list
+```
+
+Then, we create slurm job:
+```bash  
+python3 <basefolder>/scripts/create_af3_slurm_job.py -p <Project-Code> -i af3-input/4fqb.json -o af3-output -m params > job_complex.sh
+```
+
+Now we execute the job as following:
+```bash
+sbatch job_complex.sh
+```
+
+After the prediction is complete, check the confidence score and compare the predicted structure with the known structure from the PDB database (4FQB) using instruction from Challenge 2, 3 and 4.
+
+Q.5 Based on the confidence score and RMSD value, do you think AlphaFold3 performed well in predicting the protein complex?
+
+
+
