@@ -24,7 +24,7 @@ In this episode, we are going to explore protein structure prediction. For struc
 
 We will use the `AlphaFold/3.0.1` module from Pelle for protein structure prediction. Let's start!
 
-:::::::::::::::: challenge
+:::::: challenge
 ## Challenge 1.1: prepare the terrain
 
 First, using your username and password you need to login to Pelle. The course base folder is at `/proj/g2020004/nobackup/3MK013`. Go to your own folder, create a `protein-structure-exercise` subfolder, and move into it.
@@ -65,38 +65,41 @@ mkdir protein-structure-exercise
 cd protein-structure-exercise
 ```
 :::
+::::::
 
+:::::: challenge
 ## Challenge 1.2: upload the AlphaFold3 parameters file
 
-Probably you already have downloaded the AlphaFold3 models using this [link](https://forms.gle/svvpY4u2jsHEwWYS6). We need to upload them from your local machine to Pelle.
+Probably you already have downloaded the AlphaFold3 models using this [link](https://forms.gle/svvpY4u2jsHEwWYS6).
 
-First we create a directory called `params` in pelle.
+First, we need to create a `params` sub-directory under `protein-structure-exercise` directory to store the AlphaFold3 parameters file on Pelle. Then we will upload the parameters file from the local machine into that `params` directory on Pelle.
 
 ::: hint
-Use `mkdir` command to create a new directory.
+Use `mkdir` command to create a new directory, and upload the file into the `params` directory using `scp` command.
 :::
 
 ::: solution
 ``` bash
-mkdir params
-```
-:::
-
-Now upload the file into the `params` directory using `scp` command. Please replace `<path_to_parameters_file>` and `<username>` accordingly. You should use terminal from your local machine to execute the following command:
-
-``` bash
+# create params directory on Pelle
+mkdir <basefolder>/<username>/protein-structure-exercise/params 
+# Open a new terminal on your local machine and use the following command to upload the parameters file to Pelle. Remember to replace `<path_to_parameters_file>` and `<username>` accordingly.
 scp <path_to_parameters_file> <username>@pelle.uppmax.uu.se:<basefolder>/<username>/protein-structure-exercise/params
 ```
+:::
+::::::
 
+:::::: challenge
 ## Challenge 1.3: prepare the input file
 
-AlphaFold takes the amino acid (AA) sequence of the query protein as input. For this episode, we will use the AA sequence of Adenylate kinase from *Escherichia coli* (UniProt ID: [P69441](https://www.uniprot.org/uniprot/P69441)). You can download the sequence of Adenylate kinase using the following code:
+AlphaFold takes the amino acid (AA) sequence of a protein as input and predicts its 3D structure. For this task, we will use the AA sequence of Adenylate kinase from *Escherichia coli* (UniProt ID: [P69441](https://www.uniprot.org/uniprot/P69441)). You can download the sequence of Adenylate kinase using the following code:
 
 ``` bash
 wget https://rest.uniprot.org/uniprotkb/P69441.fasta
 ```
 
-This will download the FASTA file containing the amino acid sequence of the protein. Q.1 Can you tell how many amino acids are in the sequence? You can use the `grep` command to count.
+This will download the FASTA file containing the amino acid sequence of the protein. 
+
+Q.1 Can you tell how many amino acids are in the sequence? You can use the `grep` command to count.
 
 ::: hint
 The `grep -v ">"` command removes the header line, `tr -d '\n'` removes newlines, and `wc -c` counts the number of characters, which corresponds to the number of amino acids.
@@ -108,7 +111,7 @@ grep -v ">" P69441.fasta | tr -d '\n' | wc -c
 ```
 :::
 
-You can check how AlphaFold input files look like [here](https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md). You can manually format the input file according to the specifications, but for this exercise, we will use a script that automates the process.
+You can check how AlphaFold3 input files look like [here](https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md). You can manually format the input file according to the specifications. But for this exercise, we will use a script that automates the process.
 
 First, we create a directory called `af3-input`:
 
@@ -122,27 +125,33 @@ mkdir af3-input
 ```
 :::
 
-Now use the following command to prepare the input file for AlphaFold:
+Now use the following command to prepare the input file for AlphaFold3:
 
 ``` bash
 python3 <basefolder>/scripts/fasta_to_af3_json.py -i ./P69441.fasta -n P69441 -o ./af3-input/
 ```
 
-This command will take the FASTA file as input and generate a JSON file that can be used for AlphaFold prediction. You can inspect the structure of the JSON file using the using `cat` or `less` command.
+This command will take the FASTA file as input and generate a JSON file that can be used as AlphaFold3 input. You can inspect the structure of the JSON file using the `cat` or `less` command.
 
-Q.2 Can you explain why the P69441.json file has its version set to 1?
+``` bash
+cat ./af3-input/P69441.json
+```
+
+Q.2 Can you explain why the P69441.json file has its version set to 1 ? Does it follow AlphaFold3 input specification?
 
 ::: hint
-Check AlphaFold input file preparation instruction [here](https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md)
+Check AlphaFold3 input file preparation instruction [here](https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md)
 :::
 
 ::: solution
-Check the section about versions in the AF3 input file preparation instruction.
+Check the section about versions in the AlphaFold3 input file preparation instruction.
 :::
+::::::
 
+:::::: challenge
 ## Challenge 1.4: run AlphaFold3 prediction
 
-Now that we have the input file ready, we can run the `AlphaFold` prediction.
+Now that we have the input file ready, we can run the `AlphaFold3` prediction.
 
 First, we create output directory for storing the AF3 predicted results:
 
@@ -150,7 +159,7 @@ First, we create output directory for storing the AF3 predicted results:
 mkdir af3-output
 ```
 
-Now, we will load the `AlphaFold` module, which allow us to run an already installed version AlphaFold. Use the following command:
+Now, we will load the `AlphaFold3` module, which allows us to run an already installed version AlphaFold3. Use the following command:
 
 ``` bash
 module load AlphaFold/3.0.1
@@ -176,11 +185,15 @@ Now we execute the job as following:
 sbatch job.sh
 ```
 
-This command runs the AlphaFold prediction using the input JSON file and saves the results in the `af3-output` directory.
+This command runs the AlphaFold3 prediction using the input JSON file and saves the results in the `af3-output` directory.
 
-## Challenge 2: interpret the confidence of the predictions
+::::::
 
-In the output directory, you will find several files, including one with suffix`_summary_confidences.json`, which contains the confidence scores for the predicted structure. You can use the following command to view the contents of the confidence summary file:
+## Task 2: Interpret the confidence score of the predictions
+
+Now that we have generated a predicted structure, we will evaluate how reliable it is.
+
+In the output directory (`af3-output`), you will find several files. One with the suffix `_summary_confidences.json`, contains the confidence scores for the predicted structure. You can use the following command to view the contents of the confidence summary file:
 
 ``` bash
 cat af3-output/p69441/p69441_summary_confidences.json 
@@ -194,7 +207,21 @@ Q.3 What are the pTM and ipTM scores for the predicted structure of Adenylate ki
 You can find the pTM and ipTM scores in the `_summary_confidences.json` file. Look for the keys `"pTM"` and `"ipTM"` in the JSON file.
 :::
 
-## Challenge 3: visualize the predicted structures
+::: solution
+First find the confidence scores using the command below:
+
+```bash
+cat af3-output/p69441/p69441_summary_confidences.json 
+```
+
+A pTM score above 0.5 suggests the overall fold is likely correct.  
+High ipTM values (e.g. >0.8) indicate confident prediction of interactions.  
+If your scores fall in these ranges, the prediction is likely reliable.
+
+:::
+
+
+## Task 3: Visualize the predicted structures
 
 To visualize the predicted structure, you can use a molecular visualization tool such as [PyMOL](https://pymol.org/2/). In case you can not install these tools on your local machine, you can use the web-based tool [RCSB 3D View](https://www.rcsb.org/3d-view) to visualize the predicted structure. However, for this course we will use PyMOL and here is the installation instruction [link](https://pymol.org/dokuwiki/doku.php?id=installation).
 
@@ -216,7 +243,7 @@ To visualize in PyMOL, first open PyMOL software on your local machine. PyMol ha
 load <path_to_cif_file>/p69441_model.cif
 ```
 
-## Challenge 4: compare predicted structures to known structures
+## Task 4: Compare predicted structures to known structures
 
 From UniProt Db entry for Adenylate kinase ([P69441](https://www.uniprot.org/uniprot/P69441)), we can see that there are several known structures for this protein in the Protein Data Bank (PDB).
 
@@ -245,9 +272,17 @@ super p69441_model, 1AKE
 This will superimpose the predicted structure onto the known structure, allowing you to visually assess the similarities and differences between the two structures.
 
 Q.4 What is the RMSD value between the predicted structure and the known structure? Does it indicate a good prediction?
-::::::::::::::::
 
-## Task 2: Predict structure of a protein complex
+::: hint
+Align predicted structure with the known structure from PDB database, using PyMOL.  
+:::
+
+::: solution
+A low RMSD (e.g. <2 Å) indicates strong agreement with the known structure.  
+Higher values suggest deviations and lower prediction accuracy.
+:::
+
+## Task 5: Predict structure of a protein complex
 
 In this section, we will predict structure of a protein complex [4fqb](https://www.rcsb.org/structure/4FQB), where one protein is a toxic effector Tse1 and the other one is an immune protein Tsi1. They together form a protein complex, soon we will see their complex structure.
 
@@ -279,7 +314,7 @@ Check whether the AlphaFold3 module is still loaded:
 module list
 ```
 
-If not, load AlphaFold module:
+If not, load AlphaFold3 module:
 
 ``` bash
 module load AlphaFold/3.0.1
@@ -303,10 +338,23 @@ Now we execute the job as following:
 sbatch job_complex.sh
 ```
 
-::: challenge
-## Challenge 5: check the confidence score, visualise and compare the predicted complex with experimentally derived structure
+:::::: challenge
+## Challenge 2: check the confidence score, visualise and compare the predicted complex with experimentally derived structure
 
-After the prediction is complete, check the confidence score and compare the predicted structure with the known structure from the PDB database (4FQB) using instruction from Challenge 2, 3 and 4.
+After the prediction is complete, check the confidence score and compare the predicted structure with the known structure from the PDB database (4FQB) using instruction from Task 2, 3 and 4.
 
 Q.5 Based on the confidence score and RMSD value, do you think AlphaFold3 performed well in predicting the protein complex?
+
+::: solution
+If both confidence scores (pTM/ipTM) are high and RMSD is low, AlphaFold3 performed well.  
+If scores are low or RMSD is high, the prediction may be unreliable.
+:::
+
+::::::
+
+In this episode, we explored how to predict, evaluate, and validate protein structures using AlphaFold3.
+::: keypoints
+- AlphaFold predicts structure from sequence
+- pTM/ipTM indicate confidence
+- RMSD measures structural similarity
 :::
