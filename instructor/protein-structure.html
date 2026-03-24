@@ -262,7 +262,10 @@
       <div class="accordion-body">
         <ul><li><a href="#introduction">Introduction</a></li>
 <li><a href="#task-1-predicting-structure-of-a-protein">Task 1: Predicting structure of a protein</a></li>
-<li><a href="#task-2-predict-structure-of-a-protein-complex">Task 2: Predict structure of a protein complex</a></li>
+<li><a href="#task-2-interpret-the-confidence-score-of-the-predictions">Task 2: Interpret the confidence score of the predictions</a></li>
+<li><a href="#task-3-visualize-the-predicted-structures">Task 3: Visualize the predicted structures</a></li>
+<li><a href="#task-4-compare-predicted-structures-to-known-structures">Task 4: Compare predicted structures to known structures</a></li>
+<li><a href="#task-5-predict-structure-of-a-protein-complex">Task 5: Predict structure of a protein complex</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -417,7 +420,7 @@ into it.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>Remember those commands?</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -437,7 +440,7 @@ into it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -462,7 +465,7 @@ into it.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -490,9 +493,12 @@ into it.</p>
 parameters file</h3>
 <div class="callout-content">
 <p>Probably you already have downloaded the AlphaFold3 models using this
-<a href="https://forms.gle/svvpY4u2jsHEwWYS6" class="external-link">link</a>. We need to
-upload them from your local machine to Pelle.</p>
-<p>First we create a directory called <code>params</code> in pelle.</p>
+<a href="https://forms.gle/svvpY4u2jsHEwWYS6" class="external-link">link</a>.</p>
+<p>First, we need to create a <code>params</code> sub-directory under
+<code>protein-structure-exercise</code> directory to store the
+AlphaFold3 parameters file on Pelle. Then we will upload the parameters
+file from the local machine into that <code>params</code> directory on
+Pelle.</p>
 </div>
 </div>
 </div>
@@ -501,9 +507,11 @@ upload them from your local machine to Pelle.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
-<p>Use <code>mkdir</code> command to create a new directory.</p>
+<p>Use <code>mkdir</code> command to create a new directory, and upload
+the file into the <code>params</code> directory using <code>scp</code>
+command.</p>
 </div>
 </div>
 </div>
@@ -513,52 +521,42 @@ upload them from your local machine to Pelle.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">mkdir</span> params</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># create params directory on Pelle</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">mkdir</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/<span class="op">&lt;</span>username<span class="op">&gt;</span>/protein-structure-exercise/params </span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co"># Open a new terminal on your local machine and use the following command to upload the parameters file to Pelle. Remember to replace `&lt;path_to_parameters_file&gt;` and `&lt;username&gt;` accordingly.</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>path_to_parameters_file<span class="op">&gt;</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:<span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/<span class="op">&lt;</span>username<span class="op">&gt;</span>/protein-structure-exercise/params</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="challenge-1.1-prepare-the-terrain" class="callout challenge">
+<div id="challenge-1.3-prepare-the-input-file" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="challenge-1.1-prepare-the-terrain" class="callout-inner">
-<h3 class="callout-title">Challenge 1.1: prepare the terrain<em>
-(continued)</em>
-</h3>
+<div id="challenge-1.3-prepare-the-input-file" class="callout-inner">
+<h3 class="callout-title">Challenge 1.3: prepare the input file</h3>
 <div class="callout-content">
-<p>Now upload the file into the <code>params</code> directory using
-<code>scp</code> command. Please replace
-<code>&lt;path_to_parameters_file&gt;</code> and
-<code>&lt;username&gt;</code> accordingly. You should use terminal from
-your local machine to execute the following command:</p>
+<p>AlphaFold takes the amino acid (AA) sequence of a protein as input
+and predicts its 3D structure. For this task, we will use the AA
+sequence of Adenylate kinase from <em>Escherichia coli</em> (UniProt ID:
+<a href="https://www.uniprot.org/uniprot/P69441" class="external-link">P69441</a>). You can
+download the sequence of Adenylate kinase using the following code:</p>
 <div class="codewrapper sourceCode" id="cb7">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>path_to_parameters_file<span class="op">&gt;</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:<span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/<span class="op">&lt;</span>username<span class="op">&gt;</span>/protein-structure-exercise/params</span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="challenge-1-3-prepare-the-input-file">Challenge 1.3: prepare the input file<a class="anchor" aria-label="anchor" href="#challenge-1-3-prepare-the-input-file"></a></h2>
-<p>AlphaFold takes the amino acid (AA) sequence of the query protein as
-input. For this episode, we will use the AA sequence of Adenylate kinase
-from <em>Escherichia coli</em> (UniProt ID: <a href="https://www.uniprot.org/uniprot/P69441" class="external-link">P69441</a>). You can
-download the sequence of Adenylate kinase using the following code:</p>
-<div class="codewrapper sourceCode" id="cb8">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">wget</span> https://rest.uniprot.org/uniprotkb/P69441.fasta</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">wget</span> https://rest.uniprot.org/uniprotkb/P69441.fasta</span></code></pre>
 </div>
 <p>This will download the FASTA file containing the amino acid sequence
-of the protein. Q.1 Can you tell how many amino acids are in the
-sequence? You can use the <code>grep</code> command to count.</p>
-</div>
+of the protein.</p>
+<p>Q.1 Can you tell how many amino acids are in the sequence? You can
+use the <code>grep</code> command to count.</p>
 </div>
 </div>
 </div>
@@ -567,7 +565,7 @@ sequence? You can use the <code>grep</code> command to count.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
 <div class="accordion-body">
 <p>The <code>grep -v "&gt;"</code> command removes the header line,
 <code>tr -d '\n'</code> removes newlines, and <code>wc -c</code> counts
@@ -582,30 +580,30 @@ acids.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"&gt;"</span> P69441.fasta <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> <span class="st">'\n'</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-c</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"&gt;"</span> P69441.fasta <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> <span class="st">'\n'</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-c</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="challenge-1.1-prepare-the-terrain" class="callout challenge">
+<div id="challenge-1.3-prepare-the-input-file" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="challenge-1.1-prepare-the-terrain" class="callout-inner">
-<h3 class="callout-title">Challenge 1.1: prepare the terrain<em>
+<div id="challenge-1.3-prepare-the-input-file" class="callout-inner">
+<h3 class="callout-title">Challenge 1.3: prepare the input file<em>
 (continued)</em>
 </h3>
 <div class="callout-content">
-<p>You can check how AlphaFold input files look like <a href="https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md" class="external-link">here</a>.
-You can manually format the input file according to the specifications,
-but for this exercise, we will use a script that automates the
+<p>You can check how AlphaFold3 input files look like <a href="https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md" class="external-link">here</a>.
+You can manually format the input file according to the specifications.
+But for this exercise, we will use a script that automates the
 process.</p>
 <p>First, we create a directory called <code>af3-input</code>:</p>
 </div>
@@ -616,7 +614,7 @@ process.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
 <div class="accordion-body">
 <p>Use <code>mkdir</code> command to create a new directory.</p>
 </div>
@@ -628,40 +626,45 @@ process.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb10">
+<div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">mkdir</span> af3-input</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">mkdir</span> af3-input</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="challenge-1.1-prepare-the-terrain" class="callout challenge">
+<div id="challenge-1.3-prepare-the-input-file" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="challenge-1.1-prepare-the-terrain" class="callout-inner">
-<h3 class="callout-title">Challenge 1.1: prepare the terrain<em>
+<div id="challenge-1.3-prepare-the-input-file" class="callout-inner">
+<h3 class="callout-title">Challenge 1.3: prepare the input file<em>
 (continued)</em>
 </h3>
 <div class="callout-content">
 <p>Now use the following command to prepare the input file for
-AlphaFold:</p>
+AlphaFold3:</p>
+<div class="codewrapper sourceCode" id="cb10">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="ex">python3</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/scripts/fasta_to_af3_json.py <span class="at">-i</span> ./P69441.fasta <span class="at">-n</span> P69441 <span class="at">-o</span> ./af3-input/</span></code></pre>
+</div>
+<p>This command will take the FASTA file as input and generate a JSON
+file that can be used as AlphaFold3 input. You can inspect the structure
+of the JSON file using the <code>cat</code> or <code>less</code>
+command.</p>
 <div class="codewrapper sourceCode" id="cb11">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">python3</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/scripts/fasta_to_af3_json.py <span class="at">-i</span> ./P69441.fasta <span class="at">-n</span> P69441 <span class="at">-o</span> ./af3-input/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">cat</span> ./af3-input/P69441.json</span></code></pre>
 </div>
-<p>This command will take the FASTA file as input and generate a JSON
-file that can be used for AlphaFold prediction. You can inspect the
-structure of the JSON file using the using <code>cat</code> or
-<code>less</code> command.</p>
-<p>Q.2 Can you explain why the P69441.json file has its version set to
-1?</p>
+<p>Q.2 Can you explain why the P69441.json file has its version set to 1
+? Does it follow AlphaFold3 input specification?</p>
 </div>
 </div>
 </div>
@@ -670,9 +673,9 @@ structure of the JSON file using the using <code>cat</code> or
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint5" aria-expanded="false" aria-controls="collapseHint5">
   <h4 class="accordion-header" id="headingHint5"> Give me a hint </h4>
 </button>
-<div id="collapseHint5" class="accordion-collapse collapse" aria-labelledby="headingHint5" data-bs-parent="#accordionHint5">
+<div id="collapseHint5" class="accordion-collapse collapse" data-bs-parent="#accordionHint5" aria-labelledby="headingHint5">
 <div class="accordion-body">
-<p>Check AlphaFold input file preparation instruction <a href="https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md" class="external-link">here</a></p>
+<p>Check AlphaFold3 input file preparation instruction <a href="https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md" class="external-link">here</a></p>
 </div>
 </div>
 </div>
@@ -682,24 +685,24 @@ structure of the JSON file using the using <code>cat</code> or
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
-<p>Check the section about versions in the AF3 input file preparation
-instruction.</p>
+<p>Check the section about versions in the AlphaFold3 input file
+preparation instruction.</p>
 </div>
 </div>
 </div>
 </div>
-<div id="challenge-1.4-run-alphafold3-prediction" class="callout challenge">
+<div id="challenge-1.4-run-alphafold3-prediction" class="callout discussion">
 <div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<span class="callout-header">Challenge</span>
+<span class="callout-header">Discussion</span>
 <div id="challenge-1.4-run-alphafold3-prediction" class="callout-inner">
 <h3 class="callout-title">Challenge 1.4: run AlphaFold3 prediction</h3>
 <div class="callout-content">
 <p>Now that we have the input file ready, we can run the
-<code>AlphaFold</code> prediction.</p>
+<code>AlphaFold3</code> prediction.</p>
 <p>First, we create output directory for storing the AF3 predicted
 results:</p>
 <div class="codewrapper sourceCode" id="cb12">
@@ -707,8 +710,8 @@ results:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">mkdir</span> af3-output</span></code></pre>
 </div>
-<p>Now, we will load the <code>AlphaFold</code> module, which allow us
-to run an already installed version AlphaFold. Use the following
+<p>Now, we will load the <code>AlphaFold3</code> module, which allows us
+to run an already installed version AlphaFold3. Use the following
 command:</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -737,14 +740,19 @@ generates a ready-to-use <code>slurm</code> command.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="ex">sbatch</span> job.sh</span></code></pre>
 </div>
-<p>This command runs the AlphaFold prediction using the input JSON file
+<p>This command runs the AlphaFold3 prediction using the input JSON file
 and saves the results in the <code>af3-output</code> directory.</p>
-<div class="section level2">
-<h2 id="challenge-2-interpret-the-confidence-of-the-predictions">Challenge 2: interpret the confidence of the predictions<a class="anchor" aria-label="anchor" href="#challenge-2-interpret-the-confidence-of-the-predictions"></a></h2>
-<p>In the output directory, you will find several files, including one
-with suffix<code>_summary_confidences.json</code>, which contains the
-confidence scores for the predicted structure. You can use the following
-command to view the contents of the confidence summary file:</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="task-2-interpret-the-confidence-score-of-the-predictions">Task 2: Interpret the confidence score of the predictions<a class="anchor" aria-label="anchor" href="#task-2-interpret-the-confidence-score-of-the-predictions"></a></h2>
+<hr class="half-width"><p>Now that we have generated a predicted structure, we will evaluate
+how reliable it is.</p>
+<p>In the output directory (<code>af3-output</code>), you will find
+several files. One with the suffix
+<code>_summary_confidences.json</code>, contains the confidence scores
+for the predicted structure. You can use the following command to view
+the contents of the confidence summary file:</p>
 <div class="codewrapper sourceCode" id="cb17">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -762,16 +770,12 @@ prediction. ipTM values between 0.6 and 0.8 are a gray zone where
 predictions could be correct or incorrect. <a href="https://alphafoldserver.com/welcome" class="external-link">source</a>.</p>
 <p>Q.3 What are the pTM and ipTM scores for the predicted structure of
 Adenylate kinase? Does it indicate a good prediction?</p>
-</div>
-</div>
-</div>
-</div>
 <div id="accordionHint6" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint6" aria-expanded="false" aria-controls="collapseHint6">
   <h4 class="accordion-header" id="headingHint6"> Give me a hint </h4>
 </button>
-<div id="collapseHint6" class="accordion-collapse collapse" aria-labelledby="headingHint6" data-bs-parent="#accordionHint6">
+<div id="collapseHint6" class="accordion-collapse collapse" data-bs-parent="#accordionHint6" aria-labelledby="headingHint6">
 <div class="accordion-body">
 <p>You can find the pTM and ipTM scores in the
 <code>_summary_confidences.json</code> file. Look for the keys
@@ -780,16 +784,31 @@ Adenylate kinase? Does it indicate a good prediction?</p>
 </div>
 </div>
 </div>
-<div id="challenge-3-visualize-the-predicted-structures" class="callout challenge">
-<div class="callout-square">
-<i class="callout-icon" data-feather="zap"></i>
+<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
+  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+</button>
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div class="accordion-body">
+<p>First find the confidence scores using the command below:</p>
+<div class="codewrapper sourceCode" id="cb18">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">cat</span> af3-output/p69441/p69441_summary_confidences.json </span></code></pre>
 </div>
-<span class="callout-header">Challenge</span>
-<div id="challenge-3-visualize-the-predicted-structures" class="callout-inner">
-<h3 class="callout-title">Challenge 3: visualize the predicted
-structures</h3>
-<div class="callout-content">
-<p>To visualize the predicted structure, you can use a molecular
+<p>A pTM score above 0.5 suggests the overall fold is likely
+correct.<br>
+High ipTM values (e.g. &gt;0.8) indicate confident prediction of
+interactions.<br>
+If your scores fall in these ranges, the prediction is likely
+reliable.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="task-3-visualize-the-predicted-structures">Task 3: Visualize the predicted structures<a class="anchor" aria-label="anchor" href="#task-3-visualize-the-predicted-structures"></a></h2>
+<hr class="half-width"><p>To visualize the predicted structure, you can use a molecular
 visualization tool such as <a href="https://pymol.org/2/" class="external-link">PyMOL</a>. In
 case you can not install these tools on your local machine, you can use
 the web-based tool <a href="https://www.rcsb.org/3d-view" class="external-link">RCSB 3D
@@ -800,48 +819,34 @@ these steps:</p>
 <p>Download the predicted structure file (with suffix
 <code>_model.cif</code>) from the <code>af3-output</code> directory to
 your local machine.</p>
-</div>
-</div>
-</div>
 <div id="accordionHint7" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint7" aria-expanded="false" aria-controls="collapseHint7">
   <h4 class="accordion-header" id="headingHint7"> Give me a hint </h4>
 </button>
-<div id="collapseHint7" class="accordion-collapse collapse" aria-labelledby="headingHint7" data-bs-parent="#accordionHint7">
+<div id="collapseHint7" class="accordion-collapse collapse" data-bs-parent="#accordionHint7" aria-labelledby="headingHint7">
 <div class="accordion-body">
 <p>You can use the <code>scp</code> command to securely copy the file
 from the remote server to your local machine. Replace
 <code>&lt;username&gt;</code> with your actual username and
 <code>&lt;local_path&gt;</code> with the path where you want to save the
 file on your local machine.</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb19">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:<span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/<span class="op">&lt;</span>username<span class="op">&gt;</span>/protein-structure-exercise/af3-output/p69441/p69441_model.cif <span class="op">&lt;</span>local_path<span class="op">&gt;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:<span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/<span class="op">&lt;</span>username<span class="op">&gt;</span>/protein-structure-exercise/af3-output/p69441/p69441_model.cif <span class="op">&lt;</span>local_path<span class="op">&gt;</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="challenge-1.1-prepare-the-terrain" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="challenge-1.1-prepare-the-terrain" class="callout-inner">
-<h3 class="callout-title">Challenge 1.1: prepare the terrain<em>
-(continued)</em>
-</h3>
-<div class="callout-content">
 <p>To visualize in PyMOL, first open PyMOL software on your local
 machine. PyMol has it’s own command line interface, just like the
 terminal. You can use that terminal and type the following command to
 load the predicted structure file:</p>
 <pre><code>load &lt;path_to_cif_file&gt;/p69441_model.cif</code></pre>
-<div class="section level2">
-<h2 id="challenge-4-compare-predicted-structures-to-known-structures">Challenge 4: compare predicted structures to known structures<a class="anchor" aria-label="anchor" href="#challenge-4-compare-predicted-structures-to-known-structures"></a></h2>
-<p>From UniProt Db entry for Adenylate kinase (<a href="https://www.uniprot.org/uniprot/P69441" class="external-link">P69441</a>), we can see
+</section><section><h2 class="section-heading" id="task-4-compare-predicted-structures-to-known-structures">Task 4: Compare predicted structures to known structures<a class="anchor" aria-label="anchor" href="#task-4-compare-predicted-structures-to-known-structures"></a></h2>
+<hr class="half-width"><p>From UniProt Db entry for Adenylate kinase (<a href="https://www.uniprot.org/uniprot/P69441" class="external-link">P69441</a>), we can see
 that there are several known structures for this protein in the Protein
 Data Bank (PDB).</p>
 <p>You can find the PDB IDs for the known structures in the UniProt
@@ -867,11 +872,34 @@ structure, allowing you to visually assess the similarities and
 differences between the two structures.</p>
 <p>Q.4 What is the RMSD value between the predicted structure and the
 known structure? Does it indicate a good prediction?</p>
+<div id="accordionHint8" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint8" aria-expanded="false" aria-controls="collapseHint8">
+  <h4 class="accordion-header" id="headingHint8"> Give me a hint </h4>
+</button>
+<div id="collapseHint8" class="accordion-collapse collapse" data-bs-parent="#accordionHint8" aria-labelledby="headingHint8">
+<div class="accordion-body">
+<p>Align predicted structure with the known structure from PDB database,
+using PyMOL.</p>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="task-2-predict-structure-of-a-protein-complex">Task 2: Predict structure of a protein complex<a class="anchor" aria-label="anchor" href="#task-2-predict-structure-of-a-protein-complex"></a></h2>
+<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
+  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+</button>
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div class="accordion-body">
+<p>A low RMSD (e.g. &lt;2 Å) indicates strong agreement with the known
+structure.<br>
+Higher values suggest deviations and lower prediction accuracy.</p>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="task-5-predict-structure-of-a-protein-complex">Task 5: Predict structure of a protein complex<a class="anchor" aria-label="anchor" href="#task-5-predict-structure-of-a-protein-complex"></a></h2>
 <hr class="half-width"><p>In this section, we will predict structure of a protein complex <a href="https://www.rcsb.org/structure/4FQB" class="external-link">4fqb</a>, where one protein
 is a toxic effector Tse1 and the other one is an immune protein Tsi1.
 They together form a protein complex, soon we will see their complex
@@ -881,33 +909,33 @@ directory to your
 <code>&lt;basefolder&gt;/&lt;username&gt;/protein-structure-exercise</code>
 directory. The file we need to copy is called
 <code>4fqb.fasta</code>.</basefolder></p>
-<div id="accordionHint8" class="accordion challenge-accordion accordion-flush">
+<div id="accordionHint9" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint8" aria-expanded="false" aria-controls="collapseHint8">
-  <h4 class="accordion-header" id="headingHint8"> Give me a hint </h4>
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint9" aria-expanded="false" aria-controls="collapseHint9">
+  <h4 class="accordion-header" id="headingHint9"> Give me a hint </h4>
 </button>
-<div id="collapseHint8" class="accordion-collapse collapse" aria-labelledby="headingHint8" data-bs-parent="#accordionHint8">
-<div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb23">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">cp</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/data/4fqb.fasta <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/<span class="op">&lt;</span>username<span class="op">&gt;</span>/protein-structure-exercise/ </span></code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
-</button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseHint9" class="accordion-collapse collapse" data-bs-parent="#accordionHint9" aria-labelledby="headingHint9">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">cp</span> ../../data/4fqb.fasta . </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">cp</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/data/4fqb.fasta <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/<span class="op">&lt;</span>username<span class="op">&gt;</span>/protein-structure-exercise/ </span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
+  <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
+</button>
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div class="accordion-body">
+<div class="codewrapper sourceCode" id="cb25">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">cp</span> ../../data/4fqb.fasta . </span></code></pre>
 </div>
 </div>
 </div>
@@ -916,10 +944,10 @@ directory. The file we need to copy is called
 <p>Then, we prepare the AlphaFold3 input <code>JSON</code> file using
 the <code>fasta_to_af3_json.py</code> script. Use the following
 command:</p>
-<div class="codewrapper sourceCode" id="cb25">
+<div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="ex">python3</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/scripts/fasta_to_af3_json.py <span class="at">-i</span> ./4fqb.fasta <span class="at">-n</span> 4fqb <span class="at">-o</span> ./af3-input/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">python3</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/scripts/fasta_to_af3_json.py <span class="at">-i</span> ./4fqb.fasta <span class="at">-n</span> 4fqb <span class="at">-o</span> ./af3-input/</span></code></pre>
 </div>
 <p>Next, you need to run AlphaFold3 prediction using
 <code>af3-input/4fqb.json</code> file as input. It is very similar as
@@ -927,53 +955,71 @@ the steps described in Challenge 1.4. Only exception is when you use
 <code>create_af3_slurm_job.py</code> script, the input (-i) should be
 changed as <code>-i af3-input/4fqb.json</code>. See below:</p>
 <p>Check whether the AlphaFold3 module is still loaded:</p>
-<div class="codewrapper sourceCode" id="cb26">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="ex">module</span> list</span></code></pre>
-</div>
-<p>If not, load AlphaFold module:</p>
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">module</span> load AlphaFold/3.0.1</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="ex">module</span> list</span></code></pre>
 </div>
-<p>Check whether the module is now loaded successfully:</p>
+<p>If not, load AlphaFold3 module:</p>
 <div class="codewrapper sourceCode" id="cb28">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">module</span> list</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="ex">module</span> load AlphaFold/3.0.1</span></code></pre>
 </div>
-<p>Then, we create slurm job:</p>
+<p>Check whether the module is now loaded successfully:</p>
 <div class="codewrapper sourceCode" id="cb29">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">python3</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/scripts/create_af3_slurm_job.py <span class="at">-p</span> <span class="op">&lt;</span>Project-Code<span class="op">&gt;</span> -i ./af3-input/4fqb.json <span class="at">-o</span> ./af3-output <span class="at">-m</span> ./params <span class="op">&gt;</span> job_complex.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="ex">module</span> list</span></code></pre>
 </div>
-<p>Now we execute the job as following:</p>
+<p>Then, we create slurm job:</p>
 <div class="codewrapper sourceCode" id="cb30">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">sbatch</span> job_complex.sh</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="ex">python3</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/scripts/create_af3_slurm_job.py <span class="at">-p</span> <span class="op">&lt;</span>Project-Code<span class="op">&gt;</span> -i ./af3-input/4fqb.json <span class="at">-o</span> ./af3-output <span class="at">-m</span> ./params <span class="op">&gt;</span> job_complex.sh</span></code></pre>
 </div>
-<div id="challenge-5-check-the-confidence-score-visualise-and-compare-the-predicted-complex-with-experimentally-derived-structure" class="callout discussion">
+<p>Now we execute the job as following:</p>
+<div class="codewrapper sourceCode" id="cb31">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="ex">sbatch</span> job_complex.sh</span></code></pre>
+</div>
+<div id="challenge-2-check-the-confidence-score-visualise-and-compare-the-predicted-complex-with-experimentally-derived-structure" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
-<span class="callout-header">Discussion</span>
-<div id="challenge-5-check-the-confidence-score-visualise-and-compare-the-predicted-complex-with-experimentally-derived-structure" class="callout-inner">
-<h3 class="callout-title">Challenge 5: check the confidence score,
+<span class="callout-header">Challenge</span>
+<div id="challenge-2-check-the-confidence-score-visualise-and-compare-the-predicted-complex-with-experimentally-derived-structure" class="callout-inner">
+<h3 class="callout-title">Challenge 2: check the confidence score,
 visualise and compare the predicted complex with experimentally derived
 structure</h3>
 <div class="callout-content">
 <p>After the prediction is complete, check the confidence score and
 compare the predicted structure with the known structure from the PDB
-database (4FQB) using instruction from Challenge 2, 3 and 4.</p>
+database (4FQB) using instruction from Task 2, 3 and 4.</p>
 <p>Q.5 Based on the confidence score and RMSD value, do you think
 AlphaFold3 performed well in predicting the protein complex?</p>
 </div>
 </div>
 </div>
+<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
+  <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
+</button>
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div class="accordion-body">
+<p>If both confidence scores (pTM/ipTM) are high and RMSD is low,
+AlphaFold3 performed well.<br>
+If scores are low or RMSD is high, the prediction may be unreliable.</p>
+</div>
+</div>
+</div>
+</div>
+<p>In this episode, we explored how to predict, evaluate, and validate
+protein structures using AlphaFold3. ::: keypoints - AlphaFold predicts
+structure from sequence - pTM/ipTM indicate confidence - RMSD measures
+structural similarity :::</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
