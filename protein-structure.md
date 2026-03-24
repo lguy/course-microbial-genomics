@@ -280,6 +280,3 @@ sbatch job_complex.sh
 After the prediction is complete, check the confidence score and compare the predicted structure with the known structure from the PDB database (4FQB) using instruction from Challenge 2, 3 and 4.
 
 Q.5 Based on the confidence score and RMSD value, do you think AlphaFold3 performed well in predicting the protein complex?
-
-
-
