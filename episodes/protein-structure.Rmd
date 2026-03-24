@@ -148,6 +148,7 @@ Check the section about versions in the AlphaFold3 input file preparation instru
 :::
 ::::::
 
+
 :::::: challenge
 ## Challenge 1.4: run AlphaFold3 prediction
 
@@ -185,9 +186,9 @@ Now we execute the job as following:
 sbatch job.sh
 ```
 
-This command runs the AlphaFold3 prediction using the input JSON file and saves the results in the `af3-output` directory.
-
+This command runs the AlphaFold3 prediction using the input JSON file and saves the results in the `af3-output` directory. You can check the status of your job using the `squeue -u <username>` command.
 ::::::
+
 
 ## Task 2: Interpret the confidence score of the predictions
 
@@ -203,11 +204,16 @@ The predicted template modeling (pTM) score and the interface predicted template
 
 Q.3 What are the pTM and ipTM scores for the predicted structure of Adenylate kinase? Does it indicate a good prediction?
 
+
 ::: hint
+
 You can find the pTM and ipTM scores in the `_summary_confidences.json` file. Look for the keys `"pTM"` and `"ipTM"` in the JSON file.
+
 :::
 
+
 ::: solution
+
 First find the confidence scores using the command below:
 
 ```bash
@@ -229,17 +235,20 @@ To visualize the predicted structure using PyMOL, you can follow these steps:
 
 Download the predicted structure file (with suffix `_model.cif`) from the `af3-output` directory to your local machine.
 
+
 ::: hint
+
 You can use the `scp` command to securely copy the file from the remote server to your local machine. Replace `<username>` with your actual username and `<local_path>` with the path where you want to save the file on your local machine.
 
 ``` bash
 scp <username>@pelle.uppmax.uu.se:<basefolder>/<username>/protein-structure-exercise/af3-output/p69441/p69441_model.cif <local_path>
 ```
+
 :::
 
 To visualize in PyMOL, first open PyMOL software on your local machine. PyMol has it's own command line interface, just like the terminal. You can use that terminal and type the following command to load the predicted structure file:
 
-```         
+``` bash         
 load <path_to_cif_file>/p69441_model.cif
 ```
 
@@ -251,13 +260,13 @@ You can find the PDB IDs for the known structures in the UniProt entry under the
 
 Using PyMol terminal, you can fetch the known structure from the PDB database using the following command:
 
-```         
+``` bash         
 fetch 1AKE
 ```
 
 You can then align the predicted structure to the known structure using the following command:
 
-```         
+``` bash        
 align p69441_model, 1AKE
 ```
 
@@ -265,7 +274,7 @@ This will align the predicted structure (P69441_model) to the known structure (1
 
 You can also superimpose the two structures to visually compare them using the following command:
 
-```         
+``` bash         
 super p69441_model, 1AKE
 ```
 
@@ -273,13 +282,19 @@ This will superimpose the predicted structure onto the known structure, allowing
 
 Q.4 What is the RMSD value between the predicted structure and the known structure? Does it indicate a good prediction?
 
+
 ::: hint
+
 Align predicted structure with the known structure from PDB database, using PyMOL.  
+
 :::
 
+
 ::: solution
+
 A low RMSD (e.g. <2 Å) indicates strong agreement with the known structure.  
 Higher values suggest deviations and lower prediction accuracy.
+
 :::
 
 ## Task 5: Predict structure of a protein complex
@@ -288,16 +303,22 @@ In this section, we will predict structure of a protein complex [4fqb](https://w
 
 Let's begin with copying the FASTA file from <basefolder>/data/ directory to your `<basefolder>/<username>/protein-structure-exercise` directory. The file we need to copy is called `4fqb.fasta`.
 
+
 ::: hint
+
 ``` bash
 cp <basefolder>/data/4fqb.fasta <basefolder>/<username>/protein-structure-exercise/ 
 ```
+
 :::
 
+
 ::: solution
+
 ``` bash
 cp ../../data/4fqb.fasta . 
 ```
+
 :::
 
 Then, we prepare the AlphaFold3 input `JSON` file using the `fasta_to_af3_json.py` script. Use the following command:
@@ -346,15 +367,21 @@ After the prediction is complete, check the confidence score and compare the pre
 Q.5 Based on the confidence score and RMSD value, do you think AlphaFold3 performed well in predicting the protein complex?
 
 ::: solution
+
 If both confidence scores (pTM/ipTM) are high and RMSD is low, AlphaFold3 performed well.  
 If scores are low or RMSD is high, the prediction may be unreliable.
+
 :::
 
 ::::::
 
+
 In this episode, we explored how to predict, evaluate, and validate protein structures using AlphaFold3.
-::: keypoints
+
+::::::::: keypoints
+
 - AlphaFold predicts structure from sequence
 - pTM/ipTM indicate confidence
 - RMSD measures structural similarity
-:::
+
+:::::::::
