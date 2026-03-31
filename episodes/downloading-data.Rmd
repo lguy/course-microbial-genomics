@@ -41,8 +41,8 @@ In this exercise we will setup a file system for the project we will be working 
 We will start by creating a directory that we can use for the rest of the workshop. First navigate to your home directory. Then confirm that you are in the correct directory using the `pwd` command.
 
 ```bash
-$ cd
-$ pwd
+cd
+pwd
 ```
 
 You should see the output:
@@ -77,10 +77,10 @@ molepi/results
 ## Solution
 
 ```bash
-$ mkdir molepi
-$ mkdir molepi/docs
-$ mkdir molepi/data
-$ mkdir molepi/results
+mkdir molepi
+mkdir molepi/docs
+mkdir molepi/data
+mkdir molepi/results
 ```
 
 :::::::::::::::::::::::::
@@ -92,7 +92,7 @@ Use `ls -R` to verify that you have created these directories. The `-R` option f
 iteratively.
 
 ```bash
-$ ls -R molepi
+ls -R molepi
 ```
 
 You should see the following output:
@@ -121,13 +121,13 @@ Download the *M.tuberculosis* reference genome from the NCBI ftp site.
 First, we switch to the data folder to store all our data
 
 ```source
-$ cd molepi/data 
+cd molepi/data 
 ```
 
 The reference genome will be downloaded programmatically from NCBI with `wget`. `wget` is a computer program that retrieves content from web servers. Its name derives from World Wide Web and get.
 
 ```source
-$ wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/195/955/GCF_000195955.2_ASM19595v2/GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ```
 
 This file is compressed as indicated by the extension of `.gz`. It means that this file has been compressed using the `gzip` command.
@@ -135,13 +135,13 @@ This file is compressed as indicated by the extension of `.gz`. It means that th
 Extract the file by typing
 
 ```source
-$ gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
+gunzip GCF_000195955.2_ASM19595v2_genomic.fna.gz
 ```
 
 Make sure that is was extracted
 
 ```source
-$ ls
+ls
 ```
 
 ```output
@@ -167,7 +167,7 @@ Get assembly statistics from FASTA and FASTQ files.
 The genome has 4'411'532 bp.
 
 ```bash
-$ assembly-stats GCF_000195955.2_ASM19595v2_genomic.fna
+assembly-stats GCF_000195955.2_ASM19595v2_genomic.fna
 ```
 
 ```output
@@ -197,7 +197,7 @@ Gaps = 0
 We can do this one by one but given that each download takes about one to two hours, this could keep us up all night. Instead of downloading one by one we can apply a loop. Let's see what that looks like and then we'll discuss what we're doing with each line of our loop.
 
 ```bash
-$ for filename in ERR01 ERR02 ERR03
+for filename in ERR01 ERR02 ERR03
 > do
 > echo ftp://ftp.sra.ebi.ac.uk/"${filename}".fastq.gz
 > done
@@ -264,7 +264,7 @@ The shell itself doesn't care what the variable is called;
 if we wrote this loop as:
 
 ```bash
-$ for x in ERR01 ERR02 ERR03
+for x in ERR01 ERR02 ERR03
 do
 echo ftp://ftp.sra.ebi.ac.uk/"${x}".fastq.gz
 done
@@ -273,7 +273,7 @@ done
 or:
 
 ```bash
-$ for temperature in ERR01 ERR02 ERR03
+for temperature in ERR01 ERR02 ERR03
 do
 echo ftp://ftp.sra.ebi.ac.uk/"${temperature}".fastq.gz
 done
@@ -292,7 +292,7 @@ increase the odds that the program won't do what its readers think it does.
 The `for` loop is interpreted as a multipart command.  If you press the up arrow on your keyboard to recall the command, it may be shown like so (depends on your bash version):
 
 ```bash
-$ for filename in ERR01 ERR02 ERR03; do echo ftp://ftp.sra.ebi.ac.uk/"${filename}".fastq.gz ; done
+for filename in ERR01 ERR02 ERR03; do echo ftp://ftp.sra.ebi.ac.uk/"${filename}".fastq.gz ; done
 ```
 
 When you check your history later, it will help your remember what you did!
@@ -306,7 +306,7 @@ To ensure that we complete this tutorial in time, we will not perform all operat
 Let's download data for the *M. tuberculosis* genomes with a `for` loop. We would use the following loop to download all samples: 
 
 ```bash
-$ for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482
+for files in ERR029/ERR029207 ERR029/ERR029206 ERR026/ERR026478 ERR026/ERR026474 ERR026/ERR026473 ERR026/ERR026481 ERR026/ERR026482
 do 
 # wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
 done
@@ -314,8 +314,8 @@ done
 
 Note the `#` that prevents the `wget` command from running: that would take too long, so we're downloading only one (that's a short loop!):
 ```bash
-$ cd molepi/data
-$ for files in ERR029/ERR029206 
+cd molepi/data
+for files in ERR029/ERR029206 
 do 
 wget "ftp://ftp.sra.ebi.ac.uk/vol1/fastq/"${files}"/*fastq.gz"
 done
