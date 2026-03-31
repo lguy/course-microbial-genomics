@@ -61,8 +61,9 @@ contact: 'lionel.guy@imbim.uu.se'
 episodes:
 - ncbi.Rmd
 - blast.Rmd
-- msa.Rmd
-- phylogenetics.Rmd
+#- msa.Rmd
+#- phylogenetics.Rmd
+- msa-phylogenetics.Rmd
 - quality-control.Rmd
 - sequence-assembly.Rmd
 - protein-structure.Rmd
