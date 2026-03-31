@@ -34,7 +34,7 @@ If you don't have all the trimmed reads, extract them from the archive in the `d
 
 
 ```bash
-interactive -A uppmax2026-1-93 -M snowy -t 04:00:00
+interactive -A uppmax2026-1-93 -M pelle -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 mv trimmed_fastq trimmed_fastq_partial
 tar xvzf ../../../data/trimmed_fastq.tar.gz
@@ -54,8 +54,8 @@ First we'll start the interactive session, load the snippy module and create a `
 ::: solution
 
 ```bash
-interactive -A uppmax2026-1-93 -M snowy -t 04:00:00
-module load bioinfo-tools snippy
+interactive -A uppmax2026-1-93 -M pelle -t 04:00:00
+module load snippy
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 mkdir snps
 ```
@@ -272,7 +272,7 @@ iqtree -h
 
 ```bash
 module load <module>
-iqtree2 <alignment> <model testing>
+iqtree <alignment> <model testing>
 ```
 
 ::::::::::::
@@ -281,8 +281,8 @@ iqtree2 <alignment> <model testing>
 
 ```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
-module load bioinfo-tools iqtree
-iqtree2 -s core.aln -m MFP+ASC
+module load IQ-TREE
+iqtree -s core.aln -m MFP+ASC
 ```
 
 ::::::::::::
@@ -395,7 +395,7 @@ The process will take a minute or so. Then in the `results` folder, next to the 
 
 ```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
-iqtree2 <alignment> <model as before> <100 non-parametric bootstraps> <prefix>
+iqtree <alignment> <model as before> <100 non-parametric bootstraps> <prefix>
 cd ..
 mkdir tree100npb
 mv snps/core.aln.100npb* tree100npb/
@@ -407,7 +407,7 @@ mv snps/core.aln.100npb* tree100npb/
 
 ```bash
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results/snps
-iqtree2 -s core.aln -m MFP+ASC -b 100 --prefix core.aln.100npb
+iqtree -s core.aln -m MFP+ASC -b 100 --prefix core.aln.100npb
 cd ..
 mkdir tree100npb
 mv snps/core.aln.100npb* tree100npb/

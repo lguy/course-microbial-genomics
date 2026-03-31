@@ -49,10 +49,6 @@ Explore the options of BLAST
 - outfmt
 Use psi-blast with a pattern
 
-
-module load bioinfo-tools blast
-blastp -db landmark -query rpoB_ecoli.fasta
-
 ---> 
 
 ## Introduction

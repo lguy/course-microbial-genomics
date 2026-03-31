@@ -37,7 +37,7 @@ The file is available in `/proj/g2020004/nobackup/3MK013/data/`.
 
 ## Challenge 1.1: prepare the terrain
 
-The course base folder is at `/proj/g2020004/nobackup/3MK013`. Go to your own folder, create a `phylogenetics` subfolder, and move into it. Also, start the `interactive` session, for 4 hours. The session name is `uppmax2026-1-93` and the cluster is `snowy`.
+The course base folder is at `/proj/g2020004/nobackup/3MK013`. Go to your own folder, create a `phylogenetics` subfolder, and move into it. Also, start the `interactive` session, for 4 hours. The session name is `uppmax2026-1-93` and the cluster is `pelle`.
 
 ::: hint
 
@@ -78,7 +78,7 @@ ssh -Y <username>@pelle.uppmax.uu.se
 ```
 
 ```bash
-interactive -A uppmax2026-1-93 -M snowy -t 4:00:00
+interactive -A uppmax2026-1-93 -M pelle -t 4:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>
 mkdir phylogenetics
 cd phylogenetics
@@ -114,13 +114,6 @@ cp ../../data/rpoB/rpoB.fasta .
 
 :::::::::::::::::::::::::
 
-<!--- 
-
-```bash
-cp ../../data/rpoB/rpoB.fasta .
-```
-
---->
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -182,7 +175,7 @@ Use the FFT-NS-2 algorithm from `mafft` to align the renamed sequences. Also, re
 
 ::: hint
 
-Use the `module` command to load `bioinfo-tools` and `MAFFT`. Use `time` to record the time.
+Use the `module` command to load `MAFFT`. Use `time` to record the time.
 
 The help obtained through `mafft -h` is not very informative about algorithms, so check the [mafft webpage](https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html). 
 
@@ -193,7 +186,7 @@ The help obtained through `mafft -h` is not very informative about algorithms, s
 :::::::::::::::  solution
 
 ```bash
-module load <general module> <mafft module>
+module load <mafft module>
 time mafft-<algorithm> <fasta_file> > rpoB.fftns.aln
 ```
 
@@ -224,7 +217,7 @@ The last line is the output of the `time` command. It took 1.125 seconds to comp
 :::::::::::::::  instructor
 
 ```bash
-module load bioinfo-tools MAFFT
+module load MAFFT
 time mafft-fftns rpoB_renamed.fasta > rpoB.fftns.aln
 ```
 

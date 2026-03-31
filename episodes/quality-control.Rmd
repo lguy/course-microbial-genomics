@@ -99,7 +99,7 @@ pwd
 ::: instructor
 
 ```bash
-interactive -A uppmax2026-1-93 -M snowy -t 04:00:00
+interactive -A uppmax2026-1-93 -M pelle -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>
 pwd
 ```
@@ -215,7 +215,7 @@ Find out how many nucleotides the genome has. There is a software called SeqKit 
 ::: hint:
 
 ```bash   
-module load bioinfo-tools SeqKit
+module load SeqKit
 seqkit -h
 ```
 
