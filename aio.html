@@ -1459,17 +1459,17 @@ indispensable.</p>
 <h3 id="resources-at-uppmax">Resources at UPPMAX<a class="anchor" aria-label="anchor" href="#resources-at-uppmax"></a>
 </h3>
 <p><code>BLAST</code> is available at UPPMAX. To load the
-<code>blast</code> module, you will need to load the
-<code>bioinfo-tools</code> module first. The <code>blast</code> module
-also loads the <code>blast_databases</code> module, to be able to use
-the standard databases that NCBI maintains.</p>
+<code>BLAST+</code> module, as it is knonw in Pelle, use the
+<code>module load</code> command. In the same command, also load the
+<code>BLAST_databases</code> module, to be able to use the standard
+databases that NCBI maintains.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools blast</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">module</span> load BLAST+ BLAST_databases</span></code></pre>
 </div>
 <p>Databases available at UPPMAX are described here: <a href="https://docs.uppmax.uu.se/databases/blast/" class="external-link uri">https://docs.uppmax.uu.se/databases/blast/</a>. The
-<code>blast_databases</code> module implies that you don’t need to
+<code>BLAST_databases</code> module implies that you don’t need to
 specify where the databases are located on the file system. In detail,
 it sets the <code>BLASTDB</code> variable to the right folder. You can
 see it by typing <code>echo $BLASTDB</code> in the terminal.</p>
@@ -1512,7 +1512,7 @@ for a <code>blast</code> exercise.</p>
 <div class="accordion-body">
 <p><code>ssh</code> is used to connect to an external server.
 <code>-Y</code> forwards the graphical display to your computer. The
-address of the server is <code>rackham.uppmax.uu.se</code>. You need to
+address of the server is <code>pelle.uppmax.uu.se</code>. You need to
 add your user name in front of it, with a <code>@</code> in between.</p>
 <p>The course folder is at
 <code>/proj/g2020004/nobackup/3MK013/</code>.</p>
@@ -1636,7 +1636,7 @@ absolute path, starting with <code>/</code>.</p>
 <p>To bring up a local terminal on your Windows computer, click on the
 “+” sign on the main window of MobaXTerm. If that doesn’t work, use
 SFTP. Click on Session, SFTP, and fill in the Remote host as usual
-<code>rackham.uppmax.uu.se</code> and your username. Navigate to
+<code>pelle.uppmax.uu.se</code> and your username. Navigate to
 <code>/proj/g2020004/nobackup/3MK013/&lt;username&gt;/blast</code> on
 the right panel, then drag and drop files between your computer and
 Uppmax.</p>
@@ -2011,7 +2011,7 @@ on your own computer, not from UPPMAX</strong>.</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:<span class="op">&lt;</span>course base folde<span class="op">&gt;</span>/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast/<span class="op">&lt;</span>file<span class="op">&gt;</span> .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:<span class="op">&lt;</span>course base folde<span class="op">&gt;</span>/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast/<span class="op">&lt;</span>file<span class="op">&gt;</span> .</span></code></pre>
 </div>
 </div>
 </div>
@@ -2808,7 +2808,7 @@ name is <code>uppmax2025-3-4</code> and the cluster is
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>Remember those commands?</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -2829,12 +2829,12 @@ name is <code>uppmax2025-3-4</code> and the cluster is
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-Y</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-Y</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se</span></code></pre>
 </div>
 <p>Remember to replace <code>&lt;username&gt;</code> by your name.</p>
 <div class="codewrapper sourceCode" id="cb3">
@@ -2868,7 +2868,7 @@ folder. Use a relative path.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2886,7 +2886,7 @@ folder. Use a relative path.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Use the <code>../../</code> to see what’s two folders up, and then
 <code>data/rpoB/rpoB.fasta</code></p>
@@ -3017,7 +3017,7 @@ to complete the task.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
 <div class="accordion-body">
 <p>Use the <code>module</code> command to load
 <code>bioinfo-tools</code> and <code>MAFFT</code>. Use <code>time</code>
@@ -3038,7 +3038,7 @@ possibilities.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3079,7 +3079,7 @@ sys	0m0.181s</code></pre>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
 <div class="accordion-body">
 <p>Type <code>mafft</code> and try tab-complete to see all versions of
 <code>mafft</code>.</p>
@@ -3117,7 +3117,7 @@ complete the task.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3187,7 +3187,7 @@ are the blocks arranged?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>Use <code>scp</code> to copy files from Uppmax to your computer.
 <code>scp</code> allows wildcards, but you probably need to escape the
@@ -3195,7 +3195,7 @@ are the blocks arranged?</p>
 <div class="codewrapper sourceCode" id="cb18">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/<span class="op">&lt;</span>absolute path to phylogenetics folder<span class="op">&gt;</span>/rpoB.\*.aln <span class="op">&lt;</span>localfolder<span class="op">&gt;</span>/</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:/<span class="op">&lt;</span>absolute path to phylogenetics folder<span class="op">&gt;</span>/rpoB.\*.aln <span class="op">&lt;</span>localfolder<span class="op">&gt;</span>/</span></code></pre>
 </div>
 <figure><img src="fig/seaview.png" alt="Alignments shown in seaview" class="figure mx-auto d-block"></figure>
 </div>
@@ -3257,7 +3257,7 @@ have more than 40% gaps.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint5" aria-expanded="false" aria-controls="collapseHint5">
   <h4 class="accordion-header" id="headingHint5"> Give me a hint </h4>
 </button>
-<div id="collapseHint5" class="accordion-collapse collapse" data-bs-parent="#accordionHint5" aria-labelledby="headingHint5">
+<div id="collapseHint5" class="accordion-collapse collapse" aria-labelledby="headingHint5" data-bs-parent="#accordionHint5">
 <div class="accordion-body">
 <p>The “gap threshold” is actually expressed as fraction of non-gap
 residues.</p>
@@ -3270,7 +3270,7 @@ residues.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3300,7 +3300,7 @@ trimming</h3>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>Add a <code>-automated1</code> option and rerun as above, choosing a
 different output file.</p>
@@ -3329,7 +3329,7 @@ you used above.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <p>On your own laptop, go inside the folder where you want to import the
 files. Use <code>scp</code>. On some OS it is necessary to escape the
@@ -3379,7 +3379,7 @@ trimAl.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3434,7 +3434,7 @@ the web-based visualization tool.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint6" aria-expanded="false" aria-controls="collapseHint6">
   <h4 class="accordion-header" id="headingHint6"> Give me a hint </h4>
 </button>
-<div id="collapseHint6" class="accordion-collapse collapse" data-bs-parent="#accordionHint6" aria-labelledby="headingHint6">
+<div id="collapseHint6" class="accordion-collapse collapse" aria-labelledby="headingHint6" data-bs-parent="#accordionHint6">
 <div class="accordion-body">
 <p>Use <code>scp</code> as above.</p>
 <p>Then use <code>seaview</code> or another viewer to visualize and
@@ -3448,7 +3448,7 @@ compare results.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
   <h4 class="accordion-header" id="headingSolution10"> Show me the solution </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
 <div class="accordion-body">
 <p>The three alignments on top of each other look like this. Click <a href="fig/seaview_trimal_vs_clipkit.png">on this link</a> to better see
 the figure.</p>
@@ -3557,7 +3557,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
-Successfully installed 1 package in 3 milliseconds.</code></pre>
+Successfully installed 1 package in 3.1 milliseconds.</code></pre>
 </div>
 <p>And to load it:</p>
 <div class="codewrapper sourceCode" id="cb33">
@@ -3681,7 +3681,7 @@ group the two closest sequences. Which are they?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution11" aria-expanded="false" aria-controls="collapseSolution11">
   <h4 class="accordion-header" id="headingSolution11"> Show me the solution </h4>
 </button>
-<div id="collapseSolution11" class="accordion-collapse collapse" data-bs-parent="#accordionSolution11" aria-labelledby="headingSolution11">
+<div id="collapseSolution11" class="accordion-collapse collapse" aria-labelledby="headingSolution11" data-bs-parent="#accordionSolution11">
 <div class="accordion-body">
 <p>Here is the solution:</p>
 <table class="table">
@@ -3779,7 +3779,7 @@ clusters.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution12" aria-expanded="false" aria-controls="collapseSolution12">
   <h4 class="accordion-header" id="headingSolution12"> Show me the solution </h4>
 </button>
-<div id="collapseSolution12" class="accordion-collapse collapse" data-bs-parent="#accordionSolution12" aria-labelledby="headingSolution12">
+<div id="collapseSolution12" class="accordion-collapse collapse" aria-labelledby="headingSolution12" data-bs-parent="#accordionSolution12">
 <div class="accordion-body">
 <p>The average distance for AB to C is calculated as follow:</p>
 <p><span class="math inline">\(d(AB,C) = \dfrac{d(A,C) + d(B,C)}{2} =
@@ -3858,7 +3858,7 @@ to D again.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution13" aria-expanded="false" aria-controls="collapseSolution13">
   <h4 class="accordion-header" id="headingSolution13"> Show me the solution </h4>
 </button>
-<div id="collapseSolution13" class="accordion-collapse collapse" data-bs-parent="#accordionSolution13" aria-labelledby="headingSolution13">
+<div id="collapseSolution13" class="accordion-collapse collapse" aria-labelledby="headingSolution13" data-bs-parent="#accordionSolution13">
 <div class="accordion-body">
 <p><span class="math inline">\(d(ABC,D) = \dfrac{d(AB,D) * 2 + d(C,D) *
 1}{2 + 1} = \dfrac{3.5 * 2 + 5 * 1}{3} = 4\)</span></p>
@@ -3913,7 +3913,7 @@ lengths plotted with <code>edgelabels</code>:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution14" aria-expanded="false" aria-controls="collapseSolution14">
   <h4 class="accordion-header" id="headingSolution14"> Show me the solution </h4>
 </button>
-<div id="collapseSolution14" class="accordion-collapse collapse" data-bs-parent="#accordionSolution14" aria-labelledby="headingSolution14">
+<div id="collapseSolution14" class="accordion-collapse collapse" aria-labelledby="headingSolution14" data-bs-parent="#accordionSolution14">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb39">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3988,7 +3988,7 @@ computer.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution15" aria-expanded="false" aria-controls="collapseSolution15">
   <h4 class="accordion-header" id="headingSolution15"> Show me the solution </h4>
 </button>
-<div id="collapseSolution15" class="accordion-collapse collapse" data-bs-parent="#accordionSolution15" aria-labelledby="headingSolution15">
+<div id="collapseSolution15" class="accordion-collapse collapse" aria-labelledby="headingSolution15" data-bs-parent="#accordionSolution15">
 <div class="accordion-body">
 <p>On a Linux computer, you can run it on the command line:</p>
 <div class="codewrapper sourceCode" id="cb42">
@@ -4037,7 +4037,7 @@ with what you know of the tree of life? Any weird results?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution16" aria-expanded="false" aria-controls="collapseSolution16">
   <h4 class="accordion-header" id="headingSolution16"> Show me the solution </h4>
 </button>
-<div id="collapseSolution16" class="accordion-collapse collapse" data-bs-parent="#accordionSolution16" aria-labelledby="headingSolution16">
+<div id="collapseSolution16" class="accordion-collapse collapse" aria-labelledby="headingSolution16" data-bs-parent="#accordionSolution16">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4079,7 +4079,7 @@ containing IQ tree is called <code>iqtree</code>.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint7" aria-expanded="false" aria-controls="collapseHint7">
   <h4 class="accordion-header" id="headingHint7"> Give me a hint </h4>
 </button>
-<div id="collapseHint7" class="accordion-collapse collapse" data-bs-parent="#accordionHint7" aria-labelledby="headingHint7">
+<div id="collapseHint7" class="accordion-collapse collapse" aria-labelledby="headingHint7" data-bs-parent="#accordionHint7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb44">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4096,7 +4096,7 @@ containing IQ tree is called <code>iqtree</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution17" aria-expanded="false" aria-controls="collapseSolution17">
   <h4 class="accordion-header" id="headingSolution17"> Show me the solution </h4>
 </button>
-<div id="collapseSolution17" class="accordion-collapse collapse" data-bs-parent="#accordionSolution17" aria-labelledby="headingSolution17">
+<div id="collapseSolution17" class="accordion-collapse collapse" aria-labelledby="headingSolution17" data-bs-parent="#accordionSolution17">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4181,7 +4181,7 @@ Seaview? How?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint8" aria-expanded="false" aria-controls="collapseHint8">
   <h4 class="accordion-header" id="headingHint8"> Give me a hint </h4>
 </button>
-<div id="collapseHint8" class="accordion-collapse collapse" data-bs-parent="#accordionHint8" aria-labelledby="headingHint8">
+<div id="collapseHint8" class="accordion-collapse collapse" aria-labelledby="headingHint8" data-bs-parent="#accordionHint8">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb51">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4197,7 +4197,7 @@ Seaview? How?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution18" aria-expanded="false" aria-controls="collapseSolution18">
   <h4 class="accordion-header" id="headingSolution18"> Show me the solution </h4>
 </button>
-<div id="collapseSolution18" class="accordion-collapse collapse" data-bs-parent="#accordionSolution18" aria-labelledby="headingSolution18">
+<div id="collapseSolution18" class="accordion-collapse collapse" aria-labelledby="headingSolution18" data-bs-parent="#accordionSolution18">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb52">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4246,7 +4246,7 @@ box * For the trees shown in phylo.io, click on “Settings” &gt; “Branch
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint9" aria-expanded="false" aria-controls="collapseHint9">
   <h4 class="accordion-header" id="headingHint9"> Give me a hint </h4>
 </button>
-<div id="collapseHint9" class="accordion-collapse collapse" data-bs-parent="#accordionHint9" aria-labelledby="headingHint9">
+<div id="collapseHint9" class="accordion-collapse collapse" aria-labelledby="headingHint9" data-bs-parent="#accordionHint9">
 <div class="accordion-body">
 <p>What are <em>Glycine</em> and <em>Arabidopsis</em>? What about
 <em>Synechocystis</em> and <em>Microcystis</em>?</p>
@@ -4259,7 +4259,7 @@ box * For the trees shown in phylo.io, click on “Settings” &gt; “Branch
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint10" aria-expanded="false" aria-controls="collapseHint10">
   <h4 class="accordion-header" id="headingHint10"> Give me a hint </h4>
 </button>
-<div id="collapseHint10" class="accordion-collapse collapse" data-bs-parent="#accordionHint10" aria-labelledby="headingHint10">
+<div id="collapseHint10" class="accordion-collapse collapse" aria-labelledby="headingHint10" data-bs-parent="#accordionHint10">
 <div class="accordion-body">
 <p>Search for the accession number of the <em>Glycine</em> RpoB sequence
 on <a href="https://www.ncbi.nlm.nih.gov/search/" class="external-link">NCBI</a>. Any hint
@@ -4273,7 +4273,7 @@ there?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution19" aria-expanded="false" aria-controls="collapseSolution19">
   <h4 class="accordion-header" id="headingSolution19"> Show me the solution </h4>
 </button>
-<div id="collapseSolution19" class="accordion-collapse collapse" data-bs-parent="#accordionSolution19" aria-labelledby="headingSolution19">
+<div id="collapseSolution19" class="accordion-collapse collapse" aria-labelledby="headingSolution19" data-bs-parent="#accordionSolution19">
 <div class="accordion-body">
 <p>The two plant RpoB sequences are from chloroplastic genomes, and thus
 branch together with the cyanobacterial sequences, in some of the
@@ -4420,7 +4420,7 @@ generations?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution20" aria-expanded="false" aria-controls="collapseSolution20">
   <h4 class="accordion-header" id="headingSolution20"> Show me the solution </h4>
 </button>
-<div id="collapseSolution20" class="accordion-collapse collapse" data-bs-parent="#accordionSolution20" aria-labelledby="headingSolution20">
+<div id="collapseSolution20" class="accordion-collapse collapse" aria-labelledby="headingSolution20" data-bs-parent="#accordionSolution20">
 <div class="accordion-body">
 <p>In my simulations, no allele got fixed, the final allele frequencies
 range20-80%</p>
@@ -4448,7 +4448,7 @@ the simulations. What’s the range of final frequencies now?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution21" aria-expanded="false" aria-controls="collapseSolution21">
   <h4 class="accordion-header" id="headingSolution21"> Show me the solution </h4>
 </button>
-<div id="collapseSolution21" class="accordion-collapse collapse" data-bs-parent="#accordionSolution21" aria-labelledby="headingSolution21">
+<div id="collapseSolution21" class="accordion-collapse collapse" aria-labelledby="headingSolution21" data-bs-parent="#accordionSolution21">
 <div class="accordion-body">
 <p>In my simulations, no allele got fixed, and the final allele
 frequencies range 45-55%</p>
@@ -4476,7 +4476,7 @@ repeat these simulations. What’s the range of final frequencies now?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution22" aria-expanded="false" aria-controls="collapseSolution22">
   <h4 class="accordion-header" id="headingSolution22"> Show me the solution </h4>
 </button>
-<div id="collapseSolution22" class="accordion-collapse collapse" data-bs-parent="#accordionSolution22" aria-labelledby="headingSolution22">
+<div id="collapseSolution22" class="accordion-collapse collapse" aria-labelledby="headingSolution22" data-bs-parent="#accordionSolution22">
 <div class="accordion-body">
 <p>In my simulations, one allele got fixed quickly, the latest one was
 at generation 100.</p>
@@ -4503,7 +4503,7 @@ at generation 100.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution23" aria-expanded="false" aria-controls="collapseSolution23">
   <h4 class="accordion-header" id="headingSolution23"> Show me the solution </h4>
 </button>
-<div id="collapseSolution23" class="accordion-collapse collapse" data-bs-parent="#accordionSolution23" aria-labelledby="headingSolution23">
+<div id="collapseSolution23" class="accordion-collapse collapse" aria-labelledby="headingSolution23" data-bs-parent="#accordionSolution23">
 <div class="accordion-body">
 <p>It is clear that stochastic (random) variation in allele frequencies
 strongly affects the probability of fixation of alleles in small
@@ -4544,7 +4544,7 @@ the three population sizes?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution24" aria-expanded="false" aria-controls="collapseSolution24">
   <h4 class="accordion-header" id="headingSolution24"> Show me the solution </h4>
 </button>
-<div id="collapseSolution24" class="accordion-collapse collapse" data-bs-parent="#accordionSolution24" aria-labelledby="headingSolution24">
+<div id="collapseSolution24" class="accordion-collapse collapse" aria-labelledby="headingSolution24" data-bs-parent="#accordionSolution24">
 <div class="accordion-body">
 <p>About the same time, but the trajectories are much smoother with
 larger populations. In the small population, it happens that the
@@ -4584,7 +4584,7 @@ individual getting a mutation:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution25" aria-expanded="false" aria-controls="collapseSolution25">
   <h4 class="accordion-header" id="headingSolution25"> Show me the solution </h4>
 </button>
-<div id="collapseSolution25" class="accordion-collapse collapse" data-bs-parent="#accordionSolution25" aria-labelledby="headingSolution25">
+<div id="collapseSolution25" class="accordion-collapse collapse" aria-labelledby="headingSolution25" data-bs-parent="#accordionSolution25">
 <div class="accordion-body">
 <p>Most new alleles go extinct quickly. In my simulations, I usually get
 one of the slightly deleterious mutations fixed after 20
@@ -4785,7 +4785,7 @@ the correct directory using the <code>pwd</code> command.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4821,7 +4821,7 @@ directories:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4885,7 +4885,7 @@ data</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4922,7 +4922,7 @@ argument to <code>wget</code>.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4938,7 +4938,7 @@ argument to <code>wget</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <p>Search for <em>Mycobacterium tuberculosis</em> on the <a href="https://www.ncbi.nlm.nih.gov/datasets/genome/" class="external-link">Datasets/Genome</a>
 website. Identify the “reference genome” (at the top), click on the
@@ -5004,7 +5004,7 @@ called SeqKit (and a corresponding module at Uppmax) that can help.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>The genome has 4’411’532 bp. The <code>stat</code> command of
 <code>seqkit</code> is helpful.</p>
@@ -5211,7 +5211,7 @@ end (1 or 2).</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>Softlinks are done with <code>ln -s</code>. Use the same loop
 backbone as above, and nest a <code>for</code> loop over the two ends of
@@ -5225,7 +5225,7 @@ the reads (1 and 2).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5347,7 +5347,7 @@ TCNAGTCAGCACACACATGCGAAAGAATCCACCGACTAGGGTCAGCGGGGTTTGCAGTTGGTCGCGGACGTAACCG
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5364,7 +5364,7 @@ TCNAGTCAGCACACACATGCGAAAGAATCCACCGACTAGGGTCAGCGGGGTTTGCAGTTGGTCGCGGACGTAACCG
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb27">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5513,7 +5513,7 @@ with the same name? Discuss with your neighbour.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <p>There are 14 FASTQ files. Each sample has <a href="https://thesequencingcenter.com/knowledge-base/what-are-paired-end-reads/" class="external-link">paired-end
 reads</a>.</p>
@@ -5766,7 +5766,7 @@ neighbor.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5819,7 +5819,7 @@ redirect the output into <code>_trim.fastq</code> files.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
 <div class="accordion-body">
 <p>Create a new variable, built from the input file name (ending in
 <code>.fastq.gz</code>).</p>
@@ -5847,7 +5847,7 @@ are no spaces before or after the <code>=</code>.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
   <h4 class="accordion-header" id="headingSolution10"> Show me the solution </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -5917,7 +5917,7 @@ the same size as our reference genome (4411532 bases).</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution11" aria-expanded="false" aria-controls="collapseSolution11">
   <h4 class="accordion-header" id="headingSolution11"> Show me the solution </h4>
 </button>
-<div id="collapseSolution11" class="accordion-collapse collapse" data-bs-parent="#accordionSolution11" aria-labelledby="headingSolution11">
+<div id="collapseSolution11" class="accordion-collapse collapse" aria-labelledby="headingSolution11" data-bs-parent="#accordionSolution11">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb56">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6781,7 +6781,7 @@ into it.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>Remember those commands?</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -6801,7 +6801,7 @@ into it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6846,7 +6846,7 @@ Pelle.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>Use <code>mkdir</code> command to create a new directory, and upload
 the file into the <code>params</code> directory using <code>scp</code>
@@ -6860,7 +6860,7 @@ command.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6904,7 +6904,7 @@ use the <code>grep</code> command to count.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
 <div class="accordion-body">
 <p>The <code>grep -v "&gt;"</code> command removes the header line,
 <code>tr -d '\n'</code> removes newlines, and <code>wc -c</code> counts
@@ -6919,7 +6919,7 @@ acids.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -6953,7 +6953,7 @@ process.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
 <div class="accordion-body">
 <p>Use <code>mkdir</code> command to create a new directory.</p>
 </div>
@@ -6965,7 +6965,7 @@ process.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7012,7 +7012,7 @@ command.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint5" aria-expanded="false" aria-controls="collapseHint5">
   <h4 class="accordion-header" id="headingHint5"> Give me a hint </h4>
 </button>
-<div id="collapseHint5" class="accordion-collapse collapse" data-bs-parent="#accordionHint5" aria-labelledby="headingHint5">
+<div id="collapseHint5" class="accordion-collapse collapse" aria-labelledby="headingHint5" data-bs-parent="#accordionHint5">
 <div class="accordion-body">
 <p>Check AlphaFold3 input file preparation instruction <a href="https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md" class="external-link">here</a></p>
 </div>
@@ -7024,7 +7024,7 @@ command.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <p>Check the section about versions in the AlphaFold3 input file
 preparation instruction.</p>
@@ -7092,7 +7092,7 @@ check the status of your job using the
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint6" aria-expanded="false" aria-controls="collapseHint6">
   <h4 class="accordion-header" id="headingHint6"> Give me a hint </h4>
 </button>
-<div id="collapseHint6" class="accordion-collapse collapse" data-bs-parent="#accordionHint6" aria-labelledby="headingHint6">
+<div id="collapseHint6" class="accordion-collapse collapse" aria-labelledby="headingHint6" data-bs-parent="#accordionHint6">
 <div class="accordion-body">
 <p>You can check the log file generated by the <code>slurm</code>
 job.</p>
@@ -7105,7 +7105,7 @@ job.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <p>The log file will have a name like
 <code>slurm-&lt;job_id&gt;.out</code>.</p>
@@ -7157,7 +7157,7 @@ Adenylate kinase? Does it indicate a good prediction?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint7" aria-expanded="false" aria-controls="collapseHint7">
   <h4 class="accordion-header" id="headingHint7"> Give me a hint </h4>
 </button>
-<div id="collapseHint7" class="accordion-collapse collapse" data-bs-parent="#accordionHint7" aria-labelledby="headingHint7">
+<div id="collapseHint7" class="accordion-collapse collapse" aria-labelledby="headingHint7" data-bs-parent="#accordionHint7">
 <div class="accordion-body">
 <p>You can find the pTM and ipTM scores in the
 <code>_summary_confidences.json</code> file. Look for the keys
@@ -7171,7 +7171,7 @@ Adenylate kinase? Does it indicate a good prediction?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <p>First find the confidence scores using the command below:</p>
 <div class="codewrapper sourceCode" id="cb18">
@@ -7280,7 +7280,7 @@ known structure? Does it indicate a good prediction?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint8" aria-expanded="false" aria-controls="collapseHint8">
   <h4 class="accordion-header" id="headingHint8"> Give me a hint </h4>
 </button>
-<div id="collapseHint8" class="accordion-collapse collapse" data-bs-parent="#accordionHint8" aria-labelledby="headingHint8">
+<div id="collapseHint8" class="accordion-collapse collapse" aria-labelledby="headingHint8" data-bs-parent="#accordionHint8">
 <div class="accordion-body">
 <p>Align predicted structure with the known structure from PDB database,
 using PyMOL.</p>
@@ -7293,7 +7293,7 @@ using PyMOL.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
 <div class="accordion-body">
 <p>A low RMSD (e.g. &lt;2 Å) indicates strong agreement with the known
 structure.<br>
@@ -7385,7 +7385,7 @@ AlphaFold3 performed well in predicting the protein complex?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
 <div class="accordion-body">
 <p>If both confidence scores (pTM/ipTM) are high and RMSD is low,
 AlphaFold3 performed well.<br>
@@ -7483,7 +7483,7 @@ hold the results from snippy.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7604,7 +7604,7 @@ information:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>From the <code>molepi/results/snps</code> folder:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -7653,7 +7653,7 @@ H37Rv.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7774,7 +7774,7 @@ Don’t forget to load the right module.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7790,7 +7790,7 @@ Don’t forget to load the right module.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7863,7 +7863,7 @@ models? What does e.g. “JC+ASC+G4” means?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
 <div class="accordion-body">
 <p>The log file of IQ-TREE contains a lot of information.</p>
 <p>The <a href="http://www.iqtree.org/doc/Substitution-Models#dna-models" class="external-link">IQ-TREE
@@ -7877,7 +7877,7 @@ website</a> contains a description of the DNA substitution models.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -7922,12 +7922,12 @@ visualize it. Do you see a way to assess the quality of the tree?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:<span class="op">&lt;</span>file with path<span class="op">&gt;</span> .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:<span class="op">&lt;</span>file with path<span class="op">&gt;</span> .</span></code></pre>
 </div>
 </div>
 </div>
@@ -7969,7 +7969,7 @@ there.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>

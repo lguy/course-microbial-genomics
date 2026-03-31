@@ -426,17 +426,17 @@ indispensable.</p>
 <div class="section level3">
 <h3 id="resources-at-uppmax">Resources at UPPMAX<a class="anchor" aria-label="anchor" href="#resources-at-uppmax"></a></h3>
 <p><code>BLAST</code> is available at UPPMAX. To load the
-<code>blast</code> module, you will need to load the
-<code>bioinfo-tools</code> module first. The <code>blast</code> module
-also loads the <code>blast_databases</code> module, to be able to use
-the standard databases that NCBI maintains.</p>
+<code>BLAST+</code> module, as it is knonw in Pelle, use the
+<code>module load</code> command. In the same command, also load the
+<code>BLAST_databases</code> module, to be able to use the standard
+databases that NCBI maintains.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools blast</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">module</span> load BLAST+ BLAST_databases</span></code></pre>
 </div>
 <p>Databases available at UPPMAX are described here: <a href="https://docs.uppmax.uu.se/databases/blast/" class="external-link uri">https://docs.uppmax.uu.se/databases/blast/</a>. The
-<code>blast_databases</code> module implies that you don’t need to
+<code>BLAST_databases</code> module implies that you don’t need to
 specify where the databases are located on the file system. In detail,
 it sets the <code>BLASTDB</code> variable to the right folder. You can
 see it by typing <code>echo $BLASTDB</code> in the terminal.</p>
@@ -477,7 +477,7 @@ for a <code>blast</code> exercise.</p>
 <div class="accordion-body">
 <p><code>ssh</code> is used to connect to an external server.
 <code>-Y</code> forwards the graphical display to your computer. The
-address of the server is <code>rackham.uppmax.uu.se</code>. You need to
+address of the server is <code>pelle.uppmax.uu.se</code>. You need to
 add your user name in front of it, with a <code>@</code> in between.</p>
 <p>The course folder is at
 <code>/proj/g2020004/nobackup/3MK013/</code>.</p>
@@ -497,7 +497,7 @@ add your user name in front of it, with a <code>@</code> in between.</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ssh</span> –Y username@rackham.uppmax.uu.se</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ssh</span> –Y username@pelle.uppmax.uu.se</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">mkdir</span> blast</span></code></pre>
 </div>
@@ -626,7 +626,7 @@ absolute path, starting with <code>/</code>.</p>
 <p>To bring up a local terminal on your Windows computer, click on the
 “+” sign on the main window of MobaXTerm. If that doesn’t work, use
 SFTP. Click on Session, SFTP, and fill in the Remote host as usual
-<code>rackham.uppmax.uu.se</code> and your username. Navigate to
+<code>pelle.uppmax.uu.se</code> and your username. Navigate to
 <code>/proj/g2020004/nobackup/3MK013/&lt;username&gt;/blast</code> on
 the right panel, then drag and drop files between your computer and
 Uppmax.</p>
@@ -643,7 +643,7 @@ Uppmax.</p>
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">scp</span> rpoB_ecoli.fasta <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">scp</span> rpoB_ecoli.fasta <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast</span></code></pre>
 </div>
 </div>
 </div>
@@ -1079,7 +1079,7 @@ on your own computer, not from UPPMAX</strong>.</p>
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:<span class="op">&lt;</span>course base folde<span class="op">&gt;</span>/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast/<span class="op">&lt;</span>file<span class="op">&gt;</span> .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:<span class="op">&lt;</span>course base folde<span class="op">&gt;</span>/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast/<span class="op">&lt;</span>file<span class="op">&gt;</span> .</span></code></pre>
 </div>
 </div>
 </div>
@@ -1100,7 +1100,7 @@ on your own computer, not from UPPMAX</strong>.</p>
 <div class="codewrapper sourceCode" id="cb23">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/blast/rpoB_landmark.tab .</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"></code></pre>
 </div>
 </div>
 </div>
