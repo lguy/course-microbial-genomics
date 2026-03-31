@@ -60,13 +60,13 @@ The whole exercise is based on RpoB, the [&beta;-subunit of the bacterial RNA po
 
 ### Resources at UPPMAX
 
-`BLAST` is available at UPPMAX. To load the `blast` module, you will need to load the `bioinfo-tools` module first. The `blast` module also loads the `blast_databases` module, to be able to use the standard databases that NCBI maintains. 
+`BLAST` is available at UPPMAX. To load the `BLAST+` module, as it is knonw in Pelle, use the `module load` command. In the same command, also load the `BLAST_databases` module, to be able to use the standard databases that NCBI maintains. 
 
 ```bash
-module load bioinfo-tools blast
+module load BLAST+ BLAST_databases
 ```
 
-Databases available at UPPMAX are described here: https://docs.uppmax.uu.se/databases/blast/. The `blast_databases` module implies that you don't need to specify where the databases are located on the file system. In detail, it sets the `BLASTDB` variable to the right folder. You can see it by typing `echo $BLASTDB` in the terminal.   
+Databases available at UPPMAX are described here: https://docs.uppmax.uu.se/databases/blast/. The `BLAST_databases` module implies that you don't need to specify where the databases are located on the file system. In detail, it sets the `BLASTDB` variable to the right folder. You can see it by typing `echo $BLASTDB` in the terminal.   
 
 Gene and protein records are usually associated with a `taxid`, to describe what organisms they come from. This can be very useful to limit the search to a certain taxon, or to exclude another taxon. E.g. if you want to investigate whether a certain gene has been transferred from bacteria to archaea: you would search for that specific by excluding all bacteria and eukaryotes. 
 
@@ -88,7 +88,7 @@ All exercises should be performed inside `/proj/g2020004/nobackup/3MK013/<userna
 
 ::: hint
 
-`ssh` is used to connect to an external server. `-Y` forwards the graphical display to your computer. The address of the server is `rackham.uppmax.uu.se`. You need to add your user name in front of it, with a `@` in between. 
+`ssh` is used to connect to an external server. `-Y` forwards the graphical display to your computer. The address of the server is `pelle.uppmax.uu.se`. You need to add your user name in front of it, with a `@` in between. 
 
 The course folder is at `/proj/g2020004/nobackup/3MK013/`.
 
@@ -101,7 +101,7 @@ Inside it, create a `blast` folder for this exercise.
 ::: instructor
 
 ```bash
-ssh –Y username@rackham.uppmax.uu.se
+ssh –Y username@pelle.uppmax.uu.se
 cd /proj/g2020004/nobackup/3MK013/<username>/
 mkdir blast
 ```
@@ -180,12 +180,12 @@ scp <file to copy> <username>@<server>:<remote file location>
 
 The remote file location can be a relative path from your home or an absolute path, starting with `/`. 
 
-To bring up a local terminal on your Windows computer, click on the "+" sign on the main window of MobaXTerm. If that doesn't work, use SFTP. Click on Session, SFTP, and fill in the Remote host as usual `rackham.uppmax.uu.se` and your username. Navigate to `/proj/g2020004/nobackup/3MK013/<username>/blast` on the right panel, then drag and drop files between your computer and Uppmax.
+To bring up a local terminal on your Windows computer, click on the "+" sign on the main window of MobaXTerm. If that doesn't work, use SFTP. Click on Session, SFTP, and fill in the Remote host as usual `pelle.uppmax.uu.se` and your username. Navigate to `/proj/g2020004/nobackup/3MK013/<username>/blast` on the right panel, then drag and drop files between your computer and Uppmax.
 
 ::: instructor
 
 ```bash
-scp rpoB_ecoli.fasta <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast
+scp rpoB_ecoli.fasta <username>@pelle.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast
 ```
 
 ::::::::::::::
@@ -418,7 +418,7 @@ blastp -db <db> -query <fasta file> -evalue <e-value> -outfmt <number> > <output
 To import the file to your computer, to the current directory, use the same `scp` program as above. **This should be run on your own computer, not from UPPMAX**.
 
 ```bash
-scp <username>@rackham.uppmax.uu.se:<course base folde>/3MK013/<username>/blast/<file> .
+scp <username>@pelle.uppmax.uu.se:<course base folde>/3MK013/<username>/blast/<file> .
 ```
 
 ::::::::::::
@@ -430,7 +430,6 @@ blastp -db landmark -query rpoB_ecoli.fasta -evalue 1e-6 -outfmt 6 > rpoB_landma
 ``` 
 
 ```bash
-scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/blast/rpoB_landmark.tab .
 ```
 
 ::::::::::::
