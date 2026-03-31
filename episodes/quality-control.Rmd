@@ -99,7 +99,7 @@ pwd
 ::: instructor
 
 ```bash
-interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
+interactive -A uppmax2026-1-93 -M snowy -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>
 pwd
 ```

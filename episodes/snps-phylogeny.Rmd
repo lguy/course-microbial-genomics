@@ -34,7 +34,7 @@ If you don't have all the trimmed reads, extract them from the archive in the `d
 
 
 ```bash
-interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
+interactive -A uppmax2026-1-93 -M snowy -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/data
 mv trimmed_fastq trimmed_fastq_partial
 tar xvzf ../../../data/trimmed_fastq.tar.gz
@@ -54,7 +54,7 @@ First we'll start the interactive session, load the snippy module and create a `
 ::: solution
 
 ```bash
-interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
+interactive -A uppmax2026-1-93 -M snowy -t 04:00:00
 module load bioinfo-tools snippy
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 mkdir snps

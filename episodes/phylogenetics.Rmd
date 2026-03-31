@@ -228,7 +228,7 @@ We will now use IQ-TREE to infer a maximum-likelihood (ML) tree of the RpoB data
 
 :::::: challenge
 
-Get to the right folder, require compute time and load the right modules. The project is `uppmax2025-3-4`. The module containing IQ tree is called `iqtree`.
+Get to the right folder, require compute time and load the right modules. The project is `uppmax2026-1-93`. The module containing IQ tree is called `iqtree`.
 
 ::: hint
 
@@ -252,7 +252,7 @@ module load <general bioinfo module> iqtree
 ::: instructor
 
  ```bash
-interactive -A uppmax2025-3-4 -M snowy -t 4:00:00
+interactive -A uppmax2026-1-93 -M snowy -t 4:00:00
 module load bioinfo-tools iqtree
 cd /proj/g2020004/nobackup/3MK013/<username>/phylogenetics
 ```

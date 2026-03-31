@@ -20,6 +20,13 @@ exercises: 240
 
 <!---
 
+Changelog VT2026
+- Adapted rackham -> pelle, including new modules and editor
+- Adapted project number
+- Switched gedit -> nedit
+- Added a bit more text for PSSM
+- Added a link to a finished version of the psiblast so that students don't need to wait. 
+
 Feedback VT2025
 - Perhaps too long / challenging; 80% of students stayed until the last minute
 - They don't know what a PSSM (if that's the word) is; Chayan explained it on the blackboard
@@ -111,7 +118,7 @@ mkdir blast
 
 ## Challenge 0.2
 
-Access an `interactive` session that is booked for us. The session is `uppmax2025-3-4`. Use the `snowy` cluster, for 4 hours.
+Access an `interactive` session that is booked for us. The session is `uppmax2026-1-93`. Use the `pelle` cluster, for 4 hours.
 
 ::: solution
 
@@ -120,6 +127,14 @@ interactive -A <project> -M <cluster> -t <hh:mm:ss>
 ```
 
 ::::::::::::
+
+::: instructor
+
+```bash
+interactive -A uppmax2026-1-93 -M pelle -t 04:00:00
+```
+
+::::::::::::::
 
 ::::::::::::::::
 
@@ -198,15 +213,16 @@ Use `man scp` to show the manual for scp.
 
 ## Challenge 1.2.2: Use copy/paste
 
-A quick and dirty method is to open a graphical text editor on the remote server and paste the information in it. One such tool is `gedit`. Paste the content of the file into `gedit` and save it in the appropriate folder, under `rpoB_ecoli.fasta`.
+A quick and dirty method is to open a graphical text editor on the remote server and paste the information in it. One such tool is `nedit`. Paste the content of the file into `nedit` and save it in the appropriate folder, under `rpoB_ecoli.fasta`.
 
 ::: solution
 
 On UPPMAX
 
 ```bash
+module load NEdit
 cd /proj/g2020004/nobackup/3MK013/<username>/blast
-gedit rpoB_ecoli.fasta &
+nedit rpoB_ecoli.fasta &
 ```
 
 The `&` executes the program in the background, leaving you control of the command line.
@@ -276,21 +292,21 @@ time blastdbcmd -db <db> -entry <accession> > /dev/null
 
 ```output
 Database: Landmark database for SmartBLAST
-	403,974 sequences; 229,101,880 total residues
+	506,514 sequences; 311,806,943 total residues
 
-Date: Oct 17, 2023  5:37 PM	Longest sequence: 35,991 residues
+Date: Aug 6, 2025  4:19 AM	Longest sequence: 35,991 residues
 
 [...]
 
 Database: All non-redundant GenBank CDS translations+PDB+SwissProt+PIR+PRF excluding environmental samples from WGS projects
-	721,441,320 sequences; 277,730,601,621 total residues
+	1,008,714,371 sequences; 383,393,166,825 total residues
 
-Date: Feb 25, 2024  2:57 AM	Longest sequence: 98,182 residues
+Date: Feb 24, 2026  4:54 AM	Longest sequence: 98,182 residues
 
 [...]
-real	0m1.369s     # for landmark
+real	0m0.417s     # for landmark
 [...]
-real	0m10.059s.   # for nr
+real	0m5.418s     # for nr
 
 ```
 
@@ -418,7 +434,7 @@ blastp -db <db> -query <fasta file> -evalue <e-value> -outfmt <number> > <output
 To import the file to your computer, to the current directory, use the same `scp` program as above. **This should be run on your own computer, not from UPPMAX**.
 
 ```bash
-scp <username>@pelle.uppmax.uu.se:<course base folde>/3MK013/<username>/blast/<file> .
+scp <username>@pelle.uppmax.uu.se:<course base folder>/3MK013/<username>/blast/<file> .
 ```
 
 ::::::::::::
@@ -575,10 +591,10 @@ grep ">" <fasta_file> | less
 
 And then count them by piping the result to `wc` instead.
 
-There should be around 70 sequences. 
+There should be around 80 sequences. 
 
 ```output
-70
+80
 ```
 
 For the upcoming episode on multiple sequence alignment, you will use a subset of these. 
@@ -629,7 +645,7 @@ blastdbcmd -db <db> -entry <accession> > <output_file>
 ```
 
 ```output
->WP_010945868.1 RMD1 family protein [Legionella pneumophila] >ERH46094.1 hypothetical protein N750_05210 [Legionella pneumophila str. Leg01/53] >ERH46577.1 hypothetical protein N751_07400 [Legionella pneumophila str. Leg01/11] >ERI48669.1 hypothetical protein N749_09265 [Legionella pneumophila str. Leg01/20] >MFO2512789.1 RMD1 family protein [Legionella pneumophila serogroup 2] >MFO2594790.1 RMD1 family protein [Legionella pneumophila serogroup 3] >MFO2645706.1 RMD1 family protein [Legionella pneumophila serogroup 8] >MFO2989133.1 RMD1 family protein [Legionella pneumophila serogroup 6] >MFO3234997.1 RMD1 family protein [Legionella pneumophila serogroup 5] >MFO3476243.1 RMD1 family protein [Legionella pneumophila serogroup 7] >MFO8588967.1 RMD1 family protein [Legionella pneumophila serogroup 14] >MFO8774718.1 RMD1 family protein [Legionella pneumophila serogroup 10] >MFP3789783.1 RMD1 family protein [Legionella pneumophila serogroup 9]
+>WP_010945868.1 RMD1 family protein [Legionella pneumophila]
 MECLSFCVAKTIDLTRLDLHLKNVSKEFSAVKTRDVIRLNSHRNKDHTLFIFKNGTVVSWGVKRYQIHEYLDIIKLLVDK
 PVALLVHDEFHYQIGDKTAIEPHGFYDVDCLTIEEDSDELKLSLSYGFSQSVKLQYFETIIDALIEKYNPLIQALSHKGE
 MPISRKQIQQVIGEILGAKSELNLISNFLYHPKYFWQHPTLEEHFSMLERYLHIQRRVNAINHRLDTLNEIFDMFNGYLE
@@ -650,10 +666,12 @@ blastdbcmd -db refseq_protein -entry WP_010945868.1 > ravC_LP.fasta
 
 ### Task 2.2: Align RavC to sequences belonging to *Legionellales*
 
-That task is a bit complex, so let's break it down in several steps. You will:
+That task is a bit complex, so let's break it down in several steps. Let's build and use a [PSSM  matrix](https://en.wikipedia.org/wiki/Position_weight_matrix), the amino-acid profile built by psiblast. The matrix is a way to represent a multiple-sequence alignment in a statistical way. In brief, each column (or position) of the alignment is represented by a vector of the probabilities to find each nucleotide (or amino-acid) at that position. 
+
+You will:
 
 1. align the RavC sequence to the `refseq_select_prot` database, using `psiblast`, and put the result into the file `ravC_Leg.psiblast`. 
-1. save the [PSSM (the amino-acid profile built by psiblast)](https://en.wikipedia.org/wiki/Position_weight_matrix) after the last round, both in its "native" form and in text format.
+1. save the PSSM matrix after the last round, both in its "native" form and in text format.
 1. filter hits so that only hits with E-value < 1e-6 are shown
 1. filter hits so that only hits with E-value < 1e-10 are included in the PSSM
 1. filter hits so that only hits belonging to the order *Legionelalles* are included
@@ -822,8 +840,9 @@ psiblast -in_pssm <binary pssm file> -db <db> -inclusion_ethresh <evalue> -evalu
 
 ::: instructor
 
+```bash
 psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 > ravC_all.psiblast
-
+```
 
 ::::::::::::
 
@@ -833,7 +852,7 @@ You want to have a tabular result format with comments, to help you understand t
 
 ::: hint
 
-Inspect the "Formatting options" section of the psiblast help page.
+Inspect the "Formatting options" section of the `psiblast` help page.
 
 :::
 
@@ -841,13 +860,17 @@ Inspect the "Formatting options" section of the psiblast help page.
 
 The correct `-outfmt` is 7. The string with the correct columns is composed with this number and then column names, separated by spaces, the whole enclosed by double quotes. An example in the help file of psiblast is `"10 delim=@ qacc sacc score"`
 
+```bash
 psiblast -in_pssm <binary pssm file> -db <db> -inclusion_ethresh <evalue> -evalue <evalue> -max_target_seqs <number> -num_iterations 10 -outfmt "<format_number> <col1> <col2> ..." > ravC_all.psiblast
+```
 
 ::::::::::::
 
 ::: instructor
 
+```bash
 psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 10 -outfmt "7 qaccver saccver pident length mismatch gapopen qstart qend sstart send qcovs evalue bitscore ssciname scomname sskingdom" > ravC_all.psiblast
+```
 
 ::::::::::::
 
@@ -855,6 +878,12 @@ psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 
 ## Challenge 2.3.3: Run the command and examine the results
 
 This will take a while to run, maybe 30 minutes. When done, open the result file and examine it. Did you find hits in the eukaryotes? 
+
+Getting impatient? You can examine an already-made file obtained with the same command. It is available at:
+
+```bash
+ls /proj/g2020004/private/3MK013/lionel/blast/ravC_all.psiblast
+```
 
 ::::::::::::::::
 
