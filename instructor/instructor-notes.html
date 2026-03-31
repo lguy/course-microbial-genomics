@@ -590,7 +590,7 @@ any links that you are not going to use.
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> snowy <span class="at">-t</span> 4:00:00</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> pelle <span class="at">-t</span> 4:00:00</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span></span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">mkdir</span> phylogenetics</span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="bu">cd</span> phylogenetics</span></code></pre>
@@ -611,7 +611,7 @@ any links that you are not going to use.
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools MAFFT</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">module</span> load MAFFT</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="bu">time</span> mafft-fftns rpoB_renamed.fasta <span class="op">&gt;</span> rpoB.fftns.aln</span></code></pre>
 </div>
 <hr>
@@ -689,23 +689,23 @@ compare results.</p>
 <div class="codewrapper sourceCode" id="cb46">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> snowy <span class="at">-t</span> 4:00:00</span>
-<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools iqtree</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> pelle <span class="at">-t</span> 4:00:00</span>
+<span id="cb46-2"><a href="#cb46-2" tabindex="-1"></a><span class="ex">module</span> load IQ-TREE</span>
 <span id="cb46-3"><a href="#cb46-3" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/phylogenetics</span></code></pre>
 </div>
 <hr>
 <br><h3 id="msa-phylogenetics-headingInstructor12">
 <a href="msa-phylogenetics.html#headingInstructor12">Instructor Note</a><a class="anchor" aria-label="anchor" href="#msa-phylogenetics-headingInstructor12"></a>
 </h3>
+<div class="codewrapper sourceCode" id="cb53">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> rpoB.fftns.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
+</div>
 <div class="codewrapper sourceCode" id="cb54">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.fftns.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
-</div>
-<div class="codewrapper sourceCode" id="cb55">
-<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" tabindex="-1"></a><span class="ex">figtree</span> rpoB.fftns.aln.treefile <span class="kw">&amp;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" tabindex="-1"></a><span class="ex">figtree</span> rpoB.fftns.aln.treefile <span class="kw">&amp;</span></span></code></pre>
 </div>
 <hr>
 <br></section><section id="quality-control"><h2 class="section-heading"><a href="quality-control.html">Reads, QC and trimming</a></h2>
@@ -716,7 +716,7 @@ compare results.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> snowy <span class="at">-t</span> 04:00:00</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> pelle <span class="at">-t</span> 04:00:00</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="bu">pwd</span></span></code></pre>
 </div>
@@ -776,7 +776,7 @@ compare results.</p>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> snowy <span class="at">-t</span> 04:00:00</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> pelle <span class="at">-t</span> 04:00:00</span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">mkdir</span> results/assembly</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="bu">cd</span> data/trimmed_fastq</span></code></pre>
@@ -904,7 +904,7 @@ and require you to start an interactive session.</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> snowy <span class="at">-t</span> 04:00:00</span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> uppmax2026-1-93 <span class="at">-M</span> pelle <span class="at">-t</span> 04:00:00</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/data</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">mv</span> trimmed_fastq trimmed_fastq_partial</span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">tar</span> xvzf ../../../data/trimmed_fastq.tar.gz</span>
@@ -930,8 +930,8 @@ and require you to start an interactive session.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="ex">module</span> load bioinfo-tools iqtree</span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="ex">module</span> load IQ-TREE</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC</span></code></pre>
 </div>
 <hr>
 <br><h3 id="snps-phylogeny-headingInstructor4">
@@ -950,7 +950,7 @@ and require you to start an interactive session.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="bu">cd</span> /proj/g2020004/nobackup/3MK013/<span class="op">&lt;</span>username<span class="op">&gt;</span>/molepi/results/snps</span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC <span class="at">-b</span> 100 <span class="at">--prefix</span> core.aln.100npb</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> core.aln <span class="at">-m</span> MFP+ASC <span class="at">-b</span> 100 <span class="at">--prefix</span> core.aln.100npb</span>
 <span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a><span class="bu">cd</span> ..</span>
 <span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="fu">mkdir</span> tree100npb</span>
 <span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a><span class="fu">mv</span> snps/core.aln.100npb<span class="pp">*</span> tree100npb/</span></code></pre>

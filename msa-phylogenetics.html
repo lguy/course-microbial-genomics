@@ -364,6 +364,12 @@
 </div>
 </div>
 </div>
+<!--
+
+Changelog VT2026
+
+
+-->
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
 <p>In this episode, we are exploring multiple sequence alignment (MSA).
@@ -399,7 +405,7 @@ previous exercise on <code>BLAST</code>.</p>
 create a <code>phylogenetics</code> subfolder, and move into it. Also,
 start the <code>interactive</code> session, for 4 hours. The session
 name is <code>uppmax2026-1-93</code> and the cluster is
-<code>snowy</code>.</p>
+<code>pelle</code>.</p>
 </div>
 </div>
 </div>
@@ -495,26 +501,6 @@ folder. Use a relative path.</p>
 </div>
 </div>
 
-<div id="challenge-1.1-prepare-the-terrain" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="challenge-1.1-prepare-the-terrain" class="callout-inner">
-<h3 class="callout-title">Challenge 1.1: prepare the terrain<em>
-(continued)</em>
-</h3>
-<div class="callout-content">
-<!---
-
-```bash
-cp ../../data/rpoB/rpoB.fasta .
-```
-
---->
-</div>
-</div>
-</div>
 <div class="section level3">
 <h3 id="renaming-sequences">Renaming sequences<a class="anchor" aria-label="anchor" href="#renaming-sequences"></a></h3>
 <p>Look at the accession ids of the fasta sequences: they are not very
@@ -617,9 +603,8 @@ to complete the task.</p>
 </button>
 <div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
 <div class="accordion-body">
-<p>Use the <code>module</code> command to load
-<code>bioinfo-tools</code> and <code>MAFFT</code>. Use <code>time</code>
-to record the time.</p>
+<p>Use the <code>module</code> command to load <code>MAFFT</code>. Use
+<code>time</code> to record the time.</p>
 <p>The help obtained through <code>mafft -h</code> is not very
 informative about algorithms, so check the <a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html" class="external-link">mafft
 webpage</a>.</p>
@@ -641,7 +626,7 @@ possibilities.</p>
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">module</span> load <span class="op">&lt;</span>general module<span class="op">&gt;</span> <span class="op">&lt;</span>mafft module<span class="op">&gt;</span></span>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">module</span> load <span class="op">&lt;</span>mafft module<span class="op">&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="bu">time</span> mafft-<span class="op">&lt;</span>algorithm<span class="op">&gt;</span> <span class="op">&lt;</span>fasta_file<span class="op">&gt;</span> <span class="op">&gt;</span> rpoB.fftns.aln</span></code></pre>
 </div>
 <div class="codewrapper">
@@ -1136,7 +1121,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
-Successfully installed 1 package in 3.3 milliseconds.</code></pre>
+Successfully installed 1 package in 3.1 milliseconds.</code></pre>
 </div>
 <p>And to load it:</p>
 <div class="codewrapper sourceCode" id="cb33">
@@ -1504,7 +1489,7 @@ Open menu.</p>
 </div>
 </div>
 </div>
-<div id="discussion3" class="callout discussion">
+<div id="discussion2" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
@@ -1571,7 +1556,7 @@ created in the MSA episode, and load the right modules.</p>
 <div class="callout-content">
 <p>Get to the right folder, require compute time and load the right
 modules. The project is <code>uppmax2026-1-93</code>. The module
-containing IQ tree is called <code>iqtree</code>.</p>
+containing IQ tree is called <code>IQ-TREE</code>.</p>
 </div>
 </div>
 </div>
@@ -1603,28 +1588,19 @@ containing IQ tree is called <code>iqtree</code>.</p>
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> <span class="op">&lt;</span>project<span class="op">&gt;</span> -M <span class="op">&lt;</span>cluster<span class="op">&gt;</span> -t <span class="op">&lt;</span>time<span class="op">&gt;</span></span>
-<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="ex">module</span> load <span class="op">&lt;</span>general bioinfo module<span class="op">&gt;</span> iqtree</span></code></pre>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="ex">module</span> load IQ-TREE</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 
-<p>Loading the <code>iqtree</code> module resulted in:</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>iqtree/2.2.2.6-omp-mpi: executables are prefixed with 'iqtree2'. Additional modules are required for the multi-node MPI version. See 'module help iqtree/2.2.2.6-omp-mpi'.</code></pre>
-</div>
-<p>You won’t be using the multi-node MPI version, so you don’t need to
-load additional modules. But you will need to use <code>iqtree2</code>
-instead of the “normal” <code>iqtree</code>.</p>
 <p>Then run your first tree, on the <code>ClipKIT</code>-trimmed
 alignment.</p>
-<div class="codewrapper sourceCode" id="cb48">
+<div class="codewrapper sourceCode" id="cb47">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.einsi.clipkit.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> rpoB.einsi.clipkit.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
 </div>
 <p>Here, we tell IQ-TREE to use the alignment
 <code>-s rpoB.einsi.clipkit.aln</code>, and to test among the standard
@@ -1636,10 +1612,10 @@ phylogenetic analysis. To get a flavor of what it’s capable of, look at
 its <a href="http://www.iqtree.org/doc/" class="external-link">extensive
 documentation</a>.</p>
 <p>Have a look at the output files:</p>
-<div class="codewrapper sourceCode" id="cb49">
+<div class="codewrapper sourceCode" id="cb48">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">ls</span> rpoB.einsi.clipkit.aln.<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="fu">ls</span> rpoB.einsi.clipkit.aln.<span class="pp">*</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -1684,10 +1660,10 @@ Seaview? How?</p>
 </button>
 <div id="collapseHint8" class="accordion-collapse collapse" aria-labelledby="headingHint8" data-bs-parent="#accordionHint8">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb51">
+<div class="codewrapper sourceCode" id="cb50">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-h</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-h</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1700,17 +1676,17 @@ Seaview? How?</p>
 </button>
 <div id="collapseSolution18" class="accordion-collapse collapse" aria-labelledby="headingSolution18" data-bs-parent="#accordionSolution18">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb52">
+<div class="codewrapper sourceCode" id="cb51">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> <span class="op">&lt;</span>alignment file<span class="op">&gt;</span> <span class="op">&lt;</span>option and text for testing model<span class="op">&gt;</span> <span class="op">&lt;</span>option and test for 1000 fast bootstraps<span class="op">&gt;</span> </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="ex">iqtree</span> <span class="at">-s</span> <span class="op">&lt;</span>alignment file<span class="op">&gt;</span> <span class="op">&lt;</span>option and text for testing model<span class="op">&gt;</span> <span class="op">&lt;</span>option and test for 1000 fast bootstraps<span class="op">&gt;</span> </span></code></pre>
 </div>
 <p>Import the tree <strong>on your computer</strong> and load it with
 FigTree or with <a href="https://beta.phylo.io/viewer/#" class="external-link">phylo.io</a></p>
-<div class="codewrapper sourceCode" id="cb53">
+<div class="codewrapper sourceCode" id="cb52">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="ex">figtree</span> rpoB.fftns.aln.treefile <span class="kw">&amp;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="ex">figtree</span> rpoB.fftns.aln.treefile <span class="kw">&amp;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -1782,7 +1758,7 @@ phylogenies at least.</p>
 </div>
 </div>
 </div>
-<div id="discussion4" class="callout discussion">
+<div id="discussion3" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
