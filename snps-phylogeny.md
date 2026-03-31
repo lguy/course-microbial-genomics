@@ -368,7 +368,7 @@ Copy the tree in Newick format (`core.aln.newick`) to your computer using `scp` 
 ::: solution
 
 ```bash
-scp <username>@rackham.uppmax.uu.se:<file with path> .
+scp <username>@pelle.uppmax.uu.se:<file with path> .
 ```
 
 ::::::::::::
@@ -377,7 +377,7 @@ scp <username>@rackham.uppmax.uu.se:<file with path> .
 ::: instructor
 
 ```bash
-scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<user>/molepi/results/tree/core.aln.newick .
+scp <username>@pelle.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<user>/molepi/results/tree/core.aln.newick .
 ```
 
 ::::::::::::

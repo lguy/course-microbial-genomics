@@ -59,7 +59,7 @@ interactive
 :::::::::::::::  solution
 
 ```bash
-ssh -Y <username>@rackham.uppmax.uu.se
+ssh -Y <username>@pelle.uppmax.uu.se
 ```
 
 Remember to replace `<username>` by your name.
@@ -77,7 +77,7 @@ cd <folder>
 :::::::::::::::  instructor
 
 ```bash
-ssh -Y <username>@rackham.uppmax.uu.se
+ssh -Y <username>@pelle.uppmax.uu.se
 ```
 
 ```bash
@@ -314,7 +314,7 @@ Hint: try to scroll to position 800-900. What do you see there? How are the bloc
 Use `scp` to copy files from Uppmax to your computer. `scp` allows wildcards, but you probably need to escape the `*`.
 
 ```bash
-scp <username>@rackham.uppmax.uu.se:/<absolute path to phylogenetics folder>/rpoB.\*.aln <localfolder>/
+scp <username>@pelle.uppmax.uu.se:/<absolute path to phylogenetics folder>/rpoB.\*.aln <localfolder>/
 ```
 
 ![](episodes/fig/seaview.png){alt='Alignments shown in seaview'}
@@ -324,7 +324,7 @@ scp <username>@rackham.uppmax.uu.se:/<absolute path to phylogenetics folder>/rpo
 :::::::::::::::  instructor
 
 ```bash
-scp lionel@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<user>/phylogenetics/rpoB.\*.aln .
+scp lionel@pelle.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<user>/phylogenetics/rpoB.\*.aln .
 ```
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -417,8 +417,8 @@ As before, if you do not have access to a terminal on your windows laptop, use M
 ::: instructor
 
 ```bash
-scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal\* .
-scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal* .
+scp <username>@pelle.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal\* .
+scp <username>@pelle.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.trimal* .
 ```
 
 ::::::::::::
@@ -509,7 +509,7 @@ The three alignments on top of each other look like this. Click [on this link](e
 ::: instructor
 
 ```bash
-scp <username>@rackham.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.clipkit.aln .
+scp <username>@pelle.uppmax.uu.se:/proj/g2020004/nobackup/3MK013/<username>/phylogenetics/rpoB.einsi.clipkit.aln .
 
 ```
 
@@ -560,7 +560,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
-Successfully installed 1 package in 3 milliseconds.
+Successfully installed 1 package in 3.1 milliseconds.
 ```
 
 And to load it:
