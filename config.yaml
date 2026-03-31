@@ -66,8 +66,8 @@ episodes:
 - msa-phylogenetics.Rmd
 - quality-control.Rmd
 - sequence-assembly.Rmd
-- protein-structure.Rmd
 #- annotation.Rmd
+- protein-structure.Rmd
 - snps-phylogeny.Rmd
 - data-visualization.Rmd
 
