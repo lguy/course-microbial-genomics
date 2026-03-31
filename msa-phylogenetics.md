@@ -40,7 +40,7 @@ The file is available in `/proj/g2020004/nobackup/3MK013/data/`.
 
 ## Challenge 1.1: prepare the terrain
 
-The course base folder is at `/proj/g2020004/nobackup/3MK013`. Go to your own folder, create a `phylogenetics` subfolder, and move into it. Also, start the `interactive` session, for 4 hours. The session name is `uppmax2025-3-4` and the cluster is `snowy`.
+The course base folder is at `/proj/g2020004/nobackup/3MK013`. Go to your own folder, create a `phylogenetics` subfolder, and move into it. Also, start the `interactive` session, for 4 hours. The session name is `uppmax2026-1-93` and the cluster is `snowy`.
 
 ::: hint
 
@@ -81,7 +81,7 @@ ssh -Y <username>@pelle.uppmax.uu.se
 ```
 
 ```bash
-interactive -A uppmax2025-3-4 -M snowy -t 4:00:00
+interactive -A uppmax2026-1-93 -M snowy -t 4:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>
 mkdir phylogenetics
 cd phylogenetics
@@ -560,7 +560,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
-Successfully installed 1 package in 3.1 milliseconds.
+Successfully installed 1 package in 3.3 milliseconds.
 ```
 
 And to load it:
@@ -796,7 +796,7 @@ We will now use IQ-TREE to infer a maximum-likelihood (ML) tree of the RpoB data
 
 :::::: challenge
 
-Get to the right folder, require compute time and load the right modules. The project is `uppmax2025-3-4`. The module containing IQ tree is called `iqtree`.
+Get to the right folder, require compute time and load the right modules. The project is `uppmax2026-1-93`. The module containing IQ tree is called `iqtree`.
 
 ::: hint
 
@@ -820,7 +820,7 @@ module load <general bioinfo module> iqtree
 ::: instructor
 
  ```bash
-interactive -A uppmax2025-3-4 -M snowy -t 4:00:00
+interactive -A uppmax2026-1-93 -M snowy -t 4:00:00
 module load bioinfo-tools iqtree
 cd /proj/g2020004/nobackup/3MK013/<username>/phylogenetics
 ```

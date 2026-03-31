@@ -46,7 +46,7 @@ mkdir
 
 ::: solution
 
-Project is `uppmax2025-3-4`, cluster is `snowy`
+Project is `uppmax2026-1-93`, cluster is `snowy`
 
 ```bash
 interactive <project> <cluster> <time>
@@ -60,7 +60,7 @@ cd data/trimmed_fastq
 ::: instructor
 
 ```bash
-interactive -A uppmax2025-3-4 -M snowy -t 04:00:00
+interactive -A uppmax2026-1-93 -M snowy -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/
 mkdir results/assembly
 cd data/trimmed_fastq
