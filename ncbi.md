@@ -30,6 +30,13 @@ Exercise 2
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!---
+
+Changelog VT2026
+- Corrected a few links for protein records that didn't work
+
+--->
+
 This part is to encourage you to explore NCBI resources. Questions are examples or real-life questions that you might ask yourself later. There are not necessarily exactly one solution to the question. 
 
 Start by going to NCBI's web site, main search page: https://www.ncbi.nlm.nih.gov/search/. There, you have the list of most of NCBI’s databases, sorted by category. Take some time to explore the following sections: Literature, Genomes, Genes and Proteins.
@@ -207,7 +214,7 @@ Can you find only the sequence information in `FASTA` format? How is the format 
 If you are stuck, here is the link to
 
 - one Gene record: https://www.ncbi.nlm.nih.gov/gene/916678 
-- one Protein record: https://www.ncbi.nlm.nih.gov/protein/NP_311001.1 
+- one Protein record: https://www.ncbi.nlm.nih.gov/protein/NP_309232.1
 
 ::::::::::::
 
@@ -223,7 +230,7 @@ Can you find a 3D protein structure for this protein?
 
 Not all proteins have 3D structures. If your protein doesn't have one, try the following Shiga toxin:
 
-https://www.ncbi.nlm.nih.gov/protein/NP_311001.1
+https://www.ncbi.nlm.nih.gov/protein/NP_309232.1
 
 ::::::::
 
@@ -235,7 +242,7 @@ In the right menu, under "Related Information", there may be a "Related Structur
 
 ::: solution
 
-See here: https://www.ncbi.nlm.nih.gov/structure?LinkName=protein_structure_related_list&from_uid=15832228
+See here: https://www.ncbi.nlm.nih.gov/Structure/mmdb/mmdbsrv.cgi?Dopt=s&uid=115311
 
 ::::::::::::
 
@@ -393,7 +400,7 @@ How does sequence `b` compare to the first sequence? Is it also a gene?
 
 ::: hint
 
-if you get stuck, try e.g. StarORF (http://star.mit.edu/orf/index.html). 
+If you get stuck, try e.g. StarORF (http://star.mit.edu/orf/index.html). You might get a warning 
 
 ::::::::
 

@@ -46,7 +46,7 @@ mkdir
 
 ::: solution
 
-Project is `uppmax2026-1-93`, cluster is `snowy`
+Project is `uppmax2026-1-93`, cluster is `pelle`
 
 ```bash
 interactive <project> <cluster> <time>
@@ -60,7 +60,7 @@ cd data/trimmed_fastq
 ::: instructor
 
 ```bash
-interactive -A uppmax2026-1-93 -M snowy -t 04:00:00
+interactive -A uppmax2026-1-93 -M pelle -t 04:00:00
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/
 mkdir results/assembly
 cd data/trimmed_fastq
@@ -76,7 +76,7 @@ cd data/trimmed_fastq
 To run SKESA we will use the skesa command with a number of option that we will explore later on. We can start the loop (again, a short loop with only one sample in this actual case to spare computing resources) with the assemblies with: 
 
 ```bash
-module load bioinfo-tools SKESA
+module load SKESA
 for sample in ERR029206
 do
 skesa \
