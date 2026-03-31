@@ -257,7 +257,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="msa.html">3. Multiple sequence alignment</a>
+        <a href="msa-phylogenetics.html">3. Multiple sequence alignment and phylogenetics</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -269,7 +269,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="phylogenetics.html">4. Phylogenetics</a>
+        <a href="quality-control.html">4. Reads, QC and trimming</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -281,7 +281,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="quality-control.html">5. Reads, QC and trimming</a>
+        <a href="sequence-assembly.html">5. Sequence assembly</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -293,7 +293,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="sequence-assembly.html">6. Sequence assembly</a>
+        <a href="protein-structure.html">6. Protein structure prediction</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -305,7 +305,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="protein-structure.html">7. Protein structure prediction</a>
+        <a href="snps-phylogeny.html">7. Mapping</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -317,19 +317,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="snps-phylogeny.html">8. Mapping</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="data-visualization.html">9. Molecular epidemiology</a>
+        <a href="data-visualization.html">8. Molecular epidemiology</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -2736,14 +2724,17 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</section></section><section id="aio-msa"><p>Content from <a href="msa.html">Multiple sequence alignment</a></p>
+</section></section><section id="aio-msa-phylogenetics"><p>Content from <a href="msa-phylogenetics.html">Multiple sequence alignment and phylogenetics</a></p>
 <hr>
 <p>Last updated on 2026-03-31 |
 
-        <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/msa.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/msa-phylogenetics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
+<div class="section level1">
+<h1 id="part-1-multiple-sequence-alignment-msa">Part 1: Multiple Sequence Alignment (MSA)<a class="anchor" aria-label="anchor" href="#part-1-multiple-sequence-alignment-msa"></a>
+</h1>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -2771,9 +2762,9 @@ any links that you are not going to use.
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<hr class="half-width">
 <p>In this episode, we are exploring multiple sequence alignment (MSA).
 In the first task, you are going to use <a href="https://mafft.cbrc.jp/alignment/software/algorithms/algorithms.html" class="external-link"><code>mafft</code></a>
 to align homologs of <a href="https://en.wikipedia.org/wiki/RpoB" class="external-link">RpoB</a>, the β subunit of the
@@ -2783,10 +2774,11 @@ for showing issues related to MSA.</p>
 aligned regions.</p>
 <p>But first, go to your own folder and create a phylogenetics
 subfolder. You will use the alignments for other tutorials as well.</p>
-</section><section><h2 class="section-heading" id="task-1-use-different-flavors-of-mafft-and-compare-the-results">Task 1: Use different flavors of <code>MAFFT</code> and compare the
+</div>
+<div class="section level2">
+<h2 id="task-1-use-different-flavors-of-mafft-and-compare-the-results">Task 1: Use different flavors of <code>MAFFT</code> and compare the
 results<a class="anchor" aria-label="anchor" href="#task-1-use-different-flavors-of-mafft-and-compare-the-results"></a>
 </h2>
-<hr class="half-width">
 <p>Start by finding the data, which is a <a href="files/rpoB.fasta">fasta file</a> containing 19 sequences of RpoB,
 gathered by aligning RpoB from <em>E. coli</em> to a very small database
 present at NCBI, the <a href="https://blast.ncbi.nlm.nih.gov/smartblast/smartBlast.cgi?CMD=Web&amp;PAGE_TYPE=BlastDocs" class="external-link">landmark</a>
@@ -2816,7 +2808,7 @@ name is <code>uppmax2025-3-4</code> and the cluster is
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>Remember those commands?</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -2837,7 +2829,7 @@ name is <code>uppmax2025-3-4</code> and the cluster is
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2876,7 +2868,7 @@ folder. Use a relative path.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -2894,7 +2886,7 @@ folder. Use a relative path.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Use the <code>../../</code> to see what’s two folders up, and then
 <code>data/rpoB/rpoB.fasta</code></p>
@@ -3025,7 +3017,7 @@ to complete the task.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
 <div class="accordion-body">
 <p>Use the <code>module</code> command to load
 <code>bioinfo-tools</code> and <code>MAFFT</code>. Use <code>time</code>
@@ -3046,7 +3038,7 @@ possibilities.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb12">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3087,7 +3079,7 @@ sys	0m0.181s</code></pre>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
 <div class="accordion-body">
 <p>Type <code>mafft</code> and try tab-complete to see all versions of
 <code>mafft</code>.</p>
@@ -3125,7 +3117,7 @@ complete the task.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3195,7 +3187,7 @@ are the blocks arranged?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>Use <code>scp</code> to copy files from Uppmax to your computer.
 <code>scp</code> allows wildcards, but you probably need to escape the
@@ -3214,9 +3206,10 @@ are the blocks arranged?</p>
 <p>If you have time over, spend it exploring the different options of
 Seaview/AlignmentViewer.</p>
 </div>
-</section><section><h2 class="section-heading" id="task-2-trim-the-alignment">Task 2: Trim the alignment<a class="anchor" aria-label="anchor" href="#task-2-trim-the-alignment"></a>
+</div>
+<div class="section level2">
+<h2 id="task-2-trim-the-alignment">Task 2: Trim the alignment<a class="anchor" aria-label="anchor" href="#task-2-trim-the-alignment"></a>
 </h2>
-<hr class="half-width">
 <p>Often, some regions of the alignment don’t align properly, either
 because they contain low complexity segments (hinges in proteins) or
 evolved through repeated insertions/deletions, which alignment program
@@ -3264,7 +3257,7 @@ have more than 40% gaps.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint5" aria-expanded="false" aria-controls="collapseHint5">
   <h4 class="accordion-header" id="headingHint5"> Give me a hint </h4>
 </button>
-<div id="collapseHint5" class="accordion-collapse collapse" aria-labelledby="headingHint5" data-bs-parent="#accordionHint5">
+<div id="collapseHint5" class="accordion-collapse collapse" data-bs-parent="#accordionHint5" aria-labelledby="headingHint5">
 <div class="accordion-body">
 <p>The “gap threshold” is actually expressed as fraction of non-gap
 residues.</p>
@@ -3277,7 +3270,7 @@ residues.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb21">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3307,7 +3300,7 @@ trimming</h3>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>Add a <code>-automated1</code> option and rerun as above, choosing a
 different output file.</p>
@@ -3336,7 +3329,7 @@ you used above.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <p>On your own laptop, go inside the folder where you want to import the
 files. Use <code>scp</code>. On some OS it is necessary to escape the
@@ -3386,7 +3379,7 @@ trimAl.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -3441,7 +3434,7 @@ the web-based visualization tool.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint6" aria-expanded="false" aria-controls="collapseHint6">
   <h4 class="accordion-header" id="headingHint6"> Give me a hint </h4>
 </button>
-<div id="collapseHint6" class="accordion-collapse collapse" aria-labelledby="headingHint6" data-bs-parent="#accordionHint6">
+<div id="collapseHint6" class="accordion-collapse collapse" data-bs-parent="#accordionHint6" aria-labelledby="headingHint6">
 <div class="accordion-body">
 <p>Use <code>scp</code> as above.</p>
 <p>Then use <code>seaview</code> or another viewer to visualize and
@@ -3455,7 +3448,7 @@ compare results.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
   <h4 class="accordion-header" id="headingSolution10"> Show me the solution </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
+<div id="collapseSolution10" class="accordion-collapse collapse" data-bs-parent="#accordionSolution10" aria-labelledby="headingSolution10">
 <div class="accordion-body">
 <p>The three alignments on top of each other look like this. Click <a href="fig/seaview_trimal_vs_clipkit.png">on this link</a> to better see
 the figure.</p>
@@ -3468,19 +3461,42 @@ the figure.</p>
 <p>It is of course difficult to draw conclusions based on this figure,
 but can you spot some trends? What alignment is more likely to generate
 good results?</p>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
 </div>
-</section></section><section id="aio-phylogenetics"><p>Content from <a href="phylogenetics.html">Phylogenetics</a></p>
-<hr>
-<p>Last updated on 2026-03-31 |
-
-        <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/phylogenetics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
+</div>
+</div>
+<div class="section level1">
+<h1 id="part-2-phylogenetics">Part 2: Phylogenetics<a class="anchor" aria-label="anchor" href="#part-2-phylogenetics"></a>
+</h1>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How do you build a simple, distance-based phylogenetic tree?</li>
+<li>How do you build a phylogenetic tree with more advanced
+methods?</li>
+<li>How do you ascertain statistical support for phylogenetic
+trees?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Use <code>mafft</code> to align multiple sequences.</li>
+<li>Test different algorithms.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="overview card">
 <h2 class="card-header">Overview</h2>
 <div class="row g-0">
@@ -3514,9 +3530,9 @@ maximum-likelihood.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="exercise-1-paper-and-pen-phylogenetic-tree">Exercise 1: Paper-and-pen phylogenetic tree<a class="anchor" aria-label="anchor" href="#exercise-1-paper-and-pen-phylogenetic-tree"></a>
+<div class="section level2">
+<h2 id="task-3-paper-and-pen-phylogenetic-tree">Task 3: Paper-and-pen phylogenetic tree<a class="anchor" aria-label="anchor" href="#task-3-paper-and-pen-phylogenetic-tree"></a>
 </h2>
-<hr class="half-width">
 <div class="section level3">
 <h3 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
 </h3>
@@ -3525,7 +3541,7 @@ demonstration in R on your laptop, using RStudio. We’ll also use the R
 package <a href="https://emmanuelparadis.github.io/" class="external-link"><code>ape</code></a>, which
 you should install if it’s not present on your setup. Commands can be
 typed or pasted in the “Console” part of RStudio.</p>
-<div class="codewrapper sourceCode" id="cb1">
+<div class="codewrapper sourceCode" id="cb31">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -3541,10 +3557,10 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
-Successfully installed 1 package in 3.1 milliseconds.</code></pre>
+Successfully installed 1 package in 3 milliseconds.</code></pre>
 </div>
 <p>And to load it:</p>
-<div class="codewrapper sourceCode" id="cb3">
+<div class="codewrapper sourceCode" id="cb33">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -3556,7 +3572,7 @@ Successfully installed 1 package in 3.1 milliseconds.</code></pre>
 </h3>
 <p>Load the tree in fasta format, reading from a <code>temp</code>
 file</p>
-<div class="codewrapper sourceCode" id="cb4">
+<div class="codewrapper sourceCode" id="cb34">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -3571,7 +3587,7 @@ file</p>
 <p>Now look at the alignment. Notice there are gaps, which we don’t want
 in this example. We also remove the non-informative (identical)
 columns.</p>
-<div class="codewrapper sourceCode" id="cb5">
+<div class="codewrapper sourceCode" id="cb35">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -3587,7 +3603,7 @@ B GCTG.....T.......---....
 C .......T...C.......-....
 D ......T......A.T....GCTG</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb7">
+<div class="codewrapper sourceCode" id="cb37">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -3660,12 +3676,12 @@ group the two closest sequences. Which are they?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution11" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution11" aria-expanded="false" aria-controls="collapseSolution11">
+  <h4 class="accordion-header" id="headingSolution11"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution11" class="accordion-collapse collapse" data-bs-parent="#accordionSolution11" aria-labelledby="headingSolution11">
 <div class="accordion-body">
 <p>Here is the solution:</p>
 <table class="table">
@@ -3758,12 +3774,12 @@ clusters.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution12" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution12" aria-expanded="false" aria-controls="collapseSolution12">
+  <h4 class="accordion-header" id="headingSolution12"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution12" class="accordion-collapse collapse" data-bs-parent="#accordionSolution12" aria-labelledby="headingSolution12">
 <div class="accordion-body">
 <p>The average distance for AB to C is calculated as follow:</p>
 <p><span class="math inline">\(d(AB,C) = \dfrac{d(A,C) + d(B,C)}{2} =
@@ -3837,12 +3853,12 @@ to D again.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution13" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
-  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution13" aria-expanded="false" aria-controls="collapseSolution13">
+  <h4 class="accordion-header" id="headingSolution13"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution13" class="accordion-collapse collapse" data-bs-parent="#accordionSolution13" aria-labelledby="headingSolution13">
 <div class="accordion-body">
 <p><span class="math inline">\(d(ABC,D) = \dfrac{d(AB,D) * 2 + d(C,D) *
 1}{2 + 1} = \dfrac{3.5 * 2 + 5 * 1}{3} = 4\)</span></p>
@@ -3876,7 +3892,7 @@ The branch to AB is 1.25 - 0.5 = 0.75 - ABC-D: each side gets 4/2 = 2.
 The branch to ABC is 2 - 0.75 - 0.5 = 0.75</p>
 <figure><img src="fig/upgma_manual.png" alt="Manually built UPGMA tree" class="figure mx-auto d-block"><div class="figcaption">UPGMA tree</div>
 </figure><p>Let’s know do the same using bioinformatics tools.</p>
-<div id="challenge4" class="callout challenge">
+<div id="challenge14" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -3892,14 +3908,14 @@ lengths plotted with <code>edgelabels</code>:</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution4" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution14" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
-  <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution14" aria-expanded="false" aria-controls="collapseSolution14">
+  <h4 class="accordion-header" id="headingSolution14"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution14" class="accordion-collapse collapse" data-bs-parent="#accordionSolution14" aria-labelledby="headingSolution14">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb9">
+<div class="codewrapper sourceCode" id="cb39">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -3914,7 +3930,7 @@ B 1
 C 2 3
 D 3 4 5</code></pre>
 </div>
-<div class="codewrapper sourceCode" id="cb11">
+<div class="codewrapper sourceCode" id="cb41">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="downlit sourceCode r">
@@ -3922,17 +3938,18 @@ D 3 4 5</code></pre>
 <span><span class="fu">plot</span><span class="op">(</span><span class="va">tree</span><span class="op">)</span></span>
 <span><span class="fu">edgelabels</span><span class="op">(</span><span class="va">tree</span><span class="op">$</span><span class="va">edge.length</span><span class="op">)</span></span></code></pre>
 </div>
-<figure><img src="fig/phylogenetics-rendered-unnamed-chunk-5-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure>
+<figure><img src="fig/msa-phylogenetics-rendered-unnamed-chunk-5-1.png" alt="" style="display: block; margin: auto;" class="figure mx-auto d-block"></figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="exercise-2-neighbor-joining-and-maximum-likelihood-tree">Exercise 2: Neighbor-joining and Maximum-likelihood tree<a class="anchor" aria-label="anchor" href="#exercise-2-neighbor-joining-and-maximum-likelihood-tree"></a>
+</div>
+<div class="section level2">
+<h2 id="task-4-neighbor-joining-and-maximum-likelihood-tree">Task 4: Neighbor-joining and Maximum-likelihood tree<a class="anchor" aria-label="anchor" href="#task-4-neighbor-joining-and-maximum-likelihood-tree"></a>
 </h2>
-<hr class="half-width">
 <div class="section level3">
-<h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<h3 id="introduction-1">Introduction<a class="anchor" aria-label="anchor" href="#introduction-1"></a>
 </h3>
 <p>In the previous episode, we inferred a simple phylogenetic tree using
 UPGMA, without correcting the distance matrix for multiple
@@ -3947,7 +3964,7 @@ distance-based, and a maximum-likelihood based approach with <a href="http://www
 method</a> (NJ) is to start from a star-like tree, find the two branches
 that, if joined, minimize the total tree length, join then, and repeat
 with the joined branches and the rest of the branches.</p>
-<div id="challenge5" class="callout challenge">
+<div id="challenge15" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -3966,18 +3983,18 @@ computer.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution5" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution15" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
-  <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution15" aria-expanded="false" aria-controls="collapseSolution15">
+  <h4 class="accordion-header" id="headingSolution15"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution15" class="accordion-collapse collapse" data-bs-parent="#accordionSolution15" aria-labelledby="headingSolution15">
 <div class="accordion-body">
 <p>On a Linux computer, you can run it on the command line:</p>
-<div class="codewrapper sourceCode" id="cb12">
+<div class="codewrapper sourceCode" id="cb42">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="ex">seaview</span> rpoB.einsi.clipkit.aln <span class="kw">&amp;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" tabindex="-1"></a><span class="ex">seaview</span> rpoB.einsi.clipkit.aln <span class="kw">&amp;</span></span></code></pre>
 </div>
 <p>On other computers, just open the file with the regular File &gt;
 Open menu.</p>
@@ -3985,7 +4002,7 @@ Open menu.</p>
 </div>
 </div>
 </div>
-<div id="discussion1" class="callout discussion">
+<div id="discussion3" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
@@ -4003,7 +4020,7 @@ We’ll discuss these later. Then click on “Go”.</p>
 </div>
 <p>What do you see? Is the tree rooted? Is the pattern species coherent
 with what you know of the tree of life? Any weird results?</p>
-<div id="challenge6" class="callout challenge">
+<div id="challenge16" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -4015,17 +4032,17 @@ with what you know of the tree of life? Any weird results?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution6" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution16" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
-  <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution16" aria-expanded="false" aria-controls="collapseSolution16">
+  <h4 class="accordion-header" id="headingSolution16"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution16" class="accordion-collapse collapse" data-bs-parent="#accordionSolution16" aria-labelledby="headingSolution16">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb13">
+<div class="codewrapper sourceCode" id="cb43">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">seaview</span> rpoB.fftns.aln <span class="kw">&amp;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" tabindex="-1"></a><span class="ex">seaview</span> rpoB.fftns.aln <span class="kw">&amp;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -4043,7 +4060,7 @@ you performed the first trees on your laptop, you will infer the ML tree
 on Uppmax. As usual, use the <code>interactive</code> command to gain
 access to compute time. Go to the <code>phylogenetics</code> folder
 created in the MSA episode, and load the right modules.</p>
-<div id="challenge7" class="callout challenge">
+<div id="challenge17" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -4057,35 +4074,35 @@ containing IQ tree is called <code>iqtree</code>.</p>
 </div>
 </div>
 </div>
-<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionHint7" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
-  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint7" aria-expanded="false" aria-controls="collapseHint7">
+  <h4 class="accordion-header" id="headingHint7"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint7" class="accordion-collapse collapse" data-bs-parent="#accordionHint7" aria-labelledby="headingHint7">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb14">
+<div class="codewrapper sourceCode" id="cb44">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">interactive</span> ...</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="ex">module</span> load ...</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" tabindex="-1"></a><span class="ex">interactive</span> ...</span>
+<span id="cb44-2"><a href="#cb44-2" tabindex="-1"></a><span class="ex">module</span> load ...</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionSolution7" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution17" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
-  <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution17" aria-expanded="false" aria-controls="collapseSolution17">
+  <h4 class="accordion-header" id="headingSolution17"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution17" class="accordion-collapse collapse" data-bs-parent="#accordionSolution17" aria-labelledby="headingSolution17">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb15">
+<div class="codewrapper sourceCode" id="cb45">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> <span class="op">&lt;</span>project<span class="op">&gt;</span> -M <span class="op">&lt;</span>cluster<span class="op">&gt;</span> -t <span class="op">&lt;</span>time<span class="op">&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="ex">module</span> load <span class="op">&lt;</span>general bioinfo module<span class="op">&gt;</span> iqtree</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" tabindex="-1"></a><span class="ex">interactive</span> <span class="at">-A</span> <span class="op">&lt;</span>project<span class="op">&gt;</span> -M <span class="op">&lt;</span>cluster<span class="op">&gt;</span> -t <span class="op">&lt;</span>time<span class="op">&gt;</span></span>
+<span id="cb45-2"><a href="#cb45-2" tabindex="-1"></a><span class="ex">module</span> load <span class="op">&lt;</span>general bioinfo module<span class="op">&gt;</span> iqtree</span></code></pre>
 </div>
 </div>
 </div>
@@ -4103,10 +4120,10 @@ load additional modules. But you will need to use <code>iqtree2</code>
 instead of the “normal” <code>iqtree</code>.</p>
 <p>Then run your first tree, on the <code>ClipKIT</code>-trimmed
 alignment.</p>
-<div class="codewrapper sourceCode" id="cb18">
+<div class="codewrapper sourceCode" id="cb48">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.einsi.clipkit.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> rpoB.einsi.clipkit.aln <span class="at">-m</span> MFP <span class="at">-B</span> 1000</span></code></pre>
 </div>
 <p>Here, we tell IQ-TREE to use the alignment
 <code>-s rpoB.einsi.clipkit.aln</code>, and to test among the standard
@@ -4118,10 +4135,10 @@ phylogenetic analysis. To get a flavor of what it’s capable of, look at
 its <a href="http://www.iqtree.org/doc/" class="external-link">extensive
 documentation</a>.</p>
 <p>Have a look at the output files:</p>
-<div class="codewrapper sourceCode" id="cb19">
+<div class="codewrapper sourceCode" id="cb49">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">ls</span> rpoB.einsi.clipkit.aln.<span class="pp">*</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" tabindex="-1"></a><span class="fu">ls</span> rpoB.einsi.clipkit.aln.<span class="pp">*</span></span></code></pre>
 </div>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -4146,7 +4163,7 @@ clicking on a branch and selecting “Reroot”. Reroot the tree between
 archaea and bacteria. Now the tree makes a bit more sense.</p>
 <p>Scrutinize the tree. Is it different from the BioNJ tree generated in
 Seaview? How?</p>
-<div id="challenge8" class="callout challenge">
+<div id="challenge18" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -4159,40 +4176,40 @@ Seaview? How?</p>
 </div>
 </div>
 </div>
-<div id="accordionHint2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionHint8" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
-  <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint8" aria-expanded="false" aria-controls="collapseHint8">
+  <h4 class="accordion-header" id="headingHint8"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint8" class="accordion-collapse collapse" data-bs-parent="#accordionHint8" aria-labelledby="headingHint8">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb21">
+<div class="codewrapper sourceCode" id="cb51">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-h</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-h</span></span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionSolution8" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution18" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
-  <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution18" aria-expanded="false" aria-controls="collapseSolution18">
+  <h4 class="accordion-header" id="headingSolution18"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution18" class="accordion-collapse collapse" data-bs-parent="#accordionSolution18" aria-labelledby="headingSolution18">
 <div class="accordion-body">
-<div class="codewrapper sourceCode" id="cb22">
+<div class="codewrapper sourceCode" id="cb52">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> <span class="op">&lt;</span>alignment file<span class="op">&gt;</span> <span class="op">&lt;</span>option and text for testing model<span class="op">&gt;</span> <span class="op">&lt;</span>option and test for 1000 fast bootstraps<span class="op">&gt;</span> </span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" tabindex="-1"></a><span class="ex">iqtree2</span> <span class="at">-s</span> <span class="op">&lt;</span>alignment file<span class="op">&gt;</span> <span class="op">&lt;</span>option and text for testing model<span class="op">&gt;</span> <span class="op">&lt;</span>option and test for 1000 fast bootstraps<span class="op">&gt;</span> </span></code></pre>
 </div>
 <p>Import the tree <strong>on your computer</strong> and load it with
 FigTree or with <a href="https://beta.phylo.io/viewer/#" class="external-link">phylo.io</a></p>
-<div class="codewrapper sourceCode" id="cb23">
+<div class="codewrapper sourceCode" id="cb53">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="ex">figtree</span> rpoB.fftns.aln.treefile <span class="kw">&amp;</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" tabindex="-1"></a><span class="ex">figtree</span> rpoB.fftns.aln.treefile <span class="kw">&amp;</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -4212,7 +4229,7 @@ them on all four trees. * For the Seaview trees, tick the ‘Br support’
 box * For the trees shown in phylo.io, click on “Settings” &gt; “Branch
 &amp; Labels” and above the branch, click the drop-down menu and select
 “Data”.</p>
-<div id="challenge9" class="callout challenge">
+<div id="challenge19" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
@@ -4224,12 +4241,12 @@ box * For the trees shown in phylo.io, click on “Settings” &gt; “Branch
 </div>
 </div>
 </div>
-<div id="accordionHint3" class="accordion challenge-accordion accordion-flush">
+<div id="accordionHint9" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
-  <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint9" aria-expanded="false" aria-controls="collapseHint9">
+  <h4 class="accordion-header" id="headingHint9"> Give me a hint </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
+<div id="collapseHint9" class="accordion-collapse collapse" data-bs-parent="#accordionHint9" aria-labelledby="headingHint9">
 <div class="accordion-body">
 <p>What are <em>Glycine</em> and <em>Arabidopsis</em>? What about
 <em>Synechocystis</em> and <em>Microcystis</em>?</p>
@@ -4237,12 +4254,12 @@ box * For the trees shown in phylo.io, click on “Settings” &gt; “Branch
 </div>
 </div>
 </div>
-<div id="accordionHint4" class="accordion challenge-accordion accordion-flush">
+<div id="accordionHint10" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
-  <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint10" aria-expanded="false" aria-controls="collapseHint10">
+  <h4 class="accordion-header" id="headingHint10"> Give me a hint </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
+<div id="collapseHint10" class="accordion-collapse collapse" data-bs-parent="#accordionHint10" aria-labelledby="headingHint10">
 <div class="accordion-body">
 <p>Search for the accession number of the <em>Glycine</em> RpoB sequence
 on <a href="https://www.ncbi.nlm.nih.gov/search/" class="external-link">NCBI</a>. Any hint
@@ -4251,12 +4268,12 @@ there?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution9" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution19" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
-  <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution19" aria-expanded="false" aria-controls="collapseSolution19">
+  <h4 class="accordion-header" id="headingSolution19"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution19" class="accordion-collapse collapse" data-bs-parent="#accordionSolution19" aria-labelledby="headingSolution19">
 <div class="accordion-body">
 <p>The two plant RpoB sequences are from chloroplastic genomes, and thus
 branch together with the cyanobacterial sequences, in some of the
@@ -4265,7 +4282,7 @@ phylogenies at least.</p>
 </div>
 </div>
 </div>
-<div id="discussion2" class="callout discussion">
+<div id="discussion4" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
@@ -4298,9 +4315,11 @@ very accurate</li>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="exercise-3-genetic-drift">Exercise 3: Genetic drift<a class="anchor" aria-label="anchor" href="#exercise-3-genetic-drift"></a>
-</h2>
-<hr class="half-width">
+</div>
+</div>
+<div class="section level1">
+<h1 id="part-3-genetic-drift">Part 3: Genetic drift<a class="anchor" aria-label="anchor" href="#part-3-genetic-drift"></a>
+</h1>
 <p>As a practical way to understand genetic drift, let’s play with
 population size, selection coefficients, number of generations, etc.</p>
 <div class="overview card">
@@ -4362,9 +4381,9 @@ populations.</li>
 </div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="introduction-1">Introduction<a class="anchor" aria-label="anchor" href="#introduction-1"></a>
-</h3>
+<div class="section level2">
+<h2 id="introduction-2">Introduction<a class="anchor" aria-label="anchor" href="#introduction-2"></a>
+</h2>
 <p>This exercise is to illustrate the concepts of selection, population
 size and genetic drift, using simulations. We will use mostly <a href="https://cartwrig.ht/apps/redlynx/" class="external-link">Red Lynx</a> by <a href="https://github.com/reedacartwright" class="external-link">Reed A. Cartwright</a>.</p>
 <p>Another option is to use a <a href="https://phytools.shinyapps.io/drift-selection/" class="external-link">web interface</a>
@@ -4375,13 +4394,13 @@ that relevant for bacteria).</p>
 website and get familiar with the different options.</p>
 <p>You won’t need the right panel (but feel free to explore). The
 dominance option in the left panel won’t be used either.</p>
-<div id="genetic-drift-without-selection" class="callout challenge">
+<div id="task-6-genetic-drift-without-selection" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="genetic-drift-without-selection" class="callout-inner">
-<h3 class="callout-title">Genetic Drift without selection</h3>
+<div id="task-6-genetic-drift-without-selection" class="callout-inner">
+<h3 class="callout-title">Task 6: Genetic Drift without selection</h3>
 <div class="callout-content">
 <p>In the first part, you will only play with the number of generations,
 the initial frequency and the population size.</p>
@@ -4396,12 +4415,12 @@ generations?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution10" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution20" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution10" aria-expanded="false" aria-controls="collapseSolution10">
-  <h4 class="accordion-header" id="headingSolution10"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution20" aria-expanded="false" aria-controls="collapseSolution20">
+  <h4 class="accordion-header" id="headingSolution20"> Show me the solution </h4>
 </button>
-<div id="collapseSolution10" class="accordion-collapse collapse" aria-labelledby="headingSolution10" data-bs-parent="#accordionSolution10">
+<div id="collapseSolution20" class="accordion-collapse collapse" data-bs-parent="#accordionSolution20" aria-labelledby="headingSolution20">
 <div class="accordion-body">
 <p>In my simulations, no allele got fixed, the final allele frequencies
 range20-80%</p>
@@ -4409,13 +4428,13 @@ range20-80%</p>
 </div>
 </div>
 </div>
-<div id="genetic-drift-without-selection" class="callout challenge">
+<div id="task-6-genetic-drift-without-selection" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="genetic-drift-without-selection" class="callout-inner">
-<h3 class="callout-title">Genetic Drift without selection<em>
+<div id="task-6-genetic-drift-without-selection" class="callout-inner">
+<h3 class="callout-title">Task 6: Genetic Drift without selection<em>
 (continued)</em>
 </h3>
 <div class="callout-content">
@@ -4424,12 +4443,12 @@ the simulations. What’s the range of final frequencies now?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution11" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution21" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution11" aria-expanded="false" aria-controls="collapseSolution11">
-  <h4 class="accordion-header" id="headingSolution11"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution21" aria-expanded="false" aria-controls="collapseSolution21">
+  <h4 class="accordion-header" id="headingSolution21"> Show me the solution </h4>
 </button>
-<div id="collapseSolution11" class="accordion-collapse collapse" aria-labelledby="headingSolution11" data-bs-parent="#accordionSolution11">
+<div id="collapseSolution21" class="accordion-collapse collapse" data-bs-parent="#accordionSolution21" aria-labelledby="headingSolution21">
 <div class="accordion-body">
 <p>In my simulations, no allele got fixed, and the final allele
 frequencies range 45-55%</p>
@@ -4437,13 +4456,13 @@ frequencies range 45-55%</p>
 </div>
 </div>
 </div>
-<div id="genetic-drift-without-selection" class="callout challenge">
+<div id="task-6-genetic-drift-without-selection" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="genetic-drift-without-selection" class="callout-inner">
-<h3 class="callout-title">Genetic Drift without selection<em>
+<div id="task-6-genetic-drift-without-selection" class="callout-inner">
+<h3 class="callout-title">Task 6: Genetic Drift without selection<em>
 (continued)</em>
 </h3>
 <div class="callout-content">
@@ -4452,12 +4471,12 @@ repeat these simulations. What’s the range of final frequencies now?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution12" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution22" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution12" aria-expanded="false" aria-controls="collapseSolution12">
-  <h4 class="accordion-header" id="headingSolution12"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution22" aria-expanded="false" aria-controls="collapseSolution22">
+  <h4 class="accordion-header" id="headingSolution22"> Show me the solution </h4>
 </button>
-<div id="collapseSolution12" class="accordion-collapse collapse" aria-labelledby="headingSolution12" data-bs-parent="#accordionSolution12">
+<div id="collapseSolution22" class="accordion-collapse collapse" data-bs-parent="#accordionSolution22" aria-labelledby="headingSolution22">
 <div class="accordion-body">
 <p>In my simulations, one allele got fixed quickly, the latest one was
 at generation 100.</p>
@@ -4465,13 +4484,13 @@ at generation 100.</p>
 </div>
 </div>
 </div>
-<div id="genetic-drift-without-selection" class="callout challenge">
+<div id="task-6-genetic-drift-without-selection" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="genetic-drift-without-selection" class="callout-inner">
-<h3 class="callout-title">Genetic Drift without selection<em>
+<div id="task-6-genetic-drift-without-selection" class="callout-inner">
+<h3 class="callout-title">Task 6: Genetic Drift without selection<em>
 (continued)</em>
 </h3>
 <div class="callout-content">
@@ -4479,12 +4498,12 @@ at generation 100.</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution13" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution23" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution13" aria-expanded="false" aria-controls="collapseSolution13">
-  <h4 class="accordion-header" id="headingSolution13"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution23" aria-expanded="false" aria-controls="collapseSolution23">
+  <h4 class="accordion-header" id="headingSolution23"> Show me the solution </h4>
 </button>
-<div id="collapseSolution13" class="accordion-collapse collapse" aria-labelledby="headingSolution13" data-bs-parent="#accordionSolution13">
+<div id="collapseSolution23" class="accordion-collapse collapse" data-bs-parent="#accordionSolution23" aria-labelledby="headingSolution23">
 <div class="accordion-body">
 <p>It is clear that stochastic (random) variation in allele frequencies
 strongly affects the probability of fixation of alleles in small
@@ -4493,13 +4512,13 @@ populations, not so much in large ones.</p>
 </div>
 </div>
 </div>
-<div id="genetic-drift-with-selection" class="callout challenge">
+<div id="task-7-genetic-drift-with-selection" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="genetic-drift-with-selection" class="callout-inner">
-<h3 class="callout-title">Genetic Drift with selection</h3>
+<div id="task-7-genetic-drift-with-selection" class="callout-inner">
+<h3 class="callout-title">Task 7: Genetic Drift with selection</h3>
 <div class="callout-content">
 <p>So far we’ve only looked at how allele frequencies vary in the
 absence of selection, that is when the two alleles provide an equal
@@ -4520,12 +4539,12 @@ the three population sizes?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution14" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution24" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution14" aria-expanded="false" aria-controls="collapseSolution14">
-  <h4 class="accordion-header" id="headingSolution14"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution24" aria-expanded="false" aria-controls="collapseSolution24">
+  <h4 class="accordion-header" id="headingSolution24"> Show me the solution </h4>
 </button>
-<div id="collapseSolution14" class="accordion-collapse collapse" aria-labelledby="headingSolution14" data-bs-parent="#accordionSolution14">
+<div id="collapseSolution24" class="accordion-collapse collapse" data-bs-parent="#accordionSolution24" aria-labelledby="headingSolution24">
 <div class="accordion-body">
 <p>About the same time, but the trajectories are much smoother with
 larger populations. In the small population, it happens that the
@@ -4535,14 +4554,14 @@ often).</p>
 </div>
 </div>
 </div>
-<div id="fixation-of-slightly-deleterious-alleles-in-very-small-populations" class="callout challenge">
+<div id="task-8-fixation-of-slightly-deleterious-alleles-in-very-small-populations" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
 <span class="callout-header">Challenge</span>
-<div id="fixation-of-slightly-deleterious-alleles-in-very-small-populations" class="callout-inner">
-<h3 class="callout-title">Fixation of slightly deleterious alleles in
-very small populations</h3>
+<div id="task-8-fixation-of-slightly-deleterious-alleles-in-very-small-populations" class="callout-inner">
+<h3 class="callout-title">Task 8: Fixation of slightly deleterious
+alleles in very small populations</h3>
 <div class="callout-content">
 <p>We’re now simulating what would happen in a very small population (or
 a population that undergoes very narrow bottlenecks), when a gene
@@ -4560,12 +4579,12 @@ individual getting a mutation:</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution15" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution25" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution15" aria-expanded="false" aria-controls="collapseSolution15">
-  <h4 class="accordion-header" id="headingSolution15"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution25" aria-expanded="false" aria-controls="collapseSolution25">
+  <h4 class="accordion-header" id="headingSolution25"> Show me the solution </h4>
 </button>
-<div id="collapseSolution15" class="accordion-collapse collapse" aria-labelledby="headingSolution15" data-bs-parent="#accordionSolution15">
+<div id="collapseSolution25" class="accordion-collapse collapse" data-bs-parent="#accordionSolution25" aria-labelledby="headingSolution25">
 <div class="accordion-body">
 <p>Most new alleles go extinct quickly. In my simulations, I usually get
 one of the slightly deleterious mutations fixed after 20
@@ -4602,7 +4621,7 @@ Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
 </div>
-</section></section><section id="aio-quality-control"><p>Content from <a href="quality-control.html">Reads, QC and trimming</a></p>
+</div></section><section id="aio-quality-control"><p>Content from <a href="quality-control.html">Reads, QC and trimming</a></p>
 <hr>
 <p>Last updated on 2026-03-31 |
 
