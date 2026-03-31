@@ -27,3 +27,7 @@ blastp -query ravC_LP.fasta -db refseq_select_prot -evalue 1e-6 > ravC.blast
 psiblast -query ravC_LP.fasta -db refseq_select_prot -save_pssm_after_last_round -out_pssm ravC_Leg.pssm -out_ascii_pssm ravC_Leg.pssm.txt -inclusion_ethresh 1e-10 -evalue 1e-6 -taxids 118969 > ravC_Leg.psiblast
 
 psiblast -in_pssm ravC_Leg.pssm -db refseq_select_prot -inclusion_ethresh 1e-10 -evalue 1e-6 -max_target_seqs 1000 -num_iterations 0 -outfmt "7 qaccver saccver pident length mismatch gapopen qstart qend sstart send qcovs evalue bitscore ssciname scomname sskingdom" > ravC_all.psiblast
+
+
+# Gathering all commands from active episodes to test on Uppmax
+python3 code/extract_bash.py
