@@ -336,7 +336,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Mapping</h1>
-        <p>Last updated on 2026-03-31 |
+        <p>Last updated on 2026-04-01 |
 
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/snps-phylogeny.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -376,6 +376,13 @@ sequence.</p>
 </div>
 </div>
 </div>
+<!---
+
+Changelog VT2026
+- Adaptation to pelle
+- Used the new version of Phylo.io, where they fixed bootstrap issues when rerooting.
+
+--->
 <figure><img src="fig/snps_reads_02.png" alt="Mapping of SNP reads" class="figure mx-auto d-block"></figure><p>The identified SNPs will be used to compare the isolates to each
 other and to establish a phylogenetic tree.</p>
 
@@ -403,7 +410,7 @@ hold the results from snippy.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -524,7 +531,7 @@ information:</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>From the <code>molepi/results/snps</code> folder:</p>
 <div class="codewrapper sourceCode" id="cb8">
@@ -573,7 +580,7 @@ H37Rv.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -690,7 +697,7 @@ Don’t forget to load the right module.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -706,7 +713,7 @@ Don’t forget to load the right module.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -779,7 +786,7 @@ models? What does e.g. “JC+ASC+G4” means?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
 <p>The log file of IQ-TREE contains a lot of information.</p>
 <p>The <a href="http://www.iqtree.org/doc/Substitution-Models#dna-models" class="external-link">IQ-TREE
@@ -793,7 +800,7 @@ website</a> contains a description of the DNA substitution models.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb22">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -828,8 +835,8 @@ website</a>.</p>
 computer</h3>
 <div class="callout-content">
 <p>Copy the tree in Newick format (<code>core.aln.newick</code>) to your
-computer using <code>scp</code> and use FigTree or (phylo.io)[<a href="https://beta.phylo.io/" class="external-link uri">https://beta.phylo.io/</a>] to
-visualize it. Do you see a way to assess the quality of the tree?</p>
+computer using <code>scp</code> and use FigTree or <a href="https://phylo.io/" class="external-link">phylo.io</a> to visualize it. Do you see a way
+to assess the quality of the tree?</p>
 </div>
 </div>
 </div>
@@ -838,7 +845,7 @@ visualize it. Do you see a way to assess the quality of the tree?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb24">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -885,7 +892,7 @@ there.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb26">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -915,15 +922,14 @@ model IQ-TREE used?<em> (continued)</em>
 and visualize it. Display support values: - With FigTree: on the left
 menu, tick “Branch labels”, and choose the last row (what you entered
 when prompted to do so, <code>label</code> by default) - With phylo.io:
-do <em>not</em> use the “beta” service, as it displays the support
-values incorrectly. Use the stable version, but compare both!</p>
+when loading the tree, tick the “Use internal label for branches”. Then
+click on “Settings” &gt; “Branches &amp; Labels”, use the drop menu “A”
+under “Node labels” and choose “Data”.</p>
 </div>
 </div>
 </div>
 <figure><img src="fig/figtree.png" alt="Figtree" class="figure mx-auto d-block"><div class="figcaption">As shown by FigTree</div>
-</figure><figure><img src="fig/phylo_io.png" alt="phylo.io" class="figure mx-auto d-block"><div class="figcaption">As shown by phylo.io, stable version</div>
-</figure><figure><img src="fig/phylo_io_beta.png" alt="beta.phylo.io" class="figure mx-auto d-block"><div class="figcaption">As shown by phylo.io, beta version. Note the
-position of the “99”</div>
+</figure><figure><img src="fig/phylo_io.png" alt="phylo.io" class="figure mx-auto d-block"><div class="figcaption">As shown by phylo.io</div>
 </figure><p>As shown by phylo.io, beta version. Note the position of the
 “99”.</p>
 <div id="keypoints1" class="callout keypoints">
@@ -1007,8 +1013,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/snps-phylogeny.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/snps-phylogeny.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2026-03-31",
-  "datePublished": "2026-03-31"
+  "dateModified": "2026-04-01",
+  "datePublished": "2026-04-01"
 }
 
   </script><script>
