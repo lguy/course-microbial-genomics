@@ -20,6 +20,13 @@ exercises: 180
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!---
+
+Changelog VT2026
+- Adaptation to pelle
+
+--->
+
 ## Exercise 1: Paper-and-pen phylogenetic tree
 
 ### Setup

@@ -20,6 +20,13 @@ Sequence assembly means the alignment and merging of reads in order to reconstru
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!---
+
+Changelog VT2026
+- Adaptation to pelle
+
+--->
+
 
 ## Exercise 1: Sequence assembly with SKESA
 
@@ -288,7 +295,7 @@ To compare how different assemblers perform, you will also use [SPAdes](https://
 
 You will only perform the assembly on one genome, but use the loop form anyway. You will use the `--isolate` mode, but the `--careful` mode would also be interesting. This might take 5-10 minutes per genome. 
 
-SPAdes can be loaded with the `spades` module, and the main command is `spades.py`. Make a `spades_assembly` folder in the `molepi/results` folder and go there. Then run a 1-genome loop as above. SPAdes has arguments `-1` and `-2` for reads from two ends, the `-o` to use a specific folder to store the output (use `<accession>_spades`), `-t` to use several threads (use 2), and `-m` to set the maximum memory in Gb (use 8).
+SPAdes can be loaded with the `SPAdes` module, and the main command is `spades.py`. Make a `spades_assembly` folder in the `molepi/results` folder and go there. Then run a 1-genome loop as above. SPAdes has arguments `-1` and `-2` for reads from two ends, the `-o` to use a specific folder to store the output (use `<accession>_spades`), `-t` to use several threads (use 2), and `-m` to set the maximum memory in Gb (use 8).
 
 ::: hint
 
@@ -330,7 +337,7 @@ done
 ::: instructor
 
 ```bash
-module load spades
+module load SPAdes
 cd /proj/g2020004/nobackup/3MK013/<username>/molepi/results
 mkdir spades_assembly
 cd spades_assembly
@@ -450,7 +457,7 @@ With the proteome (`.faa` file) of sample ERR029206, create a BLAST database, of
 ::: hint
 
 ```bash
-module load blast
+module load BLAST+
 makeblastdb -h
 ```
 
@@ -460,7 +467,7 @@ makeblastdb -h
 ::: solution
 
 ```bash
-module load blast
+module load BLAST+
 makeblastdb <database type, protein> -in <proteome file> -out <accession>
 ```
 

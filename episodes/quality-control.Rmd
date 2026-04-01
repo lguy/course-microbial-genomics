@@ -30,6 +30,13 @@ The first part, here, describes how to retrieve all necessary data from public r
 
 :::
 
+<!---
+
+Changelog VT2026
+- Adaptation to pelle
+
+--->
+
 ## Introduction
 
 This part of the course is largely inspired from [another tutorial](https://github.com/aschuerch/MolecularEpidemiology_AnalysisWGS) developed by [Anita Schürch](https://aschuerch.github.io/). We will use (part of) the data described in [Bryant et al., 2013](https://bmcinfectdis.biomedcentral.com/articles/10.1186/1471-2334-13-110). 

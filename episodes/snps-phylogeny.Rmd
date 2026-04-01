@@ -20,6 +20,14 @@ In this episode we will try to pinpoint single nucleotide polymorphism (SNPs), a
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
+<!---
+
+Changelog VT2026
+- Adaptation to pelle
+- Used the new version of Phylo.io, where they fixed bootstrap issues when rerooting.
+
+--->
+
 ![](fig/snps_reads_02.png){alt='Mapping of SNP reads'}
 
 The identified SNPs will be used to compare the isolates to each other and to establish a phylogenetic tree.
@@ -363,7 +371,7 @@ The model selection process is also described on the [IQ-TREE website](http://ww
 
 ## Challenge: Visualize the tree on your computer
 
-Copy the tree in Newick format (`core.aln.newick`) to your computer using `scp` and use FigTree or (phylo.io)[https://beta.phylo.io/] to visualize it. Do you see a way to assess the quality of the tree?
+Copy the tree in Newick format (`core.aln.newick`) to your computer using `scp` and use FigTree or [phylo.io](https://phylo.io/) to visualize it. Do you see a way to assess the quality of the tree?
 
 ::: solution
 
@@ -418,15 +426,14 @@ mv snps/core.aln.100npb* tree100npb/
 
 When that finishes, copy the resulting tree to your local computer and visualize it. Display support values:
 - With FigTree: on the left menu, tick "Branch labels", and choose the last row (what you entered when prompted to do so, `label` by default)
-- With phylo.io: do *not* use the "beta" service, as it displays the support values incorrectly. Use the stable version, but compare both!
+- With phylo.io: when loading the tree, tick the "Use internal label for branches". Then click on "Settings" > "Branches & Labels", use the drop menu "A" under "Node labels" and choose "Data". 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
 ![As shown by FigTree](fig/figtree.png){alt='Figtree'}
 
-![As shown by phylo.io, stable version](fig/phylo_io.png){alt='phylo.io'}
+![As shown by phylo.io](fig/phylo_io.png){alt='phylo.io'}
 
-![As shown by phylo.io, beta version. Note the position of the "99"](fig/phylo_io_beta.png){alt='beta.phylo.io'}
 
 As shown by phylo.io, beta version. Note the position of the "99".
 
