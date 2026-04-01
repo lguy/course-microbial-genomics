@@ -23,7 +23,8 @@ exercises: 240
 <!--
 
 Changelog VT2026
-
+- Merged MSA and Phylogenetics to this episode
+- Adaptation to pelle
 
 -->
 
@@ -560,7 +561,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
-Successfully installed 1 package in 3.1 milliseconds.
+Successfully installed 1 package in 3.2 milliseconds.
 ```
 
 And to load it:
@@ -703,7 +704,7 @@ The tree is reconstructed by dividing the distances equally between the two leav
 - AB-C: each side gets 2.5/2 = 1.25. The branch to AB is 1.25 - 0.5 = 0.75
 - ABC-D: each side gets 4/2 = 2. The branch to ABC is 2 - 0.75 - 0.5 = 0.75
 
-![UPGMA tree](fig/upgma_manual.png){alt='Manually built UPGMA tree'}
+![UPGMA tree](fig/UPGMA_manual.png){alt='Manually built UPGMA tree'}
 
 
 Let's know do the same using bioinformatics tools. 
@@ -904,10 +905,12 @@ figtree rpoB.fftns.aln.treefile &
 ### Bootstraps
 
 We have inferred four trees:
+
 * Two based on the alignment generated from the E-INS-i algorithm (trimmed by ClipKIT), two from the FFT-NS.
 * Two inferred with the BioNJ algorithm and two with the ML algorithm (IQ-Tree)
 
 Along the way, we've generated bootstraps for all our trees. Now show them on all four trees.
+
 * For the Seaview trees, tick the 'Br support' box
 * For the trees shown in phylo.io, click on "Settings" > "Branch & Labels" and above the branch, click the drop-down menu and select "Data". 
 
@@ -992,7 +995,7 @@ Did any allele got fixed? What is the range of frequencies after 200 generations
 
 :::::::::::::::::::::::: solution 
 
-In my simulations, no allele got fixed, the final allele frequencies range20-80%
+In my simulations, no allele got fixed, the final allele frequencies range 20-80%
 
 :::::::::::::::::::::::::::::::::
 
