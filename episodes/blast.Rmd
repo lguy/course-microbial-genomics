@@ -20,6 +20,9 @@ exercises: 240
 
 <!---
 
+Feedback VT2026
+- Took 3,5-4h for all students to complete
+
 Changelog VT2026
 - Adapted rackham -> pelle, including new modules and editor
 - Adapted project number

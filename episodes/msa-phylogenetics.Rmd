@@ -175,7 +175,7 @@ The `sed` command first matches only lines that start with a `>` (`/^>/`). It th
 It looks better.
 
 ### Alignment with progressive algorithm
-
+    
 Use `mafft` with a progressive algorithm to align the sequences. 
 
 :::::::::::::::::::::::::::::::::::::::  challenge

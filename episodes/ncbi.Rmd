@@ -32,6 +32,9 @@ Exercise 2
 
 <!---
 
+Feedback VT2026
+- Took 2,5 hours for all students to finish
+
 Changelog VT2026
 - Corrected a few links for protein records that didn't work
 
