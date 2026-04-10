@@ -11,6 +11,13 @@ exercises: 240
 - How do you align multiple sequences?
 - Why is it important to properly align sequences?
 
+- How do you build a simple, distance-based phylogenetic tree?
+- How do you build a phylogenetic tree with more advanced methods?
+- How do you ascertain statistical support for phylogenetic trees?
+
+- How does random genetic drift influence fixation of alleles?
+- What is the influence of population size?
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
@@ -18,7 +25,15 @@ exercises: 240
 - Use `mafft` to align multiple sequences.
 - Test different algorithms.
 
+- Learn the basic of phylogenetics tree building, taking the simplest of the examples with a UPGMA tree.
+- Learn how to use phylogenetics algorithms, neighbor-joining and maximum-likelihood.
+- Learn how to perform and show bootstraps.
+
+- Understand how population size influences the probability of fixation of an allele.
+- Understand how slightly deleterious mutations may get fixed in small populations.
+
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 <!--
 
@@ -525,22 +540,6 @@ It is of course difficult to draw conclusions based on this figure, but can you 
 
 # Part 2: Phylogenetics
 
-:::::::::::::::::::::::::::::::::::::: questions 
-
-- How do you build a simple, distance-based phylogenetic tree?
-- How do you build a phylogenetic tree with more advanced methods?
-- How do you ascertain statistical support for phylogenetic trees?
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: objectives
-
-- Learn the basic of phylogenetics tree building, taking the simplest of the examples with a UPGMA tree.
-- Learn how to use phylogenetics algorithms, neighbor-joining and maximum-likelihood.
-- Learn how to perform and show bootstraps.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
 
 ## Task 3: Paper-and-pen phylogenetic tree
 
@@ -561,7 +560,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
-Successfully installed 1 package in 3.1 milliseconds.
+Successfully installed 1 package in 3 milliseconds.
 ```
 
 And to load it:
@@ -955,19 +954,6 @@ What about the support values for grouping these two groups? How high are they?
 
 As a practical way to understand genetic drift, let's play with population size, selection coefficients, number of generations, etc.
 
-:::::::::::::::::::::::::::::::::::::: questions 
-
-- How does random genetic drift influence fixation of alleles?
-- What is the influence of population size?
-
-::::::::::::::::::::::::::::::::::::::::::::::::
-
-::::::::::::::::::::::::::::::::::::: objectives
-
-- Understand how population size influences the probability of fixation of an allele.
-- Understand how slightly deleterious mutations may get fixed in small populations.
-
-::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
 
