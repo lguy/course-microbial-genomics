@@ -18,11 +18,11 @@ exercises: 120
 
 ## Introduction
 
-In this episode, we are going to explore protein structure prediction. For structure prediction, you are going to use [`AlphaFold`](https://www.nature.com/articles/s41586-021-03819-2), a deep learning model based tool developed by DeepMind that has revolutionized the field of protein structure prediction. We will (1) predict the structure of a protein, (2) interpret the confidence of the predictions, (3) visualize the predicted structures, and (4) compare them to known structures. Let's get started by setting up our environment for prediction and loading the necessary libraries.
+In this episode, we are going to explore protein structure prediction using [`AlphaFold`](https://www.nature.com/articles/s41586-021-03819-2), a deep learning model based tool developed by DeepMind. We will (1) predict the structure of protein and protein complex, (2) interpret the confidence of the predictions, (3) visualize the predicted structures, and (4) compare them to the known structures. Let's get started by setting up our environment for prediction on Pelle.
 
 ## Task 1: Predicting structure of a protein
 
-We will use the `AlphaFold/3.0.1` module from Pelle for protein structure prediction. Let's start!
+We will use the `AlphaFold/3.0.1` module from Pelle for protein structure prediction. Before we can run the prediction, we need to prepare the input files and parameters for `AlphaFold3`. We will go through these steps in the following challenges.
 
 :::::: challenge
 ## Challenge 1.1: prepare the terrain
@@ -70,9 +70,9 @@ cd protein-structure-exercise
 :::::: challenge
 ## Challenge 1.2: upload the AlphaFold3 parameters file
 
-Probably you already have downloaded the AlphaFold3 models using this [link](https://forms.gle/svvpY4u2jsHEwWYS6).
+Probably you already have downloaded the AlphaFold3 models using this [link](https://forms.gle/svvpY4u2jsHEwWYS6). We will need these parameters to run the AlphaFold3 prediction on Pelle.
 
-First, we need to create a `params` sub-directory under `protein-structure-exercise` directory to store the AlphaFold3 parameters file on Pelle. Then we will upload the parameters file from the local machine into that `params` directory on Pelle.
+Let's create a `params` sub-directory under `protein-structure-exercise` directory to store the AlphaFold3 parameters file. Then we will upload the parameters file from the local machine into that `params` directory (on Pelle).
 
 ::: hint
 Use `mkdir` command to create a new directory, and upload the file into the `params` directory using `scp` command.
@@ -97,7 +97,7 @@ AlphaFold takes the amino acid (AA) sequence of a protein as input and predicts 
 wget https://rest.uniprot.org/uniprotkb/P69441.fasta
 ```
 
-This will download the FASTA file containing the amino acid sequence of the protein. 
+This command will download a FASTA file containing the amino acid (AA) sequence of Adenylate kinase from UniProt Database. 
 
 Q.1 Can you tell how many amino acids are in the sequence? You can use the `grep` command to count.
 
@@ -111,9 +111,9 @@ grep -v ">" P69441.fasta | tr -d '\n' | wc -c
 ```
 :::
 
-You can check how AlphaFold3 input files look like [here](https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md). You can manually format the input file according to the specifications. But for this exercise, we will use a script that automates the process.
+You can check how `AlphaFold3` input files look like [here](https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md). You can manually format the input file according to the specifications. But for this exercise, we will use a script that automates the process.
 
-First, we create a directory called `af3-input`:
+But first, we create a directory called `af3-input`:
 
 ::: hint
 Use `mkdir` command to create a new directory.
@@ -172,15 +172,15 @@ You should check whether the module is actually loaded by using the following co
 module list
 ```
 
-We will run AlphaFold3 using [slurm](https://docs.uppmax.uu.se/cluster_guides/slurm/). You can check the instructions. For this course, we will use a script that generates a ready-to-use `slurm` command.
+We will run AlphaFold3 using [slurm](https://docs.uppmax.uu.se/cluster_guides/slurm/). You can check the instructions. For this course, we will use a python script that generates a ready-to-use `slurm` shell script.
 
-Then, we can run the prediction using the following command:
+Run the following command:
 
 ``` bash
 python3 <basefolder>/scripts/create_af3_slurm_job.py -p <Project-Code> -i ./af3-input/P69441.json -o ./af3-output -m ./params > job.sh
 ```
 
-Now we execute the job as following:
+Now, we execute the slurm job as following using `sbatch` command:
 
 ``` bash
 sbatch job.sh
@@ -191,11 +191,11 @@ This command runs the AlphaFold3 prediction using the input JSON file and saves 
 Q.3 How long did the prediction take? 
 
 ::: hint
-You can check the log file generated by the `slurm` job.
+You can check the log file generated by the `slurm` job. Alternatively, you can use the `sacct` command.
 :::
 
 ::: solution
-The log file will have a name like `slurm-<job_id>.out`.
+The log file will have a name like `slurm-<job_id>.out`. Use `cat` or `less` command to check the contents of the log file. Alternatively, you can use the `sacct -j <job_id> --format=JobID,Elapsed` command to get a summary of the job's execution time.
 :::
 
 ::::::
@@ -203,7 +203,7 @@ The log file will have a name like `slurm-<job_id>.out`.
 
 ## Task 2: Interpret the confidence score of the predictions
 
-Now that we have generated a predicted structure, we will evaluate how reliable it is.
+Now that we have predicted the structure, we will evaluate how reliable it is.
 
 In the output directory (`af3-output`), you will find several files. One with the suffix `_summary_confidences.json`, contains the confidence scores for the predicted structure. You can use the following command to view the contents of the confidence summary file:
 
@@ -249,7 +249,7 @@ You can use the `scp` command to securely copy the file from the remote server t
 scp <username>@pelle.uppmax.uu.se:<basefolder>/<username>/protein-structure-exercise/af3-output/p69441/p69441_model.cif <local_path>
 ```
 
-To visualize in PyMOL, first open PyMOL software on your local machine. PyMol has it's own command line interface, just like the terminal. You can use that terminal and type the following command to load the predicted structure file:
+Open PyMOL software on your local machine. PyMol has it's own command line interface, just like the terminal. You can use that terminal and type the following command to load the predicted structure file:
 
 ``` bash         
 load <path_to_cif_file>/p69441_model.cif
