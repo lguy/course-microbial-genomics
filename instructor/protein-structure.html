@@ -338,7 +338,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Protein structure prediction</h1>
-        <p>Last updated on 2026-04-10 |
+        <p>Last updated on 2026-04-12 |
 
         <a href="https://github.com/carpentries/workbench-template-rmd/edit/main/episodes/protein-structure.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -379,17 +379,18 @@
 </div>
 </div>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a></h2>
-<hr class="half-width"><p>In this episode, we are going to explore protein structure
-prediction. For structure prediction, you are going to use <a href="https://www.nature.com/articles/s41586-021-03819-2" class="external-link"><code>AlphaFold</code></a>,
-a deep learning model based tool developed by DeepMind that has
-revolutionized the field of protein structure prediction. We will (1)
-predict the structure of a protein, (2) interpret the confidence of the
-predictions, (3) visualize the predicted structures, and (4) compare
-them to known structures. Let’s get started by setting up our
-environment for prediction and loading the necessary libraries.</p>
+<hr class="half-width"><p>In this episode, we are going to explore protein structure prediction
+using <a href="https://www.nature.com/articles/s41586-021-03819-2" class="external-link"><code>AlphaFold</code></a>,
+a deep learning model based tool developed by DeepMind. We will (1)
+predict the structure of protein and protein complex, (2) interpret the
+confidence of the predictions, (3) visualize the predicted structures,
+and (4) compare them to the known structures. Let’s get started by
+setting up our environment for prediction on Pelle.</p>
 </section><section><h2 class="section-heading" id="task-1-predicting-structure-of-a-protein">Task 1: Predicting structure of a protein<a class="anchor" aria-label="anchor" href="#task-1-predicting-structure-of-a-protein"></a></h2>
 <hr class="half-width"><p>We will use the <code>AlphaFold/3.0.1</code> module from Pelle for
-protein structure prediction. Let’s start!</p>
+protein structure prediction. Before we can run the prediction, we need
+to prepare the input files and parameters for <code>AlphaFold3</code>.
+We will go through these steps in the following challenges.</p>
 <div id="challenge-1.1-prepare-the-terrain" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -411,7 +412,7 @@ into it.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>Remember those commands?</p>
 <div class="codewrapper sourceCode" id="cb1">
@@ -431,7 +432,7 @@ into it.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -456,7 +457,7 @@ into it.</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -484,12 +485,13 @@ into it.</p>
 parameters file</h3>
 <div class="callout-content">
 <p>Probably you already have downloaded the AlphaFold3 models using this
-<a href="https://forms.gle/svvpY4u2jsHEwWYS6" class="external-link">link</a>.</p>
-<p>First, we need to create a <code>params</code> sub-directory under
+<a href="https://forms.gle/svvpY4u2jsHEwWYS6" class="external-link">link</a>. We will need
+these parameters to run the AlphaFold3 prediction on Pelle.</p>
+<p>Let’s create a <code>params</code> sub-directory under
 <code>protein-structure-exercise</code> directory to store the
-AlphaFold3 parameters file on Pelle. Then we will upload the parameters
-file from the local machine into that <code>params</code> directory on
-Pelle.</p>
+AlphaFold3 parameters file. Then we will upload the parameters file from
+the local machine into that <code>params</code> directory (on
+Pelle).</p>
 </div>
 </div>
 </div>
@@ -498,7 +500,7 @@ Pelle.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint2" aria-expanded="false" aria-controls="collapseHint2">
   <h4 class="accordion-header" id="headingHint2"> Give me a hint </h4>
 </button>
-<div id="collapseHint2" class="accordion-collapse collapse" aria-labelledby="headingHint2" data-bs-parent="#accordionHint2">
+<div id="collapseHint2" class="accordion-collapse collapse" data-bs-parent="#accordionHint2" aria-labelledby="headingHint2">
 <div class="accordion-body">
 <p>Use <code>mkdir</code> command to create a new directory, and upload
 the file into the <code>params</code> directory using <code>scp</code>
@@ -512,7 +514,7 @@ command.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb6">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -544,8 +546,8 @@ download the sequence of Adenylate kinase using the following code:</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="fu">wget</span> https://rest.uniprot.org/uniprotkb/P69441.fasta</span></code></pre>
 </div>
-<p>This will download the FASTA file containing the amino acid sequence
-of the protein.</p>
+<p>This command will download a FASTA file containing the amino acid
+(AA) sequence of Adenylate kinase from UniProt Database.</p>
 <p>Q.1 Can you tell how many amino acids are in the sequence? You can
 use the <code>grep</code> command to count.</p>
 </div>
@@ -556,7 +558,7 @@ use the <code>grep</code> command to count.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint3" aria-expanded="false" aria-controls="collapseHint3">
   <h4 class="accordion-header" id="headingHint3"> Give me a hint </h4>
 </button>
-<div id="collapseHint3" class="accordion-collapse collapse" aria-labelledby="headingHint3" data-bs-parent="#accordionHint3">
+<div id="collapseHint3" class="accordion-collapse collapse" data-bs-parent="#accordionHint3" aria-labelledby="headingHint3">
 <div class="accordion-body">
 <p>The <code>grep -v "&gt;"</code> command removes the header line,
 <code>tr -d '\n'</code> removes newlines, and <code>wc -c</code> counts
@@ -571,7 +573,7 @@ acids.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -592,11 +594,11 @@ acids.</p>
 (continued)</em>
 </h3>
 <div class="callout-content">
-<p>You can check how AlphaFold3 input files look like <a href="https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md" class="external-link">here</a>.
+<p>You can check how <code>AlphaFold3</code> input files look like <a href="https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md" class="external-link">here</a>.
 You can manually format the input file according to the specifications.
 But for this exercise, we will use a script that automates the
 process.</p>
-<p>First, we create a directory called <code>af3-input</code>:</p>
+<p>But first, we create a directory called <code>af3-input</code>:</p>
 </div>
 </div>
 </div>
@@ -605,7 +607,7 @@ process.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint4" aria-expanded="false" aria-controls="collapseHint4">
   <h4 class="accordion-header" id="headingHint4"> Give me a hint </h4>
 </button>
-<div id="collapseHint4" class="accordion-collapse collapse" aria-labelledby="headingHint4" data-bs-parent="#accordionHint4">
+<div id="collapseHint4" class="accordion-collapse collapse" data-bs-parent="#accordionHint4" aria-labelledby="headingHint4">
 <div class="accordion-body">
 <p>Use <code>mkdir</code> command to create a new directory.</p>
 </div>
@@ -617,7 +619,7 @@ process.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -664,7 +666,7 @@ command.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint5" aria-expanded="false" aria-controls="collapseHint5">
   <h4 class="accordion-header" id="headingHint5"> Give me a hint </h4>
 </button>
-<div id="collapseHint5" class="accordion-collapse collapse" aria-labelledby="headingHint5" data-bs-parent="#accordionHint5">
+<div id="collapseHint5" class="accordion-collapse collapse" data-bs-parent="#accordionHint5" aria-labelledby="headingHint5">
 <div class="accordion-body">
 <p>Check AlphaFold3 input file preparation instruction <a href="https://github.com/google-deepmind/alphafold3/blob/main/docs/input.md" class="external-link">here</a></p>
 </div>
@@ -676,7 +678,7 @@ command.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution5" aria-expanded="false" aria-controls="collapseSolution5">
   <h4 class="accordion-header" id="headingSolution5"> Show me the solution </h4>
 </button>
-<div id="collapseSolution5" class="accordion-collapse collapse" aria-labelledby="headingSolution5" data-bs-parent="#accordionSolution5">
+<div id="collapseSolution5" class="accordion-collapse collapse" data-bs-parent="#accordionSolution5" aria-labelledby="headingSolution5">
 <div class="accordion-body">
 <p>Check the section about versions in the AlphaFold3 input file
 preparation instruction.</p>
@@ -717,15 +719,16 @@ following command:</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="ex">module</span> list</span></code></pre>
 </div>
 <p>We will run AlphaFold3 using <a href="https://docs.uppmax.uu.se/cluster_guides/slurm/" class="external-link">slurm</a>. You
-can check the instructions. For this course, we will use a script that
-generates a ready-to-use <code>slurm</code> command.</p>
-<p>Then, we can run the prediction using the following command:</p>
+can check the instructions. For this course, we will use a python script
+that generates a ready-to-use <code>slurm</code> shell script.</p>
+<p>Run the following command:</p>
 <div class="codewrapper sourceCode" id="cb15">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">python3</span> <span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/scripts/create_af3_slurm_job.py <span class="at">-p</span> <span class="op">&lt;</span>Project-Code<span class="op">&gt;</span> -i ./af3-input/P69441.json <span class="at">-o</span> ./af3-output <span class="at">-m</span> ./params <span class="op">&gt;</span> job.sh</span></code></pre>
 </div>
-<p>Now we execute the job as following:</p>
+<p>Now, we execute the slurm job as following using <code>sbatch</code>
+command:</p>
 <div class="codewrapper sourceCode" id="cb16">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -744,10 +747,10 @@ check the status of your job using the
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint6" aria-expanded="false" aria-controls="collapseHint6">
   <h4 class="accordion-header" id="headingHint6"> Give me a hint </h4>
 </button>
-<div id="collapseHint6" class="accordion-collapse collapse" aria-labelledby="headingHint6" data-bs-parent="#accordionHint6">
+<div id="collapseHint6" class="accordion-collapse collapse" data-bs-parent="#accordionHint6" aria-labelledby="headingHint6">
 <div class="accordion-body">
-<p>You can check the log file generated by the <code>slurm</code>
-job.</p>
+<p>You can check the log file generated by the <code>slurm</code> job.
+Alternatively, you can use the <code>sacct</code> command.</p>
 </div>
 </div>
 </div>
@@ -757,17 +760,21 @@ job.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution6" aria-expanded="false" aria-controls="collapseSolution6">
   <h4 class="accordion-header" id="headingSolution6"> Show me the solution </h4>
 </button>
-<div id="collapseSolution6" class="accordion-collapse collapse" aria-labelledby="headingSolution6" data-bs-parent="#accordionSolution6">
+<div id="collapseSolution6" class="accordion-collapse collapse" data-bs-parent="#accordionSolution6" aria-labelledby="headingSolution6">
 <div class="accordion-body">
 <p>The log file will have a name like
-<code>slurm-&lt;job_id&gt;.out</code>.</p>
+<code>slurm-&lt;job_id&gt;.out</code>. Use <code>cat</code> or
+<code>less</code> command to check the contents of the log file.
+Alternatively, you can use the
+<code>sacct -j &lt;job_id&gt; --format=JobID,Elapsed</code> command to
+get a summary of the job’s execution time.</p>
 </div>
 </div>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="task-2-interpret-the-confidence-score-of-the-predictions">Task 2: Interpret the confidence score of the predictions<a class="anchor" aria-label="anchor" href="#task-2-interpret-the-confidence-score-of-the-predictions"></a></h2>
-<hr class="half-width"><p>Now that we have generated a predicted structure, we will evaluate
-how reliable it is.</p>
+<hr class="half-width"><p>Now that we have predicted the structure, we will evaluate how
+reliable it is.</p>
 <p>In the output directory (<code>af3-output</code>), you will find
 several files. One with the suffix
 <code>_summary_confidences.json</code>, contains the confidence scores
@@ -807,7 +814,7 @@ Adenylate kinase? Does it indicate a good prediction?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint7" aria-expanded="false" aria-controls="collapseHint7">
   <h4 class="accordion-header" id="headingHint7"> Give me a hint </h4>
 </button>
-<div id="collapseHint7" class="accordion-collapse collapse" aria-labelledby="headingHint7" data-bs-parent="#accordionHint7">
+<div id="collapseHint7" class="accordion-collapse collapse" data-bs-parent="#accordionHint7" aria-labelledby="headingHint7">
 <div class="accordion-body">
 <p>You can find the pTM and ipTM scores in the
 <code>_summary_confidences.json</code> file. Look for the keys
@@ -821,7 +828,7 @@ Adenylate kinase? Does it indicate a good prediction?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution7" aria-expanded="false" aria-controls="collapseSolution7">
   <h4 class="accordion-header" id="headingSolution7"> Show me the solution </h4>
 </button>
-<div id="collapseSolution7" class="accordion-collapse collapse" aria-labelledby="headingSolution7" data-bs-parent="#accordionSolution7">
+<div id="collapseSolution7" class="accordion-collapse collapse" data-bs-parent="#accordionSolution7" aria-labelledby="headingSolution7">
 <div class="accordion-body">
 <p>First find the confidence scores using the command below:</p>
 <div class="codewrapper sourceCode" id="cb18">
@@ -861,10 +868,9 @@ file on your local machine.</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>username<span class="op">&gt;</span>@pelle.uppmax.uu.se:<span class="op">&lt;</span>basefolder<span class="op">&gt;</span>/<span class="op">&lt;</span>username<span class="op">&gt;</span>/protein-structure-exercise/af3-output/p69441/p69441_model.cif <span class="op">&lt;</span>local_path<span class="op">&gt;</span></span></code></pre>
 </div>
-<p>To visualize in PyMOL, first open PyMOL software on your local
-machine. PyMol has it’s own command line interface, just like the
-terminal. You can use that terminal and type the following command to
-load the predicted structure file:</p>
+<p>Open PyMOL software on your local machine. PyMol has it’s own command
+line interface, just like the terminal. You can use that terminal and
+type the following command to load the predicted structure file:</p>
 <div class="codewrapper sourceCode" id="cb20">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -926,7 +932,7 @@ known structure? Does it indicate a good prediction?</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint8" aria-expanded="false" aria-controls="collapseHint8">
   <h4 class="accordion-header" id="headingHint8"> Give me a hint </h4>
 </button>
-<div id="collapseHint8" class="accordion-collapse collapse" aria-labelledby="headingHint8" data-bs-parent="#accordionHint8">
+<div id="collapseHint8" class="accordion-collapse collapse" data-bs-parent="#accordionHint8" aria-labelledby="headingHint8">
 <div class="accordion-body">
 <p>Align predicted structure with the known structure from PDB database,
 using PyMOL.</p>
@@ -939,7 +945,7 @@ using PyMOL.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution8" aria-expanded="false" aria-controls="collapseSolution8">
   <h4 class="accordion-header" id="headingSolution8"> Show me the solution </h4>
 </button>
-<div id="collapseSolution8" class="accordion-collapse collapse" aria-labelledby="headingSolution8" data-bs-parent="#accordionSolution8">
+<div id="collapseSolution8" class="accordion-collapse collapse" data-bs-parent="#accordionSolution8" aria-labelledby="headingSolution8">
 <div class="accordion-body">
 <p>A low RMSD (e.g. &lt;2 Å) indicates strong agreement with the known
 structure.<br>
@@ -1029,7 +1035,7 @@ AlphaFold3 performed well in predicting the protein complex?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution9" aria-expanded="false" aria-controls="collapseSolution9">
   <h4 class="accordion-header" id="headingSolution9"> Show me the solution </h4>
 </button>
-<div id="collapseSolution9" class="accordion-collapse collapse" aria-labelledby="headingSolution9" data-bs-parent="#accordionSolution9">
+<div id="collapseSolution9" class="accordion-collapse collapse" data-bs-parent="#accordionSolution9" aria-labelledby="headingSolution9">
 <div class="accordion-body">
 <p>If both confidence scores (pTM/ipTM) are high and RMSD is low,
 AlphaFold3 performed well.<br>
@@ -1117,8 +1123,8 @@ any links that you are not going to use.
   "url": "https://carpentries.github.io/workbench-template-rmd/instructor/protein-structure.html",
   "identifier": "https://carpentries.github.io/workbench-template-rmd/instructor/protein-structure.html",
   "dateCreated": "2023-05-08",
-  "dateModified": "2026-04-10",
-  "datePublished": "2026-04-10"
+  "dateModified": "2026-04-12",
+  "datePublished": "2026-04-12"
 }
 
   </script><script>
