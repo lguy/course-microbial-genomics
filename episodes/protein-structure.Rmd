@@ -249,7 +249,7 @@ You can use the `scp` command to securely copy the file from the remote server t
 scp <username>@pelle.uppmax.uu.se:<basefolder>/<username>/protein-structure-exercise/af3-output/p69441/p69441_model.cif <local_path>
 ```
 
-Open PyMOL software on your local machine. PyMol has it's own command line interface, just like the terminal. You can use that terminal and type the following command to load the predicted structure file:
+Open PyMOL software on your local machine. PyMol has it's own command line interface, just like the terminal [see here](https://learn.schrodinger.com/public/pymol/2023-4/Content/pymol/pymol_home.htm). You can use that terminal and type the following command to load the predicted structure file:
 
 ``` bash         
 load <path_to_cif_file>/p69441_model.cif
@@ -362,7 +362,7 @@ If scores are low or RMSD is high, the prediction may be unreliable.
 ::::::
 
 
-In this episode, we explored how to predict, evaluate, and validate protein structures using AlphaFold3.
+In this episode, we explored how to predict protein structures using `AlphaFold3`, visualize them using `PyMOL`, and evaluate their reliability using confidence scores and RMSD values. 
 
 ::::::::: keypoints
 
