@@ -91,7 +91,9 @@ scp <path_to_parameters_file> <username>@pelle.uppmax.uu.se:<basefolder>/<userna
 :::::: challenge
 ## Challenge 1.3: prepare the input file
 
-AlphaFold takes the amino acid (AA) sequence of a protein as input and predicts its 3D structure. For this task, we will use the AA sequence of Adenylate kinase from *Escherichia coli* (UniProt ID: [P69441](https://www.uniprot.org/uniprot/P69441)). You can download the sequence of Adenylate kinase using the following code:
+AlphaFold takes the amino acid (AA) sequence of a protein as input and predicts its 3D structure. For this task, we will use the AA sequence of Adenylate kinase from *Escherichia coli* (UniProt ID: [P69441](https://www.uniprot.org/uniprot/P69441)). 
+
+Make sure you are in the `protein-structure-exercise` directory on Pelle by using `pwd` command, and then run the following command to download the FASTA file containing the AA sequence of Adenylate kinase: 
 
 ``` bash
 wget https://rest.uniprot.org/uniprotkb/P69441.fasta
