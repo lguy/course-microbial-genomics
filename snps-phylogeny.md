@@ -22,6 +22,9 @@ In this episode we will try to pinpoint single nucleotide polymorphism (SNPs), a
 
 <!---
 
+Notes VT2026
+- Most students ran into an issue for iqtree with -m MFP+ASC model: https://github.com/iqtree/iqtree3/issues/143. Solved it temporarily by using GTR. Check if the issue is still there before running again.
+
 Changelog VT2026
 - Adaptation to pelle
 - Used the new version of Phylo.io, where they fixed bootstrap issues when rerooting.
