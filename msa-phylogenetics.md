@@ -556,7 +556,7 @@ install.packages('ape')
 - Querying repositories for available source packages ... Done!
 The following package(s) will be installed:
 - ape [5.8-1]
-These packages will be installed into "~/work/course-microbial-genomics/course-microbial-genomics/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.5/x86_64-pc-linux-gnu".
+These packages will be installed into "~/work/course-microbial-genomics/course-microbial-genomics/renv/profiles/lesson-requirements/renv/library/linux-ubuntu-jammy/R-4.6/x86_64-pc-linux-gnu".
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
