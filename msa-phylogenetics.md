@@ -560,7 +560,7 @@ These packages will be installed into "~/work/course-microbial-genomics/course-m
 
 # Installing packages --------------------------------------------------------
 [32m✔[0m ape 5.8-1                                [linked from cache]
-Successfully installed 1 package in 2.6 milliseconds.
+Successfully installed 1 package in 3.4 milliseconds.
 ```
 
 And to load it:
